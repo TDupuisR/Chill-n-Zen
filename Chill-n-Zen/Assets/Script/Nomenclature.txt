@@ -1,0 +1,17 @@
+Nomenclature de nommage:
+=== Variable ===
+Variable global privé => _nomVariablePrivee
+Variable global public => nomVariablePublic
+Variable local (fonction/method) => nomVariableLocal
+Variable Paramètre (fonction/method) => nomParametre
+Variable accesseur => NomVariableAccesseur
+
+=== Autres ===
+Method/Fonction => NomFonction
+Event => OnNomEvenement
+
+
+Clean Code:
+Nommage de Fonction/Script = Seul utilité
+ex:
+Moving.cs ne s'occupera pas d'afficher des effets visuels
