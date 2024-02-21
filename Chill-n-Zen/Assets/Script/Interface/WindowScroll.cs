@@ -13,7 +13,6 @@ public class WindowScroll : MonoBehaviour
     private void Awake()
     {
         _backgroundStartPosition = _backgroundTransform.anchoredPosition;
-        print(_backgroundStartPosition.x);
     }
 
     private void OnValidate()

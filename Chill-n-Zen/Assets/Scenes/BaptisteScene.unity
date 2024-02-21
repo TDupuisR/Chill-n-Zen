@@ -2756,6 +2756,8 @@ GameObject:
   m_Component:
   - component: {fileID: 814066136}
   - component: {fileID: 814066137}
+  - component: {fileID: 814066138}
+  - component: {fileID: 814066139}
   m_Layer: 5
   m_Name: StarSlider
   m_TagString: Untagged
@@ -2837,7 +2839,97 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 814066138}
+        m_TargetAssemblyTypeName: SliderGradient, Assembly-CSharp
+        m_MethodName: set_progression
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 814066139}
+        m_TargetAssemblyTypeName: StarUIDisplay, Assembly-CSharp
+        m_MethodName: CheckForNewMilestone
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &814066138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814066135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57485c4a1975c9040857442ae07919bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 814066137}
+  _sliderImg: {fileID: 1110894976}
+  _sliderGradient:
+    serializedVersion: 2
+    key0: {r: 0.01693183, g: 0, b: 0.3962264, a: 1}
+    key1: {r: 0.8614459, g: 0, b: 1, a: 1}
+    key2: {r: 1, g: 0, b: 0.85768986, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+--- !u!114 &814066139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814066135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8113fde5ef2a44387df4c24a87bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _starImgList:
+  - {fileID: 377864259}
+  - {fileID: 1727906830}
+  - {fileID: 721916726}
+  _starMilestone:
+  - 0
+  - 0
+  - 0
+  _lockedStar: {fileID: 0}
+  _unlockedStar: {fileID: 0}
 --- !u!1 &831305612
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,6 +4023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189813538}
   - component: {fileID: 1189813539}
+  - component: {fileID: 1189813540}
   m_Layer: 5
   m_Name: BudgetSlider
   m_TagString: Untagged
@@ -4009,7 +4102,63 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1189813540}
+        m_TargetAssemblyTypeName: BudgetSlider, Assembly-CSharp
+        m_MethodName: set_progression
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1189813540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189813537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57485c4a1975c9040857442ae07919bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 1189813539}
+  _sliderImg: {fileID: 339752262}
+  _sliderGradient:
+    serializedVersion: 2
+    key0: {r: 0.29193306, g: 1, b: 0, a: 1}
+    key1: {r: 1, g: 0.8086419, b: 0, a: 1}
+    key2: {r: 1, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
 --- !u!1 &1210425355
 GameObject:
   m_ObjectHideFlags: 0
