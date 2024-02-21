@@ -15,9 +15,36 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "PrimaryDelta",
+                    "type": "PassThrough",
+                    "id": "2a2b104e-8cfd-4b0f-87c8-be07e1722d9f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PrimaryPosition",
                     "type": "Value",
                     "id": "f6893aa3-007a-481b-96de-aa2f441c2a37",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SecondaryTouch",
+                    "type": "Button",
+                    "id": "0ecff538-35e3-468a-8473-69e3b17e3718",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SecondaryPosition",
+                    "type": "Value",
+                    "id": "a7cd5824-bff4-4bd9-9451-53b7e47f82f3",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -60,12 +87,45 @@
                 },
                 {
                     "name": "",
-                    "id": "e9c091d6-2f40-499b-bfa2-fd4cd4101113",
-                    "path": "<Mouse>/position",
+                    "id": "2665a53f-147e-43b8-aabe-5946d204265e",
+                    "path": "<Touchscreen>/touch1/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PrimaryPosition",
+                    "action": "SecondaryTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e481a75-ed57-41f5-a65f-8bf59876b312",
+                    "path": "<Touchscreen>/touch1/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fc0c3aa-4bec-4d49-92bf-ef09ccb2035a",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e344702-f29f-404b-ae74-3b3350f7ba78",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

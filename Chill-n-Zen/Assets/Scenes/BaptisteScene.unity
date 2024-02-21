@@ -439,7 +439,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -483,12 +483,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 1459186162}
-  _inputTouch: {fileID: 292505561123875255, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
-  _inputPosition: {fileID: -6238960553966541609, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _inputPrimaryTouch: {fileID: 292505561123875255, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _inputPrimaryPosition: {fileID: -6238960553966541609, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _inputPrimaryDelta: {fileID: 7184269549436413746, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _inputSecondaryTouch: {fileID: 108623178708933401, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _inputSecondaryPosition: {fileID: -2252235813597627491, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _invertDirection: 1
   _swipeDeadZone: 0.1
-  _swipeSpeed: 0.5
-  _swipeMaxSpeed: 0.05
-  _swipeDeceleration: 3
+  _swipeSpeed: 1
+  _swipeMaxSpeed: 1.5
+  _swipeDeceleration: 1
+  _minMaxZoom: {x: 1, y: 100}
+  _zoomSensitivity: 0.1
 --- !u!114 &1459186165
 MonoBehaviour:
   m_ObjectHideFlags: 0
