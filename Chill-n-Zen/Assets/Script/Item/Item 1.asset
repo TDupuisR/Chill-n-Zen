@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Item 1
   m_EditorClassIdentifier: 
   asset2D: {fileID: 0}
-  room: 2
-  type: 1
-  style: 1
+  room: 3
+  type: 2
+  style: 3
   listUsage: 
   price: 0

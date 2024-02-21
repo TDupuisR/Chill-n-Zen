@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 574290812}
   - component: {fileID: 574290811}
+  - component: {fileID: 574290813}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -152,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b4c9918cfdf164e9f5bf1628d7ac64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listItems: []
+  listItems:
+  - {fileID: 11400000, guid: 0bc494f89da182647a567e54229b8413, type: 2}
 --- !u!4 &574290812
 Transform:
   m_ObjectHideFlags: 0
@@ -168,6 +170,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &574290813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574290810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb856c7f5f205d245b0ebe1889b88900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _libraryItems: {fileID: 574290811}
 --- !u!1 &1367607606
 GameObject:
   m_ObjectHideFlags: 0
