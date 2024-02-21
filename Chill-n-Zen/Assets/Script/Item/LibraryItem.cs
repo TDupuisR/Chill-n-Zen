@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
-namespace GameManagerSpace { 
+ 
 
 public class LibraryItem : MonoBehaviour
 {
@@ -23,16 +23,22 @@ public class LibraryItem : MonoBehaviour
         }
     }
 
-        private void Start()
-        {
-            List<Item> listitem1 = Sort(GMStatic.tagRoom.Bedroom, GMStatic.tagType.Furniture, GMStatic.tagStyle.Vintage);
-            Debug.Log(listitem1.Count);
-        }
+    private void Start()
+    {
+        List<Item> listitem1 = Sort(GMStatic.tagRoom.Bedroom, GMStatic.tagType.Furniture, GMStatic.tagStyle.Vintage);
+        Debug.Log(listitem1.Count);
+    }
 
-        public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
+    public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
     {
         List<Item> list = new List<Item>();
         
+        if(room == GMStatic.tagRoom.Null && type == GMStatic.tagType.Null && style == GMStatic.tagStyle.Null)
+        {
+            Debug.Log("Warning : No Filter");
+            return GameManager.libraryItems.listItems;
+        }
+
         if (room != GMStatic.tagRoom.Null && type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
         {
             foreach (Item item in GameManager.libraryItems.listItems)
@@ -106,5 +112,5 @@ public class LibraryItem : MonoBehaviour
         return list;
     }
 }
-};
+
 
