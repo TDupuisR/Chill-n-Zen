@@ -15,5 +15,12 @@ public class PauseManager : MonoBehaviour
         {
             button.SetActive(!activate);
         }
+
+        _pauseObject.SetActive(activate);
+    }
+
+    public void BackToMainMenu()
+    {
+        throw new System.NotImplementedException();
     }
 }
