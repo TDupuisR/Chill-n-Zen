@@ -8,15 +8,30 @@ using UnityEngine.UI;
 
 public class FilterUIManager : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown _roomFilter, _typeFilter, _styleFilter;
+    [SerializeField] TMP_Dropdown _roomFilterDropdown, _typeFilterDropdown, _styleFilterDropdown;
     enum _typeOfTags { tagRoom, tagType, tagStyle }
+
+    public int roomFilter
+    {
+        get; set;
+    }
+
+    public int typeFilter
+    {
+        get; set;
+    }
+
+    public int styleFilter
+    {
+        get; set;
+    }
 
     private void Awake()
     {
         //Initialize Dropdowns
-        InitDropDown(_roomFilter, _typeOfTags.tagRoom);
-        InitDropDown(_typeFilter, _typeOfTags.tagType);
-        InitDropDown(_styleFilter, _typeOfTags.tagStyle);
+        InitDropDown(_roomFilterDropdown, _typeOfTags.tagRoom);
+        InitDropDown(_typeFilterDropdown, _typeOfTags.tagType);
+        InitDropDown(_styleFilterDropdown, _typeOfTags.tagStyle);
     }
 
     void InitDropDown(TMP_Dropdown filter, _typeOfTags tag)
@@ -57,6 +72,6 @@ public class FilterUIManager : MonoBehaviour
 
     public void ApplyFilter()
     {
-        
+        List<Item> newItems = LibraryItem.Instance.Sort((GMStatic.tagRoom)roomFilter, (GMStatic.tagType)typeFilter, (GMStatic.tagStyle)styleFilter);
     }
 }
