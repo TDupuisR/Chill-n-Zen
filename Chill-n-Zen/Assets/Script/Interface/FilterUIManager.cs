@@ -53,4 +53,10 @@ public class FilterUIManager : MonoBehaviour
                 break;
         }
     }
+
+
+    public void ApplyFilter()
+    {
+        
+    }
 }
