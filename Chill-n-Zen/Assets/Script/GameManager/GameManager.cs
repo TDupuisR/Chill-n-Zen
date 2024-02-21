@@ -5,7 +5,9 @@ namespace GameManagerSpace
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public static LibraryItem libraryItems;
 
+        [SerializeField] LibraryItem _libraryItems;
 
         private void Awake()
         {
@@ -18,18 +20,19 @@ namespace GameManagerSpace
             {
                 Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
             }
+            libraryItems = _libraryItems;
         }
     }
 
     public static class GMStatic
     {
         //Tag for furnitures identification//
-        public enum tagRoom { Other, Bedroom, Livingroom, Kitchen }
-        public enum tagType { Furniture, Object, Mural, Ceiling }
-        public enum tagStyle { Vintage, Disco, Kitch, Modern, Futuristic }
+        public enum tagRoom {Null, Other, Bedroom, Livingroom, Kitchen }
+        public enum tagType {Null, Furniture, Object, Mural, Ceiling }
+        public enum tagStyle {Null, Vintage, Disco, Kitch, Modern, Futuristic }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
+        public enum tagUsage {Null, Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
     }
 }
 
