@@ -1,7 +1,9 @@
 using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
+namespace GameManagerSpace { 
 
 public class LibraryItem : MonoBehaviour
 {
@@ -19,36 +21,59 @@ public class LibraryItem : MonoBehaviour
         {
             Debug.LogError(" (error : 1x0) Too many LibraryItem instance ", gameObject);
         }
-
     }
 
-    public List<Item> SortBy(GameManagerSpace.GMStatic.tagRoom room, GameManagerSpace.GMStatic.tagType type, GameManagerSpace.GMStatic.tagStyle style)
+        private void Start()
+        {
+            List<Item> listitem1 = Sort(GMStatic.tagRoom.Bedroom, GMStatic.tagType.Furniture, GMStatic.tagStyle.Vintage);
+            Debug.Log(listitem1.Count);
+        }
+
+        public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
     {
         List<Item> list = new List<Item>();
         
-        if (room != GameManagerSpace.GMStatic.tagRoom.Null)
+        if (room != GMStatic.tagRoom.Null && type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
         {
             foreach (Item item in GameManager.libraryItems.listItems)
             {
-                if (item.room == room)
+                if (item.room == room && item.type == type && item.style == style)
                 {
                     list.Add(item);
                 }
             }
         }
-        if (type != GameManagerSpace.GMStatic.tagType.Null)
+        else if (type != GMStatic.tagType.Null && room != GMStatic.tagRoom.Null)
         {
             foreach (Item item in GameManager.libraryItems.listItems)
             {
-                if (item.type == type) 
+                if (item.type == type && item.room == room) 
                 { 
                     list.Add(item);
                 }
             }
         }
-
-
-        if(style != GameManagerSpace.GMStatic.tagStyle.Null)
+        else if (type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
+        {
+            foreach (Item item in GameManager.libraryItems.listItems)
+            {
+                if (item.type == type && item.style == style)
+                {
+                    list.Add(item);
+                }
+            }
+        }
+        else if (room != GMStatic.tagRoom.Null && style != GMStatic.tagStyle.Null)
+        {
+            foreach (Item item in GameManager.libraryItems.listItems)
+            {
+                if (item.room == room && item.style == style)
+                {
+                    list.Add(item);
+                }
+            }
+        }
+        else if(style != GMStatic.tagStyle.Null)
         {
             foreach (Item item in GameManager.libraryItems.listItems)
             {
@@ -58,7 +83,28 @@ public class LibraryItem : MonoBehaviour
                 }
             }
         }
+        else if (room != GMStatic.tagRoom.Null)
+        {
+            foreach (Item item in GameManager.libraryItems.listItems)
+            {
+                if (item.room == room)
+                {
+                    list.Add(item);
+                }
+            }
+        }
+        else if (type != GMStatic.tagType.Null)
+        {
+            foreach (Item item in GameManager.libraryItems.listItems)
+            {
+                if (item.type == type)
+                {
+                    list.Add(item);
+                }
+            }
+        }
         return list;
     }
 }
+};
 
