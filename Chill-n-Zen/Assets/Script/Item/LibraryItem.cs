@@ -1,7 +1,6 @@
 using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
  
 
@@ -21,12 +20,6 @@ public class LibraryItem : MonoBehaviour
         {
             Debug.LogError(" (error : 1x0) Too many LibraryItem instance ", gameObject);
         }
-    }
-
-    private void Start()
-    {
-        List<Item> listitem1 = Sort(GMStatic.tagRoom.Bedroom, GMStatic.tagType.Furniture, GMStatic.tagStyle.Vintage);
-        Debug.Log(listitem1.Count);
     }
 
     public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
