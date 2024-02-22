@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using GameManagerSpace;
 
 public class TileBehaviour : MonoBehaviour
 {
@@ -54,5 +55,33 @@ public class TileBehaviour : MonoBehaviour
     private void ShowGrid()
     {
         _lineRender.enabled = !_lineRender.enabled;
+    }
+
+
+    public bool CheckIfAccessible(Item placing)
+    {
+        bool res = true;
+
+        foreach (Item item in _presentItems)
+        {
+            if (
+                item.type == placing.type ||
+                (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object) ||
+                (item.type == GMStatic.tagType.Object && placing.type == GMStatic.tagType.Furniture)
+                )
+            {
+                res = false; break;
+            }
+        }
+
+        return res;
+    }
+
+    public void PlaceItem(Item placing)
+    {
+        if (CheckIfAccessible(placing))
+        {
+            _presentItems.Add(placing);
+        }
     }
 }
