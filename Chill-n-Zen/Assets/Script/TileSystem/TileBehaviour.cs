@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TileBehaviour : MonoBehaviour
@@ -5,6 +6,7 @@ public class TileBehaviour : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRender;
     [SerializeField] LineRenderer _lineRender;
 
+    List<Item> _presentItems;
     Vector3[] _patternPosition = new Vector3[5];
 
     private void OnEnable()
@@ -23,7 +25,9 @@ public class TileBehaviour : MonoBehaviour
 
     private void ChangeAesthetic()
     {
-        Debug.LogError(" (error : 3x0) Missing Floor texture or color ", gameObject);
+        // GET FLOOR TEXTURE AND COLOR FROM GAMEMANAGER //
+
+        Debug.LogWarning(" (error : 3x0) Missing Floor texture or color ", gameObject);
         // _renderer.sprite = // GameManager get Floor Texture //
         _spriteRender.color = new Color(255, 0, 132); // GameManager get Floor Color //
     }
