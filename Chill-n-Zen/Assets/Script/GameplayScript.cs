@@ -7,15 +7,16 @@ using NaughtyAttributes;
 
 public class GameplayScript : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] Camera _mainCamera;
+    public static GameplayScript Instance;
+
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryDelta;
     [Space(4)]
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryPosition;
-    [Header("Camera Swipe Fields")]
+
+    [Header("Swipe Fields")]
     [SerializeField] bool _invertDirection;
     [SerializeField] float _swipeDeadZone;
     [SerializeField] float _swipeSpeed;
@@ -23,81 +24,116 @@ public class GameplayScript : MonoBehaviour
     [SerializeField] float _swipeDeceleration;
     Vector3 _swipeCurrentVelocity;
     Coroutine _swipeCoroutine;
-    Coroutine _swipeDecelerationCoroutine;
 
-    [Header("Camera Zoom Fields")]
-    [SerializeField][MinMaxSlider(1f,100f)] Vector2 _minMaxZoom;
-    [SerializeField] float _zoomSensitivity;
-    Coroutine _zoomCoroutine;
+    public float swipeDeceleration
+    {
+        get => _swipeDeceleration;
+    }
+
+    public Vector2 PrimaryPosition
+    {
+        get => _inputPrimaryPosition.action.ReadValue<Vector2>();
+    }
+
+    public Vector2 SecondaryPosition
+    {
+        get => _inputSecondaryPosition.action.ReadValue<Vector2>();
+    }
+
+    public static Action<Vector2> _onStartPrimaryTouch;
+    public static Action<Vector2> _onEndSecondaryTouch;
+    public static Action<Vector2> _onStartSecondaryTouch;
+    public static Action<Vector2> _onEndPrimaryTouch;
+    public static Action<Vector2, Vector2> _onSwipe;
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        Instance = this;
+    }
 
     private void OnValidate()
     {
-        if(_zoomSensitivity <= 0)
-        {
-            Debug.LogWarning("La sensibilité du Zoom ne peut pas être négative !");
-            _zoomSensitivity = 1;
-        }
 
         if (_swipeDeadZone <= 0)
         {
             Debug.LogWarning("swipeDeadZone ne peut pas être négative !");
-            _zoomSensitivity = 1;
+            _swipeDeadZone = 1;
         }
 
         if (_swipeSpeed <= 0)
         {
             Debug.LogWarning("La vitesse du swipe ne peut pas être négative !");
-            _zoomSensitivity = 1;
+            _swipeSpeed = 1;
         }
 
         if (_swipeMaxSpeed <= 0)
         {
             Debug.LogWarning("swipeMaxSpeed ne peut pas être négative !");
-            _zoomSensitivity = 1;
+            _swipeMaxSpeed = 1;
         }
 
         if (_swipeDeceleration <= 0)
         {
             Debug.LogWarning("swipeDeceleration ne peut pas être négative !");
-            _zoomSensitivity = 1;
+            _swipeDeceleration = 1;
         }
     }
 
     private void OnEnable()
     {
-        _inputPrimaryTouch.action.started += StartTouch;
-        _inputPrimaryTouch.action.canceled += EndTouch;
-        _inputSecondaryTouch.action.started += StartZoom;
-        _inputSecondaryTouch.action.canceled += EndZoom;
+        _inputPrimaryTouch.action.started += StartPrimaryTouch;
+        _inputPrimaryTouch.action.canceled += EndPrimaryTouch;
+        _inputSecondaryTouch.action.started += StartSecondaryTouch;
+        _inputSecondaryTouch.action.canceled += EndSecondaryTouch;
     }
 
     private void OnDisable()
     {
-        _inputPrimaryTouch.action.started -= StartTouch;
-        _inputPrimaryTouch.action.canceled -= EndTouch;
-        _inputSecondaryTouch.action.started -= StartZoom;
-        _inputSecondaryTouch.action.canceled -= EndZoom;
+        _inputPrimaryTouch.action.started -= StartPrimaryTouch;
+        _inputPrimaryTouch.action.canceled -= EndPrimaryTouch;
+        _inputSecondaryTouch.action.started -= StartSecondaryTouch;
+        _inputSecondaryTouch.action.canceled -= EndSecondaryTouch;
+
     }
 
     /*
-        Camera Swipe movement
+        Swipe movement
     */
 
-    private void StartTouch(InputAction.CallbackContext context)
+    private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
+        _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+        
+        print(_inputPrimaryPosition.action.ReadValue<Vector2>());
 
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
     }
 
-    private void EndTouch(InputAction.CallbackContext context)
+    private void EndPrimaryTouch(InputAction.CallbackContext context)
     {
+        _onEndPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+
         //End Swipe
-        if( _swipeCoroutine != null )
+        if ( _swipeCoroutine != null)
         {
             StopCoroutine(_swipeCoroutine);
-            _swipeDecelerationCoroutine = StartCoroutine(DecelerationSwipeRoutine());
         }
+    }
+
+    private void StartSecondaryTouch(InputAction.CallbackContext context)
+    {
+        _onStartSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
+    }
+
+    private void EndSecondaryTouch(InputAction.CallbackContext context)
+    {
+        _onEndSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
     }
 
     IEnumerator PerformSwipeRoutine()
@@ -118,62 +154,8 @@ public class GameplayScript : MonoBehaviour
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
              
                 //Apply velocity to position
-                _mainCamera.transform.position += _swipeCurrentVelocity;
+                _onSwipe?.Invoke(_swipeCurrentVelocity, _inputPrimaryPosition.action.ReadValue<Vector2>());
             }
-
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    IEnumerator DecelerationSwipeRoutine()
-    {
-        Vector3 _decelerationDirection = _swipeCurrentVelocity.normalized;
-        float _decelerationMagnitude = _swipeCurrentVelocity.magnitude;
-        while (_decelerationMagnitude >= 0)
-        {
-            _mainCamera.transform.position += _decelerationDirection * _decelerationMagnitude * Time.fixedDeltaTime;
-            _decelerationMagnitude -= _swipeDeceleration * Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    /*
-        Camera zoom pitch
-     */
-
-    private void StartZoom(InputAction.CallbackContext context)
-    {
-        _zoomCoroutine = StartCoroutine(ZoomRoutine());
-    }
-
-    private void EndZoom(InputAction.CallbackContext context)
-    {
-        if(_zoomCoroutine != null )
-        {
-            StopCoroutine(_zoomCoroutine);
-        }
-    }
-
-    IEnumerator ZoomRoutine()
-    {
-        float currentDistance = Vector2.Distance(_inputPrimaryPosition.action.ReadValue<Vector2>(), _inputSecondaryPosition.action.ReadValue<Vector2>());
-        float oldDistance = currentDistance;
-
-        while (true)
-        {
-            currentDistance = Vector2.Distance(_inputPrimaryPosition.action.ReadValue<Vector2>(), _inputSecondaryPosition.action.ReadValue<Vector2>());
-            if (currentDistance != oldDistance)
-            {
-                float distanceDelta = oldDistance - currentDistance;
-
-                float newCameraSize = _mainCamera.orthographicSize;
-                newCameraSize += distanceDelta * _zoomSensitivity;
-                newCameraSize = Mathf.Clamp(newCameraSize, _minMaxZoom.x, _minMaxZoom.y);
-                _mainCamera.orthographicSize = newCameraSize;
-
-                oldDistance = currentDistance;
-            }
-            
 
             yield return new WaitForFixedUpdate();
         }

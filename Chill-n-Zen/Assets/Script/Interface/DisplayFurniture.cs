@@ -108,12 +108,16 @@ public class DisplayFurniture : MonoBehaviour
     /*  Furniture Prefab (furniture button) :
      *      Tag
      *  
-     *  Scroll Adaptatif
      *  LockMovement
      *  
      *  Selection Furniture
      *      -> drag then create object
      *     
+     *  Dissocier Input & Cam Movement
      *  PUTAIN DE SELECTION MENU AVEC MEUBLES ET PEINTURE ET TA MERE
+     *  
+     *  
+     *  URGENT :
+     *      Zoom Movement
      */
 }
