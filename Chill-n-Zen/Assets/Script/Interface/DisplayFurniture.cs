@@ -104,20 +104,4 @@ public class DisplayFurniture : MonoBehaviour
 
     [Button] public void DisplayAllFurnitures() => DisplayCollection(GameManager.libraryItems.listItems);
     [Button] public void EraseAllFurnitures() => EraseCollection();
-
-    /*  Furniture Prefab (furniture button) :
-     *      Tag
-     *  
-     *  LockMovement
-     *  
-     *  Selection Furniture
-     *      -> drag then create object
-     *     
-     *  Dissocier Input & Cam Movement
-     *  PUTAIN DE SELECTION MENU AVEC MEUBLES ET PEINTURE ET TA MERE
-     *  
-     *  
-     *  URGENT :
-     *      Zoom Movement
-     */
 }

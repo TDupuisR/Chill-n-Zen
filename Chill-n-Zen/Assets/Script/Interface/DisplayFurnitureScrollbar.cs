@@ -53,7 +53,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
         _parentObject.position = newParentPosition;
     }
 
-    private void swipeScroll(Vector2 vector, Vector2 pointerPosition)
+    private void swipeScroll(Vector2 vector)
     {
         float newScrollBarValue = Mathf.Clamp01(_scrollbar.value - vector.y);
         _scrollbar.value = newScrollBarValue;

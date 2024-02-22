@@ -44,7 +44,7 @@ public class GameplayScript : MonoBehaviour
     public static Action<Vector2> _onEndSecondaryTouch;
     public static Action<Vector2> _onStartSecondaryTouch;
     public static Action<Vector2> _onEndPrimaryTouch;
-    public static Action<Vector2, Vector2> _onSwipe;
+    public static Action<Vector2> _onSwipe;
 
     private void Awake()
     {
@@ -154,7 +154,7 @@ public class GameplayScript : MonoBehaviour
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
              
                 //Apply velocity to position
-                _onSwipe?.Invoke(_swipeCurrentVelocity, _inputPrimaryPosition.action.ReadValue<Vector2>());
+                _onSwipe?.Invoke(_swipeCurrentVelocity);
             }
 
             yield return new WaitForFixedUpdate();

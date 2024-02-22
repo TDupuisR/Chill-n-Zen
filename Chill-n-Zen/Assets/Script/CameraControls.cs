@@ -30,12 +30,15 @@ public class CameraControls : MonoBehaviour
     private void OnEnable()
     {
         GameplayScript._onSwipe += CameraMovement;
+        GameplayScript._onStartSecondaryTouch += StartZoom;
+        GameplayScript._onEndPrimaryTouch += EndZoom;
     }
 
     private void OnDisable()
     {
         GameplayScript._onSwipe -= CameraMovement;
-
+        GameplayScript._onStartSecondaryTouch -= StartZoom;
+        GameplayScript._onEndPrimaryTouch -= EndZoom;
     }
 
     private void OnValidate()
@@ -44,6 +47,23 @@ public class CameraControls : MonoBehaviour
         {
             Debug.LogWarning("La sensibilité du Zoom ne peut pas être négative !");
             _zoomSensitivity = 1;
+        }
+    }
+
+
+
+
+    /*
+       Camera movement
+     */
+
+    void CameraMovement(Vector2 velocity)
+    {
+        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition))
+        {
+            Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
+            _mainCamera.transform.position += velocityV3;
+            _isMovingCamera = true;
         }
     }
 
@@ -57,21 +77,6 @@ public class CameraControls : MonoBehaviour
         }
     }
 
-
-
-    /*
-       Camera movement
-     */
-
-    void CameraMovement(Vector2 velocity, Vector2 pointerPosition)
-    {
-        if (IsTouchInCameraActionZone(pointerPosition))
-        {
-            Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
-            _mainCamera.transform.position += velocityV3;
-            _isMovingCamera = true;
-        }
-    }
     IEnumerator DecelerationCameraRoutine(Vector3 lastVelocity, float deceleration)
     {
         Vector3 _decelerationDirection = lastVelocity.normalized;
@@ -104,16 +109,20 @@ public class CameraControls : MonoBehaviour
 
     }
 
+
     /*
         Camera zoom pitch
      */
 
-    private void StartZoom()
+    private void StartZoom(Vector2 lastPosition)
     {
-        _zoomCoroutine = StartCoroutine(ZoomRoutine());
+        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.SecondaryPosition))
+        {
+            _zoomCoroutine = StartCoroutine(ZoomRoutine());
+        }
     }
 
-    private void EndZoom()
+    private void EndZoom(Vector2 lastPosition)
     {
         if (_zoomCoroutine != null)
         {
