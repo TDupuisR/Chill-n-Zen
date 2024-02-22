@@ -8,8 +8,8 @@ public class CameraControls : MonoBehaviour
     [SerializeField] Camera _mainCamera;
 
     //[Header("Camera Movement")]
-    Vector2 _cameraActionZonePoint1; //Upper left
-    Vector2 _cameraActionZonePoint2; //Lower Right
+    Vector2 _cameraActionZonePointUL; //Upper left
+    Vector2 _cameraActionZonePointLR; //Lower Right
     Vector4 _defaultCameraActionZone;
     Coroutine _CameraDecelerationCoroutine;
 
@@ -22,23 +22,25 @@ public class CameraControls : MonoBehaviour
     private void Awake()
     {
         //Define camera action Zone
-        _cameraActionZonePoint1 = new Vector2(0, 0);
-        _cameraActionZonePoint2 = new Vector2(Screen.width, Screen.height);
-        _defaultCameraActionZone = new Vector4(_cameraActionZonePoint1.x, _cameraActionZonePoint1.y, _cameraActionZonePoint2.x, _cameraActionZonePoint2.y);
+        _cameraActionZonePointUL = new Vector2(0, 0);
+        _cameraActionZonePointLR = new Vector2(Screen.width, Screen.height);
+        _defaultCameraActionZone = new Vector4(_cameraActionZonePointUL.x, _cameraActionZonePointUL.y, _cameraActionZonePointLR.x, _cameraActionZonePointLR.y);
     }
 
     private void OnEnable()
     {
         GameplayScript._onSwipe += CameraMovement;
+        GameplayScript._onEndPrimaryTouch += EndCamMovement;
         GameplayScript._onStartSecondaryTouch += StartZoom;
-        GameplayScript._onEndPrimaryTouch += EndZoom;
+        GameplayScript._onEndSecondaryTouch += EndZoom;
     }
 
     private void OnDisable()
     {
         GameplayScript._onSwipe -= CameraMovement;
+        GameplayScript._onEndPrimaryTouch -= EndCamMovement;
         GameplayScript._onStartSecondaryTouch -= StartZoom;
-        GameplayScript._onEndPrimaryTouch -= EndZoom;
+        GameplayScript._onEndSecondaryTouch -= EndZoom;
     }
 
     private void OnValidate()
@@ -49,7 +51,6 @@ public class CameraControls : MonoBehaviour
             _zoomSensitivity = 1;
         }
     }
-
 
 
 
@@ -67,7 +68,7 @@ public class CameraControls : MonoBehaviour
         }
     }
 
-    void EndCamMovement(Vector3 lastVelocity)
+    void EndCamMovement(Vector2 lastVelocity)
     {
         //Perform deceleration routine if cam is moving
         if (_isMovingCamera)
@@ -92,22 +93,10 @@ public class CameraControls : MonoBehaviour
     bool IsTouchInCameraActionZone(Vector2 pointerPosition)
     {
         Vector2 touchPosition = pointerPosition;
-        return touchPosition.x > _cameraActionZonePoint1.x && touchPosition.x < _cameraActionZonePoint2.x &&
-               touchPosition.y > _cameraActionZonePoint1.y && touchPosition.y < _cameraActionZonePoint2.y;
+        return touchPosition.x > _cameraActionZonePointUL.x && touchPosition.x < _cameraActionZonePointLR.x &&
+               touchPosition.y > _cameraActionZonePointUL.y && touchPosition.y < _cameraActionZonePointLR.y;
     }
 
-    public void ChangeCameraActionZone(bool firstPoint, Vector2 newPosition)
-    {
-        if (firstPoint) _cameraActionZonePoint1 = newPosition;
-        else _cameraActionZonePoint2 = newPosition;
-    }
-
-    public void ResetCameraActionZone()
-    {
-        _cameraActionZonePoint1 = new Vector2(_defaultCameraActionZone.x, _defaultCameraActionZone.y);
-        _cameraActionZonePoint2 = new Vector2(_defaultCameraActionZone.z, _defaultCameraActionZone.w);
-
-    }
 
 
     /*
@@ -159,5 +148,33 @@ public class CameraControls : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+
+
+    /*
+        Camera Zone Action
+     */
+    public void ChangeUpperLeftCamActionZone(Vector2 newPosition)
+    {
+        _cameraActionZonePointUL = newPosition;
+    }
+    public void ChangeLowerRightCamActionZone(Vector2 newPosition)
+    {
+        _cameraActionZonePointLR = newPosition;
+    }
+    public void ResetUpperLeftCamActionZone()
+    {
+        _cameraActionZonePointUL = new Vector2(_defaultCameraActionZone.x, _defaultCameraActionZone.y);
+
+    }
+    public void ResetLowerRightCamActionZone()
+    {
+        _cameraActionZonePointLR = new Vector2(_defaultCameraActionZone.z, _defaultCameraActionZone.w);
+    }
+    public void ResetCameraActionZone()
+    {
+        ResetUpperLeftCamActionZone();
+        ResetLowerRightCamActionZone();
     }
 }

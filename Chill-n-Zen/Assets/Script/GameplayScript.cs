@@ -109,8 +109,6 @@ public class GameplayScript : MonoBehaviour
     {
         _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
         
-        print(_inputPrimaryPosition.action.ReadValue<Vector2>());
-
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
     }
