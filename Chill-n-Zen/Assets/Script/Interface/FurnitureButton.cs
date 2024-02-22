@@ -21,7 +21,8 @@ public class FurnitureButton : MonoBehaviour
 
     public void ReadLinkedFurniture()
     {
-        
+        _img.sprite = _furniture.asset2D;
+        _priceText.text = _furniture.price.ToString() + " Cr";
     }
 
     public void SelectFurniture()

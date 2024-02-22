@@ -30,7 +30,6 @@ public class GameplayScript : MonoBehaviour
     [SerializeField] float _zoomSensitivity;
     Coroutine _zoomCoroutine;
 
-
     private void OnValidate()
     {
         if(_zoomSensitivity <= 0)
@@ -66,16 +65,16 @@ public class GameplayScript : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputPrimaryTouch.action.started += StartSwipe;
-        _inputPrimaryTouch.action.canceled += EndSwipe;
+        _inputPrimaryTouch.action.started += StartTouch;
+        _inputPrimaryTouch.action.canceled += EndTouch;
         _inputSecondaryTouch.action.started += StartZoom;
         _inputSecondaryTouch.action.canceled += EndZoom;
     }
 
     private void OnDisable()
     {
-        _inputPrimaryTouch.action.started -= StartSwipe;
-        _inputPrimaryTouch.action.canceled -= EndSwipe;
+        _inputPrimaryTouch.action.started -= StartTouch;
+        _inputPrimaryTouch.action.canceled -= EndTouch;
         _inputSecondaryTouch.action.started -= StartZoom;
         _inputSecondaryTouch.action.canceled -= EndZoom;
     }
@@ -84,13 +83,16 @@ public class GameplayScript : MonoBehaviour
         Camera Swipe movement
     */
 
-    private void StartSwipe(InputAction.CallbackContext context)
+    private void StartTouch(InputAction.CallbackContext context)
     {
+
+        //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
     }
 
-    private void EndSwipe(InputAction.CallbackContext context)
+    private void EndTouch(InputAction.CallbackContext context)
     {
+        //End Swipe
         if( _swipeCoroutine != null )
         {
             StopCoroutine(_swipeCoroutine);

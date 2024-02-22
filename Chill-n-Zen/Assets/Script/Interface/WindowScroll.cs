@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WindowScroll : MonoBehaviour
 {
     [SerializeField] RectTransform _backgroundTransform;
+    [SerializeField] AnimationCurve _animationCurve;
     [SerializeField] float _animationDuration;
     Vector3 _backgroundStartPosition;
     Coroutine _animationRoutine;
@@ -37,7 +38,7 @@ public class WindowScroll : MonoBehaviour
         while (timeElapsed < _animationDuration)
         {
             float lerpProgression = timeElapsed / _animationDuration;
-            _backgroundTransform.anchoredPosition = Vector2.Lerp(_backgroundStartPosition, finalPosition, lerpProgression);
+            _backgroundTransform.anchoredPosition = Vector2.Lerp(_backgroundStartPosition, finalPosition, _animationCurve.Evaluate(lerpProgression));
             timeElapsed += Time.deltaTime;
             yield return null;
         }

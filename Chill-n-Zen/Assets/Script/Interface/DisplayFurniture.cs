@@ -8,14 +8,26 @@ using UnityEngine.UI;
 public class DisplayFurniture : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] DisplayFurnitureScrollbar _displayScrollbar;
     [SerializeField] GameObject _furniturePrefab;
     [SerializeField] GameObject _parentObject;
-    [SerializeField] List<GameObject> _itemsCreated;
     [Header("Display format")]
     [SerializeField] Transform _startingPoint;
     [SerializeField] int _furniturePerRow;
     [SerializeField] float _spaceBTWFurniture;
     [SerializeField] float _spaceBTWRows;
+    List<GameObject> _itemsCreated = new List<GameObject>();
+    int _numberOfRows;
+
+    public int numberOfRows
+    {
+        get => _numberOfRows;
+        set
+        {
+            _numberOfRows = value;
+            _displayScrollbar.UpdateSize(value);
+        }
+    }
 
     private void OnValidate()
     {
@@ -51,6 +63,7 @@ public class DisplayFurniture : MonoBehaviour
         }
 
         DisplayCollection(collection);
+
     }
 
 
@@ -69,6 +82,7 @@ public class DisplayFurniture : MonoBehaviour
             if(numberOfItems == _furniturePerRow)
             {
                 numberOfItems = 0;
+                numberOfRows++;
                 currentPosition = new Vector2(_startingPoint.localPosition.x, currentPosition.y - _spaceBTWRows);
             }
             else
@@ -84,7 +98,7 @@ public class DisplayFurniture : MonoBehaviour
         {
             Destroy(_itemsCreated[i].gameObject);
         }
-
+        numberOfRows = 0;
         _itemsCreated.Clear();
     }
 
@@ -93,17 +107,13 @@ public class DisplayFurniture : MonoBehaviour
 
     /*  Furniture Prefab (furniture button) :
      *      Tag
-     *      
-     * 
-     *  Handle no tag
-     *  first display
-     *  Apply Filter -> display
      *  
      *  Scroll Adaptatif
+     *  LockMovement
      *  
      *  Selection Furniture
      *      -> drag then create object
-     *      
-     *  LockMovement
+     *     
+     *  PUTAIN DE SELECTION MENU AVEC MEUBLES ET PEINTURE ET TA MERE
      */
 }
