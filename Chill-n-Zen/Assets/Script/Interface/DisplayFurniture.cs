@@ -1,5 +1,6 @@
+using GameManagerSpace;
 using NaughtyAttributes;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 public class DisplayFurniture : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] List<Item> _furnitureList;
     [SerializeField] GameObject _furniturePrefab;
     [SerializeField] GameObject _parentObject;
     [SerializeField] List<GameObject> _itemsCreated;
@@ -16,9 +16,45 @@ public class DisplayFurniture : MonoBehaviour
     [SerializeField] int _furniturePerRow;
     [SerializeField] float _spaceBTWFurniture;
     [SerializeField] float _spaceBTWRows;
-    
 
-    public void DisplayCollection(List<Item> collection)
+    private void OnValidate()
+    {
+        if(_furniturePerRow <= 0)
+        {
+            Debug.LogWarning("_furniturePerRow ne peut pas être négative ou nulle");
+            _furniturePerRow = 1;
+        }
+
+        if(_spaceBTWFurniture <= 0)
+        {
+            Debug.LogWarning("_spaceBTWFurniture ne peut pas être négative ou nulle");
+            _spaceBTWFurniture = 1;
+        }
+
+        if (_spaceBTWRows <= 0)
+        {
+            Debug.LogWarning("_spaceBTWRows ne peut pas être négative ou nulle");
+            _spaceBTWRows = 1;
+        }
+    }
+
+    private void Awake()
+    {
+        DisplayCollection(GameManager.libraryItems.listItems);
+    }
+
+    public void ResetAndDisplay(List<Item> collection)
+    {
+        if(_itemsCreated.Count > 0)
+        {
+            EraseCollection();
+        }
+
+        DisplayCollection(collection);
+    }
+
+
+    void DisplayCollection(List<Item> collection)
     {
         Vector2 currentPosition = _startingPoint.localPosition;
         int numberOfItems = 0;
@@ -42,7 +78,7 @@ public class DisplayFurniture : MonoBehaviour
         }
     }
 
-    public void EraseCollection()
+    void EraseCollection()
     {
         for(int i = 0; i < _itemsCreated.Count; i++)
         {
@@ -52,17 +88,22 @@ public class DisplayFurniture : MonoBehaviour
         _itemsCreated.Clear();
     }
 
-    [Button] public void DisplayAllFurnitures() => DisplayCollection(_furnitureList);
+    [Button] public void DisplayAllFurnitures() => DisplayCollection(GameManager.libraryItems.listItems);
     [Button] public void EraseAllFurnitures() => EraseCollection();
 
     /*  Furniture Prefab (furniture button) :
      *      Tag
      *      
-     *  Display Furniture -> take List<Item>
-     *      Handle no tag / first display
-     *  Apply Filter -> Sort
+     * 
+     *  Handle no tag
+     *  first display
+     *  Apply Filter -> display
+     *  
+     *  Scroll Adaptatif
      *  
      *  Selection Furniture
      *      -> drag then create object
+     *      
+     *  LockMovement
      */
 }

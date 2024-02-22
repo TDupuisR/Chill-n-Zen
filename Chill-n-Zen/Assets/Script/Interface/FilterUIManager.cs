@@ -45,7 +45,11 @@ public class FilterUIManager : MonoBehaviour
                 foreach (GMStatic.tagRoom tagElement in Enum.GetValues(typeof(GMStatic.tagRoom)))
                 {
                     string tagName = tagElement.ToString();
-                    filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+
+                    if (tagName != "Null")
+                    {
+                        filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+                    }
                 }
                 break;
 
@@ -53,7 +57,10 @@ public class FilterUIManager : MonoBehaviour
                 foreach (GMStatic.tagStyle tagElement in Enum.GetValues(typeof(GMStatic.tagStyle)))
                 {
                     string tagName = tagElement.ToString();
-                    filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+                    if (tagName != "Null")
+                    {
+                        filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+                    }
                 }
                 break;
 
@@ -61,7 +68,10 @@ public class FilterUIManager : MonoBehaviour
                 foreach (GMStatic.tagType tagElement in Enum.GetValues(typeof(GMStatic.tagType)))
                 {
                     string tagName = tagElement.ToString();
-                    filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+                    if (tagName != "Null")
+                    {
+                        filter.options.Add(new TMP_Dropdown.OptionData() { text = tagName });
+                    }
                 }
                 break;
 
@@ -74,7 +84,7 @@ public class FilterUIManager : MonoBehaviour
 
     public void ApplyFilter()
     {
-        List<Item> newItems = LibraryItem.Instance.Sort((GMStatic.tagRoom)roomFilter, (GMStatic.tagType)typeFilter, (GMStatic.tagStyle)styleFilter);
-        _displayFurniture.DisplayCollection(newItems);
+        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)roomFilter, (GMStatic.tagType)typeFilter, (GMStatic.tagStyle)styleFilter);
+        _displayFurniture.ResetAndDisplay(newItems);
     }
 }
