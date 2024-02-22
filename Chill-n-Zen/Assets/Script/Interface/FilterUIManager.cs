@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class FilterUIManager : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] DisplayFurniture _displayFurniture;
     [SerializeField] TMP_Dropdown _roomFilterDropdown, _typeFilterDropdown, _styleFilterDropdown;
     enum _typeOfTags { tagRoom, tagType, tagStyle }
 
@@ -73,5 +75,6 @@ public class FilterUIManager : MonoBehaviour
     public void ApplyFilter()
     {
         List<Item> newItems = LibraryItem.Instance.Sort((GMStatic.tagRoom)roomFilter, (GMStatic.tagType)typeFilter, (GMStatic.tagStyle)styleFilter);
+        _displayFurniture.DisplayCollection(newItems);
     }
 }

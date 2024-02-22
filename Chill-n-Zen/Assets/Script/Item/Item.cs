@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Item")]
 public class Item : ScriptableObject
 {
-    public Texture2D asset2D;
+    public Sprite asset2D;
     public GameManagerSpace.GMStatic.tagRoom room;
     public GameManagerSpace.GMStatic.tagType type;
     public GameManagerSpace.GMStatic.tagStyle style;
