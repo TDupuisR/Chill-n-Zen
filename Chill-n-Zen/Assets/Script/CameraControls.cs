@@ -11,8 +11,8 @@ public class CameraControls : MonoBehaviour
     [Header("Camera Movement")]
     [SerializeField] float _maxLastVelocity;
     Vector2 _lastVelocity = Vector2.zero;
-    Vector2 _cameraActionZonePointUL; //Upper left
-    Vector2 _cameraActionZonePointLR; //Lower Right
+    Vector2 _cameraActionZonePointDL; //Upper left
+    Vector2 _cameraActionZonePointUR; //Lower Right
     Vector4 _defaultCameraActionZone;
     Coroutine _CameraDecelerationCoroutine;
     bool _isMovingCamera;
@@ -26,9 +26,9 @@ public class CameraControls : MonoBehaviour
     private void Awake()
     {
         //Define camera action Zone
-        _cameraActionZonePointUL = new Vector2(0, 0);
-        _cameraActionZonePointLR = new Vector2(Screen.width, Screen.height);
-        _defaultCameraActionZone = new Vector4(_cameraActionZonePointUL.x, _cameraActionZonePointUL.y, _cameraActionZonePointLR.x, _cameraActionZonePointLR.y);
+        _cameraActionZonePointDL = new Vector2(0, 0);
+        _cameraActionZonePointUR = new Vector2(Screen.width, Screen.height);
+        _defaultCameraActionZone = new Vector4(_cameraActionZonePointDL.x, _cameraActionZonePointDL.y, _cameraActionZonePointUR.x, _cameraActionZonePointUR.y);
     }
 
     private void OnEnable()
@@ -105,10 +105,9 @@ public class CameraControls : MonoBehaviour
     bool IsTouchInCameraActionZone(Vector2 pointerPosition)
     {
         Vector2 touchPosition = pointerPosition;
-        //print((touchPosition.x > _cameraActionZonePointUL.x) + "&&" + (touchPosition.x < _cameraActionZonePointLR.x) + "&&" +
-        //       (touchPosition.y > _cameraActionZonePointUL.y) + "&&" + (touchPosition.y < _cameraActionZonePointLR.y));
-        return touchPosition.x > _cameraActionZonePointUL.x && touchPosition.x < _cameraActionZonePointLR.x &&
-               touchPosition.y > _cameraActionZonePointUL.y && touchPosition.y < _cameraActionZonePointLR.y;
+        //print(_cameraActionZonePointDL + " ; " + _cameraActionZonePointUR + " - mouse : " + touchPosition);
+        return touchPosition.x > _cameraActionZonePointDL.x && touchPosition.x < _cameraActionZonePointUR.x &&
+               touchPosition.y > _cameraActionZonePointDL.y && touchPosition.y < _cameraActionZonePointUR.y;
     }
 
 
@@ -169,26 +168,26 @@ public class CameraControls : MonoBehaviour
     /*
         Camera Zone Action
      */
-    public void ChangeUpperLeftCamActionZone(Vector2 newPosition)
+    public void ChangeDownLeftCamActionZone(Vector2 newPosition)
     {
-        _cameraActionZonePointUL = newPosition;
+        _cameraActionZonePointDL = newPosition;
     }
-    public void ChangeLowerRightCamActionZone(Vector2 newPosition)
+    public void ChangeUpRightCamActionZone(Vector2 newPosition)
     {
-        _cameraActionZonePointLR = newPosition;
+        _cameraActionZonePointUR = newPosition;
     }
-    public void ResetUpperLeftCamActionZone()
+    public void ResetDownLeftCamActionZone()
     {
-        _cameraActionZonePointUL = new Vector2(_defaultCameraActionZone.x, _defaultCameraActionZone.y);
+        _cameraActionZonePointDL = new Vector2(_defaultCameraActionZone.x, _defaultCameraActionZone.y);
 
     }
-    public void ResetLowerRightCamActionZone()
+    public void ResetUpRightCamActionZone()
     {
-        _cameraActionZonePointLR = new Vector2(_defaultCameraActionZone.z, _defaultCameraActionZone.w);
+        _cameraActionZonePointUR = new Vector2(_defaultCameraActionZone.z, _defaultCameraActionZone.w);
     }
     public void ResetCameraActionZone()
     {
-        ResetUpperLeftCamActionZone();
-        ResetLowerRightCamActionZone();
+        ResetDownLeftCamActionZone();
+        ResetUpRightCamActionZone();
     }
 }

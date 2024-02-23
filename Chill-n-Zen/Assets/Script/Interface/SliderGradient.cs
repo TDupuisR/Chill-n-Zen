@@ -19,6 +19,10 @@ public class SliderGradient : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _slider.interactable = false;
+    }
 
     void UpdateSlider(float value)
     {
