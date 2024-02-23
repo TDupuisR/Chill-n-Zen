@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void GotoSelectionLevels()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GotoOptions()
     {
-        
+
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
