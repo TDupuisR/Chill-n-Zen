@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System;
 
 public class CameraControls : MonoBehaviour
 {
@@ -14,12 +15,13 @@ public class CameraControls : MonoBehaviour
     Vector2 _cameraActionZonePointLR; //Lower Right
     Vector4 _defaultCameraActionZone;
     Coroutine _CameraDecelerationCoroutine;
+    bool _isMovingCamera;
+    bool _isInActionZone;
 
     [Header("Camera Zoom Fields")]
     [SerializeField][MinMaxSlider(1f, 100f)] Vector2 _minMaxZoom;
     [SerializeField] float _zoomSensitivity;
     Coroutine _zoomCoroutine;
-    bool _isMovingCamera;
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class CameraControls : MonoBehaviour
 
     private void OnEnable()
     {
+        GameplayScript._onStartPrimaryTouch += ChkValidMovement;
         GameplayScript._onSwipe += CameraMovement;
         GameplayScript._onEndPrimaryTouch += EndCamMovement;
         GameplayScript._onStartSecondaryTouch += StartZoom;
@@ -39,6 +42,7 @@ public class CameraControls : MonoBehaviour
 
     private void OnDisable()
     {
+        GameplayScript._onStartPrimaryTouch -= ChkValidMovement;
         GameplayScript._onSwipe -= CameraMovement;
         GameplayScript._onEndPrimaryTouch -= EndCamMovement;
         GameplayScript._onStartSecondaryTouch -= StartZoom;
@@ -60,9 +64,14 @@ public class CameraControls : MonoBehaviour
        Camera movement
      */
 
+    private void ChkValidMovement(Vector2 vector)
+    {
+        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition);
+    }
+
     void CameraMovement(Vector2 velocity)
     {
-        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition))
+        if (_isInActionZone)
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;
@@ -96,8 +105,8 @@ public class CameraControls : MonoBehaviour
     bool IsTouchInCameraActionZone(Vector2 pointerPosition)
     {
         Vector2 touchPosition = pointerPosition;
-        print((touchPosition.x > _cameraActionZonePointUL.x) + "&&" + (touchPosition.x < _cameraActionZonePointLR.x) + "&&" +
-               (touchPosition.y > _cameraActionZonePointUL.y) + "&&" + (touchPosition.y < _cameraActionZonePointLR.y));
+        //print((touchPosition.x > _cameraActionZonePointUL.x) + "&&" + (touchPosition.x < _cameraActionZonePointLR.x) + "&&" +
+        //       (touchPosition.y > _cameraActionZonePointUL.y) + "&&" + (touchPosition.y < _cameraActionZonePointLR.y));
         return touchPosition.x > _cameraActionZonePointUL.x && touchPosition.x < _cameraActionZonePointLR.x &&
                touchPosition.y > _cameraActionZonePointUL.y && touchPosition.y < _cameraActionZonePointLR.y;
     }
