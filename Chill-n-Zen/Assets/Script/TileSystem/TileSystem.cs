@@ -6,6 +6,7 @@ public class TileSystem : MonoBehaviour
 {
     public static TileSystem Instance;
 
+    [Header("Setup")]
     [SerializeField] Grid _isoGrid;
     [SerializeField] GameObject _prefabTile;
     [SerializeField] Transform _floorParent;
@@ -15,6 +16,7 @@ public class TileSystem : MonoBehaviour
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
 
     [Space(7)]
+    [Header("TEST VARIABLES")]
     [SerializeField] Vector2Int TESTStartPos;
     [SerializeField] Vector2Int TESTGridSize;
 
@@ -30,7 +32,7 @@ public class TileSystem : MonoBehaviour
                 Debug.LogError(" (error : 2x2) Grid's tile size is null or below 0 ");
             }
         }
-        else Debug.LogError(" (error : 2x1) There is no isometric grid assigned ", _isoGrid);
+        else Debug.LogError(" (error : 2x1) No isometric grid assigned ", _isoGrid);
     }
 
     private void Awake()
