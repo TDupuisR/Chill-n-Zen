@@ -8,11 +8,12 @@ public class WindowScroll : MonoBehaviour
     [SerializeField] RectTransform _backgroundTransform;
     [SerializeField] AnimationCurve _animationCurve;
     [SerializeField] float _animationDuration;
-    [SerializeField] float _boundaryActionZoneX; //For 1280x720 screen
+    [SerializeField] float _boundaryActionZone; //For 1280x720 screen
+    [SerializeField] bool _isVerticalScroll; 
     Vector3 _backgroundStartPosition;
     Vector3 _backgroundStartRectTransformPosition;
     Coroutine _animationRoutine;
-
+    bool _displayed;
 
     private void Awake()
     {
@@ -31,13 +32,30 @@ public class WindowScroll : MonoBehaviour
 
     public void StartScroll()
     {
-        _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine());
+        _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
     }
 
-    IEnumerator SelectionWindowAnimationRoutine()
+    public void HideIfDisplayed()
+    {
+        if(_displayed)
+        {
+            StartScroll();
+        }
+    }
+
+    IEnumerator SelectionWindowAnimationRoutine(bool isVertical)
     {
         float timeElapsed = 0.0f;
-        Vector2 finalPosition = new Vector2(-_backgroundStartPosition.x, _backgroundStartPosition.y);
+        Vector2 finalPosition;
+
+        if (isVertical)
+        {
+            finalPosition = new Vector2(_backgroundStartPosition.x, -_backgroundStartPosition.y);
+        }
+        else
+        {
+            finalPosition = new Vector2(-_backgroundStartPosition.x, _backgroundStartPosition.y);
+        }
 
         while (timeElapsed < _animationDuration)
         {
@@ -46,22 +64,26 @@ public class WindowScroll : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-
+        _displayed = !_displayed;
         _backgroundStartPosition = finalPosition;
     }
 
-    public void UpdateCamActionZoneUL(CameraControls _cam)
+    public void UpdateCamActionZoneDown(CameraControls _cam)
     {
-        _cam.ChangeUpperLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f)); 
+        _cam.ChangeDownLeftCamActionZone(new Vector2(0.0f, GiveAdapativeBoundaryActionZoneY())); 
     }
-
-    public void UpdateCamActionZoneLR(CameraControls _cam)
+    public void UpdateCamActionZoneUp(CameraControls _cam)
     {
-        _cam.ChangeLowerRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
+        _cam.ChangeUpRightCamActionZone(new Vector2(Screen.width, GiveAdapativeBoundaryActionZoneY()));
     }
-
-    float GiveAdapativeBoundaryActionZoneX()
+    public void UpdateCamActionZoneLeft(CameraControls _cam)
     {
-        return _boundaryActionZoneX * Screen.width / 1280.0f;
+        _cam.ChangeDownLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f));
     }
+    public void UpdateCamActionZoneRight(CameraControls _cam)
+    {
+        _cam.ChangeUpRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
+    }
+    float GiveAdapativeBoundaryActionZoneX() => _boundaryActionZone * Screen.width / 1280.0f;
+    float GiveAdapativeBoundaryActionZoneY() => _boundaryActionZone * Screen.height / 720.0f;
 }

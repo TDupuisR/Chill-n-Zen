@@ -13,29 +13,29 @@ public class DisplayFurniture : MonoBehaviour
     [SerializeField] GameObject _parentObject;
     [Header("Display format")]
     [SerializeField] Transform _startingPoint;
-    [SerializeField] int _furniturePerRow;
     [SerializeField] float _spaceBTWFurniture;
-    [SerializeField] float _spaceBTWRows;
+    //[SerializeField] int _furniturePerRow;
+    //[SerializeField] float _spaceBTWRows;
     List<GameObject> _itemsCreated = new List<GameObject>();
-    int _numberOfRows;
+    int _totalNumberOfItems;
 
-    public int numberOfRows
+    public int totalNumberOfItems
     {
-        get => _numberOfRows;
+        get => _totalNumberOfItems;
         set
         {
-            _numberOfRows = value;
+            _totalNumberOfItems = value;
             _displayScrollbar.UpdateSize(value);
         }
     }
 
     private void OnValidate()
     {
-        if(_furniturePerRow <= 0)
-        {
-            Debug.LogWarning("_furniturePerRow ne peut pas être négative ou nulle");
-            _furniturePerRow = 1;
-        }
+        //if(_furniturePerRow <= 0)
+        //{
+        //    Debug.LogWarning("_furniturePerRow ne peut pas être négative ou nulle");
+        //    _furniturePerRow = 1;
+        //}
 
         if(_spaceBTWFurniture <= 0)
         {
@@ -43,14 +43,14 @@ public class DisplayFurniture : MonoBehaviour
             _spaceBTWFurniture = 1;
         }
 
-        if (_spaceBTWRows <= 0)
-        {
-            Debug.LogWarning("_spaceBTWRows ne peut pas être négative ou nulle");
-            _spaceBTWRows = 1;
-        }
+        //if (_spaceBTWRows <= 0)
+        //{
+        //    Debug.LogWarning("_spaceBTWRows ne peut pas être négative ou nulle");
+        //    _spaceBTWRows = 1;
+        //}
     }
 
-    private void Awake()
+    private void Start()
     {
         DisplayCollection(GameManager.libraryItems.listItems);
     }
@@ -77,19 +77,23 @@ public class DisplayFurniture : MonoBehaviour
             newItem.transform.localPosition = currentPosition;
             newItem.GetComponent<FurnitureReadData>().furniture = item;
             _itemsCreated.Add(newItem);
-
             numberOfItems++;
-            if(numberOfItems == _furniturePerRow)
-            {
-                numberOfItems = 0;
-                numberOfRows++;
-                currentPosition = new Vector2(_startingPoint.localPosition.x, currentPosition.y - _spaceBTWRows);
-            }
-            else
-            {
-                currentPosition = new Vector2(currentPosition.x + _spaceBTWFurniture, currentPosition.y);
-            }
+
+            currentPosition = new Vector2(currentPosition.x + _spaceBTWFurniture, currentPosition.y);
+
+
+            //if(numberOfItems == _furniturePerRow)
+            //{
+            //    numberOfItems = 0;
+            //    totalNumberOfItems++;
+            //    currentPosition = new Vector2(_startingPoint.localPosition.x, currentPosition.y - _spaceBTWRows);
+            //}
+            //else
+            //{
+            //    currentPosition = new Vector2(currentPosition.x + _spaceBTWFurniture, currentPosition.y);
+            //}
         }
+        totalNumberOfItems = numberOfItems;
     }
 
     void EraseCollection()
@@ -98,7 +102,7 @@ public class DisplayFurniture : MonoBehaviour
         {
             Destroy(_itemsCreated[i].gameObject);
         }
-        numberOfRows = 0;
+        totalNumberOfItems = 0;
         _itemsCreated.Clear();
     }
 

@@ -11,9 +11,14 @@ public class OptionsButton : MonoBehaviour
     [SerializeField] Button _restartButton;
     [SerializeField] AnimationCurve _animationCurve;
     [SerializeField] float _duration;
+    Vector3 _startPosition;
     Coroutine _animationCoroutine;
     bool _isDeployed = false;
 
+    private void Awake()
+    {
+        _startPosition = transform.position;
+    }
 
     public void DeployButtons()
     {
@@ -43,15 +48,31 @@ public class OptionsButton : MonoBehaviour
         }
         else
         {
-            Vector2 reployPosition = transform.position;
-            reployPosition.y = -Screen.height;
-            _furnitureButton.transform.position = reployPosition;
-            _restartButton.transform.position = reployPosition;
+            HideKids();
         }
     }
     void ActivateButtons(bool activate)
     {
         _furnitureButton.interactable = activate;
         _restartButton.interactable = activate;
+    }
+
+    public void QuickHideObject()
+    {
+        HideKids();
+        _isDeployed = false;
+        transform.position = new Vector2(transform.position.x, - Screen.height);
+    }
+    public void QuickShowObject()
+    {
+        transform.position = _startPosition;
+    }
+
+    void HideKids()
+    {
+        Vector2 reployPosition = transform.position;
+        reployPosition.y = -Screen.height;
+        _furnitureButton.transform.position = reployPosition;
+        _restartButton.transform.position = reployPosition;
     }
 }
