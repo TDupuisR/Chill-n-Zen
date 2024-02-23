@@ -7,7 +7,7 @@ public class TileBehaviour : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRender;
     [SerializeField] LineRenderer _lineRender;
 
-    List<Item> _presentItems;
+    List<Item> _presentItems = new List<Item>();
     Vector3[] _patternPosition = new Vector3[5];
 
     private void OnEnable()

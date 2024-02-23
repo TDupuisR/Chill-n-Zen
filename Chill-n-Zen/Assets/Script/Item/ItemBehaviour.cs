@@ -113,7 +113,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         Vector2 pointer = GameplayScript.Instance.PrimaryPosition;
 
-        transform.position = (Vector2)TileSystem.Instance.WorldToGrid(pointer - new Vector2(_offsetPos.x, _offsetPos.y));
+        transform.position = (Vector2)TileSystem.Instance.WorldToGrid(pointer + new Vector2(_offsetPos.x, _offsetPos.y));
     }
     private void CheckNewPos()
     {
