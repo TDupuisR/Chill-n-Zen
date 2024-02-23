@@ -72,12 +72,13 @@ namespace GameManagerSpace
     public static class GMStatic
     {
         //Tag for furnitures identification//
-        public enum tagRoom {Null, Other, Bedroom, Livingroom, Kitchen }
-        public enum tagType {Null, Furniture, Object, Mural, Ceiling }
-        public enum tagStyle {Null, Vintage, Disco, Kitch, Modern, Futuristic }
+        public enum tagRoom { Null, Other, Bedroom, Livingroom, Kitchen }
+        public enum tagType { Null, Furniture, Object, Mural, Ceiling, Carpet }
+        public enum tagStyle { Null, Vintage, Disco, Kitch, Modern, Futuristic }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage {Null, Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
+        public enum constraint { None, Front, Seat, Bed }
     }
 }
 
