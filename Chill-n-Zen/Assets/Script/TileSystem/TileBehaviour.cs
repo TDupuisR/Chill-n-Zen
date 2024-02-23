@@ -84,4 +84,11 @@ public class TileBehaviour : MonoBehaviour
             _presentItems.Add(placing);
         }
     }
+    public void RemoveItem(Item current)
+    {
+        foreach (Item item in _presentItems)
+        {
+            if (item == current) _presentItems.Remove(item);
+        }
+    }
 }
