@@ -1,6 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public class TileSystem : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TileSystem : MonoBehaviour
     [SerializeField] Transform _floorParent;
 
     List<GameObject> _tilesList = new List<GameObject>();
+    List<GameObject> _objectList = new List<GameObject>();
+    enum objAction { Add, Remove }
 
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
 
@@ -151,14 +154,95 @@ public class TileSystem : MonoBehaviour
     {
         bool res = false;
 
-        int index = CheckTileExist(x, y);
-        if (index > -1)
+        for (int i = 0; i < item.size.x; i++)
         {
-            TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-            res = script.CheckIfAccessible(item);
+            for (int j = 0; j < item.size.y; j++)
+            {
+                int index = CheckTileExist(x, y);
+                if (index > -1)
+                {
+                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+                    res = script.CheckIfAccessible(item);
+                }
+            }
         }
 
         return res;
+    }
+    
+    // Object List Gestion //
+    private bool CheckIfObjectExist(GameObject obj)
+    {
+        bool res = false;
+        foreach (GameObject current in _objectList)
+        {
+            if (current == obj)
+            {
+                res = true; break;
+            }
+        }
+
+        return res;
+    }
+    private void ChangeObjectList(GameObject obj, objAction state)
+    {
+        switch (state)
+        {
+            case objAction.Add:
+                {
+                    if (CheckIfObjectExist (obj))
+                    {
+                        _objectList.Add(obj);
+                    }
+                    break;
+                }
+            case objAction.Remove:
+                {
+                    if (CheckIfObjectExist(obj))
+                    {
+                        _objectList.Remove(obj);
+                    }
+                    break;
+                }
+            default: break;
+        }
+    }
+
+    public void PlacingItem(GameObject obj, int x, int y)
+    {
+        ChangeObjectList(obj, objAction.Add);
+        ItemBehaviour behave = obj.GetComponent<ItemBehaviour>();
+
+        for (int i = 0; i < behave.OwnItem.size.x; i++)
+        {
+            for (int j = 0; j < behave.OwnItem.size.y; j++)
+            {
+                int index = CheckTileExist(x + i, y + j);
+                if (index > -1)
+                {
+                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+                    script.PlaceItem(behave.OwnItem);
+                }
+            }
+        }
+    }
+    public void RemoveItem(GameObject obj, int x, int y)
+    {
+        ChangeObjectList(obj, objAction.Remove);
+        ItemBehaviour behave = obj.GetComponent<ItemBehaviour>();
+
+        for (int i = 0; i < behave.OwnItem.size.x; i++)
+        {
+            for (int j = 0; j < behave.OwnItem.size.y; j++)
+            {
+                int index = CheckTileExist(x + i, y + j);
+                if (index > -1)
+                {
+                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+                    script.PlaceItem(behave.OwnItem);
+                }
+            }
+        }
     }
 
     [Button]
