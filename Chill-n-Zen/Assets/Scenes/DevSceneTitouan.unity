@@ -154,10 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isoGrid: {fileID: 119702772}
-  _prefabTile: {fileID: 0}
-  _floorParent: {fileID: 0}
-  StartPos: {x: 0, y: 0}
-  GridSize: {x: 1, y: 1}
+  _prefabTile: {fileID: 5770614306598799299, guid: 70bc3d265d11fee48bad908d8e4a3eb2, type: 3}
+  _floorParent: {fileID: 1495164565}
+  TESTStartPos: {x: -1, y: 2}
+  TESTGridSize: {x: 7, y: 3}
 --- !u!156049354 &119702772
 Grid:
   m_ObjectHideFlags: 0
