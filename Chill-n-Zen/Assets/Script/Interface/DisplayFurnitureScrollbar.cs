@@ -9,6 +9,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 {
     [SerializeField] Scrollbar _scrollbar;
     [SerializeField] Transform _parentObject;
+    [SerializeField] Transform _leftEdgeOfScroll;
     [SerializeField] int _numberRowBeforeScroll;
     [SerializeField] float _spacePerRow;
     float _currentNumberRows;
@@ -48,9 +49,12 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     public void PerformScroll(float value)
     {
-        Vector2 newParentPosition = new Vector2(_parentObject.position.x,
-        _parentYStartingPosition + value * _currentNumberRows * _spacePerRow);
-        _parentObject.position = newParentPosition;
+        if (isInScrollZone())
+        {
+            Vector2 newParentPosition = new Vector2(_parentObject.position.x,
+            _parentYStartingPosition + value * _currentNumberRows * _spacePerRow);
+            _parentObject.position = newParentPosition;
+        }
     }
 
     private void swipeScroll(Vector2 vector)
@@ -59,4 +63,9 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
         _scrollbar.value = newScrollBarValue;
     }
 
+
+    bool isInScrollZone()
+    {
+        return GameplayScript.Instance.PrimaryPosition.x > _leftEdgeOfScroll.position.x;
+    }
 }
