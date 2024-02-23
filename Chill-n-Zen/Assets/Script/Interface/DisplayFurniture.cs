@@ -75,7 +75,7 @@ public class DisplayFurniture : MonoBehaviour
         {
             GameObject newItem = Instantiate(_furniturePrefab, _parentObject.transform);
             newItem.transform.localPosition = currentPosition;
-            newItem.GetComponent<FurnitureButton>().furniture = item;
+            newItem.GetComponent<FurnitureReadData>().furniture = item;
             _itemsCreated.Add(newItem);
 
             numberOfItems++;

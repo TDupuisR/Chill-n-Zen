@@ -7,7 +7,9 @@ public class CameraControls : MonoBehaviour
 {
     [SerializeField] Camera _mainCamera;
 
-    //[Header("Camera Movement")]
+    [Header("Camera Movement")]
+    [SerializeField] float _maxLastVelocity;
+    Vector2 _lastVelocity = Vector2.zero;
     Vector2 _cameraActionZonePointUL; //Upper left
     Vector2 _cameraActionZonePointLR; //Lower Right
     Vector4 _defaultCameraActionZone;
@@ -64,6 +66,7 @@ public class CameraControls : MonoBehaviour
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;
+            _lastVelocity = velocityV3;
             _isMovingCamera = true;
         }
     }
@@ -74,14 +77,14 @@ public class CameraControls : MonoBehaviour
         if (_isMovingCamera)
         {
             _isMovingCamera = false;
-            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(lastVelocity, GameplayScript.Instance.swipeDeceleration));
+            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(_lastVelocity, GameplayScript.Instance.swipeDeceleration));
         }
     }
 
     IEnumerator DecelerationCameraRoutine(Vector3 lastVelocity, float deceleration)
     {
         Vector3 _decelerationDirection = lastVelocity.normalized;
-        float _decelerationMagnitude = lastVelocity.magnitude;
+        float _decelerationMagnitude = Mathf.Clamp(lastVelocity.magnitude, 0, _maxLastVelocity);
         while (_decelerationMagnitude >= 0)
         {
             _mainCamera.transform.position += _decelerationDirection * _decelerationMagnitude * Time.fixedDeltaTime;
@@ -93,6 +96,8 @@ public class CameraControls : MonoBehaviour
     bool IsTouchInCameraActionZone(Vector2 pointerPosition)
     {
         Vector2 touchPosition = pointerPosition;
+        print((touchPosition.x > _cameraActionZonePointUL.x) + "&&" + (touchPosition.x < _cameraActionZonePointLR.x) + "&&" +
+               (touchPosition.y > _cameraActionZonePointUL.y) + "&&" + (touchPosition.y < _cameraActionZonePointLR.y));
         return touchPosition.x > _cameraActionZonePointUL.x && touchPosition.x < _cameraActionZonePointLR.x &&
                touchPosition.y > _cameraActionZonePointUL.y && touchPosition.y < _cameraActionZonePointLR.y;
     }

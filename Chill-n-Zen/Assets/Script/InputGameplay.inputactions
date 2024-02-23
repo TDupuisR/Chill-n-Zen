@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PrimaryDelta",
-                    "type": "PassThrough",
-                    "id": "2a2b104e-8cfd-4b0f-87c8-be07e1722d9f",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PrimaryPosition",
                     "type": "Value",
                     "id": "f6893aa3-007a-481b-96de-aa2f441c2a37",
@@ -87,6 +78,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cde126f8-caff-425e-99aa-9261a3fe7de7",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2665a53f-147e-43b8-aabe-5946d204265e",
                     "path": "<Touchscreen>/touch1/press",
                     "interactions": "",
@@ -104,28 +106,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SecondaryPosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0fc0c3aa-4bec-4d49-92bf-ef09ccb2035a",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PrimaryDelta",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6e344702-f29f-404b-ae74-3b3350f7ba78",
-                    "path": "<Touchscreen>/primaryTouch/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PrimaryDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

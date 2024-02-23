@@ -11,17 +11,16 @@ public class GameplayScript : MonoBehaviour
 
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
-    [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryDelta;
     [Space(4)]
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryPosition;
 
     [Header("Swipe Fields")]
     [SerializeField] bool _invertDirection;
-    [SerializeField] float _swipeDeadZone;
     [SerializeField] float _swipeSpeed;
     [SerializeField] float _swipeMaxSpeed;
     [SerializeField] float _swipeDeceleration;
+    Vector2 _swipeLastPosition;
     Vector3 _swipeCurrentVelocity;
     Coroutine _swipeCoroutine;
 
@@ -59,27 +58,21 @@ public class GameplayScript : MonoBehaviour
     private void OnValidate()
     {
 
-        if (_swipeDeadZone <= 0)
-        {
-            Debug.LogWarning("swipeDeadZone ne peut pas être négative !");
-            _swipeDeadZone = 1;
-        }
-
         if (_swipeSpeed <= 0)
         {
-            Debug.LogWarning("La vitesse du swipe ne peut pas être négative !");
+            Debug.LogWarning("La vitesse du swipe ne peut pas être négative ou nulle !");
             _swipeSpeed = 1;
         }
 
         if (_swipeMaxSpeed <= 0)
         {
-            Debug.LogWarning("swipeMaxSpeed ne peut pas être négative !");
+            Debug.LogWarning("swipeMaxSpeed ne peut pas être négative ou nulle !");
             _swipeMaxSpeed = 1;
         }
 
         if (_swipeDeceleration <= 0)
         {
-            Debug.LogWarning("swipeDeceleration ne peut pas être négative !");
+            Debug.LogWarning("swipeDeceleration ne peut pas être négative ou nulle !");
             _swipeDeceleration = 1;
         }
     }
@@ -108,7 +101,6 @@ public class GameplayScript : MonoBehaviour
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
         _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
-        
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
     }
@@ -136,12 +128,15 @@ public class GameplayScript : MonoBehaviour
 
     IEnumerator PerformSwipeRoutine()
     {
+        _swipeLastPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
+            
         while (true)
         {
-            Vector2 delta = _inputPrimaryDelta.action.ReadValue<Vector2>();
+            Vector2 currentPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
+            Vector2 delta = currentPosition - _swipeLastPosition;
             float force = delta.magnitude;
-            
-            if (force > _swipeDeadZone)
+
+            if (force > 0)
             {
 
                 Vector3 direction = (_invertDirection ? -1 : 1) * delta.normalized;
@@ -150,9 +145,11 @@ public class GameplayScript : MonoBehaviour
                 //Clamp magnitude of velocity
                 _swipeCurrentVelocity = force * _swipeSpeed * direction * Time.fixedDeltaTime;
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
-             
+
                 //Apply velocity to position
                 _onSwipe?.Invoke(_swipeCurrentVelocity);
+
+                _swipeLastPosition = currentPosition;
             }
 
             yield return new WaitForFixedUpdate();
