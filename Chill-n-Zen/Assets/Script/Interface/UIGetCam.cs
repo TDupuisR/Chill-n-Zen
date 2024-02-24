@@ -6,6 +6,11 @@ public class UIGetCam : MonoBehaviour
 {
     [SerializeField] CameraControls _cam;
 
+    public CameraControls cam
+    {
+        get => _cam;
+    }
+
     private void Awake()
     {
         if(_cam == null)

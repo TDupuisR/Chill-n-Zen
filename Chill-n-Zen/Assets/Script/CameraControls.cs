@@ -10,6 +10,11 @@ public class CameraControls : MonoBehaviour
 
     [Header("Camera Movement")]
     [SerializeField] float _maxLastVelocity;
+    [SerializeField] [Foldout("Boundaries")] float _topCamBoundaries;
+    [SerializeField] [Foldout("Boundaries")] float _bottomCamBoundaries;
+    [SerializeField] [Foldout("Boundaries")] float _rightCamBoundaries;
+    [SerializeField] [Foldout("Boundaries")] float _leftCamBoundaries;
+    
     Vector2 _lastVelocity = Vector2.zero;
     Vector2 _cameraActionZonePointDL; //Upper left
     Vector2 _cameraActionZonePointUR; //Lower Right
@@ -75,6 +80,8 @@ public class CameraControls : MonoBehaviour
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;
+            _mainCamera.transform.position = ClampCamPosition(_mainCamera.transform.position);
+
             _lastVelocity = velocityV3;
             _isMovingCamera = true;
         }
@@ -97,20 +104,26 @@ public class CameraControls : MonoBehaviour
         while (_decelerationMagnitude >= 0)
         {
             _mainCamera.transform.position += _decelerationDirection * _decelerationMagnitude * Time.fixedDeltaTime;
+            _mainCamera.transform.position = ClampCamPosition(_mainCamera.transform.position);
+
             _decelerationMagnitude -= deceleration * Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
     }
 
-    bool IsTouchInCameraActionZone(Vector2 pointerPosition)
+    bool IsTouchInCameraActionZone(Vector2 touchPosition)
     {
-        Vector2 touchPosition = pointerPosition;
-        //print(_cameraActionZonePointDL + " ; " + _cameraActionZonePointUR + " - mouse : " + touchPosition);
+        print(_cameraActionZonePointDL + " ; " + _cameraActionZonePointUR + " - mouse : " + touchPosition);
         return touchPosition.x > _cameraActionZonePointDL.x && touchPosition.x < _cameraActionZonePointUR.x &&
                touchPosition.y > _cameraActionZonePointDL.y && touchPosition.y < _cameraActionZonePointUR.y;
     }
 
-
+    Vector3 ClampCamPosition(Vector2 position)
+    {
+        float clampedX = Mathf.Clamp(position.x, _leftCamBoundaries, _rightCamBoundaries);
+        float clampedY = Mathf.Clamp(position.y, _bottomCamBoundaries, _topCamBoundaries);
+        return new Vector3(clampedX, clampedY, _mainCamera.transform.position.z);
+    }
 
     /*
         Camera zoom pitch

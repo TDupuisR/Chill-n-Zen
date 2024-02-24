@@ -63,7 +63,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
     {
         if (isInScrollZone())
         {
-            print(_parentXStartingPosition + "+" + value + "*" + _currentNumberItems + "*" + _spacePerItem);
+            //print(_parentXStartingPosition + "+" + value + "*" + _currentNumberItems + "*" + _spacePerItem);
             Vector2 newParentPosition = new Vector2(_parentXStartingPosition - value * _currentNumberItems * _spacePerItem,
             _parentObject.position.y);
             _parentObject.position = newParentPosition;

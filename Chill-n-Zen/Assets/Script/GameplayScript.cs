@@ -138,7 +138,6 @@ public class GameplayScript : MonoBehaviour
 
             if (force > 0)
             {
-
                 Vector3 direction = (_invertDirection ? -1 : 1) * delta.normalized;
                 direction.z = 0;
 

@@ -68,21 +68,21 @@ public class WindowScroll : MonoBehaviour
         _backgroundStartPosition = finalPosition;
     }
 
-    public void UpdateCamActionZoneDown(CameraControls _cam)
+    public void UpdateCamActionZoneDown(UIGetCam _cam)
     {
-        _cam.ChangeDownLeftCamActionZone(new Vector2(0.0f, GiveAdapativeBoundaryActionZoneY())); 
+        _cam.cam.ChangeDownLeftCamActionZone(new Vector2(0.0f, GiveAdapativeBoundaryActionZoneY())); 
     }
-    public void UpdateCamActionZoneUp(CameraControls _cam)
+    public void UpdateCamActionZoneUp(UIGetCam _cam)
     {
-        _cam.ChangeUpRightCamActionZone(new Vector2(Screen.width, GiveAdapativeBoundaryActionZoneY()));
+        _cam.cam.ChangeUpRightCamActionZone(new Vector2(Screen.width, GiveAdapativeBoundaryActionZoneY()));
     }
-    public void UpdateCamActionZoneLeft(CameraControls _cam)
+    public void UpdateCamActionZoneLeft(UIGetCam _cam)
     {
-        _cam.ChangeDownLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f));
+        _cam.cam.ChangeDownLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f));
     }
-    public void UpdateCamActionZoneRight(CameraControls _cam)
+    public void UpdateCamActionZoneRight(UIGetCam _cam)
     {
-        _cam.ChangeUpRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
+        _cam.cam.ChangeUpRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
     }
     float GiveAdapativeBoundaryActionZoneX() => _boundaryActionZone * Screen.width / 1280.0f;
     float GiveAdapativeBoundaryActionZoneY() => _boundaryActionZone * Screen.height / 720.0f;

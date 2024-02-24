@@ -68,7 +68,7 @@
                 {
                     "name": "",
                     "id": "6fa00acd-ac66-4f5a-a5d9-671b871127d8",
-                    "path": "<Touchscreen>/position",
+                    "path": "<Touchscreen>/touch0/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -78,7 +78,7 @@
                 },
                 {
                     "name": "",
-                    "id": "cde126f8-caff-425e-99aa-9261a3fe7de7",
+                    "id": "e71ac54e-ab89-45be-9b27-19fefd6fa76e",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
