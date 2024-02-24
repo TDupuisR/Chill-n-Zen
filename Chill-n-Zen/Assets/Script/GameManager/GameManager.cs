@@ -58,7 +58,7 @@ namespace GameManagerSpace
 
             while (!LoadSceneOperation.isDone)
             {
-                if (LoadSceneOperation.progress >= 0.95f)
+                if (LoadSceneOperation.progress >= 0.9f)
                 {
                     LoadSceneOperation.allowSceneActivation = true;
                 }
