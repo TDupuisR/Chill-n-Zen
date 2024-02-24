@@ -113,7 +113,7 @@ public class CameraControls : MonoBehaviour
 
     bool IsTouchInCameraActionZone(Vector2 touchPosition)
     {
-        print(_cameraActionZonePointDL + " ; " + _cameraActionZonePointUR + " - mouse : " + touchPosition);
+        //print(_cameraActionZonePointDL + " ; " + _cameraActionZonePointUR + " - mouse : " + touchPosition);
         return touchPosition.x > _cameraActionZonePointDL.x && touchPosition.x < _cameraActionZonePointUR.x &&
                touchPosition.y > _cameraActionZonePointDL.y && touchPosition.y < _cameraActionZonePointUR.y;
     }
