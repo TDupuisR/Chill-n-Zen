@@ -18,3 +18,5 @@ MonoBehaviour:
   style: 5
   listUsage: 
   price: 4776
+  size: {x: 2, y: 2, z: 0}
+  orientation: 0

@@ -13,9 +13,9 @@ public class Item : ScriptableObject
     public List<GMStatic.tagUsage> listUsage;
     [Range(0, 10000)]
     public int price;
-    public Vector3Int size; // X = Width // Y = Depth // Z = Height // Front side at spawn is always x = -1 //
+    public Vector3Int size; // X = Depth // Y = Width // Z = Height // Front side at spawn is always in direction x = -1 // Mustn't have negative nor 0 as values (exept: z = 0) //
 
-    public int orientation; // 0 - 90 - 180 - 270 //
+    public int orientation; // 0 - 90 - 180 - 270 // 0 at spawn //
     //public 
 }
 
