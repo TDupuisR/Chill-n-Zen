@@ -19,9 +19,9 @@ namespace GameManagerSpace
         private void OnValidate()
         {
             if (_libraryItems == null)
-                Debug.LogError(" (error : 1x1) No Library Items Script present ", _loadingScreen);
+                Debug.LogError(" (error : 1x1) No Library Items Script assigned ", _loadingScreen);
             if (_loadingScreen == null)
-                Debug.LogError(" (error : 1x2) No loading screen present ", _loadingScreen);
+                Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
         }
 
         private void Awake()
@@ -44,7 +44,7 @@ namespace GameManagerSpace
             if (_loadingScreen != null) _loadingScreen.SetActive(true);
             else
             {
-                Debug.LogError(" (error : 1x2) No loading screen present ", _loadingScreen);
+                Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
             }
 
             StartCoroutine(AsyncLoadScnene(sceneIndex));

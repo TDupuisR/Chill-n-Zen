@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System;
 
 public class TileSystem : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class TileSystem : MonoBehaviour
     [SerializeField] Grid _isoGrid;
     [SerializeField] GameObject _prefabTile;
     [SerializeField] Transform _floorParent;
+    [SerializeField] Transform _objectParent;
 
     List<GameObject> _tilesList = new List<GameObject>();
     List<GameObject> _objectList = new List<GameObject>();
@@ -25,6 +26,8 @@ public class TileSystem : MonoBehaviour
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
+    public delegate void OnShowGridSpecifiedDelegate(bool state);
+    public static event OnShowGridSpecifiedDelegate OnShowGridSpecified;
 
     private void OnValidate()
     {
@@ -36,6 +39,9 @@ public class TileSystem : MonoBehaviour
             }
         }
         else Debug.LogError(" (error : 2x1) No isometric grid assigned ", _isoGrid);
+
+        if (_floorParent == null) Debug.LogError(" (error : 2x5a) No Floor Parent assigned ", _floorParent);
+        if (_objectParent == null) Debug.LogError(" (error : 2x5b) No Object Parent assigned ", _objectParent);
     }
 
     private void Awake()
@@ -53,7 +59,7 @@ public class TileSystem : MonoBehaviour
         _isoGrid = GetComponent<Grid>();
     }
 
-    public Vector2 WorldToGrid(Vector2 position)
+    public Vector2Int WorldToGrid(Vector2 position)
     {
         Vector3Int gridPos = _isoGrid.WorldToCell(position);
         return new Vector2Int(gridPos.x, gridPos.y);
@@ -96,6 +102,8 @@ public class TileSystem : MonoBehaviour
         }
         else
         {
+            if (_tilesList.Count > 0) OnShowGridSpecified.Invoke(false);
+
             for (int x = 0; x < gridSize.x; x++)
             {
                 for (int y = 0; y < gridSize.y; y++)
@@ -158,7 +166,7 @@ public class TileSystem : MonoBehaviour
         {
             for (int j = 0; j < item.size.y; j++)
             {
-                int index = CheckTileExist(x, y);
+                int index = CheckTileExist(x + i, y + j);
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
@@ -239,7 +247,7 @@ public class TileSystem : MonoBehaviour
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    script.PlaceItem(behave.OwnItem);
+                    script.RemoveItem(behave.OwnItem);
                 }
             }
         }
