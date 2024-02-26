@@ -167,13 +167,18 @@ public class TileSystem : MonoBehaviour
             for (int j = 0; j < item.size.y; j++)
             {
                 int index = CheckTileExist(x + i, y + j);
+
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
                     res = script.CheckIfAccessible(item);
                 }
-                Debug.Log("Check: " + (x + i) + " " + (y + j) + " | index: " + index + " | res: " + res); // TEST //
+                else res = false;
+
+                if (!res) break;
             }
+
+            if (!res) break;
         }
 
         return res;

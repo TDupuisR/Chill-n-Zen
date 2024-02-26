@@ -31,7 +31,7 @@ public class FurnitureReadData : MonoBehaviour
 
     public void ReadFurnitureData(Item furniture)
     {
-        _img.sprite = furniture.asset2D;
+        _img.sprite = furniture.spriteOneFixed;
         _priceText.text = furniture.price.ToString() + " Cr";
 
         if(IsAllTagValid(furniture))

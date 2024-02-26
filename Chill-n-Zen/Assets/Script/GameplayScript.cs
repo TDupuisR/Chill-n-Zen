@@ -50,6 +50,11 @@ public class GameplayScript : MonoBehaviour
         get => _inputSecondaryPosition.action.ReadValue<Vector2>();
     }
 
+    public Vector2 MouseWorldPosition
+    {
+        get => Camera.main.ScreenToWorldPoint(PrimaryPosition);
+    }
+
     public static Action<Vector2> _onStartPrimaryTouch;
     public static Action<Vector2> _onEndSecondaryTouch;
     public static Action<Vector2> _onStartSecondaryTouch;

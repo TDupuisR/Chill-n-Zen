@@ -6,7 +6,11 @@ using GameManagerSpace;
 [CreateAssetMenu(fileName = "Item", menuName = "Item")]
 public class Item : ScriptableObject
 {
-    public Sprite asset2D;
+    public Sprite spriteOneFixed;
+    public Sprite spriteOneColored;
+    public Sprite spriteTwoFixed;
+    public Sprite spriteTwoColored;
+
     public GMStatic.tagRoom room;
     public GMStatic.tagType type;
     public GMStatic.tagStyle style;
