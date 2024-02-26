@@ -24,6 +24,9 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
         }
 
+        //private void OnEnable() { DontDestroyOnLoad(gameObject); }
+
+
         private void Awake()
         {
             if (Instance == null)
