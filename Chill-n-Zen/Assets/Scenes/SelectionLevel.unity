@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f794a6950a643f4f895e597d40d94bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberLevel: 2
 --- !u!114 &151609077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 151609076}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: SelectLevel3
+        m_MethodName: ChooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -542,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f794a6950a643f4f895e597d40d94bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberLevel: 4
 --- !u!114 &718890696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +590,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 718890695}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: SelectLevel5
+        m_MethodName: ChooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -687,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f794a6950a643f4f895e597d40d94bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberLevel: 0
 --- !u!114 &769090756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +736,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 769090755}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: SelectLevel1
+        m_MethodName: ChooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -832,6 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f794a6950a643f4f895e597d40d94bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberLevel: 1
 --- !u!114 &967405785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,7 +882,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 967405784}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: SelectLevel2
+        m_MethodName: ChooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1582,6 +1586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f794a6950a643f4f895e597d40d94bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberLevel: 3
 --- !u!114 &2036293804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1633,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2036293803}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
-        m_MethodName: SelectLevel4
+        m_MethodName: ChooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
