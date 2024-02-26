@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class SelectLevel : MonoBehaviour
 {
     [SerializeField] private int _numberLevel;
-    public void ChooseLevel()
+
+    private void Start()
     {
         SceneManager.LoadScene(_numberLevel);
     }
