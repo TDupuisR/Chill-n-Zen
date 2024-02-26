@@ -11,20 +11,24 @@ namespace GameManagerSpace
         public static GameManager Instance;
         public static LibraryItem libraryItems;
         public static AudioManager audioManager;
+        public static SaveData saveData;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
-
-        [Space(8)]
+        [SerializeField] SaveData _saveData;
         [SerializeField] GameObject _loadingScreen;
 
         private void OnValidate()
         {
             if (_libraryItems == null)
-                Debug.LogError(" (error : 1x1) No Library Items Script present ", _loadingScreen);
+                Debug.LogError(" (error : 1x1) No Library Items Script present ", _libraryItems);
             if (_loadingScreen == null)
                 Debug.LogError(" (error : 1x2) No loading screen present ", _loadingScreen);
+            if (_saveData == null)
+                Debug.LogError(" (error : 1x2) No save data present ", _saveData);
         }
+
+        private void OnEnable() { DontDestroyOnLoad(gameObject); }
 
         private void Awake()
         {
@@ -39,6 +43,7 @@ namespace GameManagerSpace
             }
 
             libraryItems = _libraryItems;
+            saveData = _saveData;
         }
 
         public void ChangeScene(int sceneIndex)

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4248487749090183880}
   - component: {fileID: 7027273775599815287}
   - component: {fileID: 18947013022421041}
+  - component: {fileID: 788925584737789079}
   - component: {fileID: 3164706526098807982}
   - component: {fileID: 4287724285047484372}
   - component: {fileID: 7144708466580255975}
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _libraryItems: {fileID: 4248487749090183880}
   _audioManager: {fileID: 7027273775599815287}
+  _saveData: {fileID: 788925584737789079}
   _loadingScreen: {fileID: 7464992814520388730, guid: ed9e3cbab79545d4eba98d568e9333d6, type: 3}
 --- !u!114 &4248487749090183880
 MonoBehaviour:
@@ -105,6 +107,18 @@ MonoBehaviour:
   _swipeMaxSpeed: 1
   _swipeDeceleration: 1
   _durationToHold: 0
+--- !u!114 &788925584737789079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455097743039211084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0948c1e90fcacc4ca28cce836355ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3164706526098807982
 MonoBehaviour:
   m_ObjectHideFlags: 0
