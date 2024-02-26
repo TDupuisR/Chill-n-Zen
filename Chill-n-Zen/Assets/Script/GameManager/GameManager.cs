@@ -10,8 +10,10 @@ namespace GameManagerSpace
     {
         public static GameManager Instance;
         public static LibraryItem libraryItems;
+        public static AudioManager audioManager;
 
         [SerializeField] LibraryItem _libraryItems;
+        [SerializeField] AudioManager _audioManager;
 
         [Space(8)]
         [SerializeField] GameObject _loadingScreen;
