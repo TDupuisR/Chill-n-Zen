@@ -19,7 +19,7 @@ public class DisplayFurniture : MonoBehaviour
     List<GameObject> _itemsCreated = new List<GameObject>();
     int _totalNumberOfItems;
 
-    public int totalNumberOfItems
+    public int TotalNumberOfItems
     {
         get => _totalNumberOfItems;
         set
@@ -75,7 +75,7 @@ public class DisplayFurniture : MonoBehaviour
         {
             GameObject newItem = Instantiate(_furniturePrefab, _parentObject.transform);
             newItem.transform.localPosition = currentPosition;
-            newItem.GetComponent<FurnitureReadData>().furniture = item;
+            newItem.GetComponent<FurnitureReadData>().Furniture = item;
             _itemsCreated.Add(newItem);
             numberOfItems++;
 
@@ -93,7 +93,7 @@ public class DisplayFurniture : MonoBehaviour
             //    currentPosition = new Vector2(currentPosition.x + _spaceBTWFurniture, currentPosition.y);
             //}
         }
-        totalNumberOfItems = numberOfItems;
+        TotalNumberOfItems = numberOfItems;
     }
 
     void EraseCollection()
@@ -102,7 +102,7 @@ public class DisplayFurniture : MonoBehaviour
         {
             Destroy(_itemsCreated[i].gameObject);
         }
-        totalNumberOfItems = 0;
+        TotalNumberOfItems = 0;
         _itemsCreated.Clear();
     }
 

@@ -9,7 +9,7 @@ public class BudgetSlider : MonoBehaviour
     [SerializeField] int _maxBudget;
     [SerializeField] int _currentBudget;
 
-    public int currentBudget
+    public int CurrentBudget
     {
         get => _currentBudget;
         set
