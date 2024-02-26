@@ -41,6 +41,7 @@ namespace GameManagerSpace
             }
 
             libraryItems = _libraryItems;
+            saveData = _saveData;
         }
 
         public void ChangeScene(int sceneIndex)
