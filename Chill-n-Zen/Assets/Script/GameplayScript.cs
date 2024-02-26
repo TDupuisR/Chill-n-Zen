@@ -30,22 +30,22 @@ public class GameplayScript : MonoBehaviour
     bool _ishold = false;
     Coroutine _holdCoroutine;
 
-    public bool isHold
+    public bool IsHold
     {
         get => _ishold;
     }
 
-    public float swipeDeceleration
+    public float SwipeDeceleration
     {
         get => _swipeDeceleration;
     }
 
-    public Vector2 primaryPosition
+    public Vector2 PrimaryPosition
     {
         get => _inputPrimaryPosition.action.ReadValue<Vector2>();
     }
 
-    public Vector2 secondaryPosition
+    public Vector2 SecondaryPosition
     {
         get => _inputSecondaryPosition.action.ReadValue<Vector2>();
     }

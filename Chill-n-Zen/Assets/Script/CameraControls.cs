@@ -79,7 +79,7 @@ public class CameraControls : MonoBehaviour
 
     private void ChkValidMovement(Vector2 vector)
     {
-        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.primaryPosition);
+        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition);
     }
 
     void CameraMovement(Vector2 velocity)
@@ -101,7 +101,7 @@ public class CameraControls : MonoBehaviour
         if (_isMovingCamera)
         {
             _isMovingCamera = false;
-            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(_lastVelocity, GameplayScript.Instance.swipeDeceleration));
+            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(_lastVelocity, GameplayScript.Instance.SwipeDeceleration));
         }
     }
 
@@ -139,7 +139,7 @@ public class CameraControls : MonoBehaviour
 
     private void StartZoom(Vector2 lastPosition)
     {
-        if (IsTouchInCameraActionZone(GameplayScript.Instance.primaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.secondaryPosition))
+        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.SecondaryPosition))
         {
             _zoomCoroutine = StartCoroutine(ZoomRoutine());
         }
@@ -155,16 +155,16 @@ public class CameraControls : MonoBehaviour
 
     IEnumerator ZoomRoutine()
     {
-        Vector2 primaryPosition = GameplayScript.Instance.primaryPosition;
-        Vector2 secondaryPosition = GameplayScript.Instance.secondaryPosition;
+        Vector2 primaryPosition = GameplayScript.Instance.PrimaryPosition;
+        Vector2 secondaryPosition = GameplayScript.Instance.SecondaryPosition;
 
         float currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
         float oldDistance = currentDistance;
 
         while (true)
         {
-            primaryPosition = GameplayScript.Instance.primaryPosition;
-            secondaryPosition = GameplayScript.Instance.secondaryPosition;
+            primaryPosition = GameplayScript.Instance.PrimaryPosition;
+            secondaryPosition = GameplayScript.Instance.SecondaryPosition;
 
             currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
             if (currentDistance != oldDistance)
