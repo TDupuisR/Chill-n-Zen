@@ -79,7 +79,7 @@ public class CameraControls : MonoBehaviour
 
     private void ChkValidMovement(Vector2 vector)
     {
-        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition);
+        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.primaryPosition);
     }
 
     void CameraMovement(Vector2 velocity)
@@ -139,7 +139,7 @@ public class CameraControls : MonoBehaviour
 
     private void StartZoom(Vector2 lastPosition)
     {
-        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.SecondaryPosition))
+        if (IsTouchInCameraActionZone(GameplayScript.Instance.primaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.secondaryPosition))
         {
             _zoomCoroutine = StartCoroutine(ZoomRoutine());
         }
@@ -155,16 +155,16 @@ public class CameraControls : MonoBehaviour
 
     IEnumerator ZoomRoutine()
     {
-        Vector2 primaryPosition = GameplayScript.Instance.PrimaryPosition;
-        Vector2 secondaryPosition = GameplayScript.Instance.SecondaryPosition;
+        Vector2 primaryPosition = GameplayScript.Instance.primaryPosition;
+        Vector2 secondaryPosition = GameplayScript.Instance.secondaryPosition;
 
         float currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
         float oldDistance = currentDistance;
 
         while (true)
         {
-            primaryPosition = GameplayScript.Instance.PrimaryPosition;
-            secondaryPosition = GameplayScript.Instance.SecondaryPosition;
+            primaryPosition = GameplayScript.Instance.primaryPosition;
+            secondaryPosition = GameplayScript.Instance.secondaryPosition;
 
             currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
             if (currentDistance != oldDistance)

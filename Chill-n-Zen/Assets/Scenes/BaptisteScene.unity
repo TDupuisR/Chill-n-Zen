@@ -491,6 +491,7 @@ MonoBehaviour:
   _swipeSpeed: 1
   _swipeMaxSpeed: 1.5
   _swipeDeceleration: 1
+  _durationToHold: 0.5
 --- !u!114 &1459186165
 MonoBehaviour:
   m_ObjectHideFlags: 0

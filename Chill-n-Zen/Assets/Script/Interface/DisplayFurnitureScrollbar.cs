@@ -83,6 +83,6 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     bool isInScrollZone()
     {
-        return GameplayScript.Instance.PrimaryPosition.y < _upperEdgeOfScroll.position.y;
+        return GameplayScript.Instance.primaryPosition.y < _upperEdgeOfScroll.position.y;
     }
 }

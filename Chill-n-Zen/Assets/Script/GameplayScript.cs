@@ -15,6 +15,7 @@ public class GameplayScript : MonoBehaviour
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputSecondaryPosition;
 
+
     [Header("Swipe Fields")]
     [SerializeField] bool _invertDirection;
     [SerializeField] float _swipeSpeed;
@@ -24,17 +25,27 @@ public class GameplayScript : MonoBehaviour
     Vector3 _swipeCurrentVelocity;
     Coroutine _swipeCoroutine;
 
+    [Header("Hold Fields")]
+    [SerializeField] float _durationToHold;
+    bool _ishold = false;
+    Coroutine _holdCoroutine;
+
+    public bool isHold
+    {
+        get => _ishold;
+    }
+
     public float swipeDeceleration
     {
         get => _swipeDeceleration;
     }
 
-    public Vector2 PrimaryPosition
+    public Vector2 primaryPosition
     {
         get => _inputPrimaryPosition.action.ReadValue<Vector2>();
     }
 
-    public Vector2 SecondaryPosition
+    public Vector2 secondaryPosition
     {
         get => _inputSecondaryPosition.action.ReadValue<Vector2>();
     }
@@ -103,6 +114,7 @@ public class GameplayScript : MonoBehaviour
         _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
+        _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold)); 
     }
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
@@ -114,11 +126,17 @@ public class GameplayScript : MonoBehaviour
         {
             StopCoroutine(_swipeCoroutine);
         }
+
+        //End hold
+        StopHoldCheck();
     }
 
     private void StartSecondaryTouch(InputAction.CallbackContext context)
     {
         _onStartSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
+        
+        //End single touch hold
+        StopHoldCheck();
     }
 
     private void EndSecondaryTouch(InputAction.CallbackContext context)
@@ -153,5 +171,23 @@ public class GameplayScript : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    /*
+     Hold
+     */
+    void StopHoldCheck()
+    {
+        _ishold = false;
+        if (_holdCoroutine != null)
+        {
+            StopCoroutine(_holdCoroutine);
+        }
+    }
+    IEnumerator HoldRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        print("hold");
+        _ishold = true;
     }
 }
