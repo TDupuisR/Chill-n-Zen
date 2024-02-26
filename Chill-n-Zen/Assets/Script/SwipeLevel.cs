@@ -18,11 +18,8 @@ public class SwipeLevel : MonoBehaviour
     private List<RectTransform> _listPicture = new List<RectTransform>();
     private RectTransform _tempRectTransform = null;
     private float _distance = Mathf.Infinity;
-    private float _newXPosition;
-    private float _initialOffSet;
+    private float _newXPosition = 2560;
     private bool _isDragging;
-    private float posMax;
-    private float posMin;
 
     #endregion
 
