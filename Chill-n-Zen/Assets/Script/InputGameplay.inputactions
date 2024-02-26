@@ -87,6 +87,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0fccd3ea-466f-490d-827e-f653f17d69a9",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2665a53f-147e-43b8-aabe-5946d204265e",
                     "path": "<Touchscreen>/touch1/press",
                     "interactions": "",
