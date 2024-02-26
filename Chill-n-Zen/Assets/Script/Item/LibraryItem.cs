@@ -6,20 +6,11 @@ using UnityEngine;
 
 public class LibraryItem : MonoBehaviour
 {
-    public static LibraryItem Instance;
-    [SerializeField] List<Item> listItems;
+    [SerializeField] List<Item> _listItems;
     
-    private void Awake()
+    public List<Item> listItems
     {
-        if (Instance == null)
-        {
-            if (Instance != null) Destroy(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Debug.LogError(" (error : 1x0) Too many LibraryItem instance ", gameObject);
-        }
+        get => _listItems;
     }
 
     public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
@@ -29,12 +20,12 @@ public class LibraryItem : MonoBehaviour
         if(room == GMStatic.tagRoom.Null && type == GMStatic.tagType.Null && style == GMStatic.tagStyle.Null)
         {
             Debug.Log("Warning : No Filter");
-            return GameManager.libraryItems.listItems;
+            return GameManager.libraryItems._listItems;
         }
 
         if (room != GMStatic.tagRoom.Null && type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.room == room && item.type == type && item.style == style)
                 {
@@ -44,7 +35,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if (type != GMStatic.tagType.Null && room != GMStatic.tagRoom.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.type == type && item.room == room) 
                 { 
@@ -54,7 +45,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if (type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.type == type && item.style == style)
                 {
@@ -64,7 +55,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if (room != GMStatic.tagRoom.Null && style != GMStatic.tagStyle.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.room == room && item.style == style)
                 {
@@ -74,7 +65,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if(style != GMStatic.tagStyle.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.style == style)
                 {
@@ -84,7 +75,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if (room != GMStatic.tagRoom.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.room == room)
                 {
@@ -94,7 +85,7 @@ public class LibraryItem : MonoBehaviour
         }
         else if (type != GMStatic.tagType.Null)
         {
-            foreach (Item item in GameManager.libraryItems.listItems)
+            foreach (Item item in GameManager.libraryItems._listItems)
             {
                 if (item.type == type)
                 {
