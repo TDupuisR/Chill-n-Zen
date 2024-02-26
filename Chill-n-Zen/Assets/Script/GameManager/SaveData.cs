@@ -12,7 +12,7 @@ public class SaveData : MonoBehaviour
     float _musicVolume;
 
     //public accessors
-    public int maxLevel
+    public int MaxLevel
     {
         get
         {
@@ -73,7 +73,7 @@ public class SaveData : MonoBehaviour
         }
     }
 
-    public float musicVolume
+    public float MusicVolume
     {
         get
         {
