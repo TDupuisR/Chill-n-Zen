@@ -126,9 +126,9 @@ public class ItemBehaviour : MonoBehaviour
         else LineColor(Color.green);
     }
 
-    public void Rotation()
+    [Button] public void Rotation()
     {
-        _ownItem.orientation = (int)Mathf.Repeat(_ownItem.orientation + 90, 270);
+        _ownItem.orientation = (int)Mathf.Repeat(_ownItem.orientation + 90, 360);
         Debug.Log(_ownItem.orientation);
 
     } // Rotate the Item when a button is pushed

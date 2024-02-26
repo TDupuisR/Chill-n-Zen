@@ -172,6 +172,7 @@ public class TileSystem : MonoBehaviour
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
                     res = script.CheckIfAccessible(item);
                 }
+                Debug.Log("Check: " + (x + i) + " " + (y + j) + " | index: " + index + " | res: " + res); // TEST //
             }
         }
 
