@@ -50,7 +50,7 @@ public class ItemBehaviour : MonoBehaviour
         if (_ownItem.size.x <= 0 || _ownItem.size.y <= 0 || _ownItem.size.z <= -1)
         {
             Debug.LogError(" (error : 4x2) Size of the item out of bound (null or negative values) ", gameObject);
-            // Put Destroy method here
+            Remove(); return;
         }
 
         _spriteRender.sprite = _ownItem.asset2D;
@@ -128,6 +128,8 @@ public class ItemBehaviour : MonoBehaviour
 
     public void Rotation()
     {
+        _ownItem.orientation = (int)Mathf.Repeat(_ownItem.orientation + 90, 270);
+        Debug.Log(_ownItem.orientation);
 
     } // Rotate the Item when a button is pushed
     public void Place()
