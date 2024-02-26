@@ -19,7 +19,7 @@ public class FurnitureReadData : MonoBehaviour
     [SerializeField] TMP_Text _styleText;
     [SerializeField] TMP_Text _typeText;
 
-    public Item furniture
+    public Item Furniture
     {
         get => _furniture;
         set 

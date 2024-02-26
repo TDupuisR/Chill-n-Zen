@@ -13,17 +13,17 @@ public class FilterUIManager : MonoBehaviour
     [SerializeField] TMP_Dropdown _roomFilterDropdown, _typeFilterDropdown, _styleFilterDropdown;
     enum _typeOfTags { tagRoom, tagType, tagStyle }
 
-    public int roomFilter
+    public int RoomFilter
     {
         get; set;
     }
 
-    public int typeFilter
+    public int TypeFilter
     {
         get; set;
     }
 
-    public int styleFilter
+    public int StyleFilter
     {
         get; set;
     }
@@ -84,7 +84,7 @@ public class FilterUIManager : MonoBehaviour
 
     public void ApplyFilter()
     {
-        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)roomFilter, (GMStatic.tagType)typeFilter, (GMStatic.tagStyle)styleFilter);
+        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)TypeFilter, (GMStatic.tagStyle)StyleFilter);
         _displayFurniture.ResetAndDisplay(newItems);
     }
 }

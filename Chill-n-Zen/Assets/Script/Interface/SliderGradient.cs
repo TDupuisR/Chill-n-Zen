@@ -10,9 +10,9 @@ public class SliderGradient : MonoBehaviour
     [SerializeField] Image _sliderImg;
     [SerializeField] Gradient _sliderGradient;
 
-    public float progression
+    public float Progression
     {
-        get => progression;
+        get => Progression;
         set
         {
             UpdateSlider(value);

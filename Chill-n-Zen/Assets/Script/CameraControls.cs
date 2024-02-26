@@ -28,7 +28,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField] float _zoomSensitivity;
     Coroutine _zoomCoroutine;
 
-    public bool canMoveCamera
+    public bool CanMoveCamera
     {
         get;
         set;
@@ -41,7 +41,7 @@ public class CameraControls : MonoBehaviour
         _cameraActionZonePointUR = new Vector2(Screen.width, Screen.height);
         _defaultCameraActionZone = new Vector4(_cameraActionZonePointDL.x, _cameraActionZonePointDL.y, _cameraActionZonePointUR.x, _cameraActionZonePointUR.y);
 
-        canMoveCamera = true;
+        CanMoveCamera = true;
     }
 
     private void OnEnable()
@@ -84,7 +84,7 @@ public class CameraControls : MonoBehaviour
 
     void CameraMovement(Vector2 velocity)
     {
-        if (_isInActionZone && canMoveCamera)
+        if (_isInActionZone && CanMoveCamera)
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;
