@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 788925584737789079}
   - component: {fileID: 3164706526098807982}
   - component: {fileID: 4287724285047484372}
-  - component: {fileID: 8427398656722470949}
+  - component: {fileID: 7144708466580255975}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -81,9 +81,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundSource: {fileID: 4287724285047484372}
-  _musicSource: {fileID: 8427398656722470949}
+  _musicSource: {fileID: 7144708466580255975}
   _listSounds:
   - {fileID: 8300000, guid: 250b3b3433de81b45abf2db39a966653, type: 3}
+  _musicVolume: 1
+  _soundVolume: 1
 --- !u!114 &18947013022421041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &8427398656722470949
+--- !u!82 &7144708466580255975
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
