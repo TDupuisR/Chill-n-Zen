@@ -28,6 +28,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x2) No save data present ", _saveData);
         }
 
+        private void OnEnable() { DontDestroyOnLoad(gameObject); }
+
         private void Awake()
         {
             if (Instance == null)
