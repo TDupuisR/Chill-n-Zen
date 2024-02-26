@@ -78,17 +78,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e71ac54e-ab89-45be-9b27-19fefd6fa76e",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PrimaryPosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0fccd3ea-466f-490d-827e-f653f17d69a9",
                     "path": "<Mouse>/position",
                     "interactions": "",
