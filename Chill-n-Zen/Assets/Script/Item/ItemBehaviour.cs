@@ -192,6 +192,7 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Placed;
+            _lineRender.enabled = false;
 
             _itemUI.ActivateUI(false);
         }
@@ -205,14 +206,15 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Waiting;
+            _lineRender.enabled = true;
 
             _itemUI.SetupLeftButton();
         }
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()
     {
-
         TileSystem.Instance.ObjectOnScene(false);
+
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
