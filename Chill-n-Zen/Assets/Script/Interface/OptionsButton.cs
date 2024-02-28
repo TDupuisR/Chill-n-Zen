@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class OptionsButton : MonoBehaviour
 {
+    [SerializeField] RectTransform _rect;
     [SerializeField] Transform _furniturePosition;
     [SerializeField] Transform _restartPosition;
     [SerializeField] Button _furnitureButton;
@@ -17,7 +18,7 @@ public class OptionsButton : MonoBehaviour
 
     private void Awake()
     {
-        _startPosition = transform.position;
+        _startPosition = _rect.anchoredPosition;
     }
 
     public void DeployButtons()
@@ -65,7 +66,7 @@ public class OptionsButton : MonoBehaviour
     }
     public void QuickShowObject()
     {
-        transform.position = _startPosition;
+        _rect.anchoredPosition = _startPosition;
     }
 
     void HideKids()
