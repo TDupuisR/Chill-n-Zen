@@ -40,8 +40,6 @@ public class ItemBehaviour : MonoBehaviour
 
     private void Update()
     {
-        StateChecker();
-
         if (_state == State.Moving)
         {
             SetPosFromPointer();
@@ -50,10 +48,6 @@ public class ItemBehaviour : MonoBehaviour
         }
     }
 
-    private void StateChecker()
-    {
-        //if ()
-    }
     public void Initialize(Item item)
     {
         _ownItem = item;
