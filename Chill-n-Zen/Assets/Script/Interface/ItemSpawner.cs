@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,13 +10,17 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("pointerDown");
-        _waitHoldRoutine = StartCoroutine(WaitForHold());
+        if (TileSystem.Instance.IsSceneVacant)
+        {
+            _waitHoldRoutine = StartCoroutine(WaitForHold());
+        }
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        print("pointerUp");
-        StopCoroutine(_waitHoldRoutine);
+        if(_waitHoldRoutine != null)
+        {
+            StopCoroutine(_waitHoldRoutine);
+        }
     }
 
     IEnumerator WaitForHold()
@@ -27,10 +30,9 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             if (GameplayScript.Instance.IsHold)
             {
-                print("spawn");
                 GameObject spawnedItem = Instantiate(_itemPrefab);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
-                
+                TileSystem.Instance.ObjectOnScene(false);
                 checking = false;
             }
             yield return new WaitForEndOfFrame();
