@@ -22,6 +22,7 @@ public class ItemBehaviour : MonoBehaviour
 
     public Item OwnItem { get { return _ownItem; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
+    public bool CanPlace { get { return _canPlace;} }
 
     private void OnValidate()
     {
