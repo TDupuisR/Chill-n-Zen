@@ -84,8 +84,6 @@ MonoBehaviour:
   _musicSource: {fileID: 7144708466580255975}
   _listSounds:
   - {fileID: 8300000, guid: 250b3b3433de81b45abf2db39a966653, type: 3}
-  _musicVolume: 1
-  _soundVolume: 1
 --- !u!114 &18947013022421041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +104,7 @@ MonoBehaviour:
   _swipeSpeed: 1
   _swipeMaxSpeed: 1
   _swipeDeceleration: 1
-  _durationToHold: 0
+  _durationToHold: 1
 --- !u!114 &788925584737789079
 MonoBehaviour:
   m_ObjectHideFlags: 0
