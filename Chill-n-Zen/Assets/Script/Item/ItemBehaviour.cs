@@ -67,6 +67,7 @@ public class ItemBehaviour : MonoBehaviour
         OffsetPosCalcul();
         _spriteGO.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
+        _lineRender.enabled = true;
 
         SpriteAppearance();
 
@@ -162,6 +163,15 @@ public class ItemBehaviour : MonoBehaviour
                 _spriteRender.sprite = OwnItem.spriteTwoFixed;
             }
         }
+
+        ColliderReset();
+    }
+    private void ColliderReset()
+    {
+        if (gameObject.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+            Destroy(compon);
+
+        gameObject.AddComponent<PolygonCollider2D>();
     }
 
     [Button] public void Rotation()
