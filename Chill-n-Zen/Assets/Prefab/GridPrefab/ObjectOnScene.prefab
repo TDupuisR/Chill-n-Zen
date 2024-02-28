@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6129342369272969497}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 1
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa8dfd4adb300e458b5ed6b9e8dc655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 6129342369272969497}
+  _item: {fileID: 0}
   _parentObject: {fileID: 7428101681220977541}
   _validButton: {fileID: 0}
   _moveButton: {fileID: 0}
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6129342369272969497}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Place
         m_Mode: 1
@@ -1028,8 +1028,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1085556757347966662}
   - component: {fileID: 9001477627417687344}
-  - component: {fileID: 6129342369272969497}
-  - component: {fileID: 8254876269866608906}
+  - component: {fileID: 8672771562078384227}
+  - component: {fileID: 7509461999052954384}
+  - component: {fileID: 8767354025612491508}
   m_Layer: 0
   m_Name: ObjectOnScene
   m_TagString: Untagged
@@ -1161,6 +1162,50 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8672771562078384227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579983844222858020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de24b04dfa4f48b48a180f705c792078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteGO: {fileID: 2083728952115379752}
+  _lineRender: {fileID: 9001477627417687344}
+  _ownItem: {fileID: 0}
+--- !u!114 &7509461999052954384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579983844222858020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8767354025612491508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579983844222858020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa8dfd4adb300e458b5ed6b9e8dc655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 0}
+  _parentObject: {fileID: 0}
+  _validButton: {fileID: 0}
+  _moveButton: {fileID: 0}
+  _deleteButton: {fileID: 0}
 --- !u!1 &8236613675982345435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6129342369272969497}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
