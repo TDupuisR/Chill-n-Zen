@@ -15,6 +15,7 @@ public class TileSystem : MonoBehaviour
 
     List<GameObject> _tilesList = new List<GameObject>();
     List<GameObject> _objectList = new List<GameObject>();
+    List<ItemBehaviour> _itemList = new List<ItemBehaviour>();
     enum objAction { Add, Remove }
 
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
@@ -113,7 +114,7 @@ public class TileSystem : MonoBehaviour
                         GameObject newTile = Instantiate(_prefabTile, _floorParent);
 
                         Vector2 pos = GridToWorld(startPosGrid.x + x, startPosGrid.y + y);
-                        newTile.transform.position = pos;
+                        newTile.transform.position = new Vector3(pos.x, pos.y, _floorParent.position.z + pos.y);
 
                         newTile.transform.name = (startPosGrid.x + x) + "|" + (startPosGrid.y + y);
                     }
@@ -158,20 +159,20 @@ public class TileSystem : MonoBehaviour
         GetGridTilesList();
     }
 
-    public bool CheckForPlacing(Item item, int x, int y)
+    public bool CheckForPlacing(ItemBehaviour item, int x, int y)
     {
         bool res = false;
 
-        for (int i = 0; i < item.size.x; i++)
+        for (int i = 0; i < item.RotationSize.x; i++)
         {
-            for (int j = 0; j < item.size.y; j++)
+            for (int j = 0; j < item.RotationSize.y; j++)
             {
                 int index = CheckTileExist(x + i, y + j);
 
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    res = script.CheckIfAccessible(item);
+                    res = script.CheckIfAccessible(item.OwnItem);
                 }
                 else res = false;
 
@@ -198,15 +199,16 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    private void ChangeObjectList(GameObject obj, objAction state)
+    private void ChangeObjectList(GameObject obj, ItemBehaviour item, objAction state)
     {
         switch (state)
         {
             case objAction.Add:
                 {
-                    if (CheckIfObjectExist (obj))
+                    if (!CheckIfObjectExist (obj))
                     {
                         _objectList.Add(obj);
+                        _itemList.Add(item);
                     }
                     break;
                 }
@@ -215,6 +217,7 @@ public class TileSystem : MonoBehaviour
                     if (CheckIfObjectExist(obj))
                     {
                         _objectList.Remove(obj);
+                        _itemList.Remove(item);
                     }
                     break;
                 }
@@ -224,12 +227,12 @@ public class TileSystem : MonoBehaviour
 
     public void PlacingItem(GameObject obj, int x, int y)
     {
-        ChangeObjectList(obj, objAction.Add);
         ItemBehaviour behave = obj.GetComponent<ItemBehaviour>();
+        ChangeObjectList(obj, behave, objAction.Add);
 
-        for (int i = 0; i < behave.OwnItem.size.x; i++)
+        for (int i = 0; i < behave.RotationSize.x; i++)
         {
-            for (int j = 0; j < behave.OwnItem.size.y; j++)
+            for (int j = 0; j < behave.RotationSize.y; j++)
             {
                 int index = CheckTileExist(x + i, y + j);
                 if (index > -1)
@@ -242,12 +245,29 @@ public class TileSystem : MonoBehaviour
     }
     public void RemoveItem(GameObject obj, int x, int y)
     {
-        ChangeObjectList(obj, objAction.Remove);
+        ItemBehaviour behave = obj.GetComponent<ItemBehaviour>();
+        ChangeObjectList(obj, behave, objAction.Remove);
+
+        for (int i = 0; i < behave.RotationSize.x; i++)
+        {
+            for (int j = 0; j < behave.RotationSize.y; j++)
+            {
+                int index = CheckTileExist(x + i, y + j);
+                if (index > -1)
+                {
+                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+                    script.RemoveItem(behave.OwnItem);
+                }
+            }
+        }
+    }
+    public void MoveItem(GameObject obj, int x, int y)
+    {
         ItemBehaviour behave = obj.GetComponent<ItemBehaviour>();
 
-        for (int i = 0; i < behave.OwnItem.size.x; i++)
+        for (int i = 0; i < behave.RotationSize.x; i++)
         {
-            for (int j = 0; j < behave.OwnItem.size.y; j++)
+            for (int j = 0; j < behave.RotationSize.y; j++)
             {
                 int index = CheckTileExist(x + i, y + j);
                 if (index > -1)

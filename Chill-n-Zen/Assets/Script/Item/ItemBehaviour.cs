@@ -10,7 +10,8 @@ public class ItemBehaviour : MonoBehaviour
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] Item _ownItem;
 
-    Vector3Int _itemSize = Vector3Int.zero;
+    Vector3Int _rotationSize = Vector3Int.zero;
+    int _rotation = 0;
     Vector3 _offsetPos = Vector3.zero;
     Vector3 _lastPos;
     bool _canPlace = false;
@@ -20,6 +21,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3[] _patternPosition = new Vector3[5];
 
     public Item OwnItem { get { return _ownItem; } }
+    public Vector3Int RotationSize { get { return _rotationSize; } }
 
     private void OnValidate()
     {
@@ -38,15 +40,20 @@ public class ItemBehaviour : MonoBehaviour
 
     private void Update()
     {
+        StateChecker();
+
         if (_state == State.Moving)
         {
             SetPosFromPointer();
 
-            //if (transform.position != _lastPos) CheckNewPos(); A IMPLEMENTER QUAND CHANGE STATE SERA ACTIF
-            CheckNewPos(); // TEMPORAIRE
+            if (transform.position != _lastPos) CheckNewPos();
         }
     }
 
+    private void StateChecker()
+    {
+        //if ()
+    }
     public void Initialize(Item item)
     {
         _ownItem = item;
@@ -56,21 +63,25 @@ public class ItemBehaviour : MonoBehaviour
             Remove(); return;
         }
 
-        _itemSize = OwnItem.size;
+        _rotationSize = OwnItem.size;
+        _rotation = 0;
 
         _spriteRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
         _spriteGO.transform.position = transform.position + _offsetPos;
+        ResetLineRenderer(RotationSize.x, RotationSize.y);
 
-        ResetLineRenderer(_ownItem.size.x, _ownItem.size.y);
+        SpriteAppearance();
 
-        _state = State.Moving;
+        _state = State.Moving; // TEMPORAIRE //
     }
     private void ResetInfos()
     {
         OffsetPosCalcul();
         _spriteGO.transform.position = transform.position + _offsetPos;
-        ResetLineRenderer(_ownItem.size.x, _ownItem.size.y);
+        ResetLineRenderer(RotationSize.x, RotationSize.y);
+
+        SpriteAppearance();
     }
 
     private void InitPattern()
@@ -115,7 +126,7 @@ public class ItemBehaviour : MonoBehaviour
 
     private void OffsetPosCalcul()
     {
-        Vector2 pos = TileSystem.Instance.GridToWorld(OwnItem.size.x - 1, OwnItem.size.y - 1);
+        Vector2 pos = TileSystem.Instance.GridToWorld(RotationSize.x - 1, RotationSize.y - 1);
         _offsetPos = pos / 2f;
     }
     private void SetPosFromPointer()
@@ -130,8 +141,8 @@ public class ItemBehaviour : MonoBehaviour
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
 
-        ResetLineRenderer(OwnItem.size.x, OwnItem.size.y, gridPos);
-        _canPlace = TileSystem.Instance.CheckForPlacing(OwnItem, gridPos.x, gridPos.y);
+        ResetLineRenderer(RotationSize.x, RotationSize.y, gridPos);
+        _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
 
         if (!_canPlace) LineColor(Color.red);
         else LineColor(Color.green);
@@ -139,13 +150,13 @@ public class ItemBehaviour : MonoBehaviour
 
     private void SpriteAppearance()
     {
-        if (OwnItem.orientation == 90 || OwnItem.orientation == 180)
+        if (_rotation == 90 || _rotation == 180)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
         {
-            if (OwnItem.orientation == 0 || OwnItem.orientation == 90)
+            if (_rotation == 0 || _rotation == 90)
             {
                 _spriteRender.sprite = OwnItem.spriteOneFixed;
             }
@@ -154,36 +165,53 @@ public class ItemBehaviour : MonoBehaviour
                 _spriteRender.sprite = OwnItem.spriteTwoFixed;
             }
         }
-
     }
 
     [Button] public void Rotation()
     {
-        _ownItem.orientation = (int)Mathf.Repeat(_ownItem.orientation + 90, 360);
-
-        if (OwnItem.orientation == 90 || OwnItem.orientation == 270)
+        if (_state == State.Waiting || _state == State.Moving)
         {
-            _ownItem.size = new Vector3Int(_itemSize.y, _itemSize.x, _itemSize.z);
-        }
-        else
-        {
-            _ownItem.size = new Vector3Int(_itemSize.x, _itemSize.y, _itemSize.z);
+            _rotation = (int)Mathf.Repeat(_rotation + 90, 360); // 0 - 90 - 180 - 270 // 0 at spawn //
+
+            if (_rotation == 90 || _rotation == 270)
+            {
+                _rotationSize = new Vector3Int(OwnItem.size.y, OwnItem.size.x, OwnItem.size.z);
+            }
+            else
+            {
+                _rotationSize = new Vector3Int(OwnItem.size.x, OwnItem.size.y, OwnItem.size.z);
+            }
+
+            ResetInfos();
         }
 
-        SpriteAppearance();
-        ResetInfos();
+        Debug.Log(RotationSize + " | " + _rotation);
     } // Rotate the Item when a button is pushed
     public void Place()
     {
+        if (_state != State.Placed)
+        {
+            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+            TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
+
+            _state = State.Placed;
+        }
 
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
     {
+        if (_state == State.Placed)
+        {
+            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+            TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
+            _state = State.Waiting;
+        }
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()
     {
-
+        Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+        TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
 
     [Button]

@@ -14,7 +14,6 @@ public class TileBehaviour : MonoBehaviour
     {
         TileSystem.OnShowGrid += ShowGrid;
         TileSystem.OnShowGridSpecified += ShowGrid;
-        TileSystem.OnShowGrid += GridReset;
 
         ChangeAesthetic();
         GridInitialise();
@@ -23,7 +22,6 @@ public class TileBehaviour : MonoBehaviour
     {
         TileSystem.OnShowGrid -= ShowGrid;
         TileSystem.OnShowGridSpecified -= ShowGrid;
-        TileSystem.OnShowGrid -= GridReset;
     }
 
     private void ChangeAesthetic()
@@ -56,10 +54,12 @@ public class TileBehaviour : MonoBehaviour
 
     private void ShowGrid()
     {
+        GridReset();
         _lineRender.enabled = !_lineRender.enabled;
     }
     private void ShowGrid(bool state)
     {
+        GridReset();
         _lineRender.enabled = state;
     }
 
