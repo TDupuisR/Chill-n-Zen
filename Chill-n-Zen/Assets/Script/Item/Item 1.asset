@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Item 1
   m_EditorClassIdentifier: 
-  asset2D: {fileID: 0}
+  spriteOneFixed: {fileID: 0}
+  spriteOneColored: {fileID: 0}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
   room: 3
   type: 2
   style: 3
   listUsage: 00000000
   price: 0
+  size: {x: 2, y: 1, z: 0}
