@@ -6,6 +6,7 @@ public class ItemBehaviour : MonoBehaviour
 {
     [SerializeField] GameObject _spriteGO;
     SpriteRenderer _spriteRender;
+    [SerializeField] ItemUI _itemUI;
 
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] Item _ownItem;
@@ -67,7 +68,7 @@ public class ItemBehaviour : MonoBehaviour
 
         SpriteAppearance();
 
-        CurrentState = GMStatic.State.Moving; // TEMPORAIRE //
+        CurrentState = GMStatic.State.Moving;
     }
     private void ResetInfos()
     {
@@ -189,6 +190,8 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Placed;
+
+            _itemUI.ActivateUI(false);
         }
 
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
@@ -200,6 +203,8 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Waiting;
+
+            _itemUI.SetupLeftButton();
         }
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()

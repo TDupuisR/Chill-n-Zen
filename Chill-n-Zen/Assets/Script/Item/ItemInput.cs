@@ -4,6 +4,7 @@ using GameManagerSpace;
 public class ItemInput : MonoBehaviour
 {
     [SerializeField] ItemBehaviour _itemBehave;
+    [SerializeField] ItemUI _itemUI;
     GameplayScript _gameplay;
 
     bool _primWasPressed = false;
@@ -20,7 +21,7 @@ public class ItemInput : MonoBehaviour
         if (CheckIsHolding() && _itemBehave.CurrentState == GMStatic.State.Waiting)
         {
             _itemBehave.CurrentState = GMStatic.State.Moving;
-            // UI = false
+            _itemUI.ActivateUI(false);
         }
         // Etape 3 -> Rotation
         if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Waiting )
@@ -30,7 +31,7 @@ public class ItemInput : MonoBehaviour
         // Etape 4 -> 5
         if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Placed)
         {
-            // UI = true
+            _itemUI.ActivateUI(true);
         }
     }
 
@@ -40,7 +41,7 @@ public class ItemInput : MonoBehaviour
         if (_itemBehave.CurrentState == GMStatic.State.Moving && !_gameplay.IsHold)
         {
             _itemBehave.CurrentState = GMStatic.State.Waiting;
-            // UI = true
+            _itemUI.ActivateUI(true);
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;
