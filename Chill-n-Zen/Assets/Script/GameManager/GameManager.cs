@@ -21,11 +21,11 @@ namespace GameManagerSpace
         private void OnValidate()
         {
             if (_libraryItems == null)
-                Debug.LogError(" (error : 1x1) No Library Items Script present ", _libraryItems);
+                Debug.LogError(" (error : 1x1) No Library Items Script assigned ", _libraryItems);
             if (_loadingScreen == null)
-                Debug.LogError(" (error : 1x2) No loading screen present ", _loadingScreen);
+                Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
             if (_saveData == null)
-                Debug.LogError(" (error : 1x2) No save data present ", _saveData);
+                Debug.LogError(" (error : 1x2) No save data assigned ", _saveData);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
