@@ -100,7 +100,7 @@ MonoBehaviour:
   _inputPrimaryPosition: {fileID: -6238960553966541609, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
   _inputSecondaryTouch: {fileID: 108623178708933401, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
   _inputSecondaryPosition: {fileID: -2252235813597627491, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
-  _invertDirection: 0
+  _invertDirection: 1
   _swipeSpeed: 1
   _swipeMaxSpeed: 1
   _swipeDeceleration: 1

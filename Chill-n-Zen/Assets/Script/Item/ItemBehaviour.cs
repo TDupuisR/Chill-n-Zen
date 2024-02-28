@@ -58,7 +58,7 @@ public class ItemBehaviour : MonoBehaviour
             Remove(); return;
         }
 
-        TileSystem.Instance.ObjectOnScene(true);
+        TileSystem.Instance.ObjectOnScene(false);
 
         _rotationSize = OwnItem.size;
         _rotation = 0;
@@ -205,6 +205,8 @@ public class ItemBehaviour : MonoBehaviour
             _lineRender.enabled = false;
 
             _itemUI.ActivateUI(false);
+
+            TileSystem.Instance.ObjectOnScene(true);
         }
 
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
@@ -223,7 +225,7 @@ public class ItemBehaviour : MonoBehaviour
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()
     {
-        TileSystem.Instance.ObjectOnScene(false);
+        TileSystem.Instance.ObjectOnScene(true);
 
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);

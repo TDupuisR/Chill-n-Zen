@@ -58,7 +58,7 @@ public class TileSystem : MonoBehaviour
             Debug.LogError(" (error : 2x0) Too many TileSystem instance ", gameObject);
         }
 
-        _isoGrid = GetComponent<Grid>();
+        IsSceneVacant = true;
     }
 
     public Vector2Int WorldToGrid(Vector2 position)
