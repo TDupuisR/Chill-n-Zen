@@ -19,6 +19,7 @@ public class TileSystem : MonoBehaviour
     enum objAction { Add, Remove }
 
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
+    public bool IsSceneVacant { get; private set; }
 
     [Space(7)]
     [Header("TEST VARIABLES")]
@@ -186,6 +187,10 @@ public class TileSystem : MonoBehaviour
     }
     
     // Object List Gestion //
+    public void ObjectOnScene(bool status)
+    {
+        IsSceneVacant = status;
+    }
     private bool CheckIfObjectExist(GameObject obj)
     {
         bool res = false;

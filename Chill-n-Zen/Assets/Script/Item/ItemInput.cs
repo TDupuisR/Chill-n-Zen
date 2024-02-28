@@ -31,7 +31,7 @@ public class ItemInput : MonoBehaviour
         // Etape 4 -> 5
         if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Placed)
         {
-            _itemUI.ActivateUI(true);
+            if (TileSystem.Instance.IsSceneVacant) _itemUI.ActivateUI(true);
         }
     }
 

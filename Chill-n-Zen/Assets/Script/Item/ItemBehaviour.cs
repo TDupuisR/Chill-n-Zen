@@ -58,6 +58,8 @@ public class ItemBehaviour : MonoBehaviour
             Remove(); return;
         }
 
+        TileSystem.Instance.ObjectOnScene(true);
+
         _rotationSize = OwnItem.size;
         _rotation = 0;
 
@@ -209,6 +211,8 @@ public class ItemBehaviour : MonoBehaviour
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()
     {
+
+        TileSystem.Instance.ObjectOnScene(false);
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
