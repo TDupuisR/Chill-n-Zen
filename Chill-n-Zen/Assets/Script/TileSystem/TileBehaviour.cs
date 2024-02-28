@@ -7,13 +7,13 @@ public class TileBehaviour : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRender;
     [SerializeField] LineRenderer _lineRender;
 
-    List<Item> _presentItems;
+    List<Item> _presentItems = new List<Item>();
     Vector3[] _patternPosition = new Vector3[5];
 
     private void OnEnable()
     {
         TileSystem.OnShowGrid += ShowGrid;
-        TileSystem.OnShowGrid += GridReset;
+        TileSystem.OnShowGridSpecified += ShowGrid;
 
         ChangeAesthetic();
         GridInitialise();
@@ -21,7 +21,7 @@ public class TileBehaviour : MonoBehaviour
     private void OnDisable()
     {
         TileSystem.OnShowGrid -= ShowGrid;
-        TileSystem.OnShowGrid -= GridReset;
+        TileSystem.OnShowGridSpecified -= ShowGrid;
     }
 
     private void ChangeAesthetic()
@@ -54,9 +54,14 @@ public class TileBehaviour : MonoBehaviour
 
     private void ShowGrid()
     {
+        GridReset();
         _lineRender.enabled = !_lineRender.enabled;
     }
-
+    private void ShowGrid(bool state)
+    {
+        GridReset();
+        _lineRender.enabled = state;
+    }
 
     public bool CheckIfAccessible(Item placing)
     {

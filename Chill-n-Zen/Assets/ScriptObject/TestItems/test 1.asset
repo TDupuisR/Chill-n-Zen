@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: test 1
   m_EditorClassIdentifier: 
-  asset2D: {fileID: 0}
+  spriteOneFixed: {fileID: 0}
+  spriteOneColored: {fileID: 0}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
   room: 2
   type: 1
   style: 1
   listUsage: 
   price: 5356
+  size: {x: 1, y: 2, z: 0}
+  orientation: 0
