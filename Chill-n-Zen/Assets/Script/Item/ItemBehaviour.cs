@@ -1,6 +1,6 @@
 using UnityEngine;
 using NaughtyAttributes;
-using System.Linq.Expressions;
+using GameManagerSpace;
 
 public class ItemBehaviour : MonoBehaviour
 {
@@ -16,13 +16,12 @@ public class ItemBehaviour : MonoBehaviour
     Vector3 _lastPos;
     bool _canPlace = false;
 
-    enum State { Placed, Moving, Waiting }
-    State _state;
     Vector3[] _patternPosition = new Vector3[5];
 
     public Item OwnItem { get { return _ownItem; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
     public bool CanPlace { get { return _canPlace;} }
+    public GMStatic.State CurrentState { get; set; }
 
     private void OnValidate()
     {
@@ -41,7 +40,7 @@ public class ItemBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_state == State.Moving)
+        if (CurrentState == GMStatic.State.Moving)
         {
             SetPosFromPointer();
 
@@ -68,7 +67,7 @@ public class ItemBehaviour : MonoBehaviour
 
         SpriteAppearance();
 
-        _state = State.Moving; // TEMPORAIRE //
+        CurrentState = GMStatic.State.Moving; // TEMPORAIRE //
     }
     private void ResetInfos()
     {
@@ -164,7 +163,7 @@ public class ItemBehaviour : MonoBehaviour
 
     [Button] public void Rotation()
     {
-        if (_state == State.Waiting || _state == State.Moving)
+        if (CurrentState == GMStatic.State.Waiting || CurrentState == GMStatic.State.Moving)
         {
             _rotation = (int)Mathf.Repeat(_rotation + 90, 360); // 0 - 90 - 180 - 270 // 0 at spawn //
 
@@ -184,23 +183,23 @@ public class ItemBehaviour : MonoBehaviour
     } // Rotate the Item when a button is pushed
     public void Place()
     {
-        if (_state != State.Placed)
+        if (CurrentState != GMStatic.State.Placed)
         {
             Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
             TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
 
-            _state = State.Placed;
+            CurrentState = GMStatic.State.Placed;
         }
 
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
     {
-        if (_state == State.Placed)
+        if (CurrentState == GMStatic.State.Placed)
         {
             Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
-            _state = State.Waiting;
+            CurrentState = GMStatic.State.Waiting;
         }
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()
