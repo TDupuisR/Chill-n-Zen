@@ -260,6 +260,8 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
+
+        Destroy(obj);
     }
     public void MoveItem(GameObject obj, int x, int y)
     {
