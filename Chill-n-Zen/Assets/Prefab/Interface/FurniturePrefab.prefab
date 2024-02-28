@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8685379921653580505}
   - component: {fileID: 4767221282595360945}
   - component: {fileID: 1669171281515995225}
+  - component: {fileID: 1195830703449034201}
   m_Layer: 5
   m_Name: FurniturePrefab
   m_TagString: Untagged
@@ -98,6 +99,23 @@ MonoBehaviour:
   _roomImg: {fileID: 3285240533713671206}
   _styleImg: {fileID: 1352710305891630678}
   _typeImg: {fileID: 817353961952397706}
+  _roomText: {fileID: 0}
+  _styleText: {fileID: 0}
+  _typeText: {fileID: 0}
+--- !u!114 &1195830703449034201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601134098619053994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e0a8d71791aee4eb0a6bc47027a5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefab: {fileID: 7579983844222858020, guid: deba773a3a80afe4fbb0456431725234, type: 3}
+  _data: {fileID: 1669171281515995225}
 --- !u!1 &4829053510442881429
 GameObject:
   m_ObjectHideFlags: 0
