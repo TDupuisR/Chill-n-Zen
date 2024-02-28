@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8672771562078384227}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 1
@@ -880,10 +880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa8dfd4adb300e458b5ed6b9e8dc655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
+  _item: {fileID: 8672771562078384227}
   _parentObject: {fileID: 7428101681220977541}
-  _validButton: {fileID: 0}
-  _moveButton: {fileID: 0}
+  _validButton: {fileID: 9059004244735616052}
+  _moveButton: {fileID: 3691042710416333956}
   _deleteButton: {fileID: 7326790598854564378}
 --- !u!1 &7124475511059957127
 GameObject:
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8672771562078384227}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Place
         m_Mode: 1
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8672771562078384227}
         m_TargetAssemblyTypeName: ItemBehaviour, Assembly-CSharp
         m_MethodName: Remove
         m_Mode: 1
