@@ -28,7 +28,13 @@ public class GameplayScript : MonoBehaviour
     [Header("Hold Fields")]
     [SerializeField] float _durationToHold;
     bool _ishold = false;
+    bool _isPrimaryPressed = false;
     Coroutine _holdCoroutine;
+
+    public bool IsPrimaryPressed
+    {
+        get => _isPrimaryPressed;
+    }
 
     public bool IsHold
     {
@@ -119,7 +125,9 @@ public class GameplayScript : MonoBehaviour
         _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
-        _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold)); 
+        _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold));
+
+        _isPrimaryPressed = true;
     }
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
@@ -134,6 +142,8 @@ public class GameplayScript : MonoBehaviour
 
         //End hold
         StopHoldCheck();
+
+        _isPrimaryPressed = false;
     }
 
     private void StartSecondaryTouch(InputAction.CallbackContext context)

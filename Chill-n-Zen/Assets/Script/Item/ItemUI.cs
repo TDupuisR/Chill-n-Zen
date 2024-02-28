@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using GameManagerSpace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,5 +16,19 @@ public class ItemUI : MonoBehaviour
         //move UI with object
         Vector3 objectScreenPosition = Camera.main.WorldToScreenPoint(_item.transform.position);
         _parentObject.transform.position = objectScreenPosition;
+    }
+
+    public void ActivateUI(bool isActive)
+    {
+        _parentObject.gameObject.SetActive(isActive);
+        SetupLeftButton();
+    }
+
+    public void SetupLeftButton()
+    {
+        _validButton.gameObject.SetActive(_item.CurrentState == GMStatic.State.Waiting);
+        _validButton.interactable = _item.CanPlace;
+
+        _moveButton.gameObject.SetActive(_item.CurrentState != GMStatic.State.Waiting);
     }
 }
