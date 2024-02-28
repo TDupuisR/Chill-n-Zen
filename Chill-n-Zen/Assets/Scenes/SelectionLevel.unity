@@ -403,7 +403,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &543781060
 Canvas:
   m_ObjectHideFlags: 0
@@ -1402,6 +1402,7 @@ MonoBehaviour:
   _inputPrimaryPosition: {fileID: -6238960553966541609, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
   _rectTransform: {fileID: 1801344631}
   speedSlider: 2
+  _endSlideSpeed: 3
 --- !u!1 &1860852000
 GameObject:
   m_ObjectHideFlags: 0

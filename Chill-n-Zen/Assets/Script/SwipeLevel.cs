@@ -1,10 +1,12 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class SwipeLevel : MonoBehaviour
@@ -15,11 +17,13 @@ public class SwipeLevel : MonoBehaviour
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private float speedSlider = 1;
+    [SerializeField] private float _endSlideSpeed = 1;
     private List<RectTransform> _listPicture = new List<RectTransform>();
     private RectTransform _tempRectTransform = null;
     private float _distance = Mathf.Infinity;
     private float _newXPosition = 2560;
     private bool _isDragging;
+    
 
     #endregion
 
@@ -79,7 +83,21 @@ public class SwipeLevel : MonoBehaviour
                 _tempRectTransform = _listPicture[i];
             }
         }
-        _rectTransform.localPosition = new Vector2(_tempRectTransform.localPosition.x,0);
         _newXPosition = _rectTransform.localPosition.x;
+        StartCoroutine(MoveTowardsTarget());
+    }
+
+    IEnumerator MoveTowardsTarget()
+    {
+        while (Mathf.Abs(_rectTransform.localPosition.x - _tempRectTransform.localPosition.x) > 0.1f)
+        {
+            _newXPosition = _rectTransform.localPosition.x;
+            _rectTransform.localPosition = Vector3.Lerp(_rectTransform.localPosition, new Vector3(_tempRectTransform.localPosition.x, 0, 0), Time.fixedDeltaTime * _endSlideSpeed);
+            yield return new WaitForFixedUpdate();
+
+        }
+        _rectTransform.localPosition = new Vector3(_tempRectTransform.localPosition.x, 0, 0);
     }
 }
+
+
