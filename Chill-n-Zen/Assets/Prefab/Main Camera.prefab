@@ -70,7 +70,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -156,5 +156,5 @@ MonoBehaviour:
   _bottomCamBoundaries: -4
   _rightCamBoundaries: 4
   _leftCamBoundaries: -4
-  _minMaxZoom: {x: 1, y: 35}
+  _minMaxZoom: {x: 5, y: 35}
   _zoomSensitivity: 1
