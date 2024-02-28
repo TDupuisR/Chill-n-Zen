@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,61 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] Sprite _uncheckedSprite;
     [SerializeField] Sprite _checkedSprite;
 
+    int _numberOfPrimaryObjectves;
+    int _numberOfSecondaryObjectves;
+
+    public int NumberOfPrimaryObjectives
+    {
+        get => _numberOfPrimaryObjectves;
+        set
+        {
+            _numberOfPrimaryObjectves = value;
+            SetNumberOfObjectives(_numberOfPrimaryObjectves, _primaryObjectivesText, UpdatePrimaryObjectives);
+        }
+    }
+
+    public int NumberOfSecondaryObjectives
+    {
+        get => _numberOfSecondaryObjectves;
+        set
+        {
+            _numberOfSecondaryObjectves = value;
+            SetNumberOfObjectives(_numberOfSecondaryObjectves, _secondaryObjectivesText, UpdateSecondaryObjectives);
+        }
+    }
+
+    void SetNumberOfObjectives(int count, List<TMP_Text> textList, Action<int, bool> UpdateObjective)
+    {
+        for(int i=0; i< textList.Count; i++)
+        {
+            bool isActive = i > count;
+            textList[i].gameObject.SetActive(isActive);
+            UpdateObjective(i, false);
+        }
+    }
+
+    public void SetPrimaryObjectiveText(int index, string text)
+    {
+        if (text == "" || text == null)
+        {
+            Debug.LogWarning("text is empty");
+            _primaryObjectivesText[index].text = "";
+            return;
+        }
+        _primaryObjectivesText[index].text = text;
+    }
+
+    public void SetSecondaryObjectiveText(int index, string text)
+    {
+        if(text == "" || text == null)
+        {
+            Debug.LogWarning("text is empty");
+            _secondaryObjectivesText[index].text = "";
+            return;
+        }
+        _secondaryObjectivesText[index].text = text;
+    }
+
     public void UpdatePrimaryObjectives(int index, bool isValid)
     {
         _primaryObjectivesImg[index].sprite = isValid ? _checkedSprite : _uncheckedSprite;
@@ -29,4 +85,5 @@ public class ObjectivesUI : MonoBehaviour
         _secondaryObjectivesImg[index].sprite = isValid ? _checkedSprite : _uncheckedSprite;
         _secondaryObjectivesText[index].color = isValid ? _completedColor : _notCompletedColor;
     }
+
 }
