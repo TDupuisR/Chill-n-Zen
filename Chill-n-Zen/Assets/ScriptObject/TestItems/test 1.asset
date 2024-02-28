@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: test 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 6a894058ceb27b040ad554e66ca4d376, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 669be3c5d3465ab46bd2285b99583ed0, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 2
@@ -22,4 +22,3 @@ MonoBehaviour:
   listUsage: 
   price: 5356
   size: {x: 1, y: 2, z: 0}
-  orientation: 0

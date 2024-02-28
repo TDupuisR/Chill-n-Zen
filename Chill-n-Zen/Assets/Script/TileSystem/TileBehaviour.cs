@@ -91,9 +91,6 @@ public class TileBehaviour : MonoBehaviour
     }
     public void RemoveItem(Item current)
     {
-        foreach (Item item in _presentItems)
-        {
-            if (item == current) _presentItems.Remove(item);
-        }
+        _presentItems.Remove(current);
     }
 }

@@ -148,7 +148,7 @@ public class ItemBehaviour : MonoBehaviour
 
     private void SpriteAppearance()
     {
-        if (_rotation == 90 || _rotation == 180)
+        if (_rotation == 90 || _rotation == 270)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
@@ -168,10 +168,10 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void ColliderReset()
     {
-        if (gameObject.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteGO.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        gameObject.AddComponent<PolygonCollider2D>();
+        _spriteGO.AddComponent<PolygonCollider2D>();
     }
 
     [Button] public void Rotation()
@@ -191,8 +191,6 @@ public class ItemBehaviour : MonoBehaviour
 
             ResetInfos();
         }
-
-        Debug.Log(RotationSize + " | " + _rotation);
     } // Rotate the Item when a button is pushed
     public void Place()
     {
@@ -208,7 +206,6 @@ public class ItemBehaviour : MonoBehaviour
 
             TileSystem.Instance.ObjectOnScene(true);
         }
-
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
     {

@@ -10,6 +10,7 @@ public class ItemInput : MonoBehaviour
     bool _primWasPressed = false;
     bool _holdWasPressed = false;
 
+
     private void Start()
     {
         _gameplay = GameplayScript.Instance;
@@ -22,6 +23,8 @@ public class ItemInput : MonoBehaviour
         {
             _itemBehave.CurrentState = GMStatic.State.Moving;
             _itemUI.ActivateUI(false);
+
+            CameraControls.Instance.CanMoveCamera = false;
         }
         // Etape 3 -> Rotation
         if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Waiting )
@@ -42,6 +45,8 @@ public class ItemInput : MonoBehaviour
         {
             _itemBehave.CurrentState = GMStatic.State.Waiting;
             _itemUI.ActivateUI(true);
+
+            CameraControls.Instance.CanMoveCamera = true;
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;

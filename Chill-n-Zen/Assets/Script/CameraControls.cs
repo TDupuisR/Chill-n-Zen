@@ -6,6 +6,7 @@ using System;
 
 public class CameraControls : MonoBehaviour
 {
+    public static CameraControls Instance;
     [SerializeField] Camera _mainCamera;
 
     [Header("Camera Movement")]
@@ -36,6 +37,13 @@ public class CameraControls : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Debug.LogError(" (error : 1x0) Too many CameraControls instance ", gameObject);
+            Destroy(gameObject);
+        }
+        Instance = this;
+
         //Define camera action Zone
         _cameraActionZonePointDL = new Vector2(0, 0);
         _cameraActionZonePointUR = new Vector2(Screen.width, Screen.height);

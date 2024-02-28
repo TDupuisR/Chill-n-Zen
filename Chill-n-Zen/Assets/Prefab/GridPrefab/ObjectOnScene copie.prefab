@@ -289,6 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6364247276413480832}
   - component: {fileID: 8529216494062457899}
+  - component: {fileID: 6225274295738481828}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -352,7 +353,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -360,9 +361,23 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6225274295738481828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083728952115379752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemBehave: {fileID: 8672771562078384227}
+  _itemUI: {fileID: 5496170060791973697}
 --- !u!1 &2437844304304797464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1044,6 @@ GameObject:
   - component: {fileID: 1085556757347966662}
   - component: {fileID: 9001477627417687344}
   - component: {fileID: 8672771562078384227}
-  - component: {fileID: 7509461999052954384}
   m_Layer: 0
   m_Name: ObjectOnScene copie
   m_TagString: Untagged
@@ -1177,20 +1191,6 @@ MonoBehaviour:
   _itemUI: {fileID: 5496170060791973697}
   _lineRender: {fileID: 9001477627417687344}
   _ownItem: {fileID: 0}
---- !u!114 &7509461999052954384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7579983844222858020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemBehave: {fileID: 8672771562078384227}
-  _itemUI: {fileID: 5496170060791973697}
 --- !u!1 &8236613675982345435
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &343748302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9188687472254510819, guid: a60e921747962fe4ab6be6053d01e892, type: 3}
+  m_PrefabInstance: {fileID: 1242857841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &734861050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +140,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6063311782090252399, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
+      propertyPath: _objectParent
+      value: 
+      objectReference: {fileID: 343748302}
     - target: {fileID: 6817194865486821823, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
       propertyPath: _cam
       value: 

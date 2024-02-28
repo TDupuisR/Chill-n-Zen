@@ -8,6 +8,8 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] FurnitureReadData _data;
     Coroutine _waitHoldRoutine;
 
+    public Transform ObjectParent { get; set; }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (TileSystem.Instance.IsSceneVacant)
@@ -30,7 +32,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             if (GameplayScript.Instance.IsHold)
             {
-                GameObject spawnedItem = Instantiate(_itemPrefab);
+                GameObject spawnedItem = Instantiate(_itemPrefab, ObjectParent);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
                 checking = false;
