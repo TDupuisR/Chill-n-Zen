@@ -1030,7 +1030,6 @@ GameObject:
   - component: {fileID: 9001477627417687344}
   - component: {fileID: 8672771562078384227}
   - component: {fileID: 7509461999052954384}
-  - component: {fileID: 8767354025612491508}
   m_Layer: 0
   m_Name: ObjectOnScene
   m_TagString: Untagged
@@ -1189,23 +1188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8767354025612491508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7579983844222858020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa8dfd4adb300e458b5ed6b9e8dc655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  _parentObject: {fileID: 0}
-  _validButton: {fileID: 0}
-  _moveButton: {fileID: 0}
-  _deleteButton: {fileID: 0}
 --- !u!1 &8236613675982345435
 GameObject:
   m_ObjectHideFlags: 0
