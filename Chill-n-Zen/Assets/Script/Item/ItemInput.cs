@@ -54,6 +54,6 @@ public class ItemInput : MonoBehaviour
     }
     private bool CheckIsTouching()
     {
-        return _primWasPressed && !_holdWasPressed && !_gameplay.IsSecondaryPressed;
+        return !_gameplay.IsPrimaryPressed && _primWasPressed && !_holdWasPressed && !_gameplay.IsSecondaryPressed;
     }
 }
