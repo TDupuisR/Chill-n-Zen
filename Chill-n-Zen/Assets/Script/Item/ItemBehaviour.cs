@@ -81,6 +81,7 @@ public class ItemBehaviour : MonoBehaviour
         ResetLineRenderer(RotationSize.x, RotationSize.y);
 
         SpriteAppearance();
+        CheckNewPos();
     }
 
     private void InitPattern()
