@@ -38,18 +38,8 @@ public class GameplayScript : MonoBehaviour
     public bool IsPrimaryPressed { get => _isPrimaryPressed; }
     public bool IsSecondaryPressed { get => _isSecondaryPressed; }
     public bool IsHold { get => _ishold; }
-
     public float SwipeDeceleration { get => _swipeDeceleration; }
-
-    public bool IsLongPress
-    {
-        get => _islongPress;
-    }
-
-    public float SwipeDeceleration
-    {
-        get => _swipeDeceleration;
-    }
+    public bool IsLongPress { get => _islongPress; }
 
     public Vector2 PrimaryPosition { get => _inputPrimaryPosition.action.ReadValue<Vector2>(); }
     public Vector2 SecondaryPosition { get => _inputSecondaryPosition.action.ReadValue<Vector2>(); }
@@ -121,7 +111,7 @@ public class GameplayScript : MonoBehaviour
 
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
-        _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+        onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
         //Start LongPress & hold coroutine
         _longPressCoroutine = StartCoroutine(LongPressRoutine(_durationToLongPress));
         _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold));
