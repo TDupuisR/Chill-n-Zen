@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentBudget: 0
-  _maxBudget: 0
 --- !u!114 &4248487749090183880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +119,7 @@ MonoBehaviour:
   _swipeSpeed: 1
   _swipeMaxSpeed: 1
   _swipeDeceleration: 1
+  _durationToLongPress: 0.2
   _durationToHold: 1
 --- !u!114 &788925584737789079
 MonoBehaviour:

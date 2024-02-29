@@ -26,10 +26,13 @@ public class GameplayScript : MonoBehaviour
     Coroutine _swipeCoroutine;
 
     [Header("Hold Fields")]
+    [SerializeField] float _durationToLongPress;
     [SerializeField] float _durationToHold;
+    bool _islongPress = false;
     bool _ishold = false;
     bool _isPrimaryPressed = false;
     bool _isSecondaryPressed = false;
+    Coroutine _longPressCoroutine;
     Coroutine _holdCoroutine;
 
     public bool IsPrimaryPressed
@@ -44,6 +47,11 @@ public class GameplayScript : MonoBehaviour
     public bool IsHold
     {
         get => _ishold;
+    }
+
+    public bool IsLongPress
+    {
+        get => _islongPress;
     }
 
     public float SwipeDeceleration
@@ -102,6 +110,11 @@ public class GameplayScript : MonoBehaviour
             Debug.LogWarning("swipeDeceleration ne peut pas être négative ou nulle !");
             _swipeDeceleration = 1;
         }
+
+        if(_durationToLongPress > _durationToHold)
+        {
+            Debug.LogWarning("duration to long Press can't be more than the duration to Hold !");
+        }
     }
 
     private void OnEnable()
@@ -128,10 +141,9 @@ public class GameplayScript : MonoBehaviour
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
         _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
-        //Start Swipe
-        _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
+        //Start LongPress
+        _longPressCoroutine = StartCoroutine(LongPressRoutine(_durationToLongPress));
         _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold));
-
         _isPrimaryPressed = true;
     }
 
@@ -146,6 +158,7 @@ public class GameplayScript : MonoBehaviour
         }
 
         //End hold
+        StopLongPressCheck();
         StopHoldCheck();
 
         _isPrimaryPressed = false;
@@ -197,8 +210,25 @@ public class GameplayScript : MonoBehaviour
     }
 
     /*
-     Hold
+     Hold & Long Press
      */
+
+    void StopLongPressCheck()
+    {
+        _islongPress = false;
+        if (_longPressCoroutine != null)
+        {
+            StopCoroutine(_longPressCoroutine);
+        }
+    }
+    IEnumerator LongPressRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        print("longpress");
+        _islongPress = true;
+        //Start Swipe
+        _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
+    }
     void StopHoldCheck()
     {
         _ishold = false;
@@ -212,5 +242,6 @@ public class GameplayScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         print("hold");
         _ishold = true;
+        _islongPress = false;
     }
 }
