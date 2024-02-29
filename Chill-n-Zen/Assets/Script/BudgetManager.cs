@@ -14,6 +14,12 @@ public class BudgetManager : MonoBehaviour
         set
         {
             _currentBudget = value;
+            if(_currentBudget < 0)
+            {
+                Debug.LogError("Current budget can't be negative !");
+                _currentBudget = 0;
+            }
+
             _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
         }
     }
@@ -24,6 +30,12 @@ public class BudgetManager : MonoBehaviour
         set
         {
             _maxBudget = value;
+            if (_maxBudget < 0)
+            {
+                Debug.LogError("maximum budget can't be negative !");
+                _maxBudget = 0;
+            }
+
             _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
         }
     }
@@ -34,15 +46,28 @@ public class BudgetManager : MonoBehaviour
     {
         _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
     }
-
     private void OnEnable()
     {
-        
+        TileSystem.OnItemAdded += AddToBudget;
+        TileSystem.OnItemRemoved += RemoveToBudget;
     }
-
     private void OnDisable()
     {
-        
+        TileSystem.OnItemAdded -= AddToBudget;
+        TileSystem.OnItemRemoved -= RemoveToBudget;
+
     }
 
+    private void AddToBudget(Item item)
+    {
+        CurrentBudget += item.price;
+    }
+    private void RemoveToBudget(Item item)
+    {
+        CurrentBudget -= item.price;
+    }
+    public bool ChkIfHasBudget(int price)
+    {
+        return (MaxBudget - CurrentBudget) > price;
+    }
 }

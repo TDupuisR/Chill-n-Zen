@@ -48,6 +48,7 @@ namespace GameManagerSpace
 
             libraryItems = _libraryItems;
             saveData = _saveData;
+            budgetManager = _budgetManager;
         }
 
         public void ChangeScene(int sceneIndex)

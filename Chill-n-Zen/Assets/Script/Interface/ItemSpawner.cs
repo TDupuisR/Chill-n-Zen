@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (TileSystem.Instance.IsSceneVacant)
+        if (TileSystem.Instance.IsSceneVacant && GameManager.budgetManager.ChkIfHasBudget(_data.Furniture.price))
         {
             _waitHoldRoutine = StartCoroutine(WaitForHold());
         }
