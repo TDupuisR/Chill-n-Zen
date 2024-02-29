@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7075555300802977879}
   - component: {fileID: 6075118339792694898}
+  - component: {fileID: 312910655046976922}
   - component: {fileID: 4248487749090183880}
   - component: {fileID: 7027273775599815287}
   - component: {fileID: 18947013022421041}
@@ -54,7 +55,22 @@ MonoBehaviour:
   _libraryItems: {fileID: 4248487749090183880}
   _audioManager: {fileID: 7027273775599815287}
   _saveData: {fileID: 788925584737789079}
+  _budgetManager: {fileID: 312910655046976922}
   _loadingScreen: {fileID: 7464992814520388730, guid: ed9e3cbab79545d4eba98d568e9333d6, type: 3}
+--- !u!114 &312910655046976922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455097743039211084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5b3a78ded605941a1d3e3a2b58ce5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentBudget: 0
+  _maxBudget: 0
 --- !u!114 &4248487749090183880
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,23 +7,21 @@ public class BudgetSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
     [SerializeField] TMP_Text _text;
-    [SerializeField] int _maxBudget;
-    [SerializeField] int _currentBudget;
 
-    public int CurrentBudget
+    private void OnEnable()
     {
-        get => _currentBudget;
-        set
-        {
-            _currentBudget = value;
-            UpdateInterface();
-        }
+        GameManager.budgetManager._onBudgetChanged += UpdateInterface;
+    }
+    private void OnDisable()
+    {
+        GameManager.budgetManager._onBudgetChanged -= UpdateInterface;
     }
 
-    void UpdateInterface()
+
+    void UpdateInterface(int currentBudget, int maxBudget)
     {
-        _slider.maxValue = _maxBudget;
-        _slider.value = _currentBudget;
+        _slider.maxValue = maxBudget;
+        _slider.value = currentBudget;
         _text.text = _slider.value.ToString() + " Cr";
     }
 }
