@@ -26,14 +26,14 @@ public class OptionsButton : MonoBehaviour
         _animationCoroutine = StartCoroutine(DeployButtonsAnimation(_duration));
     }
 
-    IEnumerator DeployButtonsAnimation(float _animationDuration)
+    IEnumerator DeployButtonsAnimation(float animationDuration)
     {
         ActivateButtons(false);
 
         float timeElapsed = 0.0f;
-        while (timeElapsed < _animationDuration)
+        while (timeElapsed < animationDuration)
         {
-            float lerpProgression = timeElapsed / _animationDuration;
+            float lerpProgression = timeElapsed / animationDuration;
             float progression = _isDeployed ? 1 - lerpProgression : lerpProgression;
             _furnitureButton.transform.position = Vector2.Lerp(transform.position, _furniturePosition.position, _animationCurve.Evaluate(progression));
             _restartButton.transform.position = Vector2.Lerp(transform.position, _restartPosition.position, _animationCurve.Evaluate(progression));

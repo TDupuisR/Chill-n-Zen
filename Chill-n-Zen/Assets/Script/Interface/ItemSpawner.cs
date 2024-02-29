@@ -12,7 +12,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public Transform ObjectParent { get; set; }
 
-    public static Action _onItemSelected;
+    public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -40,7 +40,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
 
-                _onItemSelected?.Invoke();
+                onItemSelected?.Invoke();
                 checking = false;
             }
             yield return new WaitForEndOfFrame();

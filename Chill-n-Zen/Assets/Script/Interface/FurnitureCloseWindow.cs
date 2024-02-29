@@ -9,12 +9,12 @@ public class FurnitureCloseWindow : MonoBehaviour
 
     private void OnEnable()
     {
-        ItemSpawner._onItemSelected += CloseWindow;
+        ItemSpawner.onItemSelected += CloseWindow;
     }
 
     private void OnDisable()
     {
-        ItemSpawner._onItemSelected -= CloseWindow;
+        ItemSpawner.onItemSelected -= CloseWindow;
     }
 
 

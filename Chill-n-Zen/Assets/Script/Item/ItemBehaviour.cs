@@ -4,11 +4,13 @@ using GameManagerSpace;
 
 public class ItemBehaviour : MonoBehaviour
 {
-    [SerializeField] GameObject _spriteGO;
+    [Header("Serialized Infos")]
+    [SerializeField] GameObject _spriteGmObj;
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
-
     [SerializeField] LineRenderer _lineRender;
+
+    [Header("TEST ONLY")]
     [SerializeField] Item _ownItem;
 
     Vector3Int _rotationSize = Vector3Int.zero;
@@ -30,13 +32,13 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (_lineRender == null) 
             Debug.LogError(" (error : 4x0) No LineRenderer assigned ) ", gameObject);
-        if (_spriteGO == null)
+        if (_spriteGmObj == null)
             Debug.LogError(" (error : 4x1) No Sprite child GameObject assigned ) ", gameObject);
     }
 
     private void OnEnable()
     {
-        _spriteRender = _spriteGO.GetComponent<SpriteRenderer>();
+        _spriteRender = _spriteGmObj.GetComponent<SpriteRenderer>();
 
         InitPattern();
     }
@@ -67,7 +69,7 @@ public class ItemBehaviour : MonoBehaviour
 
         _spriteRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
-        _spriteGO.transform.position = transform.position + _offsetPos;
+        _spriteGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
 
@@ -78,7 +80,7 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetInfos()
     {
         OffsetPosCalcul();
-        _spriteGO.transform.position = transform.position + _offsetPos;
+        _spriteGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
 
         SpriteAppearance();
@@ -171,10 +173,10 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void ColliderReset()
     {
-        if (_spriteGO.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        _spriteGO.AddComponent<PolygonCollider2D>();
+        _spriteGmObj.AddComponent<PolygonCollider2D>();
     }
 
     [Button] public void Rotation()

@@ -16,7 +16,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
     float _currentNumberItems;
     float _parentXStartingPosition;
 
-    public static Action _onHideFurnitureScrollbar;
+    public static Action onHideFurnitureScrollbar;
 
     private void Awake()
     {
@@ -25,12 +25,12 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     private void OnEnable()
     {
-        GameplayScript._onSwipe += swipeScroll;
+        GameplayScript.onSwipe += swipeScroll;
     }
 
     private void OnDisable()
     {
-        GameplayScript._onSwipe -= swipeScroll;
+        GameplayScript.onSwipe -= swipeScroll;
     }
 
     private void OnValidate()
@@ -70,7 +70,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
         }
         else
         {
-            _onHideFurnitureScrollbar?.Invoke();
+            onHideFurnitureScrollbar?.Invoke();
         }
     }
 
