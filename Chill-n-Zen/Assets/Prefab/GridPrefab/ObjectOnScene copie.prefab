@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de24b04dfa4f48b48a180f705c792078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteGO: {fileID: 2083728952115379752}
+  _spriteGmObj: {fileID: 2083728952115379752}
   _itemUI: {fileID: 5496170060791973697}
   _lineRender: {fileID: 9001477627417687344}
   _ownItem: {fileID: 0}

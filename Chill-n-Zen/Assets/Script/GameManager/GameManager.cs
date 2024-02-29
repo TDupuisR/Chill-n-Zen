@@ -60,14 +60,14 @@ namespace GameManagerSpace
         {
             yield return null;
 
-            AsyncOperation LoadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
-            LoadSceneOperation.allowSceneActivation = false;
+            AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
+            loadSceneOperation.allowSceneActivation = false;
 
-            while (!LoadSceneOperation.isDone)
+            while (!loadSceneOperation.isDone)
             {
-                if (LoadSceneOperation.progress >= 0.9f)
+                if (loadSceneOperation.progress >= 0.9f)
                 {
-                    LoadSceneOperation.allowSceneActivation = true;
+                    loadSceneOperation.allowSceneActivation = true;
                 }
 
                 yield return new WaitForFixedUpdate();
