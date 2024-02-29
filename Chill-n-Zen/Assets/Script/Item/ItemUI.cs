@@ -15,7 +15,7 @@ public class ItemUI : MonoBehaviour
     {
         //move UI with object
         Vector3 objectScreenPosition = Camera.main.WorldToScreenPoint(_item.transform.position);
-        _parentObject.transform.position = objectScreenPosition;
+        _parentObject.transform.position = objectScreenPosition + _item.OffsetPos;
     }
 
     public void ActivateUI(bool isActive)

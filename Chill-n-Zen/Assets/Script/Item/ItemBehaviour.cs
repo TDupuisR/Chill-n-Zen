@@ -20,6 +20,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3[] _patternPosition = new Vector3[5];
 
     public Item OwnItem { get { return _ownItem; } }
+    public Vector3 OffsetPos { get { return _offsetPos; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
     public bool CanPlace { get { return _canPlace;} }
     public GMStatic.State CurrentState { get; set; }

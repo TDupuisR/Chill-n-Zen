@@ -4888,6 +4888,7 @@ GameObject:
   - component: {fileID: 6916133630025564366}
   - component: {fileID: 4868220555665312439}
   - component: {fileID: 7747319372973352098}
+  - component: {fileID: 2713989953486175979}
   m_Layer: 5
   m_Name: FurnitureSelectionWIndow
   m_TagString: Untagged
@@ -4983,6 +4984,19 @@ MonoBehaviour:
   _roomFilterDropdown: {fileID: 7934529542364914086}
   _typeFilterDropdown: {fileID: 7878858168634563056}
   _styleFilterDropdown: {fileID: 9043266241502891027}
+--- !u!114 &2713989953486175979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3619973345945769874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78fbfb6b88dd4447916e19c955f05e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _closeButton: {fileID: 6359179539174770519}
 --- !u!1 &3650502844452344915
 GameObject:
   m_ObjectHideFlags: 0
@@ -7513,6 +7527,7 @@ MonoBehaviour:
   _parentObject: {fileID: 279065349058613344}
   _startingPoint: {fileID: 6721259846427831193}
   _spaceBTWFurniture: 250
+  _objectParent: {fileID: 0}
 --- !u!222 &8155729248387006134
 CanvasRenderer:
   m_ObjectHideFlags: 0
