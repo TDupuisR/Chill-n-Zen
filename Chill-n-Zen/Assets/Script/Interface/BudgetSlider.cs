@@ -7,6 +7,7 @@ public class BudgetSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
     [SerializeField] TMP_Text _text;
+    int _defaultBudget;
 
     private void OnEnable()
     {
@@ -17,11 +18,16 @@ public class BudgetSlider : MonoBehaviour
         GameManager.budgetManager._onBudgetChanged -= UpdateInterface;
     }
 
-
-    void UpdateInterface(int currentBudget, int maxBudget)
+    private void Awake()
     {
-        _slider.maxValue = maxBudget;
+        //initialize Budget
+        _defaultBudget = GameManager.budgetManager.CurrentBudget;
+    }
+
+    void UpdateInterface(int currentBudget)
+    {
+        _slider.maxValue = _defaultBudget;
         _slider.value = currentBudget;
-        _text.text = _slider.value.ToString() + " Cr";
+        _text.text = currentBudget.ToString() + " Cr";
     }
 }

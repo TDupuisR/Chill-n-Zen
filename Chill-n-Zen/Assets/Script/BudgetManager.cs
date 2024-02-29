@@ -6,7 +6,6 @@ using UnityEngine;
 public class BudgetManager : MonoBehaviour
 {
     [SerializeField] int _currentBudget;
-    [SerializeField] int _maxBudget;
 
     public int CurrentBudget
     {
@@ -14,47 +13,26 @@ public class BudgetManager : MonoBehaviour
         set
         {
             _currentBudget = value;
-            if(_currentBudget < 0)
-            {
-                Debug.LogError("Current budget can't be negative !");
-                _currentBudget = 0;
-            }
 
-            _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
+            _onBudgetChanged?.Invoke(_currentBudget);
         }
     }
 
-    public int MaxBudget
+    public Action<int> _onBudgetChanged;
+
+    private void Start()
     {
-        get => _maxBudget;
-        set
-        {
-            _maxBudget = value;
-            if (_maxBudget < 0)
-            {
-                Debug.LogError("maximum budget can't be negative !");
-                _maxBudget = 0;
-            }
-
-            _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
-        }
-    }
-
-    public Action<int, int> _onBudgetChanged;
-
-    private void Awake()
-    {
-        _onBudgetChanged?.Invoke(_currentBudget, _maxBudget);
+        _onBudgetChanged?.Invoke(_currentBudget);
     }
     private void OnEnable()
     {
-        TileSystem.OnItemAdded += AddToBudget;
-        TileSystem.OnItemRemoved += RemoveToBudget;
+        TileSystem.OnItemAdded += RemoveToBudget;
+        TileSystem.OnItemRemoved += AddToBudget;
     }
     private void OnDisable()
     {
-        TileSystem.OnItemAdded -= AddToBudget;
-        TileSystem.OnItemRemoved -= RemoveToBudget;
+        TileSystem.OnItemAdded -= RemoveToBudget;
+        TileSystem.OnItemRemoved -= AddToBudget;
 
     }
 
@@ -66,8 +44,8 @@ public class BudgetManager : MonoBehaviour
     {
         CurrentBudget -= item.price;
     }
-    public bool ChkIfHasBudget(int price)
+    public bool IsOutOfBudget()
     {
-        return (MaxBudget - CurrentBudget) > price;
+        return CurrentBudget < 0;
     }
 }
