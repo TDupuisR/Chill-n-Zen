@@ -12,10 +12,12 @@ namespace GameManagerSpace
         public static LibraryItem libraryItems;
         public static AudioManager audioManager;
         public static SaveData saveData;
+        public static BudgetManager budgetManager;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
+        [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
 
         private void OnValidate()
@@ -26,6 +28,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
             if (_saveData == null)
                 Debug.LogError(" (error : 1x2) No save data assigned ", _saveData);
+            if (_budgetManager == null)
+                Debug.LogError(" (error : 1x2) No budget manager assigned ", _budgetManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -44,6 +48,7 @@ namespace GameManagerSpace
 
             libraryItems = _libraryItems;
             saveData = _saveData;
+            budgetManager = _budgetManager;
         }
 
         public void ChangeScene(int sceneIndex)

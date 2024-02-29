@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System;
 using System.Collections;
 using UnityEngine;

@@ -31,6 +31,11 @@ public class TileSystem : MonoBehaviour
     public delegate void OnShowGridSpecifiedDelegate(bool state);
     public static event OnShowGridSpecifiedDelegate OnShowGridSpecified;
 
+    public delegate void OnItemAddedDelegate(Item item);
+    public static event OnItemAddedDelegate OnItemAdded;
+    public delegate void OnItemRemovedDelegate(Item item);
+    public static event OnItemRemovedDelegate OnItemRemoved;
+
     private void OnValidate()
     {
         if (_isoGrid != null)
@@ -214,6 +219,7 @@ public class TileSystem : MonoBehaviour
                     {
                         _objectList.Add(obj);
                         _itemList.Add(item);
+                        OnItemAdded?.Invoke(item.OwnItem);
                     }
                     break;
                 }
@@ -223,6 +229,7 @@ public class TileSystem : MonoBehaviour
                     {
                         _objectList.Remove(obj);
                         _itemList.Remove(item);
+                        OnItemRemoved?.Invoke(item.OwnItem);
                     }
                     break;
                 }
@@ -247,6 +254,7 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
+
     }
     public void RemoveItem(GameObject obj, int x, int y)
     {
@@ -284,6 +292,7 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
+
     }
 
     [Button]

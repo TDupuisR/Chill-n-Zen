@@ -56,6 +56,11 @@ public class DisplayFurniture : MonoBehaviour
 
     private void Start()
     {
+        if (_objectParent == null)
+        {
+            Debug.LogError("No _objectParent in DisplayFurniture");
+        }
+
         DisplayCollection(GameManager.libraryItems.listItems);
     }
 

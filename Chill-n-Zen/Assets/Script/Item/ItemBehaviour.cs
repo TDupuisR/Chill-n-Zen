@@ -23,6 +23,7 @@ public class ItemBehaviour : MonoBehaviour
 
     public Item OwnItem { get { return _ownItem; } }
     public Vector3 OffsetPos { get { return _offsetPos; } }
+    public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
     public bool CanPlace { get { return _canPlace;} }
     public GMStatic.State CurrentState { get; set; }
