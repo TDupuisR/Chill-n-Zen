@@ -11,17 +11,22 @@ public class BudgetSlider : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.budgetManager._onBudgetChanged += UpdateInterface;
+        if (GameManager.budgetManager != null)
+        {
+            GameManager.budgetManager._onBudgetChanged += UpdateInterface;
+        } //Needed because of timing issues (budgetManager is null on first OnEnable)
+
     }
     private void OnDisable()
     {
         GameManager.budgetManager._onBudgetChanged -= UpdateInterface;
     }
 
-    private void Awake()
+    private void Start()
     {
         //initialize Budget
         _defaultBudget = GameManager.budgetManager.CurrentBudget;
+        GameManager.budgetManager._onBudgetChanged += UpdateInterface; //Needed because of timing issues (budgetManager is null on first OnEnable)
     }
 
     void UpdateInterface(int currentBudget)
