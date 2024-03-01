@@ -18,11 +18,13 @@ public class GameplayScript : MonoBehaviour
 
     [Header("Swipe Fields")]
     [SerializeField] bool _invertDirection;
+    [SerializeField] int _numberValidSwipe;
     [SerializeField] float _swipeSpeed;
     [SerializeField] float _swipeMaxSpeed;
     [SerializeField] float _swipeDeceleration;
     Vector2 _swipeLastPosition;
     Vector3 _swipeCurrentVelocity;
+    bool _isSafeSwipe;
     Coroutine _swipeCoroutine;
 
     [Header("Hold Fields")]
@@ -32,6 +34,7 @@ public class GameplayScript : MonoBehaviour
     bool _ishold = false;
     bool _isPrimaryPressed = false;
     bool _isSecondaryPressed = false;
+
     Coroutine _longPressCoroutine;
     Coroutine _holdCoroutine;
 
@@ -39,8 +42,9 @@ public class GameplayScript : MonoBehaviour
     public bool IsSecondaryPressed { get => _isSecondaryPressed; }
     public bool IsHold { get => _ishold; }
     public float SwipeDeceleration { get => _swipeDeceleration; }
+    public bool IsSafeSwipe { get => _isSafeSwipe; }
     public bool IsLongPress { get => _islongPress; }
-
+    
     public Vector2 PrimaryPosition { get => _inputPrimaryPosition.action.ReadValue<Vector2>(); }
     public Vector2 SecondaryPosition { get => _inputSecondaryPosition.action.ReadValue<Vector2>(); }
     public Vector2 MouseWorldPosition { get => Camera.main.ScreenToWorldPoint(PrimaryPosition); }
@@ -158,15 +162,19 @@ public class GameplayScript : MonoBehaviour
     IEnumerator PerformSwipeRoutine()
     {
         _swipeLastPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
-            
+        int _deltaValid = 0;
+
         while (true)
         {
             Vector2 currentPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
             Vector2 delta = currentPosition - _swipeLastPosition;
             float force = delta.magnitude;
-
-            if (force > 0.1)
+            print(delta);
+            if (force > 0)
             {
+                _deltaValid++;
+                _isSafeSwipe = (_deltaValid > _numberValidSwipe);
+
                 Vector3 direction = (_invertDirection ? -1 : 1) * delta.normalized;
                 direction.z = 0;
 
@@ -175,10 +183,13 @@ public class GameplayScript : MonoBehaviour
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
 
                 //Apply velocity to position
-                print(delta);
                 onSwipe?.Invoke(_swipeCurrentVelocity);
 
                 _swipeLastPosition = currentPosition;
+            }
+            else
+            {
+                _deltaValid = 0;
             }
 
             yield return new WaitForFixedUpdate();

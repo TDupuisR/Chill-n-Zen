@@ -15,7 +15,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
     float _currentNumberItems;
     float _parentXStartingPosition;
 
-    public static Action onHideFurnitureScrollbar;
+    public static bool IsScrolling { get ; private set; }
 
     private void Awake()
     {
@@ -25,11 +25,13 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
     private void OnEnable()
     {
         GameplayScript.onSwipe += swipeScroll;
+        GameplayScript.onEndPrimaryTouch += stopScrolling;
     }
 
     private void OnDisable()
     {
         GameplayScript.onSwipe -= swipeScroll;
+        GameplayScript.onEndPrimaryTouch -= stopScrolling;
     }
 
     private void OnValidate()
@@ -67,18 +69,25 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
             _parentObject.position.y);
             _parentObject.position = newParentPosition;
         }
-        else
-        {
-            onHideFurnitureScrollbar?.Invoke();
-        }
     }
 
     private void swipeScroll(Vector2 vector)
     {
-        float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((vector.x * _scrollSensitivity) / _currentNumberItems));
-        _scrollbar.value = newScrollBarValue;
+        if (GameplayScript.Instance.IsSafeSwipe)
+        {
+            IsScrolling = true;
+            float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((vector.x * _scrollSensitivity) / _currentNumberItems));
+            _scrollbar.value = newScrollBarValue;
+        }
     }
 
+    private void stopScrolling(Vector2 vector)
+    {
+        if (IsScrolling)
+        {
+            IsScrolling = false;
+        }
+    }
 
     public void ResetScroll()
     {

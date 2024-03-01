@@ -34,7 +34,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         bool checking = true;
         while (checking)
         {
-            if (GameplayScript.Instance.IsHold)
+            if (GameplayScript.Instance.IsHold && !DisplayFurnitureScrollbar.IsScrolling)
             {
                 GameObject spawnedItem = Instantiate(_itemPrefab, ObjectParent);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
