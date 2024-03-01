@@ -574,7 +574,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
-        m_MethodName: set_roomFilter
+        m_MethodName: set_RoomFilter
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -587,6 +587,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
         m_MethodName: ApplyFilter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 124319307679697480}
+        m_TargetAssemblyTypeName: DisplayFurnitureScrollbar, Assembly-CSharp
+        m_MethodName: ResetScroll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1871,7 +1883,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
-        m_MethodName: set_styleFilter
+        m_MethodName: set_StyleFilter
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1884,6 +1896,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
         m_MethodName: ApplyFilter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 124319307679697480}
+        m_TargetAssemblyTypeName: DisplayFurnitureScrollbar, Assembly-CSharp
+        m_MethodName: ResetScroll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1929,8 +1953,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -75}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -75}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &458913218532883930
 CanvasRenderer:
@@ -1987,7 +2011,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2293,8 +2317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -125}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -125}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &812440574111966491
 CanvasRenderer:
@@ -2351,7 +2375,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5097,7 +5121,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
-        m_MethodName: set_typeFilter
+        m_MethodName: set_TypeFilter
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5110,6 +5134,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7747319372973352098}
         m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
         m_MethodName: ApplyFilter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 124319307679697480}
+        m_TargetAssemblyTypeName: DisplayFurnitureScrollbar, Assembly-CSharp
+        m_MethodName: ResetScroll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7180,7 +7216,7 @@ MonoBehaviour:
   _upperEdgeOfScroll: {fileID: 1226515681172131434}
   _numberItemBeforeScroll: 5
   _spacePerItem: 170
-  _scrollSensitivity: 0.05
+  _scrollSensitivity: 1
 --- !u!1 &6049608616601089217
 GameObject:
   m_ObjectHideFlags: 0
@@ -8857,8 +8893,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -75}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -75}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3989764523135877930
 CanvasRenderer:
@@ -8915,7 +8951,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9323,8 +9359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -25}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -25}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5134606965722773510
 CanvasRenderer:
@@ -9381,7 +9417,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9669,8 +9705,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -25}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -25}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8697771961049094802
 CanvasRenderer:
@@ -9727,7 +9763,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11019,11 +11055,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -11066,8 +11102,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 25, y: -125}
-  m_SizeDelta: {x: -50, y: 50}
+  m_AnchoredPosition: {x: 20, y: -125}
+  m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8985432188472481736
 CanvasRenderer:
@@ -11124,7 +11160,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

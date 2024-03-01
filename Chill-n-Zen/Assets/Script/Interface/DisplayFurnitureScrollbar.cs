@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using System;
 
 public class DisplayFurnitureScrollbar : MonoBehaviour
@@ -76,10 +75,15 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     private void swipeScroll(Vector2 vector)
     {
-        float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + (vector.x * _scrollSensitivity));
+        float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((vector.x * _scrollSensitivity) / _currentNumberItems));
         _scrollbar.value = newScrollBarValue;
     }
 
+
+    public void ResetScroll()
+    {
+        _scrollbar.value = 0;
+    }
 
     bool isInScrollZone()
     {
