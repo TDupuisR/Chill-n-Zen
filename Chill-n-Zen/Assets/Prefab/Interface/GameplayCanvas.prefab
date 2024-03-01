@@ -7198,6 +7198,7 @@ MonoBehaviour:
   _startingPoint: {fileID: 6721259846427831193}
   _spaceBTWFurniture: 250
   _objectParent: {fileID: 0}
+  _detailWindow: {fileID: 2823380998407397996}
 --- !u!222 &8155729248387006134
 CanvasRenderer:
   m_ObjectHideFlags: 0

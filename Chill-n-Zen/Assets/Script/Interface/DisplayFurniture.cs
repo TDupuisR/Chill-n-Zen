@@ -17,6 +17,7 @@ public class DisplayFurniture : MonoBehaviour
 
     [Header("Outside References")]
     [SerializeField] Transform _objectParent;
+    [SerializeField] FurnitureReadData _detailWindow;
 
     //[SerializeField] int _furniturePerRow;
     //[SerializeField] float _spaceBTWRows;
@@ -86,6 +87,7 @@ public class DisplayFurniture : MonoBehaviour
             newItem.transform.localPosition = currentPosition;
             newItem.GetComponent<FurnitureReadData>().Furniture = item;
             newItem.GetComponent<ItemSpawner>().ObjectParent = _objectParent;
+            newItem.GetComponent<ItemSpawner>().DetailWindow = _detailWindow;
             _itemsCreated.Add(newItem);
             numberOfItems++;
 

@@ -45,13 +45,13 @@ public class FurnitureReadData : MonoBehaviour
             _styleImg.sprite = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.style.ToString())];
             if (_styleText != null)
             {
-                _styleText.text = furniture.room.ToString();
+                _styleText.text = furniture.style.ToString();
             }
 
             _typeImg.sprite = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.type.ToString())];
             if (_typeText != null)
             {
-                _typeText.text = furniture.room.ToString();
+                _typeText.text = furniture.type.ToString();
             }
         }
     }

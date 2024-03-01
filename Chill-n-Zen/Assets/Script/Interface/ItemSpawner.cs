@@ -11,6 +11,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Coroutine _waitHoldRoutine;
 
     public Transform ObjectParent { get; set; }
+    public FurnitureReadData DetailWindow { get; set; }
 
     public static Action onItemSelected;
 
@@ -40,6 +41,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
 
+                DetailWindow.Furniture = _data.Furniture;
                 onItemSelected?.Invoke();
                 checking = false;
             }
