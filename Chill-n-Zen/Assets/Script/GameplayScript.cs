@@ -169,7 +169,7 @@ public class GameplayScript : MonoBehaviour
             Vector2 currentPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
             Vector2 delta = currentPosition - _swipeLastPosition;
             float force = delta.magnitude;
-            print(delta);
+
             if (force > 0)
             {
                 _deltaValid++;
