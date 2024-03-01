@@ -7,6 +7,7 @@ public class WindowScroll : MonoBehaviour
 {
     [SerializeField] RectTransform _backgroundTransform;
     [SerializeField] AnimationCurve _animationCurve;
+    [SerializeField] Button _buttonToDisable; 
     [SerializeField] float _animationDuration;
     [SerializeField] float _boundaryActionZone; //For 1280x720 screen
     [SerializeField] bool _isVerticalScroll; 
@@ -48,6 +49,9 @@ public class WindowScroll : MonoBehaviour
         float timeElapsed = 0.0f;
         Vector2 finalPosition;
 
+        if(_buttonToDisable != null)
+            _buttonToDisable.interactable = false;
+
         if (isVertical)
         {
             finalPosition = new Vector2(_backgroundStartPosition.x, -_backgroundStartPosition.y);
@@ -64,8 +68,12 @@ public class WindowScroll : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+
         _displayed = !_displayed;
         _backgroundStartPosition = finalPosition;
+
+        if (_buttonToDisable != null)
+            _buttonToDisable.interactable = true;
     }
 
     public void UpdateCamActionZoneDown(UIGetCam cam)
