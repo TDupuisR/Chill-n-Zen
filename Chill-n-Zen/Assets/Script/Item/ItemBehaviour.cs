@@ -5,7 +5,7 @@ using GameManagerSpace;
 public class ItemBehaviour : MonoBehaviour
 {
     [Header("Serialized Infos")]
-    [SerializeField] ItemConstraint _scriptConstraint;
+    [SerializeField] ItemConstraint _constraint;
     [SerializeField] GameObject _spriteGmObj;
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
@@ -20,7 +20,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3 _lastPos;
     bool _canPlace = false;
 
-    Vector3[] _patternPosition = new Vector3[5];
+    Vector3[] _patternPosition = new Vector3[4];
 
     public Item OwnItem { get { return _ownItem; } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
@@ -31,7 +31,7 @@ public class ItemBehaviour : MonoBehaviour
     public int Orientation { get { return _orientation; } }
 
     public bool CanPlace { get { return _canPlace;} }
-    public bool ConstraintValid { get { return _scriptConstraint.IsValide } }
+    public bool ConstraintValid { get { return _constraint.IsValide; } }
 
 
     private void OnValidate()
@@ -78,8 +78,12 @@ public class ItemBehaviour : MonoBehaviour
         _spriteGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
+        LineColor(Color.red);
 
         SpriteAppearance();
+
+        //Constraint Methods
+        _constraint.ResetConstraint(transform.position);
 
         CurrentState = GMStatic.State.Moving;
     }
@@ -87,7 +91,6 @@ public class ItemBehaviour : MonoBehaviour
     {
         OffsetPosCalcul();
         _spriteGmObj.transform.position = transform.position + _offsetPos;
-        ResetLineRenderer(RotationSize.x, RotationSize.y);
 
         SpriteAppearance();
         CheckNewPos();
@@ -95,14 +98,14 @@ public class ItemBehaviour : MonoBehaviour
 
     private void InitPattern()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             _patternPosition[i] = _lineRender.GetPosition(i);
         }
     }
-    private void ResetLineRenderer(int sizeX, int sizeY, Vector2 pos = new Vector2())
+    private void ResetLineRenderer(int sizeX, int sizeY)
     {
-        for (int i = 0; i < 5; i++) _lineRender.SetPosition(i, _patternPosition[i]);
+        for (int i = 0; i < 4; i++) _lineRender.SetPosition(i, _patternPosition[i]);
 
         for (int x = 0; x < sizeX; x++)
         {
@@ -111,10 +114,7 @@ public class ItemBehaviour : MonoBehaviour
                 Vector2 worldPos = TileSystem.Instance.GridToWorld(x, y);
 
                 if (_patternPosition[0].y + worldPos.y > _lineRender.GetPosition(0).y)
-                {
                     _lineRender.SetPosition(0, new Vector3(_patternPosition[0].x + worldPos.x, _patternPosition[0].y + worldPos.y, 0));
-                    _lineRender.SetPosition(4, new Vector3(_patternPosition[4].x + worldPos.x, _patternPosition[0].y + worldPos.y, 0));
-                }
                 if (_patternPosition[1].x + worldPos.x > _lineRender.GetPosition(1).x)
                     _lineRender.SetPosition(1, new Vector3(_patternPosition[1].x + worldPos.x, _patternPosition[1].y + worldPos.y, 0));
                 if (_patternPosition[2].y + worldPos.y < _lineRender.GetPosition(2).y)
@@ -124,8 +124,9 @@ public class ItemBehaviour : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 5; i++) _lineRender.SetPosition(i, _lineRender.GetPosition(i) + transform.position);
+        for (int i = 0; i < 4; i++) _lineRender.SetPosition(i, _lineRender.GetPosition(i) + transform.position);
     }
+
     private void LineColor(Color color)
     {
         _lineRender.startColor = color;
@@ -149,11 +150,13 @@ public class ItemBehaviour : MonoBehaviour
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
 
-        ResetLineRenderer(RotationSize.x, RotationSize.y, gridPos);
+        ResetLineRenderer(RotationSize.x, RotationSize.y);
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
 
         if (!_canPlace) LineColor(Color.red);
         else LineColor(Color.green);
+
+        _constraint.ResetConstraint(transform.position);
     }
 
     private void SpriteAppearance()

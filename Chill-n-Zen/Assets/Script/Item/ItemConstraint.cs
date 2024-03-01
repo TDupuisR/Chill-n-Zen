@@ -5,10 +5,51 @@ using System.Collections.Generic;
 public class ItemConstraint : MonoBehaviour
 {
     [SerializeField] ItemBehaviour _itemBehaviour;
+    [SerializeField] LineRenderer _lineRender;
+
     List<Vector2Int> _listTilesPos = new List<Vector2Int>();
     List<bool> _listAccessible = new List<bool>();
 
+    Vector3[] _patternPosition = new Vector3[4];
+
     public bool IsValide { get; private set; }
+
+    public void OnEnable()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            _patternPosition[i] = _lineRender.GetPosition(i);
+        }
+
+        LineColor(Color.yellow);
+    }
+
+    private void ResetLineRenderer(Vector2Int pos)
+    {
+        Vector3 firstPos = TileSystem.Instance.GridToWorld(_listTilesPos[0].x - pos.x, _listTilesPos[0].y - pos.y);
+        for (int i = 0; i < 4; i++) _lineRender.SetPosition(i, _patternPosition[i] + firstPos);
+
+        foreach (Vector2Int tile in _listTilesPos)
+        {
+            Vector2 worldPos = TileSystem.Instance.GridToWorld(tile.x - pos.x, tile.y - pos.y);
+
+            if (_patternPosition[0].y + worldPos.y > _lineRender.GetPosition(0).y)
+                _lineRender.SetPosition(0, new Vector3(_patternPosition[0].x + worldPos.x, _patternPosition[0].y + worldPos.y, 0));
+            if (_patternPosition[1].x + worldPos.x > _lineRender.GetPosition(1).x)
+                _lineRender.SetPosition(1, new Vector3(_patternPosition[1].x + worldPos.x, _patternPosition[1].y + worldPos.y, 0));
+            if (_patternPosition[2].y + worldPos.y < _lineRender.GetPosition(2).y)
+                _lineRender.SetPosition(2, new Vector3(_patternPosition[2].x + worldPos.x, _patternPosition[2].y + worldPos.y, 0));
+            if (_patternPosition[3].x + worldPos.x < _lineRender.GetPosition(3).x)
+                _lineRender.SetPosition(3, new Vector3(_patternPosition[3].x + worldPos.x, _patternPosition[3].y + worldPos.y, 0));
+        }
+
+        for (int i = 0; i < 4; i++) _lineRender.SetPosition(i, _lineRender.GetPosition(i) + transform.position);
+    }
+    private void LineColor(Color color)
+    {
+        _lineRender.startColor = color;
+        _lineRender.endColor = color;
+    }
 
     public void ResetConstraint(Vector2 worldPos)
     {
@@ -16,26 +57,35 @@ public class ItemConstraint : MonoBehaviour
         _listTilesPos.Clear();
         _listAccessible.Clear();
 
-        if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
+        if (_itemBehaviour.OwnItem.constraint != GMStatic.constraint.None)
         {
-            Front(gridPos);
-
-            foreach (Vector2Int tilePos in _listTilesPos)
+            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
             {
-                _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
-            }
-        }
-        else if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Bed)
-        {
-            Bed(gridPos);
+                Front(gridPos);
 
-            foreach (Vector2Int tilePos in _listTilesPos)
-            {
-                _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
+                foreach (Vector2Int tilePos in _listTilesPos)
+                {
+                    _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
+                }
             }
+            else if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Bed)
+            {
+                Bed(gridPos);
+
+                foreach (Vector2Int tilePos in _listTilesPos)
+                {
+                    _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
+                }
+            }
+
+            if (_listTilesPos.Count > 0) ResetLineRenderer(gridPos);
+            _lineRender.enabled = true;
         }
+        else { _lineRender.enabled = false; }
 
         IsValide = ConstraintValidation();
+
+        Debug.Log("Tiles: " + _listTilesPos.Count + " | Access: " + _listAccessible.Count + " | Valid: " + IsValide);
     }
     public void CheckConstraint()
     {
@@ -80,13 +130,13 @@ public class ItemConstraint : MonoBehaviour
             if (count < 1 ) res = false;
         }
 
+        if (_itemBehaviour.OwnItem.constraint != GMStatic.constraint.None && _listAccessible.Count <= 0) res = false;
+
         return res;
     }
 
     private void Front(Vector2Int pos)
     {
-        //Vector2 direction = new Vector2(-Mathf.Cos(Mathf.Deg2Rad * _itemBehaviour.Orientation), -Mathf.Sin(Mathf.Deg2Rad * _itemBehaviour.Orientation));
-
         int decal;
 
         if (_itemBehaviour.Orientation == 0 || _itemBehaviour.Orientation == 180)
@@ -96,11 +146,7 @@ public class ItemConstraint : MonoBehaviour
 
             for (int i = 0; i < _itemBehaviour.OwnItem.size.y; i++)
             {
-                int index = TileSystem.Instance.CheckTileExist(pos.x + decal, pos.y + i);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x + decal, pos.y + i));
-                }
+                _listTilesPos.Add(new Vector2Int(pos.x + decal, pos.y + i));
             }
         }
         else if (_itemBehaviour.Orientation == 90 || _itemBehaviour.Orientation == 270)
@@ -110,11 +156,7 @@ public class ItemConstraint : MonoBehaviour
 
             for (int i = 0; i < _itemBehaviour.OwnItem.size.y; i++)
             {
-                int index = TileSystem.Instance.CheckTileExist(pos.x + i, pos.y + decal);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y + decal));
-                }
+                _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y + decal));
             }
         }
     }
@@ -124,34 +166,17 @@ public class ItemConstraint : MonoBehaviour
         {
             for (int i = 0; i < _itemBehaviour.OwnItem.size.x; i++)
             {
-                int index = TileSystem.Instance.CheckTileExist(pos.x + i, pos.y - 1);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y - 1));
-                }
-                
-                index = TileSystem.Instance.CheckTileExist(pos.x + i, pos.y + _itemBehaviour.OwnItem.size.y +1);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y + _itemBehaviour.OwnItem.size.y + 1));
-                }
+                _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y - 1));
+                _listTilesPos.Add(new Vector2Int(pos.x + i, pos.y + _itemBehaviour.OwnItem.size.y));
             }
         }
         else if (_itemBehaviour.Orientation == 90 || _itemBehaviour.Orientation == 270)
         {
             for (int i = 0; i < _itemBehaviour.OwnItem.size.x; i++)
             {
-                int index = TileSystem.Instance.CheckTileExist(pos.x - 1, pos.y + i);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x - 1, pos.y + i));
-                }
-
-                index = TileSystem.Instance.CheckTileExist(pos.x + _itemBehaviour.OwnItem.size.y + 1, pos.y + i);
-                if (index >= 0)
-                {
-                    _listTilesPos.Add(new Vector2Int(pos.x + _itemBehaviour.OwnItem.size.y + 1, pos.y + i));
-                }
+                _listTilesPos.Add(new Vector2Int(pos.x - 1, pos.y + i));
+                _listTilesPos.Add(new Vector2Int(pos.x + _itemBehaviour.OwnItem.size.y, pos.y + i));
             }
+        }
     }
 }
