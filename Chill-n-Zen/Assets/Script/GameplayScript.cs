@@ -165,7 +165,7 @@ public class GameplayScript : MonoBehaviour
             Vector2 delta = currentPosition - _swipeLastPosition;
             float force = delta.magnitude;
 
-            if (force > 0)
+            if (force > 0.1)
             {
                 Vector3 direction = (_invertDirection ? -1 : 1) * delta.normalized;
                 direction.z = 0;
@@ -175,6 +175,7 @@ public class GameplayScript : MonoBehaviour
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
 
                 //Apply velocity to position
+                print(delta);
                 onSwipe?.Invoke(_swipeCurrentVelocity);
 
                 _swipeLastPosition = currentPosition;
