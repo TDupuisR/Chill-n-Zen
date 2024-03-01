@@ -64,6 +64,8 @@ public class TileSystem : MonoBehaviour
         }
 
         IsSceneVacant = true;
+
+        GenerateGrid(TESTStartPos, TESTGridSize); // TEST PROTO ONLY //
     }
 
     public Vector2Int WorldToGrid(Vector2 position)

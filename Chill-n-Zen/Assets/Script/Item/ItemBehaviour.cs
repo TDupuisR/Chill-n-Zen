@@ -196,7 +196,7 @@ public class ItemBehaviour : MonoBehaviour
 
             ResetInfos();
         }
-    } // Rotate the Item when a button is pushed
+    } // Rotate the Item is clicked at Waiting State
     public void Place()
     {
         if (CurrentState != GMStatic.State.Placed)
