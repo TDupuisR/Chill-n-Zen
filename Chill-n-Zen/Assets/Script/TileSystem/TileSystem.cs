@@ -9,6 +9,7 @@ public class TileSystem : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField] Grid _isoGrid;
+    [SerializeField] WallBehavior _wallBehavior;
     [SerializeField] GameObject _prefabTile;
     [SerializeField] Transform _floorParent;
     [SerializeField] Transform _objectParent;
@@ -20,6 +21,8 @@ public class TileSystem : MonoBehaviour
 
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
+    public List<GameObject> TilesList { get { return _tilesList; } }
+    
 
     [Space(7)]
     [Header("TEST VARIABLES")]
@@ -80,8 +83,9 @@ public class TileSystem : MonoBehaviour
         {
             _tilesList.Add(child.gameObject);
         }
+        _wallBehavior.InstantiateWall();
     }
-    private int CheckTileExist(int x, int y) // Return index in TileList, or -1 if null //
+    public int CheckTileExist(int x, int y) // Return index in TileList, or -1 if null //
     {
         int res = -1;
 
@@ -121,9 +125,9 @@ public class TileSystem : MonoBehaviour
                     }
                 }
             }
-
             GetGridTilesList();
         }
+        
     }
     public void DeleteGrid(Vector2Int startPosGrid, Vector2Int gridSize)
     {
