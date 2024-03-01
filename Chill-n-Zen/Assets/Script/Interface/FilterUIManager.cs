@@ -11,6 +11,11 @@ public class FilterUIManager : MonoBehaviour
     [Header("Reference")]
     [SerializeField] DisplayFurniture _displayFurniture;
     [SerializeField] TMP_Dropdown _roomFilterDropdown, _typeFilterDropdown, _styleFilterDropdown;
+
+    [Header("Button")]
+    [SerializeField] GameObject _filterParent;
+    bool _isDeployed = false;
+
     enum TypeOfTags { tagRoom, tagType, tagStyle }
 
     public int RoomFilter { get; set; }
@@ -77,5 +82,20 @@ public class FilterUIManager : MonoBehaviour
     {
         List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)TypeFilter, (GMStatic.tagStyle)StyleFilter);
         _displayFurniture.ResetAndDisplay(newItems);
+    }
+
+    /*
+        Button Functions
+     */
+    public void Deploy()
+    {
+        _isDeployed = !_isDeployed;
+        _filterParent.SetActive(_isDeployed);
+    }
+
+    public void Hide()
+    {
+        _isDeployed = false;
+        _filterParent.SetActive(_isDeployed);
     }
 }

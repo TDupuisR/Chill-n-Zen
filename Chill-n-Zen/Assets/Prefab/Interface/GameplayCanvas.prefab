@@ -2429,7 +2429,6 @@ GameObject:
   - component: {fileID: 796424889963943558}
   - component: {fileID: 6795076326573730323}
   - component: {fileID: 3151393318756117713}
-  - component: {fileID: 6758410592917304584}
   m_Layer: 5
   m_Name: YesButton
   m_TagString: Untagged
@@ -2539,8 +2538,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6758410592917304584}
-        m_TargetAssemblyTypeName: RestartButton, Assembly-CSharp
+      - m_Target: {fileID: 2123945357468020569}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
@@ -2551,18 +2550,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6758410592917304584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2224100783714588013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb0321f3436b364bb8fb8b04948cc00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2254519248756992511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,7 +2856,6 @@ GameObject:
   - component: {fileID: 1703372216621555766}
   - component: {fileID: 4197123765395478703}
   - component: {fileID: 4708428100181005477}
-  - component: {fileID: 7661597115643671102}
   m_Layer: 5
   m_Name: FilterWindowButton
   m_TagString: Untagged
@@ -2979,8 +2965,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7661597115643671102}
-        m_TargetAssemblyTypeName: FurnitureFilterButton, Assembly-CSharp
+      - m_Target: {fileID: 7747319372973352098}
+        m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
         m_MethodName: Deploy
         m_Mode: 1
         m_Arguments:
@@ -2991,19 +2977,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7661597115643671102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475139600705337969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83e00130470e7843864f0a1deef9c4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _filterParent: {fileID: 150897853694106846}
 --- !u!1 &2498428564735990449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,8 +3121,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7661597115643671102}
-        m_TargetAssemblyTypeName: FurnitureFilterButton, Assembly-CSharp
+      - m_Target: {fileID: 7747319372973352098}
+        m_TargetAssemblyTypeName: FilterUIManager, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
@@ -3435,10 +3408,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4926609447521479517}
-        m_TargetAssemblyTypeName: RestartPopUp, Assembly-CSharp
-        m_MethodName: HidePopUp
-        m_Mode: 1
+      - m_Target: {fileID: 2123945357468020569}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: DisplayPause
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4149,18 +4122,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7661597115643671102}
-        m_TargetAssemblyTypeName: FurnitureFilterButton, Assembly-CSharp
-        m_MethodName: Hide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4008068633080094566}
         m_TargetAssemblyTypeName: WindowScroll, Assembly-CSharp
         m_MethodName: UpdateCamActionZoneLeft
@@ -4692,6 +4653,7 @@ MonoBehaviour:
   _roomFilterDropdown: {fileID: 7934529542364914086}
   _typeFilterDropdown: {fileID: 7878858168634563056}
   _styleFilterDropdown: {fileID: 9043266241502891027}
+  _filterParent: {fileID: 150897853694106846}
 --- !u!114 &2713989953486175979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6026,6 +5988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseObject: {fileID: 1468840665226190826}
+  _restartWindow: {fileID: 6452306897033071657}
   _buttonToHide:
   - {fileID: 7881871372078859752}
   - {fileID: 3465889378344669742}
@@ -7148,7 +7111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 933892043572289539}
-  - component: {fileID: 4926609447521479517}
   m_Layer: 5
   m_Name: RestartSure
   m_TagString: Untagged
@@ -7176,20 +7138,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4926609447521479517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049608616601089217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7501f9ad0ded8fe4f9711fdc95b6b0ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cam: {fileID: 6817194865486821823}
-  _restartWindow: {fileID: 6452306897033071657}
 --- !u!1 &6283841178640160126
 GameObject:
   m_ObjectHideFlags: 0
@@ -11354,17 +11302,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4926609447521479517}
-        m_TargetAssemblyTypeName: RestartPopUp, Assembly-CSharp
-        m_MethodName: ShowPopUp
-        m_Mode: 1
+      - m_Target: {fileID: 2123945357468020569}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ShowRestartPopUp
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &8927915532876420743
 GameObject:
