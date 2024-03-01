@@ -9,7 +9,7 @@ public class ItemInput : MonoBehaviour
 
     bool _primWasPressed = false;
     bool _holdWasPressed = false;
-
+    bool _isOnItem = false;
 
     private void Start()
     {
@@ -18,6 +18,8 @@ public class ItemInput : MonoBehaviour
 
     private void OnMouseOver()
     {
+        _isOnItem = true;
+
         // Etape 3 -> 2
         if (CheckIsHolding() && _itemBehave.CurrentState == GMStatic.State.Waiting)
         {
@@ -37,6 +39,7 @@ public class ItemInput : MonoBehaviour
             if (TileSystem.Instance.IsSceneVacant) _itemUI.ActivateUI(true);
         }
     }
+    private void OnMouseExit() { _isOnItem = false; }
 
     private void Update()
     {
@@ -47,6 +50,11 @@ public class ItemInput : MonoBehaviour
             _itemUI.ActivateUI(true);
 
             CameraControls.Instance.CanMoveCamera = true;
+        }
+        // Etape 5 -> 4
+        if (_itemBehave.CurrentState == GMStatic.State.Placed && CheckIsTouching() && _isOnItem == false)
+        {
+            _itemUI.ActivateUI(false);
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class SwipeLevel : MonoBehaviour
 {
 
@@ -11,7 +12,7 @@ public class SwipeLevel : MonoBehaviour
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
     [SerializeField] private RectTransform _rectTransform;
-    [SerializeField] private float speedSlider = 1;
+    [SerializeField] private float _speedSlider = 1;
     [SerializeField] private float _endSlideSpeed = 1;
     private List<RectTransform> _listPicture = new List<RectTransform>();
     private RectTransform _tempRectTransform = null;
@@ -32,14 +33,14 @@ public class SwipeLevel : MonoBehaviour
 
     private void OnEnable()
     {
-        GameplayScript._onSwipe += StartSwipe;
-        GameplayScript._onEndPrimaryTouch += EndSwipe;
+        GameplayScript.onSwipe += StartSwipe;
+        GameplayScript.onEndPrimaryTouch += EndSwipe;
     }
 
     private void OnDisable()
     {
-        GameplayScript._onSwipe -= StartSwipe;
-        GameplayScript._onSwipe -= EndSwipe;
+        GameplayScript.onSwipe -= StartSwipe;
+        GameplayScript.onSwipe -= EndSwipe;
     }
 
     private void StartSwipe(Vector2 velocity)
@@ -60,7 +61,7 @@ public class SwipeLevel : MonoBehaviour
     {
         while(_isDragging)
         {
-            _newXPosition += velocity.x*speedSlider;
+            _newXPosition += velocity.x*_speedSlider;
             _newXPosition = Mathf.Clamp(_newXPosition, _listPicture[0].localPosition.x, _listPicture[4].localPosition.x);
             _rectTransform.localPosition = new Vector3(_newXPosition, 0, 0);
             yield return new WaitForFixedUpdate();

@@ -1,3 +1,5 @@
+using GameManagerSpace;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +11,8 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Coroutine _waitHoldRoutine;
 
     public Transform ObjectParent { get; set; }
+
+    public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -35,6 +39,8 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 GameObject spawnedItem = Instantiate(_itemPrefab, ObjectParent);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
+
+                onItemSelected?.Invoke();
                 checking = false;
             }
             yield return new WaitForEndOfFrame();

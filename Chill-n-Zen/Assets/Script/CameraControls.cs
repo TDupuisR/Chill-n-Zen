@@ -29,11 +29,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField] float _zoomSensitivity;
     Coroutine _zoomCoroutine;
 
-    public bool CanMoveCamera
-    {
-        get;
-        set;
-    }
+    public bool CanMoveCamera { get; set; }
 
     private void Awake()
     {
@@ -54,20 +50,20 @@ public class CameraControls : MonoBehaviour
 
     private void OnEnable()
     {
-        GameplayScript._onStartPrimaryTouch += ChkValidMovement;
-        GameplayScript._onSwipe += CameraMovement;
-        GameplayScript._onEndPrimaryTouch += EndCamMovement;
-        GameplayScript._onStartSecondaryTouch += StartZoom;
-        GameplayScript._onEndSecondaryTouch += EndZoom;
+        GameplayScript.onStartPrimaryTouch += ChkValidMovement;
+        GameplayScript.onSwipe += CameraMovement;
+        GameplayScript.onEndPrimaryTouch += EndCamMovement;
+        GameplayScript.onStartSecondaryTouch += StartZoom;
+        GameplayScript.onEndSecondaryTouch += EndZoom;
     }
 
     private void OnDisable()
     {
-        GameplayScript._onStartPrimaryTouch -= ChkValidMovement;
-        GameplayScript._onSwipe -= CameraMovement;
-        GameplayScript._onEndPrimaryTouch -= EndCamMovement;
-        GameplayScript._onStartSecondaryTouch -= StartZoom;
-        GameplayScript._onEndSecondaryTouch -= EndZoom;
+        GameplayScript.onStartPrimaryTouch -= ChkValidMovement;
+        GameplayScript.onSwipe -= CameraMovement;
+        GameplayScript.onEndPrimaryTouch -= EndCamMovement;
+        GameplayScript.onStartSecondaryTouch -= StartZoom;
+        GameplayScript.onEndSecondaryTouch -= EndZoom;
     }
 
     private void OnValidate()
@@ -92,7 +88,7 @@ public class CameraControls : MonoBehaviour
 
     void CameraMovement(Vector2 velocity)
     {
-        if (_isInActionZone && CanMoveCamera)
+        if (_isInActionZone && CanMoveCamera && GameplayScript.Instance.IsLongPress)
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;

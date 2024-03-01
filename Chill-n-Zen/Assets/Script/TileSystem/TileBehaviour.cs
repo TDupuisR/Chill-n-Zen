@@ -30,7 +30,7 @@ public class TileBehaviour : MonoBehaviour
 
         Debug.LogWarning(" (error : 3x0) Missing Floor texture or color ", gameObject);
         // _renderer.sprite = // GameManager get Floor Texture //
-        _spriteRender.color = new Color(255, 0, 132); // GameManager get Floor Color //
+        _spriteRender.color = new Color(255, 0, 132); // GameManager get Floor Color, else new Color(255, 0, 132) //
     }
 
     private void GridReset()
