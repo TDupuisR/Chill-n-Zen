@@ -112,9 +112,13 @@ public class GameplayScript : MonoBehaviour
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
         onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+
+        //Start Swipe
+        _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
         //Start LongPress & hold coroutine
         _longPressCoroutine = StartCoroutine(LongPressRoutine(_durationToLongPress));
         _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold));
+
         _isPrimaryPressed = true;
     }
 
@@ -197,8 +201,6 @@ public class GameplayScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         print("longpress");
         _islongPress = true;
-        //Start Swipe
-        _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
     }
     void StopHoldCheck()
     {

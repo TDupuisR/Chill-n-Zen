@@ -123,10 +123,10 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &1383142042 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8667566947821180079, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
-  m_PrefabInstance: {fileID: 7936602644307485899}
+--- !u!4 &209664575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9188687472254510819, guid: a60e921747962fe4ab6be6053d01e892, type: 3}
+  m_PrefabInstance: {fileID: 1834215193}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1459186167 stripped
 MonoBehaviour:
@@ -447,6 +447,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6063311782090252399, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
+      propertyPath: _objectParent
+      value: 
+      objectReference: {fileID: 209664575}
     - target: {fileID: 6817194865486821823, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
       propertyPath: _cam
       value: 
@@ -458,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 7447204282124928454, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
       propertyPath: _rect
       value: 
-      objectReference: {fileID: 1383142042}
+      objectReference: {fileID: 0}
     - target: {fileID: 7857705445582022126, guid: 3fb1051e25f72c5498598994e6337d2f, type: 3}
       propertyPath: m_Pivot.x
       value: 0

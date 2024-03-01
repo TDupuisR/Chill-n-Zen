@@ -88,7 +88,7 @@ public class CameraControls : MonoBehaviour
 
     void CameraMovement(Vector2 velocity)
     {
-        if (_isInActionZone && CanMoveCamera)
+        if (_isInActionZone && CanMoveCamera && GameplayScript.Instance.IsLongPress)
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;

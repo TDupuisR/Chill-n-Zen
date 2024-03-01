@@ -7180,7 +7180,7 @@ MonoBehaviour:
   _upperEdgeOfScroll: {fileID: 1226515681172131434}
   _numberItemBeforeScroll: 5
   _spacePerItem: 170
-  _scrollSensitivity: 0.2
+  _scrollSensitivity: 0.05
 --- !u!1 &6049608616601089217
 GameObject:
   m_ObjectHideFlags: 0
