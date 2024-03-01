@@ -5,6 +5,7 @@ using GameManagerSpace;
 public class ItemBehaviour : MonoBehaviour
 {
     [Header("Serialized Infos")]
+    [SerializeField] ItemConstraint _scriptConstraint;
     [SerializeField] GameObject _spriteGmObj;
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
@@ -14,7 +15,7 @@ public class ItemBehaviour : MonoBehaviour
     [SerializeField] Item _ownItem;
 
     Vector3Int _rotationSize = Vector3Int.zero;
-    int _rotation = 0;
+    int _orientation = 0;
     Vector3 _offsetPos = Vector3.zero;
     Vector3 _lastPos;
     bool _canPlace = false;
@@ -22,11 +23,16 @@ public class ItemBehaviour : MonoBehaviour
     Vector3[] _patternPosition = new Vector3[5];
 
     public Item OwnItem { get { return _ownItem; } }
-    public Vector3 OffsetPos { get { return _offsetPos; } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
-    public Vector3Int RotationSize { get { return _rotationSize; } }
-    public bool CanPlace { get { return _canPlace;} }
     public GMStatic.State CurrentState { get; set; }
+
+    public Vector3 OffsetPos { get { return _offsetPos; } }
+    public Vector3Int RotationSize { get { return _rotationSize; } }
+    public int Orientation { get { return _orientation; } }
+
+    public bool CanPlace { get { return _canPlace;} }
+    public bool ConstraintValid { get { return _scriptConstraint.IsValide } }
+
 
     private void OnValidate()
     {
@@ -65,7 +71,7 @@ public class ItemBehaviour : MonoBehaviour
         TileSystem.Instance.ObjectOnScene(false);
 
         _rotationSize = OwnItem.size;
-        _rotation = 0;
+        _orientation = 0;
 
         _spriteRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
@@ -97,13 +103,12 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetLineRenderer(int sizeX, int sizeY, Vector2 pos = new Vector2())
     {
         for (int i = 0; i < 5; i++) _lineRender.SetPosition(i, _patternPosition[i]);
-        //Vector2 posW = TileSystem.Instance.GridToWorld((int)pos.x, (int)pos.y);
 
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
             {
-                Vector2 worldPos = TileSystem.Instance.GridToWorld(x/* + (int)posW.x*/, y/* + (int)posW.y*/);
+                Vector2 worldPos = TileSystem.Instance.GridToWorld(x, y);
 
                 if (_patternPosition[0].y + worldPos.y > _lineRender.GetPosition(0).y)
                 {
@@ -153,13 +158,13 @@ public class ItemBehaviour : MonoBehaviour
 
     private void SpriteAppearance()
     {
-        if (_rotation == 90 || _rotation == 270)
+        if (_orientation == 90 || _orientation == 270)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
         if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
         {
-            if (_rotation == 0 || _rotation == 90)
+            if (_orientation == 0 || _orientation == 90)
             {
                 _spriteRender.sprite = OwnItem.spriteOneFixed;
             }
@@ -183,9 +188,12 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (CurrentState == GMStatic.State.Waiting || CurrentState == GMStatic.State.Moving)
         {
-            _rotation = (int)Mathf.Repeat(_rotation + 90, 360); // 0 - 90 - 180 - 270 // 0 at spawn //
+            int limit = 180;
+            if (OwnItem.fullRotation) limit += 180;
 
-            if (_rotation == 90 || _rotation == 270)
+            _orientation = (int)Mathf.Repeat(_orientation + 90, limit); // 0 - 90 - 180 - 270 // 0 at spawn //
+
+            if (_orientation == 90 || _orientation == 270)
             {
                 _rotationSize = new Vector3Int(OwnItem.size.y, OwnItem.size.x, OwnItem.size.z);
             }
