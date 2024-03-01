@@ -215,6 +215,5 @@ public class GameplayScript : MonoBehaviour
         yield return new WaitForSeconds(duration);
         print("hold");
         _ishold = true;
-        _islongPress = false;
     }
 }
