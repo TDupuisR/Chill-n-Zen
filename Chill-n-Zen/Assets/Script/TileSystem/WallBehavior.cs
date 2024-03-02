@@ -1,5 +1,3 @@
-using GameManagerSpace;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +5,8 @@ public class WallBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject _leftWall;
     [SerializeField] private GameObject _rightWall;
+    [SerializeField] private Transform _wallParent;
+    
     private List<GameObject> _wallList = new List<GameObject>();
     private Vector2 _posToInstanciateWall;
     private Vector2 _noTile;
@@ -23,27 +23,24 @@ public class WallBehavior : MonoBehaviour
 
         ClearWallList();
         DistanceBetweenTile();
-        for (int i  = 0; i<TileSystem.Instance.TilesList.Count; i++) 
+        for (int i = 0; i < TileSystem.Instance.TilesList.Count; i++)
         {
             _posToInstanciateWall = CanInstantiateWall(TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).x, TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).y);
             if (_posToInstanciateWall.x == 1)
             {
-                _posWall =  TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
-                GameObject wall = Instantiate(_rightWall,_posWall,Quaternion.identity);
+                _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
+                GameObject wall = Instantiate(_rightWall, _posWall, Quaternion.identity);
+                wall.transform.parent = _wallParent;
                 _wallList.Add(wall);
             }
-            if(_posToInstanciateWall.y == 1)
+            if (_posToInstanciateWall.y == 1)
             {
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorLeft;
                 GameObject wall = Instantiate(_leftWall, _posWall, Quaternion.identity);
+                wall.transform.parent = _wallParent;
                 _wallList.Add(wall);
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        Debug.Log(_wallList.Count);
     }
 
     void DistanceBetweenTile()
@@ -83,5 +80,4 @@ public class WallBehavior : MonoBehaviour
         }
         _wallList.Clear();
     }
-
 }
