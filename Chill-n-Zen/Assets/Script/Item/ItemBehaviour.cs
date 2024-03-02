@@ -61,10 +61,16 @@ public class ItemBehaviour : MonoBehaviour
 
     public void Initialize(Item item)
     {
+        if (item == null)
+        {
+            Debug.LogError(" (error : 4x2) No Item assigned before initialisation ", gameObject);
+            Remove(); return;
+        }
+
         _ownItem = item;
         if (_ownItem.size.x <= 0 || _ownItem.size.y <= 0 || _ownItem.size.z <= -1)
         {
-            Debug.LogError(" (error : 4x2) Size of the item out of bound (null or negative values) ", gameObject);
+            Debug.LogError(" (error : 4x3) Size of the item out of bound (null or negative values) ", gameObject);
             Remove(); return;
         }
 
@@ -157,6 +163,7 @@ public class ItemBehaviour : MonoBehaviour
         else LineColor(Color.green);
 
         _constraint.ResetConstraint(transform.position);
+        _itemUI.TextIssues(!ConstraintValid, false);
     }
 
     private void SpriteAppearance()
@@ -217,6 +224,7 @@ public class ItemBehaviour : MonoBehaviour
 
             CurrentState = GMStatic.State.Placed;
             _lineRender.enabled = false;
+            _constraint.RenderLine(false);
 
             _itemUI.ActivateUI(false);
 
@@ -232,6 +240,7 @@ public class ItemBehaviour : MonoBehaviour
 
             CurrentState = GMStatic.State.Waiting;
             _lineRender.enabled = true;
+            _constraint.RenderLine(true);
 
             _itemUI.SetupLeftButton();
         }

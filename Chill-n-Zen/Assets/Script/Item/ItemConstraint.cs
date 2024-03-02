@@ -50,6 +50,10 @@ public class ItemConstraint : MonoBehaviour
         _lineRender.startColor = color;
         _lineRender.endColor = color;
     }
+    public void RenderLine(bool state)
+    {
+        _lineRender.enabled = state;
+    }
 
     public void ResetConstraint(Vector2 worldPos)
     {

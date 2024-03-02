@@ -353,13 +353,12 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Positions:
   - {x: -0.02, y: 0.5, z: 0}
   - {x: 1, y: 0, z: 0}
   - {x: 0, y: -0.5, z: 0}
   - {x: -1, y: 0, z: 0}
-  - {x: 0.02, y: 0.5, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -417,7 +416,7 @@ LineRenderer:
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
-  m_Loop: 0
+  m_Loop: 1
   m_ApplyActiveColorSpace: 1
 --- !u!114 &3412781312042844409
 MonoBehaviour:
@@ -794,7 +793,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -150, y: 0, z: -150, w: 0}
+  m_margin: {x: -150, y: -47.504395, z: -150, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1055,6 +1054,9 @@ MonoBehaviour:
   _moveButton: {fileID: 3691042710416333956}
   _deleteButton: {fileID: 7326790598854564378}
   _spacingFactor: 100
+  _text: {fileID: 1143600497162394103}
+  _obstructionText: "Acc\xE8s osbtru\xE9!"
+  _noaccessText: Aucun passage vers la porte!
 --- !u!1 &7124475511059957127
 GameObject:
   m_ObjectHideFlags: 0

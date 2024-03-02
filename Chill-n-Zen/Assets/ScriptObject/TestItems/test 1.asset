@@ -19,7 +19,7 @@ MonoBehaviour:
   room: 2
   type: 1
   style: 1
-  listUsage: 
+  listUsage: 0400000003000000
   constraint: 2
   doorAccess: 0
   proxiBonus: 0
@@ -27,5 +27,5 @@ MonoBehaviour:
   onBonus: 0
   onBonusList: 
   price: 5356
-  size: {x: 3, y: 2, z: 0}
-  fullRotation: 0
+  size: {x: 1, y: 2, z: 0}
+  fullRotation: 1

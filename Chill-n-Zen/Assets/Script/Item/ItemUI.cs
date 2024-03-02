@@ -1,4 +1,5 @@
 using GameManagerSpace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,11 @@ public class ItemUI : MonoBehaviour
     [SerializeField] Button _moveButton;
     [SerializeField] Button _deleteButton;
     [SerializeField] float _spacingFactor;
+
+    [Header("Warning Text")]
+    [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] string _obstructionText;
+    [SerializeField] string _noaccessText;
 
     private void Update()
     {
@@ -32,5 +38,20 @@ public class ItemUI : MonoBehaviour
         _validButton.interactable = _item.CanPlace;
 
         _moveButton.gameObject.SetActive(_item.CurrentState != GMStatic.State.Waiting);
+    }
+
+    public void TextIssues(bool osbtruction, bool noaccess)
+    {
+        if (osbtruction && noaccess)
+            _text.text = _obstructionText + "\n" + _noaccessText;
+        else if (osbtruction)
+            _text.text = _obstructionText;
+        else if (noaccess)
+            _text.text = _noaccessText;
+        else
+        {
+            _text.text = "";
+            // Desactivé la boite de texte //
+        }
     }
 }
