@@ -63,7 +63,7 @@ public class TileBehaviour : MonoBehaviour
         _lineRender.enabled = state;
     }
 
-    public bool CheckIfAccessible(Item placing)
+    public bool CheckIfPlacable(Item placing)
     {
         bool res = true;
 
@@ -81,10 +81,38 @@ public class TileBehaviour : MonoBehaviour
 
         return res;
     }
+    public bool CheckIfAccessible(GMStatic.constraint constr)
+    {
+        bool res = true;
+
+        foreach (Item item in _presentItems)
+        {
+            if (
+                (item.type == GMStatic.tagType.Furniture) ||
+                (item.type == GMStatic.tagType.Object)
+                )
+            {
+                if (constr == GMStatic.constraint.Seat)
+                {
+                    foreach (GMStatic.tagUsage usage in item.listUsage)
+                    {
+                        if (usage == GMStatic.tagUsage.Table) { res = true; break; }
+                    }
+                    if (!res) break;
+                }
+                else
+                {
+                    res = false; break;
+                }
+            }
+        }
+
+        return res;
+    }
 
     public void PlaceItem(Item placing)
     {
-        if (CheckIfAccessible(placing))
+        if (CheckIfPlacable(placing))
         {
             _presentItems.Add(placing);
         }

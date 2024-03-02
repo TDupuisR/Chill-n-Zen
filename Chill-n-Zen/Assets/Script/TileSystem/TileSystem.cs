@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
-using System;
+using GameManagerSpace;
 
 public class TileSystem : MonoBehaviour
 {
@@ -88,7 +88,7 @@ public class TileSystem : MonoBehaviour
             _tilesList.Add(child.gameObject);
         }
     }
-    private int CheckTileExist(int x, int y) // Return index in TileList, or -1 if null //
+    public int CheckTileExist(int x, int y) // Return index in TileList, or -1 if null //
     {
         int res = -1;
 
@@ -180,7 +180,7 @@ public class TileSystem : MonoBehaviour
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    res = script.CheckIfAccessible(item.OwnItem);
+                    res = script.CheckIfPlacable(item.OwnItem);
                 }
                 else res = false;
 
@@ -192,7 +192,22 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    
+    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr)
+    {
+        bool res = false;
+
+        int index = CheckTileExist(x, y);
+
+        if (index > -1)
+        {
+            TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+            res = script.CheckIfAccessible(constr);
+        }
+        else res = false;
+
+        return res;
+    }
+
     // Object List Gestion //
     public void ObjectOnScene(bool status)
     {
