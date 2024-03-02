@@ -13,46 +13,57 @@ public class WallBehavior : MonoBehaviour
     private Vector3 _posWall;
     private Vector3 _vectorRight;
     private Vector3 _vectorLeft;
+    private int _posGridX;
+    private int _posGridY;
 
 
-    public Vector2 Rotate(Vector2 v, float delta)
+
+    public void InstantiateWall()
     {
-        return new Vector2(
-            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
-            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
-        );
-    }
 
-        public void InstantiateWall()
-    {
-        _vectorRight = (TileSystem.Instance.TilesList[1].transform.position- TileSystem.Instance.TilesList[0].transform.position)/2;
-        _vectorLeft = Quaternion.Euler(0f, 0f, -90) * _vectorRight;
+        ClearWallList();
+        DistanceBetweenTile();
         for (int i  = 0; i<TileSystem.Instance.TilesList.Count; i++) 
         {
-            Debug.Log("inin");
             _posToInstanciateWall = CanInstantiateWall(TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).x, TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).y);
             if (_posToInstanciateWall.x == 1)
             {
-                Debug.Log("in");
                 _posWall =  TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
-                Instantiate(_rightWall,_posWall,Quaternion.identity);
+                GameObject wall = Instantiate(_rightWall,_posWall,Quaternion.identity);
+                _wallList.Add(wall);
             }
             if(_posToInstanciateWall.y == 1)
             {
-                Debug.Log("in");
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorLeft;
-                Instantiate(_leftWall, _posWall, Quaternion.identity);
+                GameObject wall = Instantiate(_leftWall, _posWall, Quaternion.identity);
+                _wallList.Add(wall);
             }
         }
     }
 
-    private void DeleteWall()
+    private void FixedUpdate()
     {
-        
+        Debug.Log(_wallList.Count);
+    }
+
+    void DistanceBetweenTile()
+    {
+        for (int i = 0; i < TileSystem.Instance.TilesList.Count; i++)
+        {
+            if (CanInstantiateWall(TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).x, TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).y) == new Vector2(0, 0))
+            {
+                _posGridX = TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).x;
+                _posGridY = TileSystem.Instance.WorldToGrid(TileSystem.Instance.TilesList[i].transform.position).y;
+                _vectorLeft = (TileSystem.Instance.TilesList[TileSystem.Instance.CheckTileExist(_posGridX, _posGridY + 1)].transform.position - TileSystem.Instance.TilesList[i].transform.position) / 2;
+                _vectorRight = (TileSystem.Instance.TilesList[TileSystem.Instance.CheckTileExist(_posGridX + 1, _posGridY)].transform.position - TileSystem.Instance.TilesList[i].transform.position) / 2;
+                return;
+            }
+        }
     }
 
     private Vector2 CanInstantiateWall(int posGridX,int posGridY)
     {
+        _noTile = new Vector2(0,0);
         if(TileSystem.Instance.CheckTileExist(posGridX + 1, posGridY) == -1)
         {
             _noTile.x = 1;
@@ -63,4 +74,14 @@ public class WallBehavior : MonoBehaviour
         }
         return _noTile;
     }
+
+    private void ClearWallList()
+    {
+        for (int i = 0; i< _wallList.Count; i++)
+        {
+            Destroy(_wallList[i]);
+        }
+        _wallList.Clear();
+    }
+
 }

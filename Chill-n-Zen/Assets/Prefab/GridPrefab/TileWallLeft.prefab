@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728396011679951795}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.0056722527, w: 0.99998397}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0056722527, w: 0.99998397}
+  m_LocalPosition: {x: 0.07, y: 1.06, z: 0}
+  m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6302161363549958501}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.65}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.65}
 --- !u!212 &1031674533591299055
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6302161363549958501}
-  - component: {fileID: 877922803759428154}
   m_Layer: 0
   m_Name: TileWallLeft
   m_TagString: Untagged
@@ -117,15 +116,3 @@ Transform:
   - {fileID: 2472563294443781465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &877922803759428154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312572043055041785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682a8530c3b6f014494aacda36e55e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
