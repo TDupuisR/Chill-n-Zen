@@ -17,6 +17,7 @@ public class DisplayFurniture : MonoBehaviour
 
     [Header("Outside References")]
     [SerializeField] Transform _objectParent;
+    [SerializeField] FurnitureReadData _detailWindow;
 
     //[SerializeField] int _furniturePerRow;
     //[SerializeField] float _spaceBTWRows;
@@ -56,6 +57,11 @@ public class DisplayFurniture : MonoBehaviour
 
     private void Start()
     {
+        if (_objectParent == null)
+        {
+            Debug.LogError("No _objectParent in DisplayFurniture");
+        }
+
         DisplayCollection(GameManager.libraryItems.listItems);
     }
 
@@ -81,6 +87,7 @@ public class DisplayFurniture : MonoBehaviour
             newItem.transform.localPosition = currentPosition;
             newItem.GetComponent<FurnitureReadData>().Furniture = item;
             newItem.GetComponent<ItemSpawner>().ObjectParent = _objectParent;
+            newItem.GetComponent<ItemSpawner>().DetailWindow = _detailWindow;
             _itemsCreated.Add(newItem);
             numberOfItems++;
 

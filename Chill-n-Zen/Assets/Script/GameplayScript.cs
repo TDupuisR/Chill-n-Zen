@@ -18,59 +18,42 @@ public class GameplayScript : MonoBehaviour
 
     [Header("Swipe Fields")]
     [SerializeField] bool _invertDirection;
+    [SerializeField] int _numberValidSwipe;
     [SerializeField] float _swipeSpeed;
     [SerializeField] float _swipeMaxSpeed;
     [SerializeField] float _swipeDeceleration;
     Vector2 _swipeLastPosition;
     Vector3 _swipeCurrentVelocity;
+    bool _isSafeSwipe;
     Coroutine _swipeCoroutine;
 
     [Header("Hold Fields")]
+    [SerializeField] float _durationToLongPress;
     [SerializeField] float _durationToHold;
+    bool _islongPress = false;
     bool _ishold = false;
     bool _isPrimaryPressed = false;
     bool _isSecondaryPressed = false;
+
+    Coroutine _longPressCoroutine;
     Coroutine _holdCoroutine;
 
-    public bool IsPrimaryPressed
-    {
-        get => _isPrimaryPressed;
-    }
-    public bool IsSecondaryPressed
-    {
-        get => _isSecondaryPressed;
-    }
+    public bool IsPrimaryPressed { get => _isPrimaryPressed; }
+    public bool IsSecondaryPressed { get => _isSecondaryPressed; }
+    public bool IsHold { get => _ishold; }
+    public float SwipeDeceleration { get => _swipeDeceleration; }
+    public bool IsSafeSwipe { get => _isSafeSwipe; }
+    public bool IsLongPress { get => _islongPress; }
+    
+    public Vector2 PrimaryPosition { get => _inputPrimaryPosition.action.ReadValue<Vector2>(); }
+    public Vector2 SecondaryPosition { get => _inputSecondaryPosition.action.ReadValue<Vector2>(); }
+    public Vector2 MouseWorldPosition { get => Camera.main.ScreenToWorldPoint(PrimaryPosition); }
 
-    public bool IsHold
-    {
-        get => _ishold;
-    }
-
-    public float SwipeDeceleration
-    {
-        get => _swipeDeceleration;
-    }
-
-    public Vector2 PrimaryPosition
-    {
-        get => _inputPrimaryPosition.action.ReadValue<Vector2>();
-    }
-
-    public Vector2 SecondaryPosition
-    {
-        get => _inputSecondaryPosition.action.ReadValue<Vector2>();
-    }
-
-    public Vector2 MouseWorldPosition
-    {
-        get => Camera.main.ScreenToWorldPoint(PrimaryPosition);
-    }
-
-    public static Action<Vector2> _onStartPrimaryTouch;
-    public static Action<Vector2> _onEndSecondaryTouch;
-    public static Action<Vector2> _onStartSecondaryTouch;
-    public static Action<Vector2> _onEndPrimaryTouch;
-    public static Action<Vector2> _onSwipe;
+    public static Action<Vector2> onStartPrimaryTouch;
+    public static Action<Vector2> onEndSecondaryTouch;
+    public static Action<Vector2> onStartSecondaryTouch;
+    public static Action<Vector2> onEndPrimaryTouch;
+    public static Action<Vector2> onSwipe;
 
     private void Awake()
     {
@@ -87,20 +70,25 @@ public class GameplayScript : MonoBehaviour
 
         if (_swipeSpeed <= 0)
         {
-            Debug.LogWarning("La vitesse du swipe ne peut pas être négative ou nulle !");
+            Debug.LogWarning("La vitesse du swipe ne peut pas ï¿½tre nï¿½gative ou nulle !");
             _swipeSpeed = 1;
         }
 
         if (_swipeMaxSpeed <= 0)
         {
-            Debug.LogWarning("swipeMaxSpeed ne peut pas être négative ou nulle !");
+            Debug.LogWarning("swipeMaxSpeed ne peut pas ï¿½tre nï¿½gative ou nulle !");
             _swipeMaxSpeed = 1;
         }
 
         if (_swipeDeceleration <= 0)
         {
-            Debug.LogWarning("swipeDeceleration ne peut pas être négative ou nulle !");
+            Debug.LogWarning("swipeDeceleration ne peut pas ï¿½tre nï¿½gative ou nulle !");
             _swipeDeceleration = 1;
+        }
+
+        if(_durationToLongPress > _durationToHold)
+        {
+            Debug.LogWarning("duration to long Press can't be more than the duration to Hold !");
         }
     }
 
@@ -127,9 +115,12 @@ public class GameplayScript : MonoBehaviour
 
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
-        _onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+        onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+
         //Start Swipe
         _swipeCoroutine = StartCoroutine(PerformSwipeRoutine());
+        //Start LongPress & hold coroutine
+        _longPressCoroutine = StartCoroutine(LongPressRoutine(_durationToLongPress));
         _holdCoroutine = StartCoroutine(HoldRoutine(_durationToHold));
 
         _isPrimaryPressed = true;
@@ -137,7 +128,7 @@ public class GameplayScript : MonoBehaviour
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
     {
-        _onEndPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
+        onEndPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());
 
         //End Swipe
         if ( _swipeCoroutine != null)
@@ -146,6 +137,7 @@ public class GameplayScript : MonoBehaviour
         }
 
         //End hold
+        StopLongPressCheck();
         StopHoldCheck();
 
         _isPrimaryPressed = false;
@@ -153,7 +145,7 @@ public class GameplayScript : MonoBehaviour
 
     private void StartSecondaryTouch(InputAction.CallbackContext context)
     {
-        _onStartSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
+        onStartSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
         
         //End single touch hold
         StopHoldCheck();
@@ -163,14 +155,15 @@ public class GameplayScript : MonoBehaviour
 
     private void EndSecondaryTouch(InputAction.CallbackContext context)
     {
-        _onEndSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
+        onEndSecondaryTouch?.Invoke(_inputSecondaryPosition.action.ReadValue<Vector2>());
         _isSecondaryPressed = false;
     }
 
     IEnumerator PerformSwipeRoutine()
     {
         _swipeLastPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
-            
+        int _deltaValid = 0;
+
         while (true)
         {
             Vector2 currentPosition = _inputPrimaryPosition.action.ReadValue<Vector2>();
@@ -179,6 +172,9 @@ public class GameplayScript : MonoBehaviour
 
             if (force > 0)
             {
+                _deltaValid++;
+                _isSafeSwipe = (_deltaValid > _numberValidSwipe);
+
                 Vector3 direction = (_invertDirection ? -1 : 1) * delta.normalized;
                 direction.z = 0;
 
@@ -187,9 +183,13 @@ public class GameplayScript : MonoBehaviour
                 _swipeCurrentVelocity = _swipeCurrentVelocity.normalized * Mathf.Clamp(_swipeCurrentVelocity.magnitude, -_swipeMaxSpeed, _swipeMaxSpeed);
 
                 //Apply velocity to position
-                _onSwipe?.Invoke(_swipeCurrentVelocity);
+                onSwipe?.Invoke(_swipeCurrentVelocity);
 
                 _swipeLastPosition = currentPosition;
+            }
+            else
+            {
+                _deltaValid = 0;
             }
 
             yield return new WaitForFixedUpdate();
@@ -197,8 +197,23 @@ public class GameplayScript : MonoBehaviour
     }
 
     /*
-     Hold
+     Hold & Long Press
      */
+
+    void StopLongPressCheck()
+    {
+        _islongPress = false;
+        if (_longPressCoroutine != null)
+        {
+            StopCoroutine(_longPressCoroutine);
+        }
+    }
+    IEnumerator LongPressRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        print("longpress");
+        _islongPress = true;
+    }
     void StopHoldCheck()
     {
         _ishold = false;

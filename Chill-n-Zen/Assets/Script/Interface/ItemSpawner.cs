@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -10,8 +11,9 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Coroutine _waitHoldRoutine;
 
     public Transform ObjectParent { get; set; }
+    public FurnitureReadData DetailWindow { get; set; }
 
-    public static Action _onItemSelected;
+    public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -33,13 +35,14 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         bool checking = true;
         while (checking)
         {
-            if (GameplayScript.Instance.IsHold)
+            if (GameplayScript.Instance.IsHold && !DisplayFurnitureScrollbar.IsScrolling)
             {
                 GameObject spawnedItem = Instantiate(_itemPrefab, ObjectParent);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
 
-                _onItemSelected?.Invoke();
+                DetailWindow.Furniture = _data.Furniture;
+                onItemSelected?.Invoke();
                 checking = false;
             }
             yield return new WaitForEndOfFrame();

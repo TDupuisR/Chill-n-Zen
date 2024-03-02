@@ -2,11 +2,13 @@ using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject _pauseObject;
+    [SerializeField] GameObject _restartWindow;
     [SerializeField] List<GameObject> _buttonToHide;
 
     public void DisplayPause(bool activate)
@@ -19,6 +21,9 @@ public class PauseManager : MonoBehaviour
 
         _pauseObject.SetActive(activate);
     }
+
+    public void ShowRestartPopUp(bool active) { _restartWindow.SetActive(active); }
+    public void RestartLevel() => GameManager.Instance.ChangeScene(SceneManager.GetActiveScene().buildIndex);
 
     public void BackToMainMenu()
     {

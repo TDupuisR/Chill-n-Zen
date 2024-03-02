@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIGetCam : MonoBehaviour
 {
     [SerializeField] CameraControls _cam;
 
-    public CameraControls cam
-    {
-        get => _cam;
-    }
+    public CameraControls Cam { get => _cam; }
 
     private void Awake()
     {

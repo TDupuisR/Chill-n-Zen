@@ -12,10 +12,12 @@ namespace GameManagerSpace
         public static LibraryItem libraryItems;
         public static AudioManager audioManager;
         public static SaveData saveData;
+        public static BudgetManager budgetManager;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
+        [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
 
         private void OnValidate()
@@ -25,7 +27,9 @@ namespace GameManagerSpace
             if (_loadingScreen == null)
                 Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
             if (_saveData == null)
-                Debug.LogError(" (error : 1x2) No save data assigned ", _saveData);
+                Debug.LogError(" (error : 1x3) No save data assigned ", _saveData);
+            if (_budgetManager == null)
+                Debug.LogError(" (error : 1x4) No budget manager assigned ", _budgetManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -44,6 +48,7 @@ namespace GameManagerSpace
 
             libraryItems = _libraryItems;
             saveData = _saveData;
+            budgetManager = _budgetManager;
         }
 
         public void ChangeScene(int sceneIndex)
@@ -51,7 +56,7 @@ namespace GameManagerSpace
             if (_loadingScreen != null) _loadingScreen.SetActive(true);
             else
             {
-                Debug.LogError(" (error : 1x2) No loading screen assigned ", _loadingScreen);
+                Debug.LogError(" (error : 1x5) No loading screen assigned ", _loadingScreen);
             }
 
             StartCoroutine(AsyncLoadScnene(sceneIndex));
@@ -60,14 +65,14 @@ namespace GameManagerSpace
         {
             yield return null;
 
-            AsyncOperation LoadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
-            LoadSceneOperation.allowSceneActivation = false;
+            AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
+            loadSceneOperation.allowSceneActivation = false;
 
-            while (!LoadSceneOperation.isDone)
+            while (!loadSceneOperation.isDone)
             {
-                if (LoadSceneOperation.progress >= 0.9f)
+                if (loadSceneOperation.progress >= 0.9f)
                 {
-                    LoadSceneOperation.allowSceneActivation = true;
+                    loadSceneOperation.allowSceneActivation = true;
                 }
 
                 yield return new WaitForFixedUpdate();

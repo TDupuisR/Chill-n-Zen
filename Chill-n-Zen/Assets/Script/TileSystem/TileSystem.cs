@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
-using System;
+using GameManagerSpace;
 
 public class TileSystem : MonoBehaviour
 {
@@ -34,6 +34,11 @@ public class TileSystem : MonoBehaviour
     public delegate void OnShowGridSpecifiedDelegate(bool state);
     public static event OnShowGridSpecifiedDelegate OnShowGridSpecified;
 
+    public delegate void OnItemAddedDelegate(Item item);
+    public static event OnItemAddedDelegate OnItemAdded;
+    public delegate void OnItemRemovedDelegate(Item item);
+    public static event OnItemRemovedDelegate OnItemRemoved;
+
     private void OnValidate()
     {
         if (_isoGrid != null)
@@ -62,6 +67,8 @@ public class TileSystem : MonoBehaviour
         }
 
         IsSceneVacant = true;
+
+        GenerateGrid(TESTStartPos, TESTGridSize); // TEST PROTO ONLY //
     }
 
     public Vector2Int WorldToGrid(Vector2 position)
@@ -177,7 +184,7 @@ public class TileSystem : MonoBehaviour
                 if (index > -1)
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    res = script.CheckIfAccessible(item.OwnItem);
+                    res = script.CheckIfPlacable(item.OwnItem);
                 }
                 else res = false;
 
@@ -189,7 +196,22 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    
+    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr)
+    {
+        bool res = false;
+
+        int index = CheckTileExist(x, y);
+
+        if (index > -1)
+        {
+            TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
+            res = script.CheckIfAccessible(constr);
+        }
+        else res = false;
+
+        return res;
+    }
+
     // Object List Gestion //
     public void ObjectOnScene(bool status)
     {
@@ -218,6 +240,7 @@ public class TileSystem : MonoBehaviour
                     {
                         _objectList.Add(obj);
                         _itemList.Add(item);
+                        OnItemAdded?.Invoke(item.OwnItem);
                     }
                     break;
                 }
@@ -227,6 +250,7 @@ public class TileSystem : MonoBehaviour
                     {
                         _objectList.Remove(obj);
                         _itemList.Remove(item);
+                        OnItemRemoved?.Invoke(item.OwnItem);
                     }
                     break;
                 }
@@ -251,6 +275,7 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
+
     }
     public void RemoveItem(GameObject obj, int x, int y)
     {
@@ -288,6 +313,7 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
+
     }
 
     [Button]

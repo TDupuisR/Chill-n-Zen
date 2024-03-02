@@ -10,23 +10,13 @@ public class SliderGradient : MonoBehaviour
     [SerializeField] Image _sliderImg;
     [SerializeField] Gradient _sliderGradient;
 
-    public float Progression
-    {
-        get => Progression;
-        set
-        {
-            UpdateSlider(value);
-        }
-    }
-
     private void Awake()
     {
         _slider.interactable = false;
     }
 
-    void UpdateSlider(float value)
+    public void UpdateSlider()
     {
-        _slider.value = value;
-        _sliderImg.color = _sliderGradient.Evaluate(value);
+        _sliderImg.color = _sliderGradient.Evaluate(_slider.normalizedValue);
     }
 }

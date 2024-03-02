@@ -7,6 +7,7 @@ public class WindowScroll : MonoBehaviour
 {
     [SerializeField] RectTransform _backgroundTransform;
     [SerializeField] AnimationCurve _animationCurve;
+    [SerializeField] Button _buttonToDisable; 
     [SerializeField] float _animationDuration;
     [SerializeField] float _boundaryActionZone; //For 1280x720 screen
     [SerializeField] bool _isVerticalScroll; 
@@ -48,6 +49,9 @@ public class WindowScroll : MonoBehaviour
         float timeElapsed = 0.0f;
         Vector2 finalPosition;
 
+        if(_buttonToDisable != null)
+            _buttonToDisable.interactable = false;
+
         if (isVertical)
         {
             finalPosition = new Vector2(_backgroundStartPosition.x, -_backgroundStartPosition.y);
@@ -64,25 +68,29 @@ public class WindowScroll : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+
         _displayed = !_displayed;
         _backgroundStartPosition = finalPosition;
+
+        if (_buttonToDisable != null)
+            _buttonToDisable.interactable = true;
     }
 
-    public void UpdateCamActionZoneDown(UIGetCam _cam)
+    public void UpdateCamActionZoneDown(UIGetCam cam)
     {
-        _cam.cam.ChangeDownLeftCamActionZone(new Vector2(0.0f, GiveAdapativeBoundaryActionZoneY())); 
+        cam.Cam.ChangeDownLeftCamActionZone(new Vector2(0.0f, GiveAdapativeBoundaryActionZoneY())); 
     }
-    public void UpdateCamActionZoneUp(UIGetCam _cam)
+    public void UpdateCamActionZoneUp(UIGetCam cam)
     {
-        _cam.cam.ChangeUpRightCamActionZone(new Vector2(Screen.width, GiveAdapativeBoundaryActionZoneY()));
+        cam.Cam.ChangeUpRightCamActionZone(new Vector2(Screen.width, GiveAdapativeBoundaryActionZoneY()));
     }
-    public void UpdateCamActionZoneLeft(UIGetCam _cam)
+    public void UpdateCamActionZoneLeft(UIGetCam cam)
     {
-        _cam.cam.ChangeDownLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f));
+        cam.Cam.ChangeDownLeftCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), 0.0f));
     }
-    public void UpdateCamActionZoneRight(UIGetCam _cam)
+    public void UpdateCamActionZoneRight(UIGetCam cam)
     {
-        _cam.cam.ChangeUpRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
+        cam.Cam.ChangeUpRightCamActionZone(new Vector2(GiveAdapativeBoundaryActionZoneX(), Screen.height));
     }
     float GiveAdapativeBoundaryActionZoneX() => _boundaryActionZone * Screen.width / 1280.0f;
     float GiveAdapativeBoundaryActionZoneY() => _boundaryActionZone * Screen.height / 720.0f;

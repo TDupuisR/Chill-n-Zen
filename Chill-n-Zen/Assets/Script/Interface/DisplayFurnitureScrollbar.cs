@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using System;
 
 public class DisplayFurnitureScrollbar : MonoBehaviour
@@ -16,7 +15,7 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
     float _currentNumberItems;
     float _parentXStartingPosition;
 
-    public static Action _onHideFurnitureScrollbar;
+    public static bool IsScrolling { get ; private set; }
 
     private void Awake()
     {
@@ -25,12 +24,14 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     private void OnEnable()
     {
-        GameplayScript._onSwipe += swipeScroll;
+        GameplayScript.onSwipe += swipeScroll;
+        GameplayScript.onEndPrimaryTouch += stopScrolling;
     }
 
     private void OnDisable()
     {
-        GameplayScript._onSwipe -= swipeScroll;
+        GameplayScript.onSwipe -= swipeScroll;
+        GameplayScript.onEndPrimaryTouch -= stopScrolling;
     }
 
     private void OnValidate()
@@ -68,18 +69,30 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
             _parentObject.position.y);
             _parentObject.position = newParentPosition;
         }
-        else
-        {
-            _onHideFurnitureScrollbar?.Invoke();
-        }
     }
 
     private void swipeScroll(Vector2 vector)
     {
-        float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + (vector.x * _scrollSensitivity));
-        _scrollbar.value = newScrollBarValue;
+        if (GameplayScript.Instance.IsSafeSwipe)
+        {
+            IsScrolling = true;
+            float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((vector.x * _scrollSensitivity) / _currentNumberItems));
+            _scrollbar.value = newScrollBarValue;
+        }
     }
 
+    private void stopScrolling(Vector2 vector)
+    {
+        if (IsScrolling)
+        {
+            IsScrolling = false;
+        }
+    }
+
+    public void ResetScroll()
+    {
+        _scrollbar.value = 0;
+    }
 
     bool isInScrollZone()
     {

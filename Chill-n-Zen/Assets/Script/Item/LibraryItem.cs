@@ -8,10 +8,7 @@ public class LibraryItem : MonoBehaviour
 {
     [SerializeField] List<Item> _listItems;
     
-    public List<Item> listItems
-    {
-        get => _listItems;
-    }
+    public List<Item> listItems { get => _listItems; }
 
     public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
     {
