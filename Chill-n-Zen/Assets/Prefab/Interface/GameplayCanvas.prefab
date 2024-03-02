@@ -4004,6 +4004,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2713989953486175979}
+        m_TargetAssemblyTypeName: FurnitureWindowManager, Assembly-CSharp
+        m_MethodName: DisplayDetailWindow
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4008068633080094566}
         m_TargetAssemblyTypeName: WindowScroll, Assembly-CSharp
         m_MethodName: UpdateCamActionZoneLeft
@@ -7457,7 +7469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -111.183105, y: -33.700012}
+  m_AnchoredPosition: {x: -111.183105, y: -33.69995}
   m_SizeDelta: {x: 222.3732, y: 68.105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6556959596411312780
@@ -9002,7 +9014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.75476, y: -50.386475}
+  m_AnchoredPosition: {x: 50.754883, y: -50.386475}
   m_SizeDelta: {x: 100.7729, y: 100.7729}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8228580192735542813
@@ -9682,6 +9694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameplayObjects: {fileID: 796100704984581548}
+  _button: {fileID: 6388719874429882442}
 --- !u!1 &7854028369938791516
 GameObject:
   m_ObjectHideFlags: 0

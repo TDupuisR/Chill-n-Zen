@@ -13,6 +13,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Transform ObjectParent { get; set; }
     public FurnitureReadData DetailWindow { get; set; }
 
+    public static Action onItemTouched;
     public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -20,6 +21,8 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileSystem.Instance.IsSceneVacant)
         {
             _waitHoldRoutine = StartCoroutine(WaitForHold());
+            onItemTouched?.Invoke();
+            DetailWindow.Furniture = _data.Furniture;
         }
     }
     public void OnPointerUp(PointerEventData eventData)
@@ -41,7 +44,6 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
                 TileSystem.Instance.ObjectOnScene(false);
 
-                DetailWindow.Furniture = _data.Furniture;
                 onItemSelected?.Invoke();
                 checking = false;
             }

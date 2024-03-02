@@ -16,6 +16,8 @@ public class WindowScroll : MonoBehaviour
     Vector3 _backgroundStartRectTransformPosition;
     Coroutine _animationRoutine;
 
+    public bool Displayed { get => _displayed; }
+
     private void Awake()
     {
         _backgroundStartPosition = _backgroundTransform.anchoredPosition;
