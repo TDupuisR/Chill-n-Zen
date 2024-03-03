@@ -12,12 +12,16 @@ public class TileSystem : MonoBehaviour
     [SerializeField] GameObject _prefabTile;
     [SerializeField] Transform _floorParent;
     [SerializeField] Transform _objectParent;
+    [SerializeField] GameObject _doorPrefab;
 
     List<GameObject> _tilesList = new List<GameObject>();
     List<GameObject> _objectList = new List<GameObject>();
     List<ItemBehaviour> _itemList = new List<ItemBehaviour>();
-    enum objAction { Add, Remove }
 
+    List<Vector2Int> _nextPF = new List<Vector2Int>();
+    List<Vector2Int> _donePF = new List<Vector2Int>();
+
+    enum objAction { Add, Remove }
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
 
@@ -166,6 +170,10 @@ public class TileSystem : MonoBehaviour
 
         GetGridTilesList();
     }
+    [Button] public void ShowGrid()
+    {
+        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+    }
 
     public bool CheckForPlacing(ItemBehaviour item, int x, int y)
     {
@@ -192,7 +200,7 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr)
+    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr = GMStatic.constraint.None)
     {
         bool res = false;
 
@@ -203,7 +211,6 @@ public class TileSystem : MonoBehaviour
             TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
             res = script.CheckIfAccessible(constr);
         }
-        else res = false;
 
         return res;
     }
@@ -312,10 +319,47 @@ public class TileSystem : MonoBehaviour
 
     }
 
-    [Button]
-    public void ShowGrid()
+    // Path Finding //
+    public bool PathFinding(Vector2Int start, Vector2Int target) // Target must be door by default: "Vector2Int target = Door.pos" //
     {
-        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+        bool res = false;
+
+        _nextPF.Clear();
+        _donePF.Clear();
+
+        Vector2Int potential = start;
+
+        do
+        {
+            _nextPF.Remove(potential);
+            _donePF.Add(potential);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2Int decal = Vector2Int.zero;
+                if (i == 0) decal = new Vector2Int(1, 0);
+                else if (i == 1) decal = new Vector2Int(0, 1);
+                else if (i == 2) decal = new Vector2Int(-1, 0);
+                else if (i == 3) decal = new Vector2Int(0, -1);
+
+                if (CheckForAccessing(potential.x + decal.x, potential.y + decal.y) && !_donePF.Contains(potential + decal))
+                {
+                    _nextPF.Add(potential + decal);
+                }
+            }
+
+            float distance = -1;
+            foreach (Vector2Int next in _nextPF)
+            {
+                if (Vector2.Distance(next, target) > distance)
+                {
+                    potential = next;
+                    distance = Vector2.Distance(potential, target);
+                }
+            }
+        } while (_nextPF.Count > 0 || res == false);
+
+        return res;
     }
 
     #region // TEST DEBUG METHODS //

@@ -159,11 +159,12 @@ public class ItemBehaviour : MonoBehaviour
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
 
-        if (!_canPlace) LineColor(Color.red);
-        else LineColor(Color.green);
-
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, false);
+
+        if (!_canPlace) LineColor(Color.red);
+        else if (!ConstraintValid /*|| pathFinding*/) LineColor(new Color(255, 69, 0));
+        else LineColor(Color.green);
     }
 
     private void SpriteAppearance()
