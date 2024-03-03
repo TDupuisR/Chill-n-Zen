@@ -11,10 +11,12 @@ public class WindowScroll : MonoBehaviour
     [SerializeField] float _animationDuration;
     [SerializeField] float _boundaryActionZone; //For 1280x720 screen
     [SerializeField] bool _isVerticalScroll; 
+    [SerializeField] bool _displayed;
     Vector3 _backgroundStartPosition;
     Vector3 _backgroundStartRectTransformPosition;
     Coroutine _animationRoutine;
-    bool _displayed;
+
+    public bool Displayed { get => _displayed; }
 
     private void Awake()
     {

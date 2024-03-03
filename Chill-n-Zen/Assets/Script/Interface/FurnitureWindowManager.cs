@@ -11,40 +11,45 @@ public class FurnitureWindowManager : MonoBehaviour
     [SerializeField] WindowScroll _detailWindow;
     Coroutine _waitPlacementCoroutine;
 
+    public static Action wasItemPlaced;
+
     private void OnEnable()
     {
         ItemSpawner.onItemSelected += CloseWindow;
+        ItemSpawner.onItemTouched += AppearDetailWindow;
     }
 
     private void OnDisable()
     {
         ItemSpawner.onItemSelected -= CloseWindow;
+        ItemSpawner.onItemTouched -= AppearDetailWindow;
     }
 
     public void AppearWindow(bool scrollDetail = true)
     {
         _openButton.onClick.Invoke();
-        if(scrollDetail) 
-            _detailWindow.StartScroll();
+
+        //Hide detail panel
+        DisplayDetailWindow(false);
     }
 
     void CloseWindow()
     {
         _closeButton.onClick.Invoke();
-        _detailWindow.StartScroll();
         _waitPlacementCoroutine = StartCoroutine(waitForObjectPlacement());
+    }
+
+    public void AppearDetailWindow() => DisplayDetailWindow(true);
+    public void DisplayDetailWindow(bool display)
+    {
+        if(_detailWindow.Displayed == !display)
+            _detailWindow.StartScroll();
     }
 
     IEnumerator waitForObjectPlacement()
     {
         yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
+        wasItemPlaced?.Invoke();
         AppearWindow();
-        StartCoroutine(waitForTakingObject());
-    }
-
-    IEnumerator waitForTakingObject()
-    {
-        yield return new WaitWhile(() => TileSystem.Instance.IsSceneVacant);
-        CloseWindow();
     }
 }

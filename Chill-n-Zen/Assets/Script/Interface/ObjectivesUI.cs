@@ -6,21 +6,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ObjectivesUI : MonoBehaviour
-{    
+{
+    [Header("Objectives")]
     [SerializeField] List<Image> _primaryObjectivesImg;
     [SerializeField] List<TMP_Text> _primaryObjectivesText;
-
     [SerializeField] List<Image> _secondaryObjectivesImg;
     [SerializeField] List<TMP_Text> _secondaryObjectivesText;
-
     [SerializeField] Color _notCompletedColor;
     [SerializeField] Color _completedColor;
-
     [SerializeField] Sprite _uncheckedSprite;
     [SerializeField] Sprite _checkedSprite;
 
     int _numberOfPrimaryObjectves;
     int _numberOfSecondaryObjectves;
+
+    [Header("Finish Level")]
+    [SerializeField] Button _completeLevelButton;
 
     public int NumberOfPrimaryObjectives
     {
@@ -86,4 +87,17 @@ public class ObjectivesUI : MonoBehaviour
         _secondaryObjectivesText[index].color = isValid ? _completedColor : _notCompletedColor;
     }
 
+
+    /*
+     Complete Level Functions
+     */
+    public void UnlockButton()
+    {
+        _completeLevelButton.interactable = true;
+    }
+
+    public void CompleteLevel()
+    {
+        throw new System.NotImplementedException();
+    }
 }
