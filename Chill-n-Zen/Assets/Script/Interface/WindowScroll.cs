@@ -35,7 +35,8 @@ public class WindowScroll : MonoBehaviour
 
     public void StartScroll()
     {
-        _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
+        if(_animationRoutine == null)
+            _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
     }
 
     public void HideIfDisplayed()
