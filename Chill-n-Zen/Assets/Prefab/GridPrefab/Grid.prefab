@@ -159,6 +159,7 @@ MonoBehaviour:
   _prefabTile: {fileID: 5770614306598799299, guid: 70bc3d265d11fee48bad908d8e4a3eb2, type: 3}
   _floorParent: {fileID: 499982600793250933}
   _objectParent: {fileID: 9188687472254510819}
+  _door: {fileID: 7016822248453245846}
   TESTStartPos: {x: 0, y: 0}
   TESTGridSize: {x: 5, y: 5}
 --- !u!114 &9076786941033639496
