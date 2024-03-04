@@ -1859,7 +1859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 18.1, y: -109.6}
+  m_AnchoredPosition: {x: 16.1, y: -101.6}
   m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &458913218532883930
@@ -2144,7 +2144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 19.3, y: -185.6}
+  m_AnchoredPosition: {x: 14.2, y: -163.5}
   m_SizeDelta: {x: -60, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &812440574111966491
@@ -2478,7 +2478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 73232e6fd8fb12040ab336249479903b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c2511ae55f2fac468f633e3ba88b46e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3335,8 +3335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 27.4142, y: 3.3214}
-  m_SizeDelta: {x: -54.8284, y: -40.5212}
+  m_AnchoredPosition: {x: 0, y: 3.3214}
+  m_SizeDelta: {x: -100, y: -40.5212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2852544859546520326
 GameObject:
@@ -3447,7 +3447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: 0}
+  m_AnchoredPosition: {x: -75, y: 3}
   m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8404015790750885081
@@ -5129,7 +5129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
+  m_AnchoredPosition: {x: 150, y: 3}
   m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1490957335444344253
@@ -5341,7 +5341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.22}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 43, y: 247}
+  m_AnchoredPosition: {x: 43.9, y: 244.8}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1319273925013113017
@@ -5506,8 +5506,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d7dbaa6aef20d0c46858dc4cf2ff958d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5589,7 +5589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.22}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.19430542, y: -50.7}
+  m_AnchoredPosition: {x: 0.014846802, y: 6}
   m_SizeDelta: {x: -50.2453, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3543506559398194385
@@ -6211,7 +6211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7347,7 +7347,7 @@ MonoBehaviour:
   _sliderImg: {fileID: 2592348659847366450}
   _sliderGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
+    key0: {r: 1, g: 0.2509804, b: 0, a: 1}
     key1: {r: 1, g: 0.8086419, b: 0, a: 1}
     key2: {r: 0, g: 1, b: 0, a: 0}
     key3: {r: 1, g: 0, b: 0, a: 0}
@@ -7423,7 +7423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 0}
+  m_AnchoredPosition: {x: 40, y: 3}
   m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8844804024529911867
@@ -8044,7 +8044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.22}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -9.4982, y: 38.2}
+  m_AnchoredPosition: {x: -6.3, y: 120}
   m_SizeDelta: {x: 255.974, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1594300162278077037
@@ -8487,7 +8487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -11.2706, y: -126.1828}
+  m_AnchoredPosition: {x: -18.6, y: -96.9}
   m_SizeDelta: {x: -105.2017, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3989764523135877930
@@ -9449,7 +9449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -9.299988, y: -47.9}
+  m_AnchoredPosition: {x: -15.1, y: -35}
   m_SizeDelta: {x: -100.6815, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8697771961049094802
@@ -10650,7 +10650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f0a32f5d413a594c9dd097ff164565d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1833d27a40813e04d96e26563598444b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11058,7 +11058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -11.6589, y: -195.7336}
+  m_AnchoredPosition: {x: -14.7, y: -157.4}
   m_SizeDelta: {x: -100.5927, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8985432188472481736
@@ -11502,7 +11502,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6190627259080566960}
   - component: {fileID: 1398588996552170252}
-  - component: {fileID: 6883401817762742099}
   - component: {fileID: 1689145434707394123}
   m_Layer: 5
   m_Name: StarSlider
@@ -11582,22 +11581,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.018
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6883401817762742099}
-        m_TargetAssemblyTypeName: SliderGradient, Assembly-CSharp
-        m_MethodName: UpdateSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1689145434707394123}
         m_TargetAssemblyTypeName: StarUIDisplay, Assembly-CSharp
         m_MethodName: CheckForNewMilestone
@@ -11610,50 +11597,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6883401817762742099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927915532876420743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57485c4a1975c9040857442ae07919bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slider: {fileID: 1398588996552170252}
-  _sliderImg: {fileID: 5885314272586246412}
-  _sliderGradient:
-    serializedVersion: 2
-    key0: {r: 0.01693183, g: 0, b: 0.3962264, a: 1}
-    key1: {r: 0.8614459, g: 0, b: 1, a: 1}
-    key2: {r: 1, g: 0, b: 0.85768986, a: 0}
-    key3: {r: 1, g: 1, b: 1, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
 --- !u!114 &1689145434707394123
 MonoBehaviour:
   m_ObjectHideFlags: 0
