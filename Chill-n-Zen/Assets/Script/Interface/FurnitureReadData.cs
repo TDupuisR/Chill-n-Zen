@@ -36,19 +36,19 @@ public class FurnitureReadData : MonoBehaviour
 
         if(IsAllTagValid(furniture))
         {
-            _roomImg.sprite = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.room.ToString())];
+            _roomImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.room.ToString())];
             if(_roomText != null)
             {
                 _roomText.text = furniture.room.ToString();
             }
 
-            _styleImg.sprite = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.style.ToString())];
+            _styleImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.style.ToString())];
             if (_styleText != null)
             {
                 _styleText.text = furniture.style.ToString();
             }
 
-            _typeImg.sprite = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.type.ToString())];
+            _typeImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.type.ToString())];
             if (_typeText != null)
             {
                 _typeText.text = furniture.type.ToString();

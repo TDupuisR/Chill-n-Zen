@@ -5,5 +5,5 @@ using UnityEngine;
 public class TagUIScriptable : ScriptableObject
 {
     public List<string> tagNames;
-    public List<Sprite> associatedSprite;
+    public List<Color> associatedSprite;
 }
