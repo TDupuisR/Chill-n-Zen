@@ -92,7 +92,7 @@ public class TileBehaviour : MonoBehaviour
                 (item.type == GMStatic.tagType.Object)
                 )
             {
-                if (constr == GMStatic.constraint.Seat)
+                if (constr == GMStatic.constraint.Seat || constr == GMStatic.constraint.Chair)
                 {
                     foreach (GMStatic.tagUsage usage in item.listUsage)
                     {

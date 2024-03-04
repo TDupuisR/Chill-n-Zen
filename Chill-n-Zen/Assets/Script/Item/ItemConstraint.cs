@@ -65,7 +65,7 @@ public class ItemConstraint : MonoBehaviour
 
         if (_itemBehaviour.OwnItem.constraint != GMStatic.constraint.None)
         {
-            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
+            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Chair)
             {
                 Front(gridPos);
 
@@ -109,7 +109,7 @@ public class ItemConstraint : MonoBehaviour
     {
         bool res = true;
 
-        if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
+        if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Chair)
         {
             foreach (bool flag in _listAccessible)
             {
@@ -184,7 +184,7 @@ public class ItemConstraint : MonoBehaviour
 
         if (_itemBehaviour.OwnItem.doorAccess)
         {
-            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.None)
+            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.None || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Chair)
             {
                 for (int x = 0; x < _itemBehaviour.RotationSize.x; x++)
                 {
