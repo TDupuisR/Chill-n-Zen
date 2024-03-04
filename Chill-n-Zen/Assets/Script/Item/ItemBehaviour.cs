@@ -255,7 +255,7 @@ public class ItemBehaviour : MonoBehaviour
             _lineRender.enabled = false;
             _constraint.RenderLine(false);
 
-            _itemUI.ActivateUI(false);
+            if (_itemUI != null) _itemUI.ActivateUI(false);
 
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
@@ -272,7 +272,7 @@ public class ItemBehaviour : MonoBehaviour
             _lineRender.enabled = true;
             _constraint.RenderLine(true);
 
-            _itemUI.SetupLeftButton();
+            if (_itemUI != null) _itemUI.SetupLeftButton();
         }
     } // Set the Item state from "placed" to "waiting" or "moving" when a button is pushed
     public void Remove()

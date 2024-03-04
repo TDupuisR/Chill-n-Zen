@@ -2,7 +2,6 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using GameManagerSpace;
-using static UnityEngine.GraphicsBuffer;
 using System.Runtime.InteropServices;
 
 public class TileSystem : MonoBehaviour
@@ -31,12 +30,6 @@ public class TileSystem : MonoBehaviour
     public bool IsSceneVacant { get; private set; }
     public List<GameObject> TilesList { get { return _tilesList; } }
     
-
-    [Space(7)]
-    [Header("TEST VARIABLES")]
-    [SerializeField] Vector2Int TESTStartPos;
-    [SerializeField] Vector2Int TESTGridSize;
-    [SerializeField] Vector2Int TESTDoorPos;
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
@@ -351,10 +344,55 @@ public class TileSystem : MonoBehaviour
     }
 
     // Path Finding //
-    public bool PathFinding(Vector2Int start, [Optional] Vector2Int target) // Target door by default //
+    public bool PathFinding(Vector2Int start, Vector2Int target) // Target door by default //
     {
         bool res = false;
-        if (target == null) target = WorldToGrid(_door.transform.position);
+
+        _nextPF.Clear();
+        _donePF.Clear();
+
+        Vector2Int potential = start;
+        _nextPF.Add(potential);
+
+        do
+        {
+            float distance = Mathf.Infinity;
+            foreach (Vector2Int next in _nextPF)
+            {
+                if (Vector2.Distance(next, target) < distance)
+                {
+                    potential = next;
+                    distance = Vector2.Distance(potential, target);
+                }
+            }
+
+            _nextPF.Remove(potential);
+            _donePF.Add(potential);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2Int decal = Vector2Int.zero;
+                if (i == 0) decal = new Vector2Int(1, 0);
+                else if (i == 1) decal = new Vector2Int(0, 1);
+                else if (i == 2) decal = new Vector2Int(-1, 0);
+                else if (i == 3) decal = new Vector2Int(0, -1);
+
+                if (CheckForAccessing(potential.x + decal.x, potential.y + decal.y) && !_donePF.Contains(potential + decal) && !_nextPF.Contains(potential + decal))
+                {
+                    _nextPF.Add(potential + decal);
+                }
+            }
+
+            if (potential == target) res = true;
+
+        } while (_nextPF.Count > 0 && res == false);
+
+        return res;
+    }
+    public bool PathFinding(Vector2Int start) // Target door by default //
+    {
+        bool res = false;
+        Vector2Int target = WorldToGrid(_door.transform.position);
 
         _nextPF.Clear();
         _donePF.Clear();
@@ -408,26 +446,9 @@ public class TileSystem : MonoBehaviour
     }
 
     #region // TEST DEBUG METHODS //
-    [Button] private void TESTGenerateGrid()
-    {
-        GenerateGrid(TESTStartPos, TESTGridSize);
-    }
-    [Button] private void TESTDeleteGrid()
-    {
-        DeleteGrid(TESTStartPos, TESTGridSize);
-    }
     [Button] private void TESTDeleteAllGrid()
     {
         DeleteGrid();
-    }
-
-    [Button] private void TESTPlaceDoor()
-    {
-        PlaceDoor(TESTDoorPos);
-    }
-    [Button] private void TESTMoveDoor()
-    {
-        MoveDoor(TESTDoorPos);
     }
     #endregion
 }
