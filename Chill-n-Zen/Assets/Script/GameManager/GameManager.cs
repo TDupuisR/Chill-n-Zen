@@ -90,7 +90,7 @@ namespace GameManagerSpace
 
         //Tag for furnitures technical identification//
         public enum tagUsage { Null, Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
-        public enum constraint { None, Front, Seat, Bed }
+        public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects
         public enum State { Placed, Moving, Waiting }

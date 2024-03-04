@@ -2,6 +2,8 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using GameManagerSpace;
+using static UnityEngine.GraphicsBuffer;
+using System.Runtime.InteropServices;
 
 public class TileSystem : MonoBehaviour
 {
@@ -13,12 +15,18 @@ public class TileSystem : MonoBehaviour
     [SerializeField] GameObject _prefabTile;
     [SerializeField] Transform _floorParent;
     [SerializeField] Transform _objectParent;
+    [SerializeField] GameObject _door;
 
     List<GameObject> _tilesList = new List<GameObject>();
     List<GameObject> _objectList = new List<GameObject>();
     List<ItemBehaviour> _itemList = new List<ItemBehaviour>();
-    enum objAction { Add, Remove }
 
+    List<Vector2Int> _nextPF = new List<Vector2Int>();
+    List<Vector2Int> _donePF = new List<Vector2Int>();
+
+    ItemBehaviour _doorBehave;
+
+    enum objAction { Add, Remove }
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
     public List<GameObject> TilesList { get { return _tilesList; } }
@@ -28,6 +36,7 @@ public class TileSystem : MonoBehaviour
     [Header("TEST VARIABLES")]
     [SerializeField] Vector2Int TESTStartPos;
     [SerializeField] Vector2Int TESTGridSize;
+    [SerializeField] Vector2Int TESTDoorPos;
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
@@ -38,6 +47,8 @@ public class TileSystem : MonoBehaviour
     public static event OnItemAddedDelegate OnItemAdded;
     public delegate void OnItemRemovedDelegate(Item item);
     public static event OnItemRemovedDelegate OnItemRemoved;
+    public delegate void OnSceneChangedDelegate();
+    public static event OnSceneChangedDelegate OnSceneChanged;
 
     private void OnValidate()
     {
@@ -48,10 +59,11 @@ public class TileSystem : MonoBehaviour
                 Debug.LogError(" (error : 2x2) Grid's tile size is null or below 0 ");
             }
         }
-        else Debug.LogError(" (error : 2x1) No isometric grid assigned ", _isoGrid);
+        else Debug.LogError(" (error : 2x1) No isometric grid assigned ", _isoGrid.gameObject);
 
-        if (_floorParent == null) Debug.LogError(" (error : 2x5a) No Floor Parent assigned ", _floorParent);
-        if (_objectParent == null) Debug.LogError(" (error : 2x5b) No Object Parent assigned ", _objectParent);
+        if (_floorParent == null) Debug.LogError(" (error : 2x5a) No Floor Parent assigned ", _floorParent.gameObject);
+        if (_objectParent == null) Debug.LogError(" (error : 2x5b) No Object Parent assigned ", _objectParent.gameObject);
+        if (_door == null) Debug.LogError(" (error : 2x5c) No Object Door assigned ", _door);
     }
 
     private void Awake()
@@ -67,8 +79,10 @@ public class TileSystem : MonoBehaviour
         }
 
         IsSceneVacant = true;
+        _doorBehave = _door.GetComponent<ItemBehaviour>();
 
         GenerateGrid(TESTStartPos, TESTGridSize); // TEST PROTO ONLY //
+        InitializeDoor();
     }
 
     public Vector2Int WorldToGrid(Vector2 position)
@@ -170,6 +184,10 @@ public class TileSystem : MonoBehaviour
 
         GetGridTilesList();
     }
+    [Button] public void ShowGrid()
+    {
+        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+    }
 
     public bool CheckForPlacing(ItemBehaviour item, int x, int y)
     {
@@ -196,7 +214,7 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr)
+    public bool CheckForAccessing(int x, int y, GMStatic.constraint constr = GMStatic.constraint.None)
     {
         bool res = false;
 
@@ -207,7 +225,6 @@ public class TileSystem : MonoBehaviour
             TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
             res = script.CheckIfAccessible(constr);
         }
-        else res = false;
 
         return res;
     }
@@ -272,6 +289,7 @@ public class TileSystem : MonoBehaviour
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
                     script.PlaceItem(behave.OwnItem);
+                    OnSceneChanged?.Invoke();
                 }
             }
         }
@@ -291,6 +309,7 @@ public class TileSystem : MonoBehaviour
                 {
                     TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
                     script.RemoveItem(behave.OwnItem);
+                    OnSceneChanged?.Invoke();
                 }
             }
         }
@@ -316,27 +335,94 @@ public class TileSystem : MonoBehaviour
 
     }
 
-    [Button]
-    public void ShowGrid()
+    // Path Finding //
+    public bool PathFinding(Vector2Int start, [Optional] Vector2Int target) // Target door by default //
     {
-        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+        bool res = false;
+        if (target == null) target = WorldToGrid(_door.transform.position);
+
+        _nextPF.Clear();
+        _donePF.Clear();
+
+        Vector2Int potential = start;
+        _nextPF.Add(potential);
+
+        do
+        {
+            float distance = Mathf.Infinity;
+            foreach (Vector2Int next in _nextPF)
+            {
+                if (Vector2.Distance(next, target) < distance)
+                {
+                    potential = next;
+                    distance = Vector2.Distance(potential, target);
+                }
+            }
+
+            _nextPF.Remove(potential);
+            _donePF.Add(potential);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2Int decal = Vector2Int.zero;
+                if (i == 0) decal = new Vector2Int(1, 0);
+                else if (i == 1) decal = new Vector2Int(0, 1);
+                else if (i == 2) decal = new Vector2Int(-1, 0);
+                else if (i == 3) decal = new Vector2Int(0, -1);
+
+                if (CheckForAccessing(potential.x + decal.x, potential.y + decal.y) && !_donePF.Contains(potential + decal) && !_nextPF.Contains(potential + decal))
+                {
+                    _nextPF.Add(potential + decal);
+                }
+            }
+
+            if (potential == target) res = true;
+
+        } while (_nextPF.Count > 0 && res == false);
+
+        return res;
+    }
+
+    private void InitializeDoor()
+    {
+        _door.transform.position = Vector2.zero;
+
+        _doorBehave.Initialize(_doorBehave.OwnItem);
+        IsSceneVacant = true;
+        _doorBehave.CurrentState = GMStatic.State.Waiting;
+    }
+    private void PlaceDoor(Vector2Int gridPos)
+    {
+        _door.transform.position = GridToWorld(gridPos.x, gridPos.y);
+        _doorBehave.Place();
+    }
+    private void MoveDoor(Vector2Int gridPos)
+    {
+        _doorBehave.Move();
+        PlaceDoor(gridPos);
     }
 
     #region // TEST DEBUG METHODS //
-    [Button]
-    private void TESTGenerateGrid()
+    [Button] private void TESTGenerateGrid()
     {
         GenerateGrid(TESTStartPos, TESTGridSize);
     }
-    [Button]
-    private void TESTDeleteGrid()
+    [Button] private void TESTDeleteGrid()
     {
         DeleteGrid(TESTStartPos, TESTGridSize);
     }
-    [Button]
-    private void TESTDeleteAllGrid()
+    [Button] private void TESTDeleteAllGrid()
     {
         DeleteGrid();
+    }
+
+    [Button] private void TESTPlaceDoor()
+    {
+        PlaceDoor(TESTDoorPos);
+    }
+    [Button] private void TESTMoveDoor()
+    {
+        PlaceDoor(TESTDoorPos);
     }
     #endregion
 }
