@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: DoorItem
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: b305b11f8b6ac57459cab92ac11937c9, type: 3}
+  spriteOneFixed: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   spriteOneColored: {fileID: 0}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
