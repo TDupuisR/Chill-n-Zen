@@ -70,7 +70,7 @@ public class TileBehaviour : MonoBehaviour
         foreach (Item item in _presentItems)
         {
             if (
-                item.type == placing.type ||
+                (item.type == placing.type) || (item.type == GMStatic.tagType.Null) ||
                 (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object) ||
                 (item.type == GMStatic.tagType.Object && placing.type == GMStatic.tagType.Furniture)
                 )

@@ -1,6 +1,7 @@
 using UnityEngine;
 using GameManagerSpace;
 using System.Collections.Generic;
+using System.Threading;
 
 public class ItemConstraint : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class ItemConstraint : MonoBehaviour
 
     Vector3[] _patternPosition = new Vector3[4];
 
-    public bool IsValide { get; private set; }
+    public bool IsConstraintValid { get; private set; }
+    public bool IsDoorValid { get; private set; }
 
     public void OnEnable()
     {
@@ -87,28 +89,20 @@ public class ItemConstraint : MonoBehaviour
         }
         else { _lineRender.enabled = false; }
 
-        IsValide = ConstraintValidation();
+        IsConstraintValid = ConstraintValidation();
+        if (_itemBehaviour.CurrentState != GMStatic.State.Placed) IsDoorValid = true;
 
-        Debug.Log("Tiles: " + _listTilesPos.Count + " | Access: " + _listAccessible.Count + " | Valid: " + IsValide);
+        //Debug.Log("Tiles: " + _listTilesPos.Count + " | Access: " + _listAccessible.Count + " | Constraint: " + IsConstraintValid + " | PathFinding: " + IsDoorValid);
     }
     public void CheckConstraint()
     {
-        if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Front || _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
+        for (int i = 0; i < _listTilesPos.Count; i++)
         {
-            foreach (Vector2Int tilePos in _listTilesPos)
-            {
-                _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
-            }
-        }
-        else if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.Bed)
-        {
-            foreach (Vector2Int tilePos in _listTilesPos)
-            {
-                _listAccessible.Add(TileSystem.Instance.CheckForAccessing(tilePos.x, tilePos.y, _itemBehaviour.OwnItem.constraint));
-            }
+            _listAccessible[i] = TileSystem.Instance.CheckForAccessing(_listTilesPos[i].x, _listTilesPos[i].y, _itemBehaviour.OwnItem.constraint);
         }
 
-        IsValide = ConstraintValidation();
+        IsConstraintValid = ConstraintValidation();
+        IsDoorValid = CheckDoorAccess();
     }
 
     private bool ConstraintValidation()
@@ -182,5 +176,67 @@ public class ItemConstraint : MonoBehaviour
                 _listTilesPos.Add(new Vector2Int(pos.x + _itemBehaviour.OwnItem.size.y, pos.y + i));
             }
         }
+    }
+
+    private bool CheckDoorAccess()
+    {
+        bool res = true;
+
+        if (_itemBehaviour.OwnItem.doorAccess)
+        {
+            if (_itemBehaviour.OwnItem.constraint == GMStatic.constraint.None)
+            {
+                for (int x = 0; x < _itemBehaviour.RotationSize.x; x++)
+                {
+                    for (int y = 0; y < _itemBehaviour.RotationSize.y; y++)
+                    {
+                        Vector2Int pos = TileSystem.Instance.WorldToGrid(_itemBehaviour.transform.position) + new Vector2Int(x, y);
+                        res = TileSystem.Instance.PathFinding(pos);
+
+                        if (!res) break;
+                    }
+                    if (!res) break;
+                }
+            }
+            else
+            {
+                if (_listTilesPos.Count <= 0) res = false;
+
+                bool firstLoop = true;
+                int first = 0;
+                int count = 0;
+                for (int i = 0; i < _listTilesPos.Count; i++)
+                {
+                    if (_listAccessible[i] == true && firstLoop)
+                    {
+                        res = TileSystem.Instance.PathFinding(_listTilesPos[i]);
+                        firstLoop = false;
+                        first = i;
+
+                        count++;
+                        if (!res) break;
+                    }
+                    else if (_listAccessible[i] == true && _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Seat)
+                    {
+                        res = TileSystem.Instance.PathFinding(_listTilesPos[i]);
+
+                        count++;
+                        if (!res) break;
+                    }
+                    else if (_listAccessible[i] == true)
+                    {
+                        res = TileSystem.Instance.PathFinding(_listTilesPos[i], _listTilesPos[first]);
+
+                        count++;
+                        if (!res) break;
+                    }
+                }
+
+                if (count < 1 && _itemBehaviour.OwnItem.constraint == GMStatic.constraint.Bed) res = false;
+                else if (count != _listTilesPos.Count && _itemBehaviour.OwnItem.constraint != GMStatic.constraint.Bed) res = false;
+            }
+        }
+
+        return res;
     }
 }

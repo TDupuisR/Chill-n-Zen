@@ -31,7 +31,8 @@ public class ItemBehaviour : MonoBehaviour
     public int Orientation { get { return _orientation; } }
 
     public bool CanPlace { get { return _canPlace;} }
-    public bool ConstraintValid { get { return _constraint.IsValide; } }
+    public bool ConstraintValid { get { return _constraint.IsConstraintValid; } }
+    public bool DoorValid { get { return _constraint.IsDoorValid; } }
 
 
     private void OnValidate()
@@ -44,9 +45,14 @@ public class ItemBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        _spriteRender = _spriteGmObj.GetComponent<SpriteRenderer>();
+        TileSystem.OnSceneChanged += CheckWhenPlaced;
 
+        _spriteRender = _spriteGmObj.GetComponent<SpriteRenderer>();
         InitPattern();
+    }
+    private void OnDisable()
+    {
+        TileSystem.OnSceneChanged -= CheckWhenPlaced;
     }
 
     private void Update()
@@ -154,16 +160,16 @@ public class ItemBehaviour : MonoBehaviour
     private void CheckNewPos()
     {
         _lastPos = transform.position;
-        Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+        Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
 
         _constraint.ResetConstraint(transform.position);
-        _itemUI.TextIssues(!ConstraintValid, false);
+        _itemUI.TextIssues(!ConstraintValid, !DoorValid);
 
         if (!_canPlace) LineColor(Color.red);
-        else if (!ConstraintValid /*|| pathFinding*/) LineColor(new Color(255, 69, 0));
+        else if (!ConstraintValid || !DoorValid) LineColor(new Color(255, 69, 0));
         else LineColor(Color.green);
     }
 
@@ -194,15 +200,37 @@ public class ItemBehaviour : MonoBehaviour
 
         _spriteGmObj.AddComponent<PolygonCollider2D>();
     }
+    private void CheckWhenPlaced()
+    {
+        if (OwnItem.type != GMStatic.tagType.Null)
+        {
+            _constraint.CheckConstraint();
+            _itemUI.TextIssues(!ConstraintValid, !DoorValid);
 
-    [Button] public void Rotation()
+            if (!ConstraintValid || !DoorValid)
+            {
+                LineColor(new Color(255, 69, 0));
+                _spriteRender.color = Color.yellow;
+            }
+            else
+            {
+                LineColor(Color.white);
+                _spriteRender.color = Color.white;
+            }
+        }
+    }
+
+    [Button] public void Rotation(int rotation = -1)
     {
         if (CurrentState == GMStatic.State.Waiting || CurrentState == GMStatic.State.Moving)
         {
             int limit = 180;
             if (OwnItem.fullRotation) limit += 180;
 
-            _orientation = (int)Mathf.Repeat(_orientation + 90, limit); // 0 - 90 - 180 - 270 // 0 at spawn //
+            if (rotation == 0 || rotation == 90 || rotation == 180 || rotation == 270)
+                _orientation = (int)Mathf.Repeat(rotation, limit); // 0 - 90 - 180 - 270 // 0 at spawn //
+            else
+                _orientation = (int)Mathf.Repeat(_orientation + 90, limit); // 0 - 90 - 180 - 270 // 0 at spawn //
 
             if (_orientation == 90 || _orientation == 270)
             {
@@ -220,7 +248,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (CurrentState != GMStatic.State.Placed)
         {
-            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
             TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Placed;
@@ -230,13 +258,14 @@ public class ItemBehaviour : MonoBehaviour
             _itemUI.ActivateUI(false);
 
             TileSystem.Instance.ObjectOnScene(true);
+            CheckWhenPlaced();
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
     {
         if (CurrentState == GMStatic.State.Placed)
         {
-            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+            Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
             CurrentState = GMStatic.State.Waiting;
@@ -250,7 +279,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         TileSystem.Instance.ObjectOnScene(true);
 
-        Vector2Int gridPos = TileSystem.Instance.WorldToGrid(_lastPos);
+        Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
 
