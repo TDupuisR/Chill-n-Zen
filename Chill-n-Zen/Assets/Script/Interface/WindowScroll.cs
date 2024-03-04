@@ -15,6 +15,7 @@ public class WindowScroll : MonoBehaviour
     Vector3 _backgroundStartPosition;
     Vector3 _backgroundStartRectTransformPosition;
     Coroutine _animationRoutine;
+    bool _isBusy;
 
     public bool Displayed { get => _displayed; }
 
@@ -22,6 +23,8 @@ public class WindowScroll : MonoBehaviour
     {
         _backgroundStartPosition = _backgroundTransform.anchoredPosition;
         _backgroundStartRectTransformPosition = _backgroundTransform.GetComponent<RectTransform>().position;
+
+        _isBusy = false;
     }
 
     private void OnValidate()
@@ -35,7 +38,7 @@ public class WindowScroll : MonoBehaviour
 
     public void StartScroll()
     {
-        if(_animationRoutine == null)
+        if(!_isBusy)
             _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
     }
 
@@ -49,6 +52,8 @@ public class WindowScroll : MonoBehaviour
 
     IEnumerator SelectionWindowAnimationRoutine(bool isVertical)
     {
+        _isBusy = true;
+
         float timeElapsed = 0.0f;
         Vector2 finalPosition;
 
@@ -77,6 +82,8 @@ public class WindowScroll : MonoBehaviour
 
         if (_buttonToDisable != null)
             _buttonToDisable.interactable = true;
+
+        _isBusy = false;
     }
 
     public void UpdateCamActionZoneDown(UIGetCam cam)
