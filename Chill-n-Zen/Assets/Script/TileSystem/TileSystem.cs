@@ -81,7 +81,6 @@ public class TileSystem : MonoBehaviour
         IsSceneVacant = true;
         _doorBehave = _door.GetComponent<ItemBehaviour>();
 
-        GenerateGrid(TESTStartPos, TESTGridSize); // TEST PROTO ONLY //
         InitializeDoor();
     }
 
@@ -184,6 +183,22 @@ public class TileSystem : MonoBehaviour
 
         GetGridTilesList();
     }
+
+    public void PlaceDoor(Vector2Int gridPos)
+    {
+        _door.transform.position = GridToWorld(gridPos.x, gridPos.y);
+        _doorBehave.Place();
+    }
+    public void MoveDoor(Vector2Int gridPos)
+    {
+        _doorBehave.Move();
+        PlaceDoor(gridPos);
+    }
+    public void RotateDoor(int rotation)
+    {
+        _doorBehave.Rotation(rotation);
+    }
+
     [Button] public void ShowGrid()
     {
         if (_tilesList.Count != 0) OnShowGrid.Invoke();
@@ -391,16 +406,6 @@ public class TileSystem : MonoBehaviour
         IsSceneVacant = true;
         _doorBehave.CurrentState = GMStatic.State.Waiting;
     }
-    private void PlaceDoor(Vector2Int gridPos)
-    {
-        _door.transform.position = GridToWorld(gridPos.x, gridPos.y);
-        _doorBehave.Place();
-    }
-    private void MoveDoor(Vector2Int gridPos)
-    {
-        _doorBehave.Move();
-        PlaceDoor(gridPos);
-    }
 
     #region // TEST DEBUG METHODS //
     [Button] private void TESTGenerateGrid()
@@ -422,7 +427,7 @@ public class TileSystem : MonoBehaviour
     }
     [Button] private void TESTMoveDoor()
     {
-        PlaceDoor(TESTDoorPos);
+        MoveDoor(TESTDoorPos);
     }
     #endregion
 }
