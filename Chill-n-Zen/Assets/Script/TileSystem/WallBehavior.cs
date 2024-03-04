@@ -6,13 +6,16 @@ public class WallBehavior : MonoBehaviour
     [SerializeField] private GameObject _leftWall;
     [SerializeField] private GameObject _rightWall;
     [SerializeField] private Transform _wallParent;
-    
+    [Range(0f, 1f)]
+    [SerializeField] private float _opacityWall;
+
     private List<GameObject> _wallList = new List<GameObject>();
     private Vector2 _posToInstanciateWall;
     private Vector2 _noTile;
     private Vector3 _posWall;
     private Vector3 _vectorRight;
     private Vector3 _vectorLeft;
+    private bool _wallBehind = false;
     private int _posGridX;
     private int _posGridY;
 
@@ -31,13 +34,25 @@ public class WallBehavior : MonoBehaviour
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
                 GameObject wall = Instantiate(_rightWall, _posWall, Quaternion.identity);
                 wall.transform.parent = _wallParent;
+                wall.transform.GetChild(0);
+                if (_wallBehind)
+                {
+                    SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+                }
                 _wallList.Add(wall);
+                
             }
             if (_posToInstanciateWall.y == 1)
             {
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorLeft;
                 GameObject wall = Instantiate(_leftWall, _posWall, Quaternion.identity);
                 wall.transform.parent = _wallParent;
+                if (_wallBehind)
+                {
+                    SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+                }
                 _wallList.Add(wall);
             }
         }
@@ -60,14 +75,19 @@ public class WallBehavior : MonoBehaviour
 
     private Vector2 CanInstantiateWall(int posGridX,int posGridY)
     {
+        _wallBehind = false;
         _noTile = new Vector2(0,0);
-        if(TileSystem.Instance.CheckTileExist(posGridX + 1, posGridY) == -1)
+        if (TileSystem.Instance.CheckTileExist(posGridX + 1, posGridY) == -1)
         {
             _noTile.x = 1;
         }
-        if (TileSystem.Instance.CheckTileExist(posGridY, posGridY + 1) == -1)
+        if (TileSystem.Instance.CheckTileExist(posGridX, posGridY + 1) == -1)
         {
             _noTile.y = 1;
+        }
+        if (TileSystem.Instance.CheckTileExist(posGridX+ 1, posGridY + 1) != -1 || TileSystem.Instance.CheckTileExist(posGridX + 2, posGridY + 2) != -1|| TileSystem.Instance.CheckTileExist(posGridX + 3, posGridY + 3) != -1)
+        {
+            _wallBehind = true;
         }
         return _noTile;
     }
