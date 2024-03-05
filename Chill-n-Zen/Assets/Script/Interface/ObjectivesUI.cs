@@ -20,6 +20,12 @@ public class ObjectivesUI : MonoBehaviour
     int _numberOfPrimaryObjectves;
     int _numberOfSecondaryObjectves;
 
+    [Header("Button glowing")]
+    [SerializeField] Image _glowSprite;
+    [SerializeField] AnimationCurve _glowCurve;
+    [SerializeField] float _glowSpeed;
+    Coroutine _glowingRoutine;
+
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
 
@@ -41,6 +47,11 @@ public class ObjectivesUI : MonoBehaviour
             _numberOfSecondaryObjectves = value;
             SetNumberOfObjectives(_numberOfSecondaryObjectves, _secondaryObjectivesText, UpdateSecondaryObjectives);
         }
+    }
+
+    private void Awake()
+    {
+        _glowingRoutine = StartCoroutine(GlowingAnimation());
     }
 
     void SetNumberOfObjectives(int count, List<TMP_Text> textList, Action<int, bool> UpdateObjective)
@@ -88,6 +99,7 @@ public class ObjectivesUI : MonoBehaviour
     }
 
 
+    #region Complete Level
     /*
      Complete Level Functions
      */
@@ -100,4 +112,28 @@ public class ObjectivesUI : MonoBehaviour
     {
         throw new System.NotImplementedException();
     }
+    #endregion
+
+    #region Glowing animation function
+    /*
+    Glowing animation function
+     */
+    public void StopGlowing()
+    {
+        StopCoroutine(_glowingRoutine);
+        _glowSprite.color = new Color(1, 1, 1, 0);
+    }
+
+    IEnumerator GlowingAnimation()
+    {
+        while(true)
+        {
+            float lerpProgression = Mathf.Repeat(Time.time * _glowSpeed, 1);
+            float opacity = Mathf.Lerp(0,1,_glowCurve.Evaluate(lerpProgression));
+            _glowSprite.color = new Color(1,1,1, opacity);
+            
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    #endregion
 }
