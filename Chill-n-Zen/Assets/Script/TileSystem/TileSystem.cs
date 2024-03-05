@@ -17,6 +17,8 @@ public class TileSystem : MonoBehaviour
     [SerializeField] GameObject _door;
 
     List<GameObject> _tilesList = new List<GameObject>();
+    List<TileBehaviour> _tileBehaveList = new List<TileBehaviour>();
+
     List<GameObject> _objectList = new List<GameObject>();
     List<ItemBehaviour> _itemList = new List<ItemBehaviour>();
 
@@ -91,10 +93,12 @@ public class TileSystem : MonoBehaviour
     private void GetGridTilesList()
     {
         _tilesList.Clear();
+        _tileBehaveList.Clear();
 
         foreach (Transform child in _floorParent)
         {
             _tilesList.Add(child.gameObject);
+            _tileBehaveList.Add(child.GetComponent<TileBehaviour>());
         }
         _wallBehavior.InstantiateWall();
     }
@@ -177,6 +181,14 @@ public class TileSystem : MonoBehaviour
         GetGridTilesList();
     }
 
+    private void InitializeDoor()
+    {
+        _door.transform.position = Vector2.zero;
+
+        _doorBehave.Initialize(_doorBehave.OwnItem);
+        IsSceneVacant = true;
+        _doorBehave.CurrentState = GMStatic.State.Waiting;
+    }
     public void PlaceDoor(Vector2Int gridPos)
     {
         _door.transform.position = GridToWorld(gridPos.x, gridPos.y);
@@ -209,8 +221,7 @@ public class TileSystem : MonoBehaviour
 
                 if (index > -1)
                 {
-                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    res = script.CheckIfPlacable(item.OwnItem);
+                    res = _tileBehaveList[index].CheckIfPlacable(item.OwnItem);
                 }
                 else res = false;
 
@@ -230,8 +241,19 @@ public class TileSystem : MonoBehaviour
 
         if (index > -1)
         {
-            TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-            res = script.CheckIfAccessible(constr);
+            res = _tileBehaveList[index].CheckIfAccessible(constr);
+        }
+
+        return res;
+    }
+    public bool CheckForBonus(Item item, int x, int y)
+    {
+        bool res = false;
+
+        int index = CheckTileExist(x, y);
+        if (index > -1)
+        {
+
         }
 
         return res;
@@ -295,8 +317,7 @@ public class TileSystem : MonoBehaviour
                 int index = CheckTileExist(x + i, y + j);
                 if (index > -1)
                 {
-                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    script.PlaceItem(behave.OwnItem);
+                    _tileBehaveList[index].PlaceItem(behave.OwnItem);
                     OnSceneChanged?.Invoke();
                 }
             }
@@ -315,8 +336,7 @@ public class TileSystem : MonoBehaviour
                 int index = CheckTileExist(x + i, y + j);
                 if (index > -1)
                 {
-                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    script.RemoveItem(behave.OwnItem);
+                    _tileBehaveList[index].RemoveItem(behave.OwnItem);
                     OnSceneChanged?.Invoke();
                 }
             }
@@ -335,8 +355,7 @@ public class TileSystem : MonoBehaviour
                 int index = CheckTileExist(x + i, y + j);
                 if (index > -1)
                 {
-                    TileBehaviour script = _tilesList[index].GetComponent<TileBehaviour>();
-                    script.RemoveItem(behave.OwnItem);
+                    _tileBehaveList[index].RemoveItem(behave.OwnItem);
                 }
             }
         }
@@ -434,15 +453,6 @@ public class TileSystem : MonoBehaviour
         } while (_nextPF.Count > 0 && res == false);
 
         return res;
-    }
-
-    private void InitializeDoor()
-    {
-        _door.transform.position = Vector2.zero;
-
-        _doorBehave.Initialize(_doorBehave.OwnItem);
-        IsSceneVacant = true;
-        _doorBehave.CurrentState = GMStatic.State.Waiting;
     }
 
     #region // TEST DEBUG METHODS //
