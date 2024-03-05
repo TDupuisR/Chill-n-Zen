@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,10 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] AnimationCurve _glowCurve;
     [SerializeField] float _glowSpeed;
     Coroutine _glowingRoutine;
+
+    [Header("Obj completed effect")]
+    [SerializeField] GameObject _completedEffectPrefab;
+
 
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
@@ -90,12 +95,16 @@ public class ObjectivesUI : MonoBehaviour
     {
         _primaryObjectivesImg[index].sprite = isValid ? _checkedSprite : _uncheckedSprite;
         _primaryObjectivesText[index].color = isValid ? _completedColor : _notCompletedColor;
+
+        ObjectiveCompletedEffect(_primaryObjectivesImg[index], _primaryObjectivesText[index]);
     }
 
     public void UpdateSecondaryObjectives(int index, bool isValid)
     {
         _secondaryObjectivesImg[index].sprite = isValid ? _checkedSprite : _uncheckedSprite;
         _secondaryObjectivesText[index].color = isValid ? _completedColor : _notCompletedColor;
+
+        ObjectiveCompletedEffect(_secondaryObjectivesImg[index], _secondaryObjectivesText[index]);
     }
 
 
@@ -136,4 +145,15 @@ public class ObjectivesUI : MonoBehaviour
         }
     }
     #endregion
+
+    [Button]
+    public void TestObjectivesEffect() => ObjectiveCompletedEffect(_primaryObjectivesImg[0], _primaryObjectivesText[0]);
+    public void ObjectiveCompletedEffect(Image img, TMP_Text text)
+    {
+        GameObject newEffect = Instantiate(_completedEffectPrefab, Vector3.zero, Quaternion.identity);
+        ObjectivesCompletedEffect effectScript = newEffect.GetComponent<ObjectivesCompletedEffect>();
+        effectScript.TextToImplement = text;
+        effectScript.ImgToImplement = img.sprite;
+        effectScript.ObjectiveCompletedEffect();
+    }
 }
