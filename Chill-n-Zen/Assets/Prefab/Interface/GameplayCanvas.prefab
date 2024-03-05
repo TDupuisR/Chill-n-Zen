@@ -8451,6 +8451,7 @@ GameObject:
   - component: {fileID: 8775006811506696752}
   - component: {fileID: 7092656254497294092}
   - component: {fileID: 6817194865486821823}
+  - component: {fileID: 983528181354923742}
   m_Layer: 5
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -8556,6 +8557,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cam: {fileID: 0}
+--- !u!114 &983528181354923742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183874349084297082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c295bb00ae91374395ed260c106c59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreEffectPrefab: {fileID: 6670058343156338400, guid: 6a2ebdbae21ecf44e9321e7fc3dd3c5b, type: 3}
+  _starSliderTransform: {fileID: 6190627259080566960}
 --- !u!1 &7320620330400644323
 GameObject:
   m_ObjectHideFlags: 0
