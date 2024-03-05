@@ -46,6 +46,6 @@ public class BudgetManager : MonoBehaviour
     }
     public bool IsOutOfBudget()
     {
-        return CurrentBudget < 0;
+        return CurrentBudget <= 0;
     }
 }
