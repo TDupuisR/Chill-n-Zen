@@ -48,7 +48,6 @@ public class ContemplativeButton : MonoBehaviour
             float lerpProgression = timeElapsed / _fadeDuration;
             if (direction == 1) 
                 lerpProgression = 1 - lerpProgression;
-            print(lerpProgression);
             _canvasGroup.alpha = Mathf.Lerp(0.0f, 1.0f, lerpProgression);
             timeElapsed += Time.deltaTime;
 

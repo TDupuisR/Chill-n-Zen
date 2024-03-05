@@ -394,6 +394,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _glowSpeed: 0.5
+  _completedEffectPrefab: {fileID: 2300282758369718066, guid: 121b387238888b643952c369a72c1bc7, type: 3}
   _completeLevelButton: {fileID: 5702649316152069893}
 --- !u!1 &150897853694106846
 GameObject:
