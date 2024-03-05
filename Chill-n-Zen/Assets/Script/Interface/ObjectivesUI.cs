@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ObjectivesUI : MonoBehaviour
 {
     [Header("Objectives")]
+    [SerializeField] Transform _buttonObjectivesRect;
     [SerializeField] List<Image> _primaryObjectivesImg;
     [SerializeField] List<TMP_Text> _primaryObjectivesText;
     [SerializeField] List<Image> _secondaryObjectivesImg;
@@ -107,6 +108,7 @@ public class ObjectivesUI : MonoBehaviour
         ObjectiveCompletedEffect(_secondaryObjectivesImg[index], _secondaryObjectivesText[index]);
     }
 
+    public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
 
     #region Complete Level
     /*
