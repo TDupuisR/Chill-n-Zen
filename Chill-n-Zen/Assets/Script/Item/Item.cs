@@ -14,7 +14,7 @@ public class Item : ScriptableObject
     [Header("Tags")]
     public GMStatic.tagRoom room;
     public GMStatic.tagType type;
-    public GMStatic.tagStyle style;
+    public GMStatic.tagMaterial style;
     public List<GMStatic.tagUsage> listUsage;
 
     [Header("Constraint")]
@@ -22,10 +22,17 @@ public class Item : ScriptableObject
     public bool doorAccess;
 
     [Header("Combo")]
+    public int frontBonus;
+    public List<GMStatic.tagUsage> frontUsageBonus;
+    public List<Item> frontItemBonus;
+    [Space(7)]
     public int proxiBonus;
-    public List<GMStatic.tagUsage> proxyBonusList;
+    public List<GMStatic.tagUsage> proxyUsageBonus;
+    public List<Item> proxyItemBonus;
+    [Space(7)]
     public int onBonus;
-    public List<GMStatic.tagUsage> onBonusList;
+    public List<GMStatic.tagUsage> onUsageBonus;
+    public List<Item> onItemBonus;
 
     [Header("Specification")]
     public int score;

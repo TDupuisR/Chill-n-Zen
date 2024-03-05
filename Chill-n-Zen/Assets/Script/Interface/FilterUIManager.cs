@@ -50,7 +50,7 @@ public class FilterUIManager : MonoBehaviour
                 break;
 
             case TypeOfTags.tagType:
-                foreach (GMStatic.tagStyle tagElement in Enum.GetValues(typeof(GMStatic.tagStyle)))
+                foreach (GMStatic.tagMaterial tagElement in Enum.GetValues(typeof(GMStatic.tagMaterial)))
                 {
                     string tagName = tagElement.ToString();
                     if (tagName != "Null")
@@ -80,7 +80,7 @@ public class FilterUIManager : MonoBehaviour
 
     public void ApplyFilter()
     {
-        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)TypeFilter, (GMStatic.tagStyle)StyleFilter);
+        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)TypeFilter, (GMStatic.tagMaterial)StyleFilter);
         _displayFurniture.ResetAndDisplay(newItems);
     }
 

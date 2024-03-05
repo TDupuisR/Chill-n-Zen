@@ -31,7 +31,6 @@ public class TileSystem : MonoBehaviour
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
     public List<GameObject> TilesList { get { return _tilesList; } }
-    
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
@@ -253,7 +252,19 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
+            _tileBehaveList[index].CheckConditionExist(item);
+        }
 
+        return res;
+    }
+    public bool CheckForBonus(GMStatic.tagUsage usage, int x, int y)
+    {
+        bool res = false;
+
+        int index = CheckTileExist(x, y);
+        if (index > -1)
+        {
+            _tileBehaveList[index].CheckConditionExist(usage);
         }
 
         return res;
@@ -363,7 +374,7 @@ public class TileSystem : MonoBehaviour
     }
 
     // Path Finding //
-    public bool PathFinding(Vector2Int start, Vector2Int target) // Target door by default //
+    public bool PathFinding(Vector2Int start, Vector2Int target) 
     {
         bool res = false;
 

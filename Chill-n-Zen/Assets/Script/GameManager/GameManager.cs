@@ -84,10 +84,10 @@ namespace GameManagerSpace
         //Tag for furnitures identification//
         public enum tagRoom { Null, Other, Bedroom, Livingroom, Kitchen }
         public enum tagType { Null, Furniture, Object, Mural, Ceiling, Carpet }
-        public enum tagStyle { Null, Vintage, Disco, Kitch, Modern, Futuristic }
+        public enum tagMaterial { Null, Wood, Metal, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Null, Bed, Sink, Storage, Table, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
         public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects

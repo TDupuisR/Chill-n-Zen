@@ -10,17 +10,17 @@ public class LibraryItem : MonoBehaviour
     
     public List<Item> listItems { get => _listItems; }
 
-    public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagStyle style)
+    public List<Item> Sort(GMStatic.tagRoom room, GMStatic.tagType type, GMStatic.tagMaterial style)
     {
         List<Item> list = new List<Item>();
         
-        if(room == GMStatic.tagRoom.Null && type == GMStatic.tagType.Null && style == GMStatic.tagStyle.Null)
+        if(room == GMStatic.tagRoom.Null && type == GMStatic.tagType.Null && style == GMStatic.tagMaterial.Null)
         {
             Debug.Log("Warning : No Filter");
             return GameManager.libraryItems._listItems;
         }
 
-        if (room != GMStatic.tagRoom.Null && type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
+        if (room != GMStatic.tagRoom.Null && type != GMStatic.tagType.Null && style != GMStatic.tagMaterial.Null)
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
@@ -40,7 +40,7 @@ public class LibraryItem : MonoBehaviour
                 }
             }
         }
-        else if (type != GMStatic.tagType.Null && style != GMStatic.tagStyle.Null)
+        else if (type != GMStatic.tagType.Null && style != GMStatic.tagMaterial.Null)
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
@@ -50,7 +50,7 @@ public class LibraryItem : MonoBehaviour
                 }
             }
         }
-        else if (room != GMStatic.tagRoom.Null && style != GMStatic.tagStyle.Null)
+        else if (room != GMStatic.tagRoom.Null && style != GMStatic.tagMaterial.Null)
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
@@ -60,7 +60,7 @@ public class LibraryItem : MonoBehaviour
                 }
             }
         }
-        else if(style != GMStatic.tagStyle.Null)
+        else if(style != GMStatic.tagMaterial.Null)
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
