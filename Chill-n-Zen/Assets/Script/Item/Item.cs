@@ -27,8 +27,8 @@ public class Item : ScriptableObject
     public List<Item> frontItemBonus;
     [Space(7)]
     public int proxiBonus;
-    public List<GMStatic.tagUsage> proxyUsageBonus;
-    public List<Item> proxyItemBonus;
+    public List<GMStatic.tagUsage> proxiUsageBonus;
+    public List<Item> proxiItemBonus;
     [Space(7)]
     public int onBonus;
     public List<GMStatic.tagUsage> onUsageBonus;

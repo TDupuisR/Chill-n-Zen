@@ -11,12 +11,14 @@ namespace GameManagerSpace
         public static AudioManager audioManager;
         public static SaveData saveData;
         public static BudgetManager budgetManager;
+        public static RequestManager requestManager;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
+        [SerializeField] RequestManager _requestManager;
 
         private void OnValidate()
         {
@@ -28,6 +30,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x3) No save data assigned ", _saveData);
             if (_budgetManager == null)
                 Debug.LogError(" (error : 1x4) No budget manager assigned ", _budgetManager);
+            if (_requestManager == null)
+                Debug.LogError(" (error : 1x5) No request manager assigned ", _requestManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -54,7 +58,7 @@ namespace GameManagerSpace
             if (_loadingScreen != null) _loadingScreen.SetActive(true);
             else
             {
-                Debug.LogError(" (error : 1x5) No loading screen assigned ", _loadingScreen);
+                Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
             }
 
             StartCoroutine(AsyncLoadScnene(sceneIndex));
@@ -87,7 +91,7 @@ namespace GameManagerSpace
         public enum tagMaterial { Null, Wood, Metal, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Window, Light }
         public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects

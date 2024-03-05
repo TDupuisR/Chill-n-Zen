@@ -6,6 +6,7 @@ public class ItemBehaviour : MonoBehaviour
 {
     [Header("Serialized Infos")]
     [SerializeField] ItemConstraint _constraint;
+    [SerializeField] ItemPointsChecker _pointsChecker;
     [SerializeField] GameObject _spriteGmObj;
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
@@ -24,6 +25,7 @@ public class ItemBehaviour : MonoBehaviour
 
     public Item OwnItem { get { return _ownItem; } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
+    public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
 
     public Vector3 OffsetPos { get { return _offsetPos; } }
@@ -214,7 +216,7 @@ public class ItemBehaviour : MonoBehaviour
             }
             else
             {
-                LineColor(Color.white);
+                LineColor(Color.green);
                 _spriteRender.color = Color.white;
             }
         }
