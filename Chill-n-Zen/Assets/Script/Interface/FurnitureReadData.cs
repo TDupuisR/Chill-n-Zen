@@ -42,10 +42,10 @@ public class FurnitureReadData : MonoBehaviour
                 _roomText.text = furniture.room.ToString();
             }
 
-            _styleImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.style.ToString())];
+            _styleImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.material.ToString())];
             if (_styleText != null)
             {
-                _styleText.text = furniture.style.ToString();
+                _styleText.text = furniture.material.ToString();
             }
 
             _typeImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.type.ToString())];
@@ -63,9 +63,9 @@ public class FurnitureReadData : MonoBehaviour
             Debug.LogError("room tag " + furniture.room.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
             return false;
         }
-        if (!_tagUIList.tagNames.Contains(furniture.style.ToString()))
+        if (!_tagUIList.tagNames.Contains(furniture.material.ToString()))
         {
-            Debug.LogError("style tag " + furniture.style.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
+            Debug.LogError("style tag " + furniture.material.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
             return false;
         }
         if (!_tagUIList.tagNames.Contains(furniture.type.ToString()))

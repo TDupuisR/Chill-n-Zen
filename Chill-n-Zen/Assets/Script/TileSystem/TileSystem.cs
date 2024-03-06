@@ -30,7 +30,8 @@ public class TileSystem : MonoBehaviour
     enum objAction { Add, Remove }
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
-    public List<GameObject> TilesList { get { return _tilesList; } }
+    public List<TileBehaviour> TilesList { get { return _tileBehaveList; } }
+    public List<ItemBehaviour> ItemList { get { return _itemBehaveList; } }
     public int TotalScore { get; private set; }
 
     public delegate void OnShowGridDelegate();

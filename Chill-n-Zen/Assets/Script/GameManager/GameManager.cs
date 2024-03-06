@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +52,7 @@ namespace GameManagerSpace
             libraryItems = _libraryItems;
             saveData = _saveData;
             budgetManager = _budgetManager;
+            requestManager = _requestManager;
         }
 
         public void ChangeScene(int sceneIndex)
@@ -96,6 +98,53 @@ namespace GameManagerSpace
 
         //Tag for Items GameObjects
         public enum State { Placed, Moving, Waiting }
+
+        //Request Types
+        [System.Serializable]
+        public struct Request
+        {
+            public List<GMStatic.requestObj> obj;
+            public List<GMStatic.requestType> type;
+            public List<GMStatic.requestColor> color;
+            public List<GMStatic.requestMaterial> material;
+            public List<GMStatic.requestProximity> proximity;
+        }
+
+        [System.Serializable]
+        public struct requestObj
+        {
+            public Item itemRequested;
+            public int nbRequested;
+            public string phraseClient;
+        }
+        [System.Serializable]
+        public struct requestType
+        {
+            public GMStatic.tagUsage typeRequested;
+            public int nbRequested;
+            public string phraseClient;
+        }
+        [System.Serializable]
+        public struct requestColor
+        {
+            public Color colorRequested;
+            public int nbRequested;
+            public string phraseClient;
+        }
+        [System.Serializable]
+        public struct requestMaterial
+        {
+            public GMStatic.tagMaterial materialRequested;
+            public int nbRequested;
+            public string phraseClient;
+        }
+        [System.Serializable]
+        public struct requestProximity
+        {
+            public GMStatic.tagType closeFromRequested;
+            public GMStatic.tagType closeToRequested;
+            public string phraseClient;
+        }
     }
 }
 

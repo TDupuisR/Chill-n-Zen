@@ -14,7 +14,7 @@ public class Item : ScriptableObject
     [Header("Tags")]
     public GMStatic.tagRoom room;
     public GMStatic.tagType type;
-    public GMStatic.tagMaterial style;
+    public GMStatic.tagMaterial material;
     public List<GMStatic.tagUsage> listUsage;
 
     [Header("Constraint")]
@@ -36,6 +36,7 @@ public class Item : ScriptableObject
 
     [Header("Specification")]
     public int score;
+    public string description;
     [Range(0, 10000)]
     public int price;
     public Vector3Int size; // X = Depth // Y = Width // Z = Height // Front side at spawn is always in direction x = -1 // Mustn't have negative nor 0 as values (exept: z = 0) //

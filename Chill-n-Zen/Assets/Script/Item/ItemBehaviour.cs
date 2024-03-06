@@ -31,6 +31,7 @@ public class ItemBehaviour : MonoBehaviour
     public Vector3 OffsetPos { get { return _offsetPos; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
     public int Orientation { get { return _orientation; } }
+    public Color ItemColor { get; private set; }
 
     public bool CanPlace { get { return _canPlace;} }
     public bool ConstraintValid { get { return _constraint.IsConstraintValid; } }

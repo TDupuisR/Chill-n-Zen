@@ -24,7 +24,7 @@ public class LibraryItem : MonoBehaviour
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
-                if (item.room == room && item.type == type && item.style == style)
+                if (item.room == room && item.type == type && item.material == style)
                 {
                     list.Add(item);
                 }
@@ -44,7 +44,7 @@ public class LibraryItem : MonoBehaviour
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
-                if (item.type == type && item.style == style)
+                if (item.type == type && item.material == style)
                 {
                     list.Add(item);
                 }
@@ -54,7 +54,7 @@ public class LibraryItem : MonoBehaviour
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
-                if (item.room == room && item.style == style)
+                if (item.room == room && item.material == style)
                 {
                     list.Add(item);
                 }
@@ -64,7 +64,7 @@ public class LibraryItem : MonoBehaviour
         {
             foreach (Item item in GameManager.libraryItems._listItems)
             {
-                if (item.style == style)
+                if (item.material == style)
                 {
                     list.Add(item);
                 }
