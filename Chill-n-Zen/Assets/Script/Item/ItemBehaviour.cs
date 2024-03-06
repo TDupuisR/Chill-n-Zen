@@ -57,6 +57,7 @@ public class ItemBehaviour : MonoBehaviour
 
     private void Update()
     {
+
         if (CurrentState == GMStatic.State.Moving)
         {
             SetPosFromPointer();
