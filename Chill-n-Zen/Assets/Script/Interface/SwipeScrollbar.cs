@@ -67,7 +67,7 @@ public class SwipeScrollbar : MonoBehaviour
         if (isInScrollZone())
         {
             //print(_parentXStartingPosition + "+" + value + "*" + _currentNumberItems + "*" + _spacePerItem);
-            Vector2 newParentPosition = new Vector2();
+            Vector2 newParentPosition = _parentObject.position;
             if (_isHorizontal)
             {
                 newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * _spacePerItem,
@@ -75,19 +75,25 @@ public class SwipeScrollbar : MonoBehaviour
             }
             else
             {
+                value = 1 - value;
                 newParentPosition = new Vector2(_parentObject.position.x,
-                _parentStartingPosition.y - value * _currentNumberItems * _spacePerItem);
+                _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
             }
+
             _parentObject.position = newParentPosition;
         }
     }
 
     private void swipeScroll(Vector2 vector)
     {
+        float inputVector = vector.y;
+        if (_isHorizontal)
+            inputVector = vector.x;
+
         if (GameplayScript.Instance.IsSafeSwipe)
         {
             IsScrolling = true;
-            float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((vector.x * _scrollSensitivity) / _currentNumberItems));
+            float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((inputVector * _scrollSensitivity) / _currentNumberItems));
             _scrollbar.value = newScrollBarValue;
         }
     }
@@ -115,11 +121,16 @@ public class SwipeScrollbar : MonoBehaviour
         {
             if(!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
                 return false;
-
+            
             if (_isInUpperSideOfScreen)
                 return GameplayScript.Instance.PrimaryPosition.y > (Screen.height / 2.0f);
             else
                 return GameplayScript.Instance.PrimaryPosition.y < (Screen.height / 2.0f);
         }
+    }
+
+    void RemoveChildren(GameObject _object)
+    {
+        throw new System.NotImplementedException();
     }
 }

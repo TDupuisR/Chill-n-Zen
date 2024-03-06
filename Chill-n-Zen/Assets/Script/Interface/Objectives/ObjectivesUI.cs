@@ -12,6 +12,8 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] GameObject _checkboxPrefab;
     [SerializeField] Transform _objectPrimaryParent;
     [SerializeField] Transform _objectSecondaryParent;
+    [SerializeField] SwipeScrollbar _primaryScrollbar;
+    [SerializeField] SwipeScrollbar _secondaryScrollbar;
 
     [Header("Objectives fields")]
     [SerializeField] float _spaceBTWObj;
@@ -44,7 +46,7 @@ public class ObjectivesUI : MonoBehaviour
         set
         {
             _numberOfPrimaryObjectives = value;
-            SetNumberOfObjectives(_numberOfPrimaryObjectives, _primaryObjectives, _objectPrimaryParent);
+            SetNumberOfObjectives(_numberOfPrimaryObjectives, _primaryObjectives, _objectPrimaryParent, _primaryScrollbar);
         }
     }
 
@@ -54,7 +56,7 @@ public class ObjectivesUI : MonoBehaviour
         set
         {
             _numberOfSecondaryObjectives = value;
-            SetNumberOfObjectives(_numberOfSecondaryObjectives, _secondaryObjective, _objectSecondaryParent);
+            SetNumberOfObjectives(_numberOfSecondaryObjectives, _secondaryObjective, _objectSecondaryParent, _secondaryScrollbar);
         }
     }
 
@@ -63,7 +65,7 @@ public class ObjectivesUI : MonoBehaviour
         _glowingRoutine = StartCoroutine(GlowingAnimation());
     }
 
-    void SetNumberOfObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent)
+    void SetNumberOfObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, SwipeScrollbar linkedScrollBar)
     {
         objectiveList.Clear();
         Vector2 currentPosition = Vector2.zero;
@@ -75,13 +77,18 @@ public class ObjectivesUI : MonoBehaviour
             ObjectivesCheckbox objScript = newObj.GetComponent<ObjectivesCheckbox>();
             objectiveList.Add(objScript);
 
-            UpdateObjective(objScript, false);
+            UpdateObjective(objScript, false, true);
 
             currentPosition -= new Vector2(0, _spaceBTWObj);
         }
+
+        linkedScrollBar.UpdateSize(count);
     }
+    
     [Button]
     public void TESTSPAWNMERDE() => NumberOfPrimaryObjectives = 5;
+    [Button]
+    public void TESTSPAWNSECONDARYMERDE() => NumberOfSecondaryObjectives = 5;
 
     public void SetObjectiveText(ObjectivesCheckbox objectiveObject, string text)
     {
@@ -95,12 +102,13 @@ public class ObjectivesUI : MonoBehaviour
     }
 
 
-    void UpdateObjective(ObjectivesCheckbox objectiveList, bool isValid)
+    void UpdateObjective(ObjectivesCheckbox objectiveList, bool isValid, bool skipEffect = false)
     {
         objectiveList.Img.sprite = isValid ? _checkedSprite : _uncheckedSprite;
         objectiveList.Img.color = isValid ? _completedColor : _notCompletedColor;
 
-        ObjectiveCompletedEffect(objectiveList);
+        if(!skipEffect)
+            ObjectiveCompletedEffect(objectiveList);
     }
 
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
