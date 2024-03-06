@@ -16,8 +16,10 @@ public class ItemScoreEffect : MonoBehaviour
     [SerializeField] float _translationDuration;
     [SerializeField] AnimationCurve _translationCurve;
 
+
+    public Vector3 TextTransformPosition { get => _textTransform.position; set => _textTransform.position = value; }
     public Vector3 EndingPosition { get; set; }
-    public List<string> TextList { get ; set; }
+    public string TextToDisplay { get ; set; }
 
     public void StartEffect()
     {
@@ -26,11 +28,7 @@ public class ItemScoreEffect : MonoBehaviour
     IEnumerator EffectAnimation()
     {
         //Add Text & make a sound
-        foreach (string scoreText in TextList)
-        {
-            _text.text += scoreText + "\n";
-            yield return new WaitForSeconds(_secondsBTWText);
-        }
+        _text.text = TextToDisplay;
 
         //Translation to progression slider
         Vector3 startingPosition = _textTransform.position;

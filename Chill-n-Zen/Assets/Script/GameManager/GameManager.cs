@@ -13,12 +13,14 @@ namespace GameManagerSpace
         public static AudioManager audioManager;
         public static SaveData saveData;
         public static BudgetManager budgetManager;
+        public static ScoreEffectManager scoreEffectManager;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
+        [SerializeField] ScoreEffectManager _scoreEffectManager;
 
         private void OnValidate()
         {
@@ -30,6 +32,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x3) No save data assigned ", _saveData);
             if (_budgetManager == null)
                 Debug.LogError(" (error : 1x4) No budget manager assigned ", _budgetManager);
+            if (_scoreEffectManager == null)
+                Debug.LogError(" (error : 1x4) No score effect manager assigned ", _scoreEffectManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -49,6 +53,7 @@ namespace GameManagerSpace
             libraryItems = _libraryItems;
             saveData = _saveData;
             budgetManager = _budgetManager;
+            scoreEffectManager = _scoreEffectManager;
         }
 
         public void ChangeScene(int sceneIndex)

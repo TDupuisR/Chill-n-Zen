@@ -6,26 +6,30 @@ using UnityEngine;
 public class ScoreEffectManager : MonoBehaviour
 {
     [SerializeField] GameObject _scoreEffectPrefab;
-    [SerializeField] Transform _starSliderTransform;
+    [SerializeField] Transform _endingPositionTransform;
 
-    public void SpawnEffect(Vector3 startingPosition, List<string> textList)
+    [SerializeField] Color _scoreColor;
+    [SerializeField] Color _comboColor;
+
+    public void SpawnEffect(Vector3 startingPosition, int score, bool isCombo)
     {
         GameObject newEffect = Instantiate(_scoreEffectPrefab, startingPosition, Quaternion.identity);
         ItemScoreEffect effectScript = newEffect.GetComponent<ItemScoreEffect>();
 
-        effectScript.EndingPosition = _starSliderTransform.position;
-        effectScript.TextList = textList;
+        string textToDisplay = "";
+        if (isCombo)
+            textToDisplay = "<color=#" + ColorUtility.ToHtmlStringRGB(_scoreColor) + "> Combo : " + score + " points !";
+        else
+            textToDisplay = "<color=#" + ColorUtility.ToHtmlStringRGB(_comboColor) + ">+ " + score + " points";
+
+        effectScript.TextTransformPosition = startingPosition;
+        effectScript.EndingPosition = _endingPositionTransform.position;
+        effectScript.TextToDisplay = textToDisplay;
         effectScript.StartEffect();
     }
 
     [Button]
-    public void TestDisplayEffect()
-    {
-        List<string> list = new List<string>()
-        {
-            "+99 - fouet",
-            "*2 - menottes"
-        };
-        SpawnEffect(Vector3.zero, list);
-    }
+    public void TestDisplayEffect() => SpawnEffect(Vector3.zero, 80, false);
+    [Button]
+    public void TestDisplayEffectCombo() => SpawnEffect(Vector3.zero, 500, true);
 }

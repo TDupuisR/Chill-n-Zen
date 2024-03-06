@@ -283,6 +283,13 @@ public class ItemBehaviour : MonoBehaviour
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
 
+
+    public void SpawnScoreEffect(int quantity, bool isCombo)
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
+        GameManager.scoreEffectManager.SpawnEffect(screenPos, quantity, isCombo);
+    }
+
     [Button]
     private void Init()
     {
