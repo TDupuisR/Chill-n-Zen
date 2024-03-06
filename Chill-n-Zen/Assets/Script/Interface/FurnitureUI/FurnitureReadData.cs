@@ -10,6 +10,9 @@ public class FurnitureReadData : MonoBehaviour
     [SerializeField] TagUIScriptable _tagUIList;
     [SerializeField] Image _img;
     [SerializeField] TMP_Text _priceText;
+    [SerializeField] TMP_Text _nameText;
+    [SerializeField] TMP_Text _pointsText;
+    [SerializeField] TMP_Text _descriptionText;
     [Header("Badge Images")]
     [SerializeField] Image _roomImg;
     [SerializeField] Image _styleImg;
@@ -33,6 +36,9 @@ public class FurnitureReadData : MonoBehaviour
     {
         _img.sprite = furniture.spriteOneFixed;
         _priceText.text = furniture.price.ToString() + " Cr";
+        _nameText.text = furniture.name.ToString();
+        _pointsText.text = furniture.score.ToString();
+        //_descriptionText.text = furniture.description.ToString();
 
         if(IsAllTagValid(furniture))
         {
