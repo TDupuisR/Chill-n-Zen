@@ -11,6 +11,7 @@ public class DisplayFurniture : MonoBehaviour
     [SerializeField] SwipeScrollbar _displayScrollbar;
     [SerializeField] GameObject _furniturePrefab;
     [SerializeField] GameObject _parentObject;
+    [SerializeField] GameObject _selectedUnderlay;
     [Header("Display format")]
     [SerializeField] Transform _startingPoint;
     [SerializeField] float _spaceBTWFurniture;
@@ -53,6 +54,19 @@ public class DisplayFurniture : MonoBehaviour
         //    Debug.LogWarning("_spaceBTWRows ne peut pas être négative ou nulle");
         //    _spaceBTWRows = 1;
         //}
+    }
+
+    private void OnEnable()
+    {
+        ItemSpawner.onItemTouched += ActivateUnderlay;
+        ItemSpawner.onItemSelected += DisableUnderlay;
+
+    }
+
+    private void OnDisable()
+    {
+        ItemSpawner.onItemTouched -= ActivateUnderlay;
+        ItemSpawner.onItemSelected -= DisableUnderlay;
     }
 
     private void Start()
@@ -118,6 +132,15 @@ public class DisplayFurniture : MonoBehaviour
         TotalNumberOfItems = 0;
         _itemsCreated.Clear();
     }
+
+    #region UnderLay function
+    public void ActivateUnderlay(Vector2 pos)
+    {
+        _selectedUnderlay.SetActive(true);
+        _selectedUnderlay.transform.position = pos;
+    }
+    public void DisableUnderlay() => _selectedUnderlay.SetActive(false);
+    #endregion
 
     [Button] public void DisplayAllFurnitures() => DisplayCollection(GameManager.libraryItems.listItems);
     [Button] public void EraseAllFurnitures() => EraseCollection();
