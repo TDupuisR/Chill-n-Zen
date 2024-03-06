@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class DisplayFurniture : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] DisplayFurnitureScrollbar _displayScrollbar;
+    [SerializeField] SwipeScrollbar _displayScrollbar;
     [SerializeField] GameObject _furniturePrefab;
     [SerializeField] GameObject _parentObject;
     [Header("Display format")]
@@ -88,6 +88,7 @@ public class DisplayFurniture : MonoBehaviour
             newItem.GetComponent<FurnitureReadData>().Furniture = item;
             newItem.GetComponent<ItemSpawner>().ObjectParent = _objectParent;
             newItem.GetComponent<ItemSpawner>().DetailWindow = _detailWindow;
+            newItem.GetComponent<ItemSpawner>().Scrollbar = _displayScrollbar;
             _itemsCreated.Add(newItem);
             numberOfItems++;
 

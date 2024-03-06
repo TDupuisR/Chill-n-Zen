@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-public class DisplayFurnitureScrollbar : MonoBehaviour
+public class SwipeScrollbar : MonoBehaviour
 {
     [SerializeField] Scrollbar _scrollbar;
     [SerializeField] Transform _parentObject;
-    [SerializeField] Transform _upperEdgeOfScroll;
+    [SerializeField] Transform _EdgeOfScroll;
     [SerializeField] int _numberItemBeforeScroll;
     [SerializeField] float _spacePerItem;
     [SerializeField] float _scrollSensitivity;
-    float _currentNumberItems;
-    float _parentXStartingPosition;
+    [SerializeField] bool _isHorizontal;
+    [SerializeField] bool _isInUpperSideOfScreen;
 
-    public static bool IsScrolling { get ; private set; }
+    float _currentNumberItems;
+    Vector2 _parentStartingPosition;
+
+    public bool IsScrolling { get ; private set; }
 
     private void Awake()
     {
-        _parentXStartingPosition = _parentObject.position.x;
+        _parentStartingPosition = _parentObject.position;
     }
 
     private void OnEnable()
@@ -65,8 +67,17 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
         if (isInScrollZone())
         {
             //print(_parentXStartingPosition + "+" + value + "*" + _currentNumberItems + "*" + _spacePerItem);
-            Vector2 newParentPosition = new Vector2(_parentXStartingPosition - value * _currentNumberItems * _spacePerItem,
-            _parentObject.position.y);
+            Vector2 newParentPosition = new Vector2();
+            if (_isHorizontal)
+            {
+                newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * _spacePerItem,
+                _parentObject.position.y);
+            }
+            else
+            {
+                newParentPosition = new Vector2(_parentObject.position.x,
+                _parentStartingPosition.y - value * _currentNumberItems * _spacePerItem);
+            }
             _parentObject.position = newParentPosition;
         }
     }
@@ -96,6 +107,19 @@ public class DisplayFurnitureScrollbar : MonoBehaviour
 
     bool isInScrollZone()
     {
-        return GameplayScript.Instance.PrimaryPosition.y < _upperEdgeOfScroll.position.y;
+        if (_isHorizontal)
+        {
+            return GameplayScript.Instance.PrimaryPosition.y < _EdgeOfScroll.position.y;
+        }
+        else
+        {
+            if(!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
+                return false;
+
+            if (_isInUpperSideOfScreen)
+                return GameplayScript.Instance.PrimaryPosition.y > (Screen.height / 2.0f);
+            else
+                return GameplayScript.Instance.PrimaryPosition.y < (Screen.height / 2.0f);
+        }
     }
 }
