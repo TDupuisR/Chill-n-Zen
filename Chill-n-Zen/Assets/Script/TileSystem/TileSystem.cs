@@ -384,6 +384,7 @@ public class TileSystem : MonoBehaviour
             if (tile.CheckIfAccessible(GMStatic.constraint.None))
                 freeTiles++;
         }
+        GameManager.requestManager.FreeTiles = freeTiles;
 
         if (GameManager.budgetManager.CurrentBudget < 0)
         {

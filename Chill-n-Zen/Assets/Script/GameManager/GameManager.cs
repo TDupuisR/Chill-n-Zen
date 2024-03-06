@@ -103,11 +103,12 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct Request
         {
-            public List<GMStatic.requestObj> obj;
-            public List<GMStatic.requestType> type;
-            public List<GMStatic.requestColor> color;
-            public List<GMStatic.requestMaterial> material;
-            public List<GMStatic.requestProximity> proximity;
+            public List<requestObj> obj;
+            public List<requestUsage> usage;
+            public List<requestColor> color;
+            public List<requestMaterial> material;
+            public List<requestProximity> proximity;
+            public List<requestFreeSpace> freeSpace;
         }
 
         [System.Serializable]
@@ -118,9 +119,9 @@ namespace GameManagerSpace
             public string phraseClient;
         }
         [System.Serializable]
-        public struct requestType
+        public struct requestUsage
         {
-            public GMStatic.tagUsage typeRequested;
+            public tagUsage usageRequested;
             public int nbRequested;
             public string phraseClient;
         }
@@ -134,15 +135,21 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestMaterial
         {
-            public GMStatic.tagMaterial materialRequested;
+            public tagMaterial materialRequested;
             public int nbRequested;
             public string phraseClient;
         }
         [System.Serializable]
         public struct requestProximity
         {
-            public GMStatic.tagType closeFromRequested;
-            public GMStatic.tagType closeToRequested;
+            public tagUsage closeFromRequested;
+            public List<tagUsage> closeToRequested;
+            public int nbRequested;
+            public string phraseClient;
+        }
+        public struct requestFreeSpace
+        {
+            public int nbRequested;
             public string phraseClient;
         }
     }

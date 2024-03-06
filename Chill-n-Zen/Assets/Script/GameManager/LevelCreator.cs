@@ -34,7 +34,7 @@ public class LevelCreator : MonoBehaviour
         GridMethod();
         DoorMethod();
 
-        RequestMethod();
+        GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
 
         Destroy(gameObject);
     }
@@ -66,10 +66,5 @@ public class LevelCreator : MonoBehaviour
 
         TileSystem.Instance.PlaceDoor(doorInstruction.Position);
         TileSystem.Instance.RotateDoor(rotation);
-    }
-
-    private void RequestMethod()
-    {
-
     }
 }
