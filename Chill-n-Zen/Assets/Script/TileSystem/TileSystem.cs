@@ -20,7 +20,7 @@ public class TileSystem : MonoBehaviour
     List<TileBehaviour> _tileBehaveList = new List<TileBehaviour>();
 
     List<GameObject> _objectList = new List<GameObject>();
-    List<ItemBehaviour> _itemList = new List<ItemBehaviour>();
+    List<ItemBehaviour> _itemBehaveList = new List<ItemBehaviour>();
 
     List<Vector2Int> _nextPF = new List<Vector2Int>();
     List<Vector2Int> _donePF = new List<Vector2Int>();
@@ -30,8 +30,9 @@ public class TileSystem : MonoBehaviour
     enum objAction { Add, Remove }
     public Vector3 CellSize { get { return _isoGrid.cellSize; }  }
     public bool IsSceneVacant { get; private set; }
-    public List<GameObject> TilesList { get { return _tilesList; } }
-    
+    public List<TileBehaviour> TilesList { get { return _tileBehaveList; } }
+    public List<ItemBehaviour> ItemList { get { return _itemBehaveList; } }
+    public int TotalScore { get; private set; }
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
@@ -76,6 +77,7 @@ public class TileSystem : MonoBehaviour
         IsSceneVacant = true;
         _doorBehave = _door.GetComponent<ItemBehaviour>();
 
+        TotalScore = 0;
         InitializeDoor();
     }
 
@@ -253,7 +255,19 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
+            _tileBehaveList[index].CheckConditionExist(item);
+        }
 
+        return res;
+    }
+    public bool CheckForBonus(GMStatic.tagUsage usage, int x, int y)
+    {
+        bool res = false;
+
+        int index = CheckTileExist(x, y);
+        if (index > -1)
+        {
+            _tileBehaveList[index].CheckConditionExist(usage);
         }
 
         return res;
@@ -286,7 +300,7 @@ public class TileSystem : MonoBehaviour
                     if (!CheckIfObjectExist (obj))
                     {
                         _objectList.Add(obj);
-                        _itemList.Add(item);
+                        _itemBehaveList.Add(item);
                         OnItemAdded?.Invoke(item.OwnItem);
                     }
                     break;
@@ -296,7 +310,7 @@ public class TileSystem : MonoBehaviour
                     if (CheckIfObjectExist(obj))
                     {
                         _objectList.Remove(obj);
-                        _itemList.Remove(item);
+                        _itemBehaveList.Remove(item);
                         OnItemRemoved?.Invoke(item.OwnItem);
                     }
                     break;
@@ -362,8 +376,32 @@ public class TileSystem : MonoBehaviour
 
     }
 
+    private void RoomScanning()
+    {
+        int freeTiles = 0;
+        foreach (TileBehaviour tile in _tileBehaveList)
+        {
+            if (tile.CheckIfAccessible(GMStatic.constraint.None))
+                freeTiles++;
+        }
+        GameManager.requestManager.FreeTiles = freeTiles;
+
+        if (GameManager.budgetManager.CurrentBudget < 0)
+        {
+            int score = 0;
+            foreach (ItemBehaviour furnit in _itemBehaveList)
+            {
+                if (furnit.gameObject != _door)
+                {
+                    score += furnit.PointsChecker.GivePoints();
+                }
+            }
+            TotalScore = score;
+        }
+    }
+
     // Path Finding //
-    public bool PathFinding(Vector2Int start, Vector2Int target) // Target door by default //
+    public bool PathFinding(Vector2Int start, Vector2Int target) 
     {
         bool res = false;
 

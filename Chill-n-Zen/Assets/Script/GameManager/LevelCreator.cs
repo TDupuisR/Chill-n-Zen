@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using GameManagerSpace;
 
 public class LevelCreator : MonoBehaviour
 {
     [SerializeField] List<GridSetup> gridInstructions;
     [SerializeField] DoorSetup doorInstruction;
 
+    [SerializeField] GMStatic.Request _primaryRequests;
+    [SerializeField] GMStatic.Request _secondaryRequests;
+
     public enum GridGen { Create, Delete }
     public enum Rotation { SW, SE, NE, NW }
 
+    // Grid //
     [System.Serializable]
     public struct GridSetup
     {
@@ -16,7 +21,6 @@ public class LevelCreator : MonoBehaviour
         public Vector2Int StartPos;
         public Vector2Int GridSize;
     }
-
     [System.Serializable]
     public struct DoorSetup
     {
@@ -26,6 +30,16 @@ public class LevelCreator : MonoBehaviour
 
 
     private void Start()
+    {
+        GridMethod();
+        DoorMethod();
+
+        GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
+
+        Destroy(gameObject);
+    }
+
+    private void GridMethod()
     {
         foreach (GridSetup gridSetup in gridInstructions)
         {
@@ -41,7 +55,9 @@ public class LevelCreator : MonoBehaviour
                     TileSystem.Instance.DeleteGrid(gridSetup.StartPos, gridSetup.GridSize);
             }
         }
-
+    }
+    private void DoorMethod()
+    {
         int rotation = 0;
         if (doorInstruction.orientation == Rotation.SW) rotation = 0;
         else if (doorInstruction.orientation == Rotation.SE) rotation = 90;
@@ -50,7 +66,5 @@ public class LevelCreator : MonoBehaviour
 
         TileSystem.Instance.PlaceDoor(doorInstruction.Position);
         TileSystem.Instance.RotateDoor(rotation);
-
-        Destroy(gameObject);
     }
 }
