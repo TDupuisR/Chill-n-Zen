@@ -36,9 +36,12 @@ public class FurnitureReadData : MonoBehaviour
     {
         _img.sprite = furniture.spriteOneFixed;
         _priceText.text = furniture.price.ToString() + " Cr";
-        //_nameText.text = furniture.name.ToString();
-        _pointsText.text = furniture.score.ToString() + " Pts";
-        //_descriptionText.text = furniture.description.ToString();
+        //if(_nameText != null)
+        //    _nameText.text = furniture.name.ToString();
+        if(_pointsText != null)
+            _pointsText.text = furniture.score.ToString() + " Pts";
+        //if(_descriptionText != null)
+        //    _descriptionText.text = furniture.description.ToString();
 
         if(IsAllTagValid(furniture))
         {
