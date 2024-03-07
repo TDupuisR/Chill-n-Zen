@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public class DisplayFurniture : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] DisplayFurnitureScrollbar _displayScrollbar;
+    [SerializeField] SwipeScrollbar _displayScrollbar;
     [SerializeField] GameObject _furniturePrefab;
     [SerializeField] GameObject _parentObject;
+    [SerializeField] GameObject _selectedUnderlay;
     [Header("Display format")]
     [SerializeField] Transform _startingPoint;
     [SerializeField] float _spaceBTWFurniture;
@@ -55,6 +56,19 @@ public class DisplayFurniture : MonoBehaviour
         //}
     }
 
+    private void OnEnable()
+    {
+        ItemSpawner.onItemTouched += ActivateUnderlay;
+        ItemSpawner.onItemSelected += DisableUnderlay;
+
+    }
+
+    private void OnDisable()
+    {
+        ItemSpawner.onItemTouched -= ActivateUnderlay;
+        ItemSpawner.onItemSelected -= DisableUnderlay;
+    }
+
     private void Start()
     {
         if (_objectParent == null)
@@ -88,6 +102,7 @@ public class DisplayFurniture : MonoBehaviour
             newItem.GetComponent<FurnitureReadData>().Furniture = item;
             newItem.GetComponent<ItemSpawner>().ObjectParent = _objectParent;
             newItem.GetComponent<ItemSpawner>().DetailWindow = _detailWindow;
+            newItem.GetComponent<ItemSpawner>().Scrollbar = _displayScrollbar;
             _itemsCreated.Add(newItem);
             numberOfItems++;
 
@@ -117,6 +132,15 @@ public class DisplayFurniture : MonoBehaviour
         TotalNumberOfItems = 0;
         _itemsCreated.Clear();
     }
+
+    #region UnderLay function
+    public void ActivateUnderlay(Vector2 pos)
+    {
+        _selectedUnderlay.SetActive(true);
+        _selectedUnderlay.transform.position = pos;
+    }
+    public void DisableUnderlay() => _selectedUnderlay.SetActive(false);
+    #endregion
 
     [Button] public void DisplayAllFurnitures() => DisplayCollection(GameManager.libraryItems.listItems);
     [Button] public void EraseAllFurnitures() => EraseCollection();

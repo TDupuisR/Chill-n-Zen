@@ -12,8 +12,9 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public Transform ObjectParent { get; set; }
     public FurnitureReadData DetailWindow { get; set; }
+    public SwipeScrollbar Scrollbar { get; set; }
 
-    public static Action onItemTouched;
+    public static Action<Vector2> onItemTouched;
     public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -21,7 +22,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileSystem.Instance.IsSceneVacant)
         {
             _waitHoldRoutine = StartCoroutine(WaitForHold());
-            onItemTouched?.Invoke();
+            onItemTouched?.Invoke(transform.position);
             DetailWindow.Furniture = _data.Furniture;
         }
     }
@@ -38,7 +39,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         bool checking = true;
         while (checking)
         {
-            if (GameplayScript.Instance.IsHold && !DisplayFurnitureScrollbar.IsScrolling)
+            if (GameplayScript.Instance.IsHold && !Scrollbar.IsScrolling)
             {
                 GameObject spawnedItem = Instantiate(_itemPrefab, ObjectParent);
                 spawnedItem.GetComponent<ItemBehaviour>().Initialize(_data.Furniture);
