@@ -5,11 +5,22 @@ using UnityEngine;
 
 public class ScoreEffectManager : MonoBehaviour
 {
+    public static ScoreEffectManager Instance;
+
     [SerializeField] GameObject _scoreEffectPrefab;
     [SerializeField] Transform _endingPositionTransform;
 
     [SerializeField] Color _scoreColor;
     [SerializeField] Color _comboColor;
+
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+            Destroy(gameObject);
+        }
+    }
 
     public void SpawnEffect(Vector3 startingPosition, int score, bool isCombo)
     {

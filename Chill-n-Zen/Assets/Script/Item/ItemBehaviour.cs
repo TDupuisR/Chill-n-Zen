@@ -60,6 +60,7 @@ public class ItemBehaviour : MonoBehaviour
 
     private void Update()
     {
+
         if (CurrentState == GMStatic.State.Moving)
         {
             SetPosFromPointer();
@@ -290,7 +291,7 @@ public class ItemBehaviour : MonoBehaviour
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
-        //GameManager.scoreEffectManager.SpawnEffect(screenPos, quantity, isCombo);
+        ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
     }
 
     [Button]
