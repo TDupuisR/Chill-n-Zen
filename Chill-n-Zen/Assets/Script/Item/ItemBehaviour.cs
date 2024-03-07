@@ -290,7 +290,7 @@ public class ItemBehaviour : MonoBehaviour
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
-        GameManager.scoreEffectManager.SpawnEffect(screenPos, quantity, isCombo);
+        //GameManager.scoreEffectManager.SpawnEffect(screenPos, quantity, isCombo);
     }
 
     [Button]

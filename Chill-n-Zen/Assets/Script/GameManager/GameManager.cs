@@ -20,6 +20,7 @@ namespace GameManagerSpace
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
         [SerializeField] RequestManager _requestManager;
+        //test
 
         private void OnValidate()
         {
