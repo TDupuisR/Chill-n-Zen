@@ -11,6 +11,7 @@ public class ItemBehaviour : MonoBehaviour
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
     [SerializeField] LineRenderer _lineRender;
+    [SerializeField] private GameObject _smoke;
 
     [Header("TEST ONLY")]
     [SerializeField] Item _ownItem;
@@ -254,7 +255,7 @@ public class ItemBehaviour : MonoBehaviour
         {
             Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
             TileSystem.Instance.PlacingItem(gameObject, gridPos.x, gridPos.y);
-
+            SpawnSmoke(transform);
             CurrentState = GMStatic.State.Placed;
             _lineRender.enabled = false;
             _constraint.RenderLine(false);
@@ -282,11 +283,15 @@ public class ItemBehaviour : MonoBehaviour
     public void Remove()
     {
         TileSystem.Instance.ObjectOnScene(true);
-
+        SpawnSmoke(transform);
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
         TileSystem.Instance.RemoveItem(gameObject, gridPos.x, gridPos.y);
     } // Remove the Item from the scene, need to make sure every information of the item gets deleted
 
+    private void SpawnSmoke(Transform pos)
+    {
+        Instantiate(_smoke, pos);
+    }
 
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {

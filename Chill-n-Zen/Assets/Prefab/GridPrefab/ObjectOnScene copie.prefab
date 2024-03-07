@@ -1345,9 +1345,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _constraint: {fileID: 3412781312042844409}
+  _pointsChecker: {fileID: 0}
   _spriteGmObj: {fileID: 2083728952115379752}
   _itemUI: {fileID: 5496170060791973697}
   _lineRender: {fileID: 9001477627417687344}
+  _smoke: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
   _ownItem: {fileID: 0}
 --- !u!1 &8236613675982345435
 GameObject:
