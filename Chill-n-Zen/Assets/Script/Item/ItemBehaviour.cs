@@ -7,8 +7,10 @@ public class ItemBehaviour : MonoBehaviour
     [Header("Serialized Infos")]
     [SerializeField] ItemConstraint _constraint;
     [SerializeField] ItemPointsChecker _pointsChecker;
-    [SerializeField] GameObject _spriteGmObj;
-    SpriteRenderer _spriteRender;
+    [SerializeField] GameObject _spriteUnCllrGmObj;
+    SpriteRenderer _spriteUnClrRender;
+    [SerializeField] GameObject _spriteCllrGmObj;
+    SpriteRenderer _spriteClrRender;
     [SerializeField] ItemUI _itemUI;
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] private GameObject _smoke;
@@ -25,7 +27,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3[] _patternPosition = new Vector3[4];
 
     public Item OwnItem { get { return _ownItem; } }
-    public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
+    public SpriteRenderer SpriteRenderer { get { return _spriteUnClrRender; } }
     public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
 
@@ -43,7 +45,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (_lineRender == null) 
             Debug.LogError(" (error : 4x0) No LineRenderer assigned ) ", gameObject);
-        if (_spriteGmObj == null)
+        if (_spriteUnCllrGmObj == null || _spriteCllrGmObj == null)
             Debug.LogError(" (error : 4x1) No Sprite child GameObject assigned ) ", gameObject);
     }
 
@@ -51,7 +53,8 @@ public class ItemBehaviour : MonoBehaviour
     {
         TileSystem.OnSceneChanged += CheckWhenPlaced;
 
-        _spriteRender = _spriteGmObj.GetComponent<SpriteRenderer>();
+        _spriteUnClrRender = _spriteUnCllrGmObj.GetComponent<SpriteRenderer>();
+        _spriteClrRender = _spriteCllrGmObj.GetComponent<SpriteRenderer>();
         InitPattern();
     }
     private void OnDisable()
@@ -70,7 +73,7 @@ public class ItemBehaviour : MonoBehaviour
         }
     }
 
-    public void Initialize(Item item)
+    public void Initialize(Item item) // Color color
     {
         if (item == null)
         {
@@ -90,14 +93,15 @@ public class ItemBehaviour : MonoBehaviour
         _rotationSize = OwnItem.size;
         _orientation = 0;
 
-        _spriteRender.sprite = _ownItem.spriteOneFixed;
+        _spriteUnClrRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
-        _spriteGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
         LineColor(Color.red);
 
         SpriteAppearance();
+        //ChangeSpriteColor(color);
 
         //Constraint Methods
         _constraint.ResetConstraint(transform.position);
@@ -107,7 +111,7 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetInfos()
     {
         OffsetPosCalcul();
-        _spriteGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
 
         SpriteAppearance();
         CheckNewPos();
@@ -178,6 +182,11 @@ public class ItemBehaviour : MonoBehaviour
         else LineColor(Color.green);
     }
 
+    public void ChangeSpriteColor(Color color)
+    {
+        _spriteClrRender.color = color;
+        ItemColor = color;
+    }
     private void SpriteAppearance()
     {
         if (_orientation == 90 || _orientation == 270)
@@ -188,11 +197,11 @@ public class ItemBehaviour : MonoBehaviour
         {
             if (_orientation == 0 || _orientation == 90)
             {
-                _spriteRender.sprite = OwnItem.spriteOneFixed;
+                _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
             }
             else
             {
-                _spriteRender.sprite = OwnItem.spriteTwoFixed;
+                _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
             }
         }
 
@@ -200,10 +209,10 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void ColliderReset()
     {
-        if (_spriteGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteUnCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        _spriteGmObj.AddComponent<PolygonCollider2D>();
+        _spriteUnCllrGmObj.AddComponent<PolygonCollider2D>();
     }
     private void CheckWhenPlaced()
     {
@@ -215,12 +224,12 @@ public class ItemBehaviour : MonoBehaviour
             if (!ConstraintValid || !DoorValid)
             {
                 LineColor(new Color(255, 69, 0));
-                _spriteRender.color = Color.yellow;
+                _spriteUnClrRender.color = Color.yellow;
             }
             else
             {
                 LineColor(Color.green);
-                _spriteRender.color = Color.white;
+                _spriteUnClrRender.color = Color.white;
             }
         }
     }
