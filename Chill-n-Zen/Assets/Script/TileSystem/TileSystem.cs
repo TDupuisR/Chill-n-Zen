@@ -46,6 +46,9 @@ public class TileSystem : MonoBehaviour
     public delegate void OnSceneChangedDelegate();
     public static event OnSceneChangedDelegate OnSceneChanged;
 
+    public delegate void OnScoreChangedDelegate(int score);
+    public static event OnScoreChangedDelegate OnScoreChanged;
+
     private void OnValidate()
     {
         if (_isoGrid != null)
@@ -398,6 +401,8 @@ public class TileSystem : MonoBehaviour
             }
             TotalScore = score;
         }
+
+        OnScoreChanged?.Invoke(TotalScore);
     }
 
     // Path Finding //
