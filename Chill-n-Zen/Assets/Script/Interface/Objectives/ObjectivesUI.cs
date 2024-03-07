@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class ObjectivesUI : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] ScoreToReach _scoreToReach;
+    [SerializeField] StarUIDisplay _starUI;
     [SerializeField] Transform _buttonObjectivesRect;
     [SerializeField] GameObject _checkboxPrefab;
     [SerializeField] Transform _objectPrimaryParent;
@@ -25,8 +27,7 @@ public class ObjectivesUI : MonoBehaviour
 
     List<ObjectivesCheckbox> _primaryObjectives = new List<ObjectivesCheckbox>();
     List<ObjectivesCheckbox> _secondaryObjectives = new List<ObjectivesCheckbox>();
-    int _numberOfPrimaryObjectives;
-    int _numberOfSecondaryObjectives;
+    bool _hasCompletedPrimaryObjectives;
 
     [Header("Button glowing")]
     [SerializeField] Image _glowSprite;
@@ -50,12 +51,14 @@ public class ObjectivesUI : MonoBehaviour
     {
         RequestManager.OnFinishInitialisation += InitAllObjectives;
         TileSystem.OnSceneChanged += UpdateAllObjectives;
+        //ScoreToReach.OnCheckScore += ;
     }
 
     private void OnDisable()
     {
         RequestManager.OnFinishInitialisation -= InitAllObjectives;
         TileSystem.OnSceneChanged -= UpdateAllObjectives;
+        //ScoreToReach.OnCheckScore -= ;
     }
 
     void InitAllObjectives()
@@ -67,6 +70,8 @@ public class ObjectivesUI : MonoBehaviour
         textList = GameManager.requestManager.ReturnDescriptions(false);
         valueToSet = GameManager.requestManager.ReturnStatus(false);
         InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, _secondaryScrollbar, textList, valueToSet);
+
+        UpdateAllObjectives();
     }
 
     void InitializeObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, SwipeScrollbar linkedScrollBar, List<string> textToAdd, List<bool> valueToSet)
@@ -89,21 +94,6 @@ public class ObjectivesUI : MonoBehaviour
 
         linkedScrollBar.UpdateSize(count);
     }
-    
-
-    private void UpdateAllObjectives()
-    {
-        List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
-        for(int i=0; i < valueToSet.Count; i++)
-        {
-            UpdateSingleObjective(_primaryObjectives[i], valueToSet[i]);
-        }
-        valueToSet = GameManager.requestManager.ReturnStatus(false);
-        for (int i = 0; i < valueToSet.Count; i++)
-        {
-            UpdateSingleObjective(_secondaryObjectives[i], valueToSet[i]);
-        }
-    }
 
     public void SetObjectiveText(ObjectivesCheckbox objectiveObject, string text)
     {
@@ -117,6 +107,32 @@ public class ObjectivesUI : MonoBehaviour
     }
 
 
+    private void UpdateAllObjectives()
+    {
+        //Primary objectives
+        List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
+        if(valueToSet.Count > 0 )
+        {
+            for (int i = 0; i < valueToSet.Count; i++)
+            {
+                UpdateSingleObjective(_primaryObjectives[i], valueToSet[i]);
+            }
+            CheckCompleteObjectives(true, valueToSet);
+        }
+
+        //Secondary objectives
+        valueToSet = GameManager.requestManager.ReturnStatus(false);
+        if(valueToSet.Count > 0)
+        {
+            for (int i = 0; i < valueToSet.Count; i++)
+            {
+                UpdateSingleObjective(_secondaryObjectives[i], valueToSet[i]);
+            }
+            CheckCompleteObjectives(false, valueToSet);
+        }
+
+        CheckCompletedScoreObjective(_scoreToReach.IsScoreReached);
+    }
     void UpdateSingleObjective(ObjectivesCheckbox objectiveList, bool isValid, bool skipEffect = false)
     {
         Sprite oldSprite = objectiveList.Img.sprite;
@@ -128,17 +144,38 @@ public class ObjectivesUI : MonoBehaviour
             ObjectiveCompletedEffect(objectiveList);
     }
 
+    void CheckCompleteObjectives(bool primary, List<bool> objectivesList)
+    {
+        bool isEverythingcomplete = !objectivesList.Contains(false);
+
+        switch (primary)
+        {
+            case true:
+                _starUI.UnlockStar(0, isEverythingcomplete);
+                _hasCompletedPrimaryObjectives = isEverythingcomplete;
+                _starUI.UnlockOtherStars(isEverythingcomplete);
+                UnlockFinishButton(isEverythingcomplete);
+                break;
+            case false:
+                if(_hasCompletedPrimaryObjectives)
+                    _starUI.UnlockStar(1, isEverythingcomplete);
+                break;
+        }
+    }
+   
+    void CheckCompletedScoreObjective(bool unlocked)
+    {
+
+        if (_hasCompletedPrimaryObjectives)
+            _starUI.UnlockStar(1, unlocked);
+    }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
 
     #region Complete Level
     /*
      Complete Level Functions
      */
-    public void UnlockButton()
-    {
-        _completeLevelButton.interactable = true;
-    }
-
+    void UnlockFinishButton(bool unlock) => _completeLevelButton.interactable = unlock;
     public void CompleteLevel()
     {
         throw new System.NotImplementedException();
@@ -168,6 +205,7 @@ public class ObjectivesUI : MonoBehaviour
     }
     #endregion
 
+    #region Objective effect
     [Button]
     public void TestObjectivesEffect() => ObjectiveCompletedEffect(_primaryObjectives[0]);
     public void ObjectiveCompletedEffect(ObjectivesCheckbox objectiveToDisplay)
@@ -179,4 +217,5 @@ public class ObjectivesUI : MonoBehaviour
         effectScript.ImgToImplement = objectiveToDisplay.Img.sprite;
         effectScript.LaunchEffect();
     }
+    #endregion
 }

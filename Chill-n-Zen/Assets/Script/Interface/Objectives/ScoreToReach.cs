@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ScoreText : MonoBehaviour
+public class ScoreToReach : MonoBehaviour
 {
+    [SerializeField] StarUIDisplay _starUI;
     [SerializeField] TMP_Text _text;
     int _score = 0;
 
     public bool IsScoreReached { get; private set; }
+
+    public static Action<bool> OnCheckScore;
 
     private void OnEnable()
     {
@@ -32,6 +37,8 @@ public class ScoreText : MonoBehaviour
             IsScoreReached = true;
         else
             IsScoreReached = false;
+
+        OnCheckScore?.Invoke(IsScoreReached);
     }
     
 }
