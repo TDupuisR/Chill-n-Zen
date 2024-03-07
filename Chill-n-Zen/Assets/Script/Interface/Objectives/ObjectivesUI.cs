@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -23,7 +24,7 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] Sprite _checkedSprite;
 
     List<ObjectivesCheckbox> _primaryObjectives = new List<ObjectivesCheckbox>();
-    List<ObjectivesCheckbox> _secondaryObjective = new List<ObjectivesCheckbox>();
+    List<ObjectivesCheckbox> _secondaryObjectives = new List<ObjectivesCheckbox>();
     int _numberOfPrimaryObjectives;
     int _numberOfSecondaryObjectives;
 
@@ -40,32 +41,35 @@ public class ObjectivesUI : MonoBehaviour
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
 
-    public int NumberOfPrimaryObjectives
-    {
-        get => _numberOfPrimaryObjectives;
-        set
-        {
-            _numberOfPrimaryObjectives = value;
-            SetNumberOfObjectives(_numberOfPrimaryObjectives, _primaryObjectives, _objectPrimaryParent, _primaryScrollbar);
-        }
-    }
-
-    public int NumberOfSecondaryObjectives
-    {
-        get => _numberOfSecondaryObjectives;
-        set
-        {
-            _numberOfSecondaryObjectives = value;
-            SetNumberOfObjectives(_numberOfSecondaryObjectives, _secondaryObjective, _objectSecondaryParent, _secondaryScrollbar);
-        }
-    }
-
     private void Awake()
     {
         _glowingRoutine = StartCoroutine(GlowingAnimation());
     }
 
-    void SetNumberOfObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, SwipeScrollbar linkedScrollBar)
+    private void OnEnable()
+    {
+        RequestManager.OnFinishInitialisation += InitAllObjectives;
+        TileSystem.OnSceneChanged += UpdateAllObjectives;
+    }
+
+    private void OnDisable()
+    {
+        RequestManager.OnFinishInitialisation -= InitAllObjectives;
+        TileSystem.OnSceneChanged -= UpdateAllObjectives;
+    }
+
+    void InitAllObjectives()
+    {
+        List<string> textList = GameManager.requestManager.ReturnDescriptions(true);
+        List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
+        InitializeObjectives(textList.Count, _primaryObjectives, _objectPrimaryParent, _primaryScrollbar, textList, valueToSet);
+
+        textList = GameManager.requestManager.ReturnDescriptions(false);
+        valueToSet = GameManager.requestManager.ReturnStatus(false);
+        InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, _secondaryScrollbar, textList, valueToSet);
+    }
+
+    void InitializeObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, SwipeScrollbar linkedScrollBar, List<string> textToAdd, List<bool> valueToSet)
     {
         objectiveList.Clear();
         Vector2 currentPosition = Vector2.zero;
@@ -77,7 +81,8 @@ public class ObjectivesUI : MonoBehaviour
             ObjectivesCheckbox objScript = newObj.GetComponent<ObjectivesCheckbox>();
             objectiveList.Add(objScript);
 
-            UpdateObjective(objScript, false, true);
+            SetObjectiveText(objScript, textToAdd[i]);
+            UpdateSingleObjective(objScript, valueToSet[i], true);
 
             currentPosition -= new Vector2(0, _spaceBTWObj);
         }
@@ -85,10 +90,20 @@ public class ObjectivesUI : MonoBehaviour
         linkedScrollBar.UpdateSize(count);
     }
     
-    [Button]
-    public void TESTSPAWNMERDE() => NumberOfPrimaryObjectives = 5;
-    [Button]
-    public void TESTSPAWNSECONDARYMERDE() => NumberOfSecondaryObjectives = 5;
+
+    private void UpdateAllObjectives()
+    {
+        List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
+        for(int i=0; i < valueToSet.Count; i++)
+        {
+            UpdateSingleObjective(_primaryObjectives[i], valueToSet[i]);
+        }
+        valueToSet = GameManager.requestManager.ReturnStatus(false);
+        for (int i = 0; i < valueToSet.Count; i++)
+        {
+            UpdateSingleObjective(_secondaryObjectives[i], valueToSet[i]);
+        }
+    }
 
     public void SetObjectiveText(ObjectivesCheckbox objectiveObject, string text)
     {
@@ -102,12 +117,14 @@ public class ObjectivesUI : MonoBehaviour
     }
 
 
-    void UpdateObjective(ObjectivesCheckbox objectiveList, bool isValid, bool skipEffect = false)
+    void UpdateSingleObjective(ObjectivesCheckbox objectiveList, bool isValid, bool skipEffect = false)
     {
+        Sprite oldSprite = objectiveList.Img.sprite;
+
         objectiveList.Img.sprite = isValid ? _checkedSprite : _uncheckedSprite;
         objectiveList.Img.color = isValid ? _completedColor : _notCompletedColor;
 
-        if(!skipEffect)
+        if(!skipEffect && oldSprite != objectiveList.Img.sprite)
             ObjectiveCompletedEffect(objectiveList);
     }
 
@@ -158,7 +175,8 @@ public class ObjectivesUI : MonoBehaviour
         GameObject newEffect = Instantiate(_completedEffectPrefab, Vector3.zero, Quaternion.identity);
         ObjectivesCompletedEffect effectScript = newEffect.GetComponent<ObjectivesCompletedEffect>();
         effectScript.TextToImplement = objectiveToDisplay.Text;
+        effectScript.TextToImplement.text = objectiveToDisplay.Text.text;
         effectScript.ImgToImplement = objectiveToDisplay.Img.sprite;
-        effectScript.ObjectiveCompletedEffect();
+        effectScript.LaunchEffect();
     }
 }
