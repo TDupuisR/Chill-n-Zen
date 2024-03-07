@@ -6,6 +6,7 @@ public class ItemBehaviour : MonoBehaviour
 {
     [Header("Serialized Infos")]
     [SerializeField] ItemConstraint _constraint;
+    [SerializeField] ItemPointsChecker _pointsChecker;
     [SerializeField] GameObject _spriteGmObj;
     SpriteRenderer _spriteRender;
     [SerializeField] ItemUI _itemUI;
@@ -24,11 +25,13 @@ public class ItemBehaviour : MonoBehaviour
 
     public Item OwnItem { get { return _ownItem; } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
+    public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
 
     public Vector3 OffsetPos { get { return _offsetPos; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
     public int Orientation { get { return _orientation; } }
+    public Color ItemColor { get; private set; }
 
     public bool CanPlace { get { return _canPlace;} }
     public bool ConstraintValid { get { return _constraint.IsConstraintValid; } }
@@ -214,7 +217,7 @@ public class ItemBehaviour : MonoBehaviour
             }
             else
             {
-                LineColor(Color.white);
+                LineColor(Color.green);
                 _spriteRender.color = Color.white;
             }
         }

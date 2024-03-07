@@ -96,13 +96,44 @@ public class TileBehaviour : MonoBehaviour
                 {
                     foreach (GMStatic.tagUsage usage in item.listUsage)
                     {
-                        if (usage == GMStatic.tagUsage.Table) { res = true; break; }
+                        if (usage == GMStatic.tagUsage.Table || usage == GMStatic.tagUsage.Desk) { res = true; break; }
                     }
                     if (!res) break;
                 }
                 else
                 {
                     res = false; break;
+                }
+            }
+        }
+
+        return res;
+    }
+    public bool CheckConditionExist(Item checking)
+    {
+        bool res = false;
+
+        foreach (Item item in _presentItems)
+        {
+            if (item == checking)
+            {
+                res =true; break;
+            }
+        }
+
+        return res;
+    }
+    public bool CheckConditionExist(GMStatic.tagUsage checking)
+    {
+        bool res = false;
+
+        foreach (Item item in _presentItems)
+        {
+            foreach (GMStatic.tagUsage usage in item.listUsage)
+            {
+                if (usage == checking)
+                {
+                    res = true; break;
                 }
             }
         }
