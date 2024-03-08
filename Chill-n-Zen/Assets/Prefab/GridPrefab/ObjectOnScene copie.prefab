@@ -1053,7 +1053,7 @@ MonoBehaviour:
   _validButton: {fileID: 9059004244735616052}
   _moveButton: {fileID: 3691042710416333956}
   _deleteButton: {fileID: 7326790598854564378}
-  _spacingFactor: 100
+  _spacingFactor: 40
   _text: {fileID: 1143600497162394103}
   _obstructionText: "Acc\xE8s osbtru\xE9!"
   _noaccessText: Aucun passage vers la porte!

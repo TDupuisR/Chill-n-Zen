@@ -167,7 +167,7 @@ public class ObjectivesUI : MonoBehaviour
     {
 
         if (_hasCompletedPrimaryObjectives)
-            _starUI.UnlockStar(1, unlocked);
+            _starUI.UnlockStar(2, unlocked);
     }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
 
