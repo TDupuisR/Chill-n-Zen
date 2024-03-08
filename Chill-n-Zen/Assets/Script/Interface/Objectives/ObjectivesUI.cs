@@ -21,6 +21,10 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] Transform _objectSecondaryParent;
     [SerializeField] SwipeScrollbar _scroll;
 
+    [Header("Reference fill")]
+    [SerializeField] RectTransform _fillRect;
+    [SerializeField] float _spaceFillFactor;
+
     [Header("Objectives fields")]
     [SerializeField] float _spaceBTWObj;
     [SerializeField] Color _notCompletedColor;
@@ -97,10 +101,16 @@ public class ObjectivesUI : MonoBehaviour
         count += textList.Count;
         InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, textList, valueToSet);
 
-        if(count > 6)
-            _scroll.UpdateSize(4);
+        if(count > 4)
+        {
+            _scroll.UpdateSize(count - 4);
+            _fillRect.offsetMin = new Vector2(_fillRect.offsetMin.x, -(count * _spaceFillFactor));
+        }
         else
+        {
             _scroll.UpdateSize(1);
+            _fillRect.offsetMin = new Vector2(_fillRect.offsetMin.x, -400);
+        }
         
         UpdateAllObjectives();
     }
