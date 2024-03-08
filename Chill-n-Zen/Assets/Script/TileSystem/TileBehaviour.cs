@@ -70,12 +70,29 @@ public class TileBehaviour : MonoBehaviour
         foreach (Item item in _presentItems)
         {
             if (
-                (item.type == placing.type) || (item.type == GMStatic.tagType.Null) ||
-                (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object) ||
-                (item.type == GMStatic.tagType.Object && placing.type == GMStatic.tagType.Furniture)
-                )
+                (item.type == placing.type) || (item.type == GMStatic.tagType.Null) || 
+                (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object && !item.listUsage.Contains(GMStatic.tagUsage.Top)) || 
+                (item.type == GMStatic.tagType.Object && placing.type == GMStatic.tagType.Furniture) || 
+                (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Mural && placing.size.z < item.size.z) ||
+                (item.type == GMStatic.tagType.Mural && placing.type == GMStatic.tagType.Furniture && item.size.z < placing.size.z) ||
+                (placing.type == GMStatic.tagType.Ceiling && item.type != GMStatic.tagType.Mural && item.size.z >= placing.size.z)
+               )
             {
                 res = false; break;
+            }
+        }
+
+        return res;
+    }
+    public int CheckIfTop(Item placing)
+    {
+        int res = 0;
+
+        foreach (Item item in _presentItems)
+        {
+            if (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object && item.listUsage.Contains(GMStatic.tagUsage.Top))
+            {
+                res += item.size.z;
             }
         }
 

@@ -2,7 +2,6 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using GameManagerSpace;
-using System.Runtime.InteropServices;
 
 public class TileSystem : MonoBehaviour
 {
@@ -46,6 +45,9 @@ public class TileSystem : MonoBehaviour
     public delegate void OnSceneChangedDelegate();
     public static event OnSceneChangedDelegate OnSceneChanged;
 
+    public delegate void OnScoreChangedDelegate(int score);
+    public static event OnScoreChangedDelegate OnScoreChanged;
+
     private void OnValidate()
     {
         if (_isoGrid != null)
@@ -79,6 +81,15 @@ public class TileSystem : MonoBehaviour
 
         TotalScore = 0;
         InitializeDoor();
+    }
+
+    private void OnEnable()
+    {
+        OnSceneChanged += RoomScanning;
+    }
+    private void OnDisable()
+    {
+        OnSceneChanged -= RoomScanning;
     }
 
     public Vector2Int WorldToGrid(Vector2 position)
@@ -231,6 +242,33 @@ public class TileSystem : MonoBehaviour
             }
 
             if (!res) break;
+        }
+
+        return res;
+    }
+    public int CheckItemTop(ItemBehaviour item, int x, int y) //if return is -1 consider false
+    {
+        int res = -1;
+
+        for (int i = 0; i < item.RotationSize.x; i++)
+        {
+            for (int j = 0; j < item.RotationSize.y; j++)
+            {
+                int tempoRes = 0;
+                int index = CheckTileExist(x + i, y + j);
+                if (index > -1)
+                {
+                    tempoRes = _tileBehaveList[index].CheckIfTop(item.OwnItem);
+                }
+
+                if (tempoRes > 4 || (tempoRes != res && res >= 0))
+                {
+                    res = -1;
+                    break;
+                }
+                else res = tempoRes;
+            }
+            if (res < 0) break;
         }
 
         return res;
@@ -398,6 +436,8 @@ public class TileSystem : MonoBehaviour
             }
             TotalScore = score;
         }
+
+        OnScoreChanged?.Invoke(TotalScore);
     }
 
     // Path Finding //

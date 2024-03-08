@@ -15,10 +15,11 @@ public class ObjectivesCompletedEffect : MonoBehaviour
     public Sprite ImgToImplement {  get; set; }
     public TMP_Text TextToImplement {  get; set; }
 
-    public void ObjectiveCompletedEffect()
+    public void LaunchEffect()
     {
         _img.sprite = ImgToImplement;
-        _text = TextToImplement;
+        _text.text = TextToImplement.text;
+        _text.color = TextToImplement.color;
 
         StartCoroutine(CompletedEffectAniation());
     }

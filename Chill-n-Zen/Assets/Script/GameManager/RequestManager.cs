@@ -1,4 +1,5 @@
 using GameManagerSpace;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,14 @@ public class RequestManager : MonoBehaviour
 
     public int FreeTiles { get; set; }
 
+    public static Action OnFinishInitialisation;
+
     public void Initialisation(GMStatic.Request primary, GMStatic.Request secondary)
     {
         _primaryList = primary;
         _secondaryList = secondary;
+
+        OnFinishInitialisation?.Invoke();
     }
 
     public List<string> ReturnDescriptions(bool primary)
@@ -23,18 +28,24 @@ public class RequestManager : MonoBehaviour
         if (primary) list = _primaryList;
         else list = _secondaryList;
 
-        foreach (GMStatic.requestObj current in list.obj)
-            ret.Add(current.phraseClient);
-        foreach (GMStatic.requestUsage current in list.usage)
-            ret.Add(current.phraseClient);
-        foreach (GMStatic.requestColor current in list.color)
-            ret.Add(current.phraseClient);
-        foreach (GMStatic.requestMaterial current in list.material)
-            ret.Add(current.phraseClient);
-        foreach (GMStatic.requestProximity current in list.proximity)
-            ret.Add(current.phraseClient);
-        foreach (GMStatic.requestFreeSpace current in list.freeSpace)
-            ret.Add(current.phraseClient);
+        if(list.obj != null)
+            foreach (GMStatic.requestObj current in list.obj)
+                ret.Add(current.phraseClient);
+        if (list.usage != null)
+            foreach (GMStatic.requestUsage current in list.usage)
+                ret.Add(current.phraseClient);
+        if (list.color != null)
+            foreach (GMStatic.requestColor current in list.color)
+                ret.Add(current.phraseClient);
+        if (list.material != null)
+            foreach (GMStatic.requestMaterial current in list.material)
+                ret.Add(current.phraseClient);
+        if (list.proximity != null)
+            foreach (GMStatic.requestProximity current in list.proximity)
+                ret.Add(current.phraseClient);
+        if (list.freeSpace != null)
+            foreach (GMStatic.requestFreeSpace current in list.freeSpace)
+                ret.Add(current.phraseClient);
 
         return ret;
     }
@@ -45,19 +56,25 @@ public class RequestManager : MonoBehaviour
         GMStatic.Request list;
         if (primary) list = _primaryList;
         else list = _secondaryList;
-
-        foreach (GMStatic.requestObj current in list.obj)
-            ret.Add(CheckObjRequest(current));
-        foreach (GMStatic.requestUsage current in list.usage)
-            ret.Add(CheckTypeRequest(current));
-        foreach (GMStatic.requestColor current in list.color)
-            ret.Add(CheckColorRequest(current));
-        foreach (GMStatic.requestMaterial current in list.material)
-            ret.Add(CheckMaterialRequest(current));
-        foreach (GMStatic.requestProximity current in list.proximity)
-            ret.Add(CheckProximityRequest(current));
-        foreach (GMStatic.requestFreeSpace current in list.freeSpace)
-            ret.Add(CheckFreeSpaceRequest(current));
+        
+        if(list.obj != null)
+            foreach (GMStatic.requestObj current in list.obj)
+                ret.Add(CheckObjRequest(current));
+        if (list.usage != null)
+            foreach (GMStatic.requestUsage current in list.usage)
+                ret.Add(CheckTypeRequest(current));
+        if (list.color != null)
+            foreach (GMStatic.requestColor current in list.color)
+                ret.Add(CheckColorRequest(current));
+        if (list.material != null)
+            foreach (GMStatic.requestMaterial current in list.material)
+                ret.Add(CheckMaterialRequest(current));
+        if (list.proximity != null)
+            foreach (GMStatic.requestProximity current in list.proximity)
+                ret.Add(CheckProximityRequest(current));
+        if (list.freeSpace != null)
+            foreach (GMStatic.requestFreeSpace current in list.freeSpace)
+                ret.Add(CheckFreeSpaceRequest(current));
 
         return ret;
     }
