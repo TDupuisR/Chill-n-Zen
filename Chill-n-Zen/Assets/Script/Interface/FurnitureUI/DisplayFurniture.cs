@@ -37,7 +37,7 @@ public class DisplayFurniture : MonoBehaviour
 
     private void OnValidate()
     {
-        //if(_furniturePerRow <= 0)
+        //if(_furniturePerRow <= 0) bite
         //{
         //    Debug.LogWarning("_furniturePerRow ne peut pas être négative ou nulle");
         //    _furniturePerRow = 1;
