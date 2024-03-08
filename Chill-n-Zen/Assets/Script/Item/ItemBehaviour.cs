@@ -198,10 +198,12 @@ public class ItemBehaviour : MonoBehaviour
             if (_orientation == 0 || _orientation == 90)
             {
                 _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
+                _spriteClrRender.sprite = OwnItem.spriteOneColored;
             }
             else
             {
                 _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
+                _spriteClrRender.sprite = OwnItem.spriteTwoColored;
             }
         }
 
