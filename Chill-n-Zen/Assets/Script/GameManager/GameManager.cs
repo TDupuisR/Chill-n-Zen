@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace GameManagerSpace
 {
@@ -13,6 +14,7 @@ namespace GameManagerSpace
         public static SaveData saveData;
         public static BudgetManager budgetManager;
         public static RequestManager requestManager;
+        public static ColorData colorData;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
@@ -20,7 +22,9 @@ namespace GameManagerSpace
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
         [SerializeField] RequestManager _requestManager;
-        //test
+        [SerializeField] ColorData _colorData;
+
+        private LoadingAnimation _loadingScript;
 
         private void OnValidate()
         {
@@ -54,6 +58,9 @@ namespace GameManagerSpace
             saveData = _saveData;
             budgetManager = _budgetManager;
             requestManager = _requestManager;
+            colorData = _colorData;
+
+            _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }
 
         public void ChangeScene(int sceneIndex)
@@ -70,6 +77,8 @@ namespace GameManagerSpace
         {
             yield return null;
 
+            
+
             AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
             loadSceneOperation.allowSceneActivation = false;
 
@@ -83,7 +92,6 @@ namespace GameManagerSpace
                 yield return new WaitForFixedUpdate();
             }
         }
-
     }
 
     public static class GMStatic
