@@ -4334,6 +4334,7 @@ GameObject:
   - component: {fileID: 892186902327629433}
   - component: {fileID: 1104317241247131809}
   - component: {fileID: 1352573194053541720}
+  - component: {fileID: 6553323006020784810}
   m_Layer: 5
   m_Name: ColorSelection
   m_TagString: Untagged
@@ -4403,6 +4404,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6553323006020784810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846929533859941214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba705abe2bd222142a4e6e7315451f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imageList:
+  - {fileID: 8061241031515884852}
+  - {fileID: 2055050484563249371}
+  - {fileID: 6688010233761216671}
+  - {fileID: 6815092939790227502}
+  - {fileID: 7289693994423564695}
+  _textList:
+  - {fileID: 736489954219285611}
+  - {fileID: 551604009531854782}
+  - {fileID: 5722875330656473506}
+  - {fileID: 8552005440633970521}
+  - {fileID: 8997374191858217465}
 --- !u!1 &2852544859546520326
 GameObject:
   m_ObjectHideFlags: 0
