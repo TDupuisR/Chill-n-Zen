@@ -21,7 +21,9 @@ public class LevelCompletedManager : MonoBehaviour
         }
 
         bool[] starState = new bool[3] { ObjectivesUI.Instance.HasPrimaryStar, ObjectivesUI.Instance.HasSecondaryStar, ObjectivesUI.Instance.HasScoreStar};
-
+        
+        //_finalScoreText.text = "Final score : ";
+        
         _windowScroll.StartScroll();
     }
 }

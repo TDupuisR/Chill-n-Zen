@@ -83,6 +83,15 @@ public class TileSystem : MonoBehaviour
         InitializeDoor();
     }
 
+    private void OnEnable()
+    {
+        OnSceneChanged += RoomScanning;
+    }
+    private void OnDisable()
+    {
+        OnSceneChanged -= RoomScanning;
+    }
+
     public Vector2Int WorldToGrid(Vector2 position)
     {
         Vector3Int gridPos = _isoGrid.WorldToCell(position);
