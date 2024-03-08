@@ -4422,6 +4422,12 @@ MonoBehaviour:
   - {fileID: 6688010233761216671}
   - {fileID: 6815092939790227502}
   - {fileID: 7289693994423564695}
+  _borderImgList:
+  - {fileID: 4096181327896882397}
+  - {fileID: 5118819330204851174}
+  - {fileID: 3950779728461017987}
+  - {fileID: 7038954369820372752}
+  - {fileID: 3123741741488364295}
   _textList:
   - {fileID: 736489954219285611}
   - {fileID: 551604009531854782}
@@ -7359,7 +7365,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5118819330204851174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6553323006020784810}
+        m_TargetAssemblyTypeName: FurnitureColorSelection, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4740306603032344492
 GameObject:
   m_ObjectHideFlags: 0
@@ -9048,7 +9066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4096181327896882397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6553323006020784810}
+        m_TargetAssemblyTypeName: FurnitureColorSelection, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6232941995875500270
 GameObject:
   m_ObjectHideFlags: 0
@@ -9170,7 +9200,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3950779728461017987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6553323006020784810}
+        m_TargetAssemblyTypeName: FurnitureColorSelection, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6254062655222171206
 GameObject:
   m_ObjectHideFlags: 0
@@ -9674,7 +9716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3123741741488364295}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6553323006020784810}
+        m_TargetAssemblyTypeName: FurnitureColorSelection, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6452306897033071657
 GameObject:
   m_ObjectHideFlags: 0
@@ -13207,7 +13261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7038954369820372752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6553323006020784810}
+        m_TargetAssemblyTypeName: FurnitureColorSelection, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8382447800510946335
 GameObject:
   m_ObjectHideFlags: 0

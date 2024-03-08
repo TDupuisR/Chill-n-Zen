@@ -1,5 +1,6 @@
 using UnityEngine;
 using GameManagerSpace;
+using System;
 
 public class ItemInput : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class ItemInput : MonoBehaviour
     bool _primWasPressed = false;
     bool _holdWasPressed = false;
     bool _isOnItem = false;
+    
+    public static Action<ItemBehaviour> OnCallDescription;
 
     private void Start()
     {
         _gameplay = GameplayScript.Instance;
-    }
 
+        OnCallDescription?.Invoke(_itemBehave);
+    }
+    
     private void OnMouseOver()
     {
         _isOnItem = true;
@@ -36,7 +41,11 @@ public class ItemInput : MonoBehaviour
         // Etape 4 -> 5
         if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Placed)
         {
-            if (TileSystem.Instance.IsSceneVacant) _itemUI.ActivateUI(true);
+            if (TileSystem.Instance.IsSceneVacant)
+            {
+                _itemUI.ActivateUI(true);
+                OnCallDescription?.Invoke(_itemBehave);
+            }
         }
     }
     private void OnMouseExit() { _isOnItem = false; }
