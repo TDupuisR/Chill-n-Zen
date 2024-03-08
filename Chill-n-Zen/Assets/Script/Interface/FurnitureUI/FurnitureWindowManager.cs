@@ -29,7 +29,7 @@ public class FurnitureWindowManager : MonoBehaviour
     {
         _openButton.onClick.Invoke();
 
-        //Hide detail panel
+        //Hide detail panel bite
         DisplayDetailWindow(false);
     }
 
