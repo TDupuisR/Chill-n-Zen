@@ -217,9 +217,9 @@ public class TileSystem : MonoBehaviour
         _doorBehave.Rotation(rotation);
     }
 
-    [Button] public void ShowGrid()
+    public void ShowGrid()
     {
-        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+        OnShowGrid?.Invoke();
     }
 
     public bool CheckForPlacing(ItemBehaviour item, int x, int y)

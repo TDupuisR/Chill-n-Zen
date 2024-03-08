@@ -93,7 +93,6 @@ public class ItemBehaviour : MonoBehaviour
         _rotationSize = OwnItem.size;
         _orientation = 0;
 
-        _spriteUnClrRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
