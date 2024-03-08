@@ -14,6 +14,7 @@ namespace GameManagerSpace
         public static SaveData saveData;
         public static BudgetManager budgetManager;
         public static RequestManager requestManager;
+        public static ColorData colorData;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
@@ -21,6 +22,7 @@ namespace GameManagerSpace
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
         [SerializeField] RequestManager _requestManager;
+        [SerializeField] ColorData _colorData;
 
         private LoadingAnimation _loadingScript;
 
@@ -56,6 +58,7 @@ namespace GameManagerSpace
             saveData = _saveData;
             budgetManager = _budgetManager;
             requestManager = _requestManager;
+            colorData = _colorData;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }
@@ -89,13 +92,6 @@ namespace GameManagerSpace
                 yield return new WaitForFixedUpdate();
             }
         }
-
-        [Button]
-        private void TestLoadingAnim()
-        {
-            StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f));
-        }
-
     }
 
     public static class GMStatic

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3164706526098807982}
   - component: {fileID: 4287724285047484372}
   - component: {fileID: 7144708466580255975}
+  - component: {fileID: 1230102083759745206}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -60,6 +61,7 @@ MonoBehaviour:
   _budgetManager: {fileID: 312910655046976922}
   _loadingScreen: {fileID: 2855957472224433375}
   _requestManager: {fileID: 1691653008747985223}
+  _colorData: {fileID: 1230102083759745206}
 --- !u!114 &312910655046976922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +381,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1230102083759745206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455097743039211084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc22203b978fd4ab98fe5be3a9307d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 1, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 1, b: 0.10245538, a: 0}
+  color3: {r: 1, g: 0.9622632, b: 0, a: 0}
+  color4: {r: 0, g: 0.6578684, b: 1, a: 0}
+  color5: {r: 1, g: 0, b: 0.733407, a: 0}
 --- !u!1001 &4628184574296037541
 PrefabInstance:
   m_ObjectHideFlags: 0
