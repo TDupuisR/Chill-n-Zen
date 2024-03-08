@@ -8,7 +8,10 @@ using UnityEngine.UI;
 
 public class ObjectivesUI : MonoBehaviour
 {
+    public static ObjectivesUI Instance;
+
     [Header("References")]
+    [SerializeField] GameObject _levelCompletedManager;
     [SerializeField] ScoreToReach _scoreToReach;
     [SerializeField] StarUIDisplay _starUI;
     [SerializeField] Transform _buttonObjectivesRect;
@@ -42,8 +45,19 @@ public class ObjectivesUI : MonoBehaviour
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
 
+    public bool HasPrimaryStar { get; private set; }
+    public bool HasSecondaryStar { get; private set; }
+    public bool HasScoreStar { get; private set; }
+
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Debug.LogError(" (error : 1x0) Too many ObjectivesUI instance ", gameObject);
+            Destroy(gameObject);
+        }
+        Instance = this;
+
         _glowingRoutine = StartCoroutine(GlowingAnimation());
     }
 
@@ -146,28 +160,34 @@ public class ObjectivesUI : MonoBehaviour
 
     void CheckCompleteObjectives(bool primary, List<bool> objectivesList)
     {
-        bool isEverythingcomplete = !objectivesList.Contains(false);
+        bool isEverythingComplete = !objectivesList.Contains(false);
 
         switch (primary)
         {
             case true:
-                _starUI.UnlockStar(0, isEverythingcomplete);
-                _hasCompletedPrimaryObjectives = isEverythingcomplete;
-                _starUI.UnlockOtherStars(isEverythingcomplete);
-                UnlockFinishButton(isEverythingcomplete);
+                _starUI.UnlockStar(0, isEverythingComplete);
+                _hasCompletedPrimaryObjectives = isEverythingComplete;
+                _starUI.UnlockOtherStars(isEverythingComplete);
+                UnlockFinishButton(isEverythingComplete);
+                HasPrimaryStar = isEverythingComplete;
                 break;
             case false:
                 if(_hasCompletedPrimaryObjectives)
-                    _starUI.UnlockStar(1, isEverythingcomplete);
+                {
+                    _starUI.UnlockStar(1, isEverythingComplete);
+                    HasSecondaryStar = isEverythingComplete;
+                }
                 break;
         }
     }
    
     void CheckCompletedScoreObjective(bool unlocked)
     {
-
         if (_hasCompletedPrimaryObjectives)
+        {
             _starUI.UnlockStar(2, unlocked);
+            HasScoreStar = unlocked;
+        }
     }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
 
