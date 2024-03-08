@@ -198,7 +198,7 @@ public class ObjectivesUI : MonoBehaviour
     void UnlockFinishButton(bool unlock) => _completeLevelButton.interactable = unlock;
     public void CompleteLevel()
     {
-        throw new System.NotImplementedException();
+        _levelCompletedManager.SetActive(true);
     }
     #endregion
 
