@@ -12,7 +12,6 @@ public class SwipeScrollbar : MonoBehaviour
     [SerializeField] float _spacePerItem;
     [SerializeField] float _scrollSensitivity;
     [SerializeField] bool _isHorizontal;
-    [SerializeField] bool _isInUpperSideOfScreen;
 
     float _currentNumberItems;
     Vector2 _parentStartingPosition;
@@ -119,13 +118,10 @@ public class SwipeScrollbar : MonoBehaviour
         }
         else
         {
-            if(!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
+            if (!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
                 return false;
-            
-            if (_isInUpperSideOfScreen)
-                return GameplayScript.Instance.PrimaryPosition.y > (Screen.height / 2.0f);
-            else
-                return GameplayScript.Instance.PrimaryPosition.y < (Screen.height / 2.0f);
+
+            return true;
         }
     }
 
