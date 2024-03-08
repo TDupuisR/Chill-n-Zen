@@ -21,8 +21,6 @@ public class ObjectivesCompletedEffect : MonoBehaviour
         _text.text = TextToImplement.text;
         _text.color = TextToImplement.color;
 
-        print(_text.text);
-
         StartCoroutine(CompletedEffectAniation());
     }
 
