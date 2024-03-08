@@ -8526,6 +8526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8485701244808843767}
+  - component: {fileID: 5577381693740372365}
   m_Layer: 5
   m_Name: CompleteLevelObjects
   m_TagString: Untagged
@@ -8554,6 +8555,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5577381693740372365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832299913571802776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bc3fb406ec11345953c4872ca088bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _starImg:
+  - {fileID: 7662972445091114777}
+  - {fileID: 1456283713500376588}
+  - {fileID: 1955523956293861858}
+  _finalScoreText: {fileID: 1951944077182405260}
+  _windowScroll: {fileID: 993044574354385114}
+  _objectsToDisable:
+  - {fileID: 7746601108976711676}
+  - {fileID: 796100704984581548}
 --- !u!1 &5842227786757789891
 GameObject:
   m_ObjectHideFlags: 0
@@ -11954,7 +11976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4769359627168297745
 RectTransform:
   m_ObjectHideFlags: 0
