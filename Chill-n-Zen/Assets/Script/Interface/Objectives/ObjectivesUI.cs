@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ObjectivesUI : MonoBehaviour
@@ -18,8 +19,7 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] GameObject _checkboxPrefab;
     [SerializeField] Transform _objectPrimaryParent;
     [SerializeField] Transform _objectSecondaryParent;
-    [SerializeField] SwipeScrollbar _primaryScrollbar;
-    [SerializeField] SwipeScrollbar _secondaryScrollbar;
+    [SerializeField] SwipeScrollbar _scroll;
 
     [Header("Objectives fields")]
     [SerializeField] float _spaceBTWObj;
@@ -45,9 +45,14 @@ public class ObjectivesUI : MonoBehaviour
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
 
+    [Header("UnityEvent")]
+    [SerializeField] UnityEvent OnFinishSetup;
+
     public bool HasPrimaryStar { get; private set; }
     public bool HasSecondaryStar { get; private set; }
     public bool HasScoreStar { get; private set; }
+
+    public static Action OnFinishInitialisation;
 
     private void Awake()
     {
@@ -75,20 +80,32 @@ public class ObjectivesUI : MonoBehaviour
         //ScoreToReach.OnCheckScore -= ;
     }
 
+    private void Start()
+    {
+        OnFinishSetup?.Invoke();
+    }
+
     void InitAllObjectives()
     {
         List<string> textList = GameManager.requestManager.ReturnDescriptions(true);
         List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
-        InitializeObjectives(textList.Count, _primaryObjectives, _objectPrimaryParent, _primaryScrollbar, textList, valueToSet);
+        int count = textList.Count;
+        InitializeObjectives(textList.Count, _primaryObjectives, _objectPrimaryParent, textList, valueToSet);
 
         textList = GameManager.requestManager.ReturnDescriptions(false);
         valueToSet = GameManager.requestManager.ReturnStatus(false);
-        InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, _secondaryScrollbar, textList, valueToSet);
+        count += textList.Count;
+        InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, textList, valueToSet);
 
+        if(count > 6)
+            _scroll.UpdateSize(4);
+        else
+            _scroll.UpdateSize(1);
+        
         UpdateAllObjectives();
     }
 
-    void InitializeObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, SwipeScrollbar linkedScrollBar, List<string> textToAdd, List<bool> valueToSet)
+    void InitializeObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, List<string> textToAdd, List<bool> valueToSet)
     {
         objectiveList.Clear();
         Vector2 currentPosition = Vector2.zero;
@@ -106,7 +123,7 @@ public class ObjectivesUI : MonoBehaviour
             currentPosition -= new Vector2(0, _spaceBTWObj);
         }
 
-        linkedScrollBar.UpdateSize(count);
+        OnFinishInitialisation?.Invoke();
     }
 
     public void SetObjectiveText(ObjectivesCheckbox objectiveObject, string text)
