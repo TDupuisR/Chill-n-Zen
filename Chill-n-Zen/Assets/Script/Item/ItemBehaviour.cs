@@ -193,18 +193,15 @@ public class ItemBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-        if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+        if (_orientation == 0 || _orientation == 90)
         {
-            if (_orientation == 0 || _orientation == 90)
-            {
-                _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
-                _spriteClrRender.sprite = OwnItem.spriteOneColored;
-            }
-            else
-            {
-                _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
-                _spriteClrRender.sprite = OwnItem.spriteTwoColored;
-            }
+            _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
+            _spriteClrRender.sprite = OwnItem.spriteOneColored;
+        }
+        else if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+        {
+            _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
+            _spriteClrRender.sprite = OwnItem.spriteTwoColored;
         }
 
         ColliderReset();
