@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rect: {fileID: 4810719980743754885}
   _objectToCheck: {fileID: 4090008973046841880}
-  _sizeOfOneChildren: 40
+  _sizeOfOneChildren: 30
   _numberChildrenBeforeExpansion: 3
 --- !u!1 &137513405938334592
 GameObject:
@@ -446,7 +446,7 @@ MonoBehaviour:
   _checkboxPrefab: {fileID: 5334012815679339465, guid: 683d92793523dab499e047a0c80923af, type: 3}
   _objectPrimaryParent: {fileID: 1098020668247411504}
   _objectSecondaryParent: {fileID: 4090008973046841880}
-  _scroll: {fileID: 0}
+  _scroll: {fileID: 7233736683120072473}
   _spaceBTWObj: 40
   _notCompletedColor: {r: 1, g: 0, b: 0, a: 1}
   _completedColor: {r: 0.058918595, g: 1, b: 0, a: 1}
@@ -480,6 +480,21 @@ MonoBehaviour:
   _glowSpeed: 0.5
   _completedEffectPrefab: {fileID: 2300282758369718066, guid: 121b387238888b643952c369a72c1bc7, type: 3}
   _completeLevelButton: {fileID: 5702649316152069893}
+  OnFinishSetup:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4008068633080094566}
+        m_TargetAssemblyTypeName: WindowScroll, Assembly-CSharp
+        m_MethodName: UpdateCamActionZoneLeft
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6817194865486821823}
+          m_ObjectArgumentAssemblyTypeName: UIGetCam, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6167888860324656904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,7 +1148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rect: {fileID: 240451677769206712}
   _objectToCheck: {fileID: 1098020668247411504}
-  _sizeOfOneChildren: 40
+  _sizeOfOneChildren: 30
   _numberChildrenBeforeExpansion: 3
 --- !u!1 &596756501585252413
 GameObject:
@@ -6418,7 +6433,7 @@ MonoBehaviour:
   _scrollbar: {fileID: 382462184916339028}
   _parentObject: {fileID: 6073774087118187935}
   _EdgeOfScroll: {fileID: 1861972414220372876}
-  _numberItemBeforeScroll: 0
+  _numberItemBeforeScroll: 1
   _spacePerItem: 135
   _scrollSensitivity: 1
   _isHorizontal: 0

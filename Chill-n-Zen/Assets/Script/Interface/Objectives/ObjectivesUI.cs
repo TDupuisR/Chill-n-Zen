@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ObjectivesUI : MonoBehaviour
@@ -44,6 +45,9 @@ public class ObjectivesUI : MonoBehaviour
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
 
+    [Header("UnityEvent")]
+    [SerializeField] UnityEvent OnFinishSetup;
+
     public bool HasPrimaryStar { get; private set; }
     public bool HasSecondaryStar { get; private set; }
     public bool HasScoreStar { get; private set; }
@@ -76,16 +80,28 @@ public class ObjectivesUI : MonoBehaviour
         //ScoreToReach.OnCheckScore -= ;
     }
 
+    private void Start()
+    {
+        OnFinishSetup?.Invoke();
+    }
+
     void InitAllObjectives()
     {
         List<string> textList = GameManager.requestManager.ReturnDescriptions(true);
         List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
+        int count = textList.Count;
         InitializeObjectives(textList.Count, _primaryObjectives, _objectPrimaryParent, textList, valueToSet);
 
         textList = GameManager.requestManager.ReturnDescriptions(false);
         valueToSet = GameManager.requestManager.ReturnStatus(false);
+        count += textList.Count;
         InitializeObjectives(textList.Count, _secondaryObjectives, _objectSecondaryParent, textList, valueToSet);
 
+        if(count > 6)
+            _scroll.UpdateSize(4);
+        else
+            _scroll.UpdateSize(1);
+        
         UpdateAllObjectives();
     }
 
@@ -108,7 +124,6 @@ public class ObjectivesUI : MonoBehaviour
         }
 
         OnFinishInitialisation?.Invoke();
-        _scroll.UpdateSize(count);
     }
 
     public void SetObjectiveText(ObjectivesCheckbox objectiveObject, string text)

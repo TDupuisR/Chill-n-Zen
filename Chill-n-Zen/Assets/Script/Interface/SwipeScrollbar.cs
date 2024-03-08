@@ -60,7 +60,6 @@ public class SwipeScrollbar : MonoBehaviour
         }
         _scrollbar.value = 0;
     }
-
     public void PerformScroll(float value)
     {
         if (isInScrollZone())
@@ -74,11 +73,9 @@ public class SwipeScrollbar : MonoBehaviour
             }
             else
             {
-                value = 1 - value;
                 newParentPosition = new Vector2(_parentObject.position.x,
                 _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
             }
-
             _parentObject.position = newParentPosition;
         }
     }
@@ -89,7 +86,7 @@ public class SwipeScrollbar : MonoBehaviour
         if (_isHorizontal)
             inputVector = vector.x;
 
-        if (GameplayScript.Instance.IsSafeSwipe)
+        if (GameplayScript.Instance.IsSafeSwipe && _currentNumberItems != 0)
         {
             IsScrolling = true;
             float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((inputVector * _scrollSensitivity) / _currentNumberItems));
