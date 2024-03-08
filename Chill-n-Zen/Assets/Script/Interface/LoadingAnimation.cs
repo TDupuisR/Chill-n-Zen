@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +23,7 @@ public class LoadingAnimation : MonoBehaviour
     {
         _isActive = true;
 
-        StartCoroutine(TransitionLoading(0f, -2000f));
+        StartCoroutine(TransitionLoading(0f, -2000f, true));
     }
 
     void FixedUpdate()
@@ -44,7 +45,7 @@ public class LoadingAnimation : MonoBehaviour
         }
     }
 
-    public IEnumerator TransitionLoading(float start, float target)
+    public IEnumerator TransitionLoading(float start, float target, bool slowstart)
     {
         AnimationFinished = false;
         _isActive = true;
@@ -53,8 +54,12 @@ public class LoadingAnimation : MonoBehaviour
 
         while (Mathf.Abs(target -_parent.anchoredPosition.x) >= Mathf.Abs((target - start) * (_tolerance/100)))
         {
-            _parent.anchoredPosition += new Vector2(((target - _parent.anchoredPosition.x) / _smoothSpeed) * Time.fixedDeltaTime, 0f);
+            if (slowstart && (Mathf.Abs(target - _parent.anchoredPosition.x) >= Mathf.Abs((target - start) / 2)))
+                _parent.anchoredPosition += new Vector2(((_parent.anchoredPosition.x - (start +1)) / _smoothSpeed) * Time.fixedDeltaTime, 0f);
+            else
+                _parent.anchoredPosition += new Vector2(((target - _parent.anchoredPosition.x) / _smoothSpeed) * Time.fixedDeltaTime, 0f);
 
+            Debug.Log("distance: " + Mathf.Abs(target - _parent.anchoredPosition.x) + " | target: " + Mathf.Abs((target - start) * (_tolerance / 100)));
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("end transition");

@@ -65,7 +65,7 @@ namespace GameManagerSpace
 
         public void ChangeScene(int sceneIndex)
         {
-            if (_loadingScreen != null) _loadingScreen.SetActive(true);
+            if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
             else
             {
                 Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
@@ -75,9 +75,11 @@ namespace GameManagerSpace
         }
         IEnumerator AsyncLoadScnene(int sceneIndex)
         {
-            yield return null;
-
-            
+            StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+            do
+            {
+                yield return new WaitForFixedUpdate();
+            } while (_loadingScript.AnimationFinished);
 
             AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
             loadSceneOperation.allowSceneActivation = false;
@@ -92,6 +94,8 @@ namespace GameManagerSpace
                 yield return new WaitForFixedUpdate();
             }
         }
+
+        [Button] private void TestLoading() { StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false)); }
     }
 
     public static class GMStatic
@@ -99,7 +103,7 @@ namespace GameManagerSpace
         //Tag for furnitures identification//
         public enum tagRoom { Null, Other, Bedroom, Livingroom, Kitchen }
         public enum tagType { Null, Furniture, Object, Mural, Ceiling, Carpet }
-        public enum tagMaterial { Null, Wood, Metal, Plywood, Fabric }
+        public enum tagMaterial { Null, Wood, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
         public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Window, Light }
