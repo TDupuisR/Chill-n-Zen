@@ -8570,7 +8570,7 @@ MonoBehaviour:
   - {fileID: 7746601108976711676}
   - {fileID: 796100704984581548}
   _lockedStar: {fileID: 21300000, guid: b1a3953d3bf70b44f85e1882d1d00a05, type: 3}
-  _unlockedStar: {fileID: 21300000, guid: 0dbafab00dcdb7c4b8c53d11cedcd044, type: 3}
+  _unlockedStar: {fileID: 21300000, guid: ad47fb3d967509749a07e2716adc13cd, type: 3}
 --- !u!1 &5842227786757789891
 GameObject:
   m_ObjectHideFlags: 0
