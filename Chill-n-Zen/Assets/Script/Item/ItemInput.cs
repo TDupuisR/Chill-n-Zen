@@ -13,6 +13,7 @@ public class ItemInput : MonoBehaviour
     bool _isOnItem = false;
     
     public static Action<ItemBehaviour> OnCallDescription;
+    public static Action OnCallHideDescription;
 
     private void Start()
     {
@@ -77,5 +78,10 @@ public class ItemInput : MonoBehaviour
     private bool CheckIsTouching()
     {
         return !_gameplay.IsPrimaryPressed && _primWasPressed && !_holdWasPressed && !_gameplay.IsSecondaryPressed;
+    }
+
+    public void SendErase()
+    {
+        OnCallHideDescription?.Invoke();
     }
 }

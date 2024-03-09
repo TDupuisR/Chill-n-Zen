@@ -17,7 +17,9 @@ public class FurnitureWindowManager : MonoBehaviour
     {
         ItemSpawner.onItemSelected += CloseWindow;
         ItemSpawner.onItemTouched += AppearDetailWindow;
+
         ItemInput.OnCallDescription += AppearDetailWindowFromItem;
+        ItemInput.OnCallHideDescription += HideDetailWindow;
     }
 
 
@@ -26,7 +28,9 @@ public class FurnitureWindowManager : MonoBehaviour
     {
         ItemSpawner.onItemSelected -= CloseWindow;
         ItemSpawner.onItemTouched -= AppearDetailWindow;
+
         ItemInput.OnCallDescription -= AppearDetailWindowFromItem;
+        ItemInput.OnCallHideDescription -= HideDetailWindow;
     }
 
     public void AppearWindow(bool scrollDetail = true)
@@ -43,12 +47,9 @@ public class FurnitureWindowManager : MonoBehaviour
         _waitPlacementCoroutine = StartCoroutine(waitForObjectPlacement());
     }
 
-    private void AppearDetailWindowFromItem(ItemBehaviour behaviour) 
-    {
-        CloseWindow();
-        DisplayDetailWindow(true); 
-    }
+    private void AppearDetailWindowFromItem(ItemBehaviour behaviour)  => DisplayDetailWindow(!_detailWindow.Displayed); 
     public void AppearDetailWindow(Vector2 pos) => DisplayDetailWindow(true);
+    public void HideDetailWindow() => DisplayDetailWindow(false);
     public void DisplayDetailWindow(bool display)
     {
         if(_detailWindow.Displayed == !display)

@@ -40,8 +40,8 @@ public class FurnitureReadData : MonoBehaviour
         //    _nameText.text = furniture.name.ToString();
         if(_pointsText != null)
             _pointsText.text = furniture.score.ToString() + " Pts";
-        //if(_descriptionText != null)
-        //    _descriptionText.text = furniture.description.ToString();
+        if(_descriptionText != null)
+            _descriptionText.text = furniture.description;
 
         if(IsAllTagValid(furniture))
         {
