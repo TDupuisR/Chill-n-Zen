@@ -1,4 +1,5 @@
 using GameManagerSpace;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,22 +12,19 @@ public class BudgetSlider : MonoBehaviour
 
     private void OnEnable()
     {
-        if (GameManager.budgetManager != null)
-        {
-            GameManager.budgetManager._onBudgetChanged += UpdateInterface;
-        } //Needed because of timing issues (budgetManager is null on first OnEnable)
-
+        GameManager.budgetManager.OnSetDefaultBudget += InitializeBudget;
+        GameManager.budgetManager._onBudgetChanged += UpdateInterface;
     }
+
     private void OnDisable()
     {
         GameManager.budgetManager._onBudgetChanged -= UpdateInterface;
     }
 
-    private void Start()
+    private void InitializeBudget()
     {
-        //initialize Budget
         _defaultBudget = GameManager.budgetManager.CurrentBudget;
-        GameManager.budgetManager._onBudgetChanged += UpdateInterface; //Needed because of timing issues (budgetManager is null on first OnEnable)
+        UpdateInterface(_defaultBudget);
     }
 
     void UpdateInterface(int currentBudget)

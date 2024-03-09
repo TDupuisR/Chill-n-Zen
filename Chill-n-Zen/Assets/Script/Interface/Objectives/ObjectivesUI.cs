@@ -225,6 +225,7 @@ public class ObjectivesUI : MonoBehaviour
     void UnlockFinishButton(bool unlock) => _completeLevelButton.interactable = unlock;
     public void CompleteLevel()
     {
+        GameManager.saveData.SetStar(GameManager.levelManager.LevelNumber, HasPrimaryStar, HasSecondaryStar, HasScoreStar);
         _levelCompletedManager.SetActive(true);
     }
     #endregion

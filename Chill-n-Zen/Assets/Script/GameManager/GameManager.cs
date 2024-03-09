@@ -15,6 +15,7 @@ namespace GameManagerSpace
         public static BudgetManager budgetManager;
         public static RequestManager requestManager;
         public static ColorData colorData;
+        public static LevelManager levelManager;
 
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
@@ -23,6 +24,7 @@ namespace GameManagerSpace
         [SerializeField] GameObject _loadingScreen;
         [SerializeField] RequestManager _requestManager;
         [SerializeField] ColorData _colorData;
+        [SerializeField] LevelManager _levelManager;
 
         private LoadingAnimation _loadingScript;
 
@@ -38,6 +40,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x4) No budget manager assigned ", _budgetManager);
             if (_requestManager == null)
                 Debug.LogError(" (error : 1x5) No request manager assigned ", _requestManager);
+            if (_levelManager == null)
+                Debug.LogError(" (error : 1x5) No level manager assigned ", _levelManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -59,6 +63,7 @@ namespace GameManagerSpace
             budgetManager = _budgetManager;
             requestManager = _requestManager;
             colorData = _colorData;
+            levelManager = _levelManager;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }

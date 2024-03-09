@@ -4,9 +4,12 @@ using GameManagerSpace;
 
 public class LevelCreator : MonoBehaviour
 {
+    [SerializeField] int _levelNumber;
+    [SerializeField] int _levelBudget;
+    [Space(10)]
     [SerializeField] List<GridSetup> gridInstructions;
     [SerializeField] DoorSetup doorInstruction;
-
+    [Space(10)]
     [SerializeField] GMStatic.Request _primaryRequests;
     [SerializeField] GMStatic.Request _secondaryRequests;
 
@@ -35,6 +38,9 @@ public class LevelCreator : MonoBehaviour
         DoorMethod();
 
         GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
+        GameManager.budgetManager.CurrentBudget = _levelBudget;
+        GameManager.budgetManager.OnSetDefaultBudget?.Invoke();
+        GameManager.levelManager.LevelNumber = _levelNumber;
 
         Destroy(gameObject);
     }
