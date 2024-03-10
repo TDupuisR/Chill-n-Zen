@@ -84,7 +84,7 @@ namespace GameManagerSpace
             do
             {
                 yield return new WaitForFixedUpdate();
-            } while (_loadingScript.AnimationFinished);
+            } while (!_loadingScript.AnimationFinished);
 
             AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
             loadSceneOperation.allowSceneActivation = false;
@@ -98,6 +98,8 @@ namespace GameManagerSpace
 
                 yield return new WaitForFixedUpdate();
             }
+
+            StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
         }
 
         [Button] private void TestLoading() { StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false)); }

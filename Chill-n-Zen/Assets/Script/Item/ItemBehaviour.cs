@@ -1,6 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using GameManagerSpace;
+using System.Collections.Generic;
 
 public class ItemBehaviour : MonoBehaviour
 {
@@ -171,7 +172,10 @@ public class ItemBehaviour : MonoBehaviour
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
+
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
+        if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
+            _canPlace = CheckMuralPos(gridPos);
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -179,6 +183,44 @@ public class ItemBehaviour : MonoBehaviour
         if (!_canPlace) LineColor(Color.red);
         else if (!ConstraintValid || !DoorValid) LineColor(new Color(255, 69, 0));
         else LineColor(Color.green);
+    }
+    private bool CheckMuralPos(Vector2Int pos)
+    {
+        bool res = true;
+
+        int decal;
+        List<Vector2Int> list = new List<Vector2Int>();
+
+        if (Orientation == 0 || Orientation == 180)
+        {
+            if (Orientation == 0) decal = RotationSize.x;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + decal, pos.y + i));
+            }
+        }
+        else if (Orientation == 90 || Orientation == 270)
+        {
+            if (Orientation == 90) decal = RotationSize.y;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + i, pos.y + decal));
+            }
+        }
+
+        foreach (Vector2Int current in list)
+        {
+            if (TileSystem.Instance.CheckTileExist(current.x, current.y) >= 0)
+            {
+                res = false; break;
+            }
+        }
+
+        return res;
     }
 
     public void ChangeSpriteColor(Color color)

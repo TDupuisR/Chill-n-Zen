@@ -23,7 +23,7 @@ public class LoadingAnimation : MonoBehaviour
     {
         _isActive = true;
 
-        StartCoroutine(TransitionLoading(0f, -2000f, true));
+        _parent.anchoredPosition = new Vector2(-2000f, _parent.anchoredPosition.y);
     }
 
     void FixedUpdate()
