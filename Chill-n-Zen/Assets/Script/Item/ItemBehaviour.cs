@@ -244,7 +244,7 @@ public class ItemBehaviour : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-
+        Debug.Log(OwnItem);
 
         if (_orientation == 0 || _orientation == 90)
         {

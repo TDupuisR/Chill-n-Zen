@@ -32,12 +32,6 @@ public class LevelCreator : MonoBehaviour
         public Rotation orientation;
     }
 
-    private void Awake()
-    {
-        GameManager.levelManager.LevelNumber = _levelNumber;
-        GameManager.levelManager.ScoreToReach = _levelScore;
-    }
-
     private void Start()
     {
         GridMethod();
@@ -46,6 +40,8 @@ public class LevelCreator : MonoBehaviour
         GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
         GameManager.budgetManager.CurrentBudget = _levelBudget;
         GameManager.budgetManager.OnSetDefaultBudget?.Invoke();
+        GameManager.levelManager.LevelNumber = _levelNumber;
+        GameManager.levelManager.ScoreToReach = _levelScore;
 
         Destroy(gameObject);
     }
