@@ -1,5 +1,6 @@
 using GameManagerSpace;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class BudgetSlider : MonoBehaviour
     [SerializeField] TMP_Text _text;
     int _defaultBudget;
 
-    private void OnEnable()
+    private void Start() //need to be in the Start because of timing issues
     {
         GameManager.budgetManager.OnSetDefaultBudget += InitializeBudget;
         GameManager.budgetManager._onBudgetChanged += UpdateInterface;

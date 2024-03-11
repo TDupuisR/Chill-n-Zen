@@ -39,8 +39,8 @@ public class LevelCreator : MonoBehaviour
 
         GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
         GameManager.budgetManager.CurrentBudget = _levelBudget;
-        GameManager.budgetManager.OnSetDefaultBudget?.Invoke();
         GameManager.levelManager.LevelNumber = _levelNumber;
+        GameManager.budgetManager.OnSetDefaultBudget?.Invoke();
 
         Destroy(gameObject);
     }
