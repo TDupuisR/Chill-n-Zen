@@ -10,18 +10,22 @@ public class FurnitureColorSelection : MonoBehaviour
     [SerializeField] List<Image> _imageList;
     [SerializeField] List<Image> _borderImgList;
     [SerializeField] List<TMP_Text> _textList;
-
+    Vector2 currentButtonPosition;
+    int _cachedColor;
 
     public ItemBehaviour linkedItem { get; set; }
 
     private void OnEnable()
     {
         ItemInput.OnCallDescription += ChangeLinkedItem;
+        ItemSpawner.onItemTouched += SelectNewItem;
     }
+
 
     private void OnDisable()
     {
         ItemInput.OnCallDescription -= ChangeLinkedItem;
+        ItemSpawner.onItemTouched -= SelectNewItem;
     }
 
     public void InitializeButtons()
@@ -33,17 +37,44 @@ public class FurnitureColorSelection : MonoBehaviour
         _imageList[4].color = GameManagerSpace.GameManager.colorData.Color5;
     }
 
+
+    void SelectNewItem(Vector2 vector)
+    {
+        if(currentButtonPosition != vector)
+        {
+            linkedItem = null;
+            ChangeColor(0);
+            currentButtonPosition = vector;
+        }
+
+    }
+
     void ChangeLinkedItem(ItemBehaviour newItem)
     {
         linkedItem = newItem;
-        ActualizeBorders(FindColor(linkedItem.ItemColor));
+        int itemColor = FindColor(linkedItem.ItemColor);
+        print(itemColor);
+        if(itemColor != -1)
+        {
+            ActualizeBorders(itemColor);
+            return;
+        }
+        else if (_cachedColor != -1)
+        {
+            ChangeColor(_cachedColor);
+            _cachedColor = -1;
+        }
+        else
+            ChangeColor(0);
     }
 
     public void ChangeColor(int index)
     {
         ActualizeBorders(index);
-        if(linkedItem != null)
+        if (linkedItem != null)
             linkedItem.ChangeSpriteColor(_imageList[index].color);
+        else
+            _cachedColor = index;
     }
 
     void ActualizeBorders(int newSelected)
@@ -58,17 +89,11 @@ public class FurnitureColorSelection : MonoBehaviour
 
     int FindColor(Color colorToFind)
     {
-        if (colorToFind == GameManagerSpace.GameManager.colorData.Color1)
-            return 0;
-        if (colorToFind == GameManagerSpace.GameManager.colorData.Color2)
-            return 1;
-        if (colorToFind == GameManagerSpace.GameManager.colorData.Color3)
-            return 2;
-        if (colorToFind == GameManagerSpace.GameManager.colorData.Color4)
-            return 3;
-        if (colorToFind == GameManagerSpace.GameManager.colorData.Color5)
-            return 4;
-
+        for(int i=0; i < _imageList.Count; i++)
+        {
+            if (_imageList[i].color == colorToFind)
+                return i;
+        }
         return -1;
     }
 }

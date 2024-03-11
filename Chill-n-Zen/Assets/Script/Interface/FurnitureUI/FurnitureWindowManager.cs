@@ -47,7 +47,7 @@ public class FurnitureWindowManager : MonoBehaviour
         _waitPlacementCoroutine = StartCoroutine(waitForObjectPlacement());
     }
 
-    private void AppearDetailWindowFromItem(ItemBehaviour behaviour)  => DisplayDetailWindow(!_detailWindow.Displayed); 
+    private void AppearDetailWindowFromItem(ItemBehaviour behaviour)  => AppearDetailWindow(Vector2.zero); 
     public void AppearDetailWindow(Vector2 pos) => DisplayDetailWindow(true);
     public void HideDetailWindow() => DisplayDetailWindow(false);
     public void DisplayDetailWindow(bool display)
