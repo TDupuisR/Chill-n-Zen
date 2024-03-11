@@ -40,7 +40,7 @@ public class SwipeLevel : MonoBehaviour
     private void OnDisable()
     {
         GameplayScript.onSwipe -= StartSwipe;
-        GameplayScript.onSwipe -= EndSwipe;
+        GameplayScript.onEndPrimaryTouch -= EndSwipe;
     }
 
     private void StartSwipe(Vector2 velocity)
