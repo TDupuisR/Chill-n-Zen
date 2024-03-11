@@ -1,4 +1,4 @@
-using GameManagerSpace;
+/*bite*/ using GameManagerSpace;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -103,7 +103,7 @@ public class ObjectivesUI : MonoBehaviour
 
         if(count > 4)
         {
-            _scroll.UpdateSize(count - 4);
+            _scroll.UpdateSize(count / 2 + 1);
             _fillRect.offsetMin = new Vector2(_fillRect.offsetMin.x, -(count * _spaceFillFactor));
         }
         else
