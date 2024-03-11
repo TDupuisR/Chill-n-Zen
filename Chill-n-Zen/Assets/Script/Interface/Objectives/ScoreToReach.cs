@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,11 +25,16 @@ public class ScoreToReach : MonoBehaviour
         TileSystem.OnScoreChanged -= CheckScore;
     }
 
+    private void Start()
+    {
+        Initialisation(GameManager.levelManager.ScoreToReach);
+    }
+
     public void Initialisation(int score)
     {
         _score = score;
 
-        _text.text = _score.ToString();
+        _text.text = "Reach " + _score.ToString() + " points";
     }
 
     private void CheckScore(int newScore)
