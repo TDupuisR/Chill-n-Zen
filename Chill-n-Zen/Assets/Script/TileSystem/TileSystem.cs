@@ -156,6 +156,8 @@ public class TileSystem : MonoBehaviour
                 }
             }
             GetGridTilesList();
+
+            OnShowGridSpecified.Invoke(true);
         }
         
     }
@@ -181,6 +183,7 @@ public class TileSystem : MonoBehaviour
             }
 
             GetGridTilesList();
+            OnShowGridSpecified.Invoke(true);
         }
     }
     public void DeleteGrid()

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoadingAnimation : MonoBehaviour
 {
     [SerializeField] RectTransform _parent;
+    [SerializeField] Image _motifs;
     [SerializeField] float _smoothSpeed = 1f;
     [SerializeField, Range(0, 100)] float _tolerance = 5f;
 
@@ -15,6 +15,7 @@ public class LoadingAnimation : MonoBehaviour
     [SerializeField] float _animationSpeed;
     int _currentFrame;
     float _currentTime;
+    int _motifTransition;
 
     private bool _isActive = false;
     public bool AnimationFinished {  get; private set; }
@@ -24,6 +25,8 @@ public class LoadingAnimation : MonoBehaviour
         _isActive = true;
 
         _parent.anchoredPosition = new Vector2(-2000f, _parent.anchoredPosition.y);
+
+        _motifTransition = -10;
     }
 
     void FixedUpdate()
@@ -43,11 +46,15 @@ public class LoadingAnimation : MonoBehaviour
                 _img.sprite = _spriteList[_currentFrame];
             }
         }
+
+        _motifs.color += new Color(1.0f, 1.0f, 1.0f, _motifTransition * Time.deltaTime);
+
     }
 
     public IEnumerator TransitionLoading(float start, float target, bool slowstart)
     {
         AnimationFinished = false;
+        _motifTransition = -10;
         _isActive = true;
 
         _parent.anchoredPosition = new Vector2(start, _parent.anchoredPosition.y);
@@ -66,5 +73,6 @@ public class LoadingAnimation : MonoBehaviour
         _parent.anchoredPosition = new Vector2(target, _parent.anchoredPosition.y);
 
         AnimationFinished = true;
+        _motifTransition = 10;
     }
 }

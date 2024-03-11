@@ -168,6 +168,7 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void CheckNewPos()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 100 + transform.position.y);
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
@@ -176,6 +177,15 @@ public class ItemBehaviour : MonoBehaviour
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
         if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
             _canPlace = CheckMuralPos(gridPos);
+        else if (_canPlace && OwnItem.type == GMStatic.tagType.Object)
+        {
+            int height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
+            if (height < 0) _canPlace = false;
+            else
+            {
+
+            }
+        }
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -233,6 +243,8 @@ public class ItemBehaviour : MonoBehaviour
         if (_orientation == 90 || _orientation == 270)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+
 
         if (_orientation == 0 || _orientation == 90)
         {
