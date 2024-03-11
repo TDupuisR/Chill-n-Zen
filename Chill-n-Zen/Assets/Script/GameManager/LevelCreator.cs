@@ -6,6 +6,7 @@ public class LevelCreator : MonoBehaviour
 {
     [SerializeField] int _levelNumber;
     [SerializeField] int _levelBudget;
+    [SerializeField] int _levelScore;
     [Space(10)]
     [SerializeField] List<GridSetup> gridInstructions;
     [SerializeField] DoorSetup doorInstruction;
@@ -31,6 +32,11 @@ public class LevelCreator : MonoBehaviour
         public Rotation orientation;
     }
 
+    private void Awake()
+    {
+        GameManager.levelManager.LevelNumber = _levelNumber;
+        GameManager.levelManager.ScoreToReach = _levelScore;
+    }
 
     private void Start()
     {
@@ -39,7 +45,6 @@ public class LevelCreator : MonoBehaviour
 
         GameManager.requestManager.Initialisation(_primaryRequests, _secondaryRequests);
         GameManager.budgetManager.CurrentBudget = _levelBudget;
-        GameManager.levelManager.LevelNumber = _levelNumber;
         GameManager.budgetManager.OnSetDefaultBudget?.Invoke();
 
         Destroy(gameObject);
