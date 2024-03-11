@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 8323315705956177186}
-  smoothTime: 2
-  maxSpeed: 1000
+  _smoothSpeed: 0.25
+  _tolerance: 0.1
   _img: {fileID: 1925726635952216441}
   _spriteList:
   - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
