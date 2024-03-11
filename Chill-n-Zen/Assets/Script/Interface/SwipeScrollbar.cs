@@ -21,6 +21,8 @@ public class SwipeScrollbar : MonoBehaviour
     private void Awake()
     {
         _parentStartingPosition = _parentObject.position;
+        if (!_isHorizontal)
+            _parentStartingPosition = _parentObject.localPosition;
     }
 
     private void OnEnable()
@@ -70,13 +72,17 @@ public class SwipeScrollbar : MonoBehaviour
             {
                 newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * _spacePerItem,
                 _parentObject.position.y);
+                _parentObject.position = newParentPosition;
+
             }
             else
             {
-                newParentPosition = new Vector2(_parentObject.position.x,
+                newParentPosition = new Vector2(_parentObject.localPosition.x,
                 _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
+                print(newParentPosition);
+                _parentObject.localPosition = newParentPosition;
+
             }
-            _parentObject.position = newParentPosition;
         }
     }
 

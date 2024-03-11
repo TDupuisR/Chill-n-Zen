@@ -19,22 +19,20 @@ public class ScoreToReach : MonoBehaviour
     private void OnEnable()
     {
         TileSystem.OnScoreChanged += CheckScore;
+        LevelManager.OnFinishInitialization += Initialisation;
+
     }
     private void OnDisable()
     {
         TileSystem.OnScoreChanged -= CheckScore;
+        LevelManager.OnFinishInitialization -= Initialisation;
     }
 
-    private void Start()
+    public void Initialisation()
     {
-        Initialisation(GameManager.levelManager.ScoreToReach);
-    }
+        _score = GameManager.levelManager.ScoreToReach;
 
-    public void Initialisation(int score)
-    {
-        _score = score;
-
-        _text.text = "Reach " + _score.ToString() + " points";
+        _text.text = _score.ToString() + " pts";
     }
 
     private void CheckScore(int newScore)
