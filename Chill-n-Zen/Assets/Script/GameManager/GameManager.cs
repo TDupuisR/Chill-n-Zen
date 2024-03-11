@@ -137,6 +137,7 @@ namespace GameManagerSpace
             public Item itemRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestUsage
@@ -144,6 +145,7 @@ namespace GameManagerSpace
             public tagUsage usageRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestColor
@@ -151,6 +153,8 @@ namespace GameManagerSpace
             public Color colorRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
+
         }
         [System.Serializable]
         public struct requestMaterial
@@ -158,6 +162,7 @@ namespace GameManagerSpace
             public tagMaterial materialRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestProximity
@@ -166,11 +171,13 @@ namespace GameManagerSpace
             public List<tagUsage> closeToRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         public struct requestFreeSpace
         {
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
     }
 }
