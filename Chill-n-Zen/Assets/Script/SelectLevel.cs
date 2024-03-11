@@ -7,8 +7,8 @@ public class SelectLevel : MonoBehaviour
 {
     [SerializeField] private int _numberLevel;
 
-    private void Start()
+    public void ChooseLevel()
     {
-        //SceneManager.LoadScene(_numberLevel);
+        SceneManager.LoadScene(_numberLevel);
     }
 }

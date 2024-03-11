@@ -1,14 +1,17 @@
 using UnityEngine;
 using NaughtyAttributes;
 using GameManagerSpace;
+using System.Collections.Generic;
 
 public class ItemBehaviour : MonoBehaviour
 {
     [Header("Serialized Infos")]
     [SerializeField] ItemConstraint _constraint;
     [SerializeField] ItemPointsChecker _pointsChecker;
-    [SerializeField] GameObject _spriteGmObj;
-    SpriteRenderer _spriteRender;
+    [SerializeField] GameObject _spriteUnCllrGmObj;
+    SpriteRenderer _spriteUnClrRender;
+    [SerializeField] GameObject _spriteCllrGmObj;
+    SpriteRenderer _spriteClrRender;
     [SerializeField] ItemUI _itemUI;
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] private GameObject _smoke;
@@ -25,7 +28,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3[] _patternPosition = new Vector3[4];
 
     public Item OwnItem { get { return _ownItem; } }
-    public SpriteRenderer SpriteRenderer { get { return _spriteRender; } }
+    public SpriteRenderer SpriteRenderer { get { return _spriteUnClrRender; } }
     public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
 
@@ -43,7 +46,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (_lineRender == null) 
             Debug.LogError(" (error : 4x0) No LineRenderer assigned ) ", gameObject);
-        if (_spriteGmObj == null)
+        if (_spriteUnCllrGmObj == null || _spriteCllrGmObj == null)
             Debug.LogError(" (error : 4x1) No Sprite child GameObject assigned ) ", gameObject);
     }
 
@@ -51,7 +54,8 @@ public class ItemBehaviour : MonoBehaviour
     {
         TileSystem.OnSceneChanged += CheckWhenPlaced;
 
-        _spriteRender = _spriteGmObj.GetComponent<SpriteRenderer>();
+        _spriteUnClrRender = _spriteUnCllrGmObj.GetComponent<SpriteRenderer>();
+        _spriteClrRender = _spriteCllrGmObj.GetComponent<SpriteRenderer>();
         InitPattern();
     }
     private void OnDisable()
@@ -70,7 +74,7 @@ public class ItemBehaviour : MonoBehaviour
         }
     }
 
-    public void Initialize(Item item)
+    public void Initialize(Item item) // Color color
     {
         if (item == null)
         {
@@ -90,14 +94,14 @@ public class ItemBehaviour : MonoBehaviour
         _rotationSize = OwnItem.size;
         _orientation = 0;
 
-        _spriteRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
-        _spriteGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
         LineColor(Color.red);
 
         SpriteAppearance();
+        //ChangeSpriteColor(color);
 
         //Constraint Methods
         _constraint.ResetConstraint(transform.position);
@@ -107,7 +111,7 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetInfos()
     {
         OffsetPosCalcul();
-        _spriteGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
 
         SpriteAppearance();
         CheckNewPos();
@@ -164,11 +168,24 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void CheckNewPos()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 100 + transform.position.y);
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
+
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
+        if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
+            _canPlace = CheckMuralPos(gridPos);
+        else if (_canPlace && OwnItem.type == GMStatic.tagType.Object)
+        {
+            int height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
+            if (height < 0) _canPlace = false;
+            else
+            {
+
+            }
+        }
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -177,33 +194,77 @@ public class ItemBehaviour : MonoBehaviour
         else if (!ConstraintValid || !DoorValid) LineColor(new Color(255, 69, 0));
         else LineColor(Color.green);
     }
+    private bool CheckMuralPos(Vector2Int pos)
+    {
+        bool res = true;
 
+        int decal;
+        List<Vector2Int> list = new List<Vector2Int>();
+
+        if (Orientation == 0 || Orientation == 180)
+        {
+            if (Orientation == 0) decal = RotationSize.x;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + decal, pos.y + i));
+            }
+        }
+        else if (Orientation == 90 || Orientation == 270)
+        {
+            if (Orientation == 90) decal = RotationSize.y;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + i, pos.y + decal));
+            }
+        }
+
+        foreach (Vector2Int current in list)
+        {
+            if (TileSystem.Instance.CheckTileExist(current.x, current.y) >= 0)
+            {
+                res = false; break;
+            }
+        }
+
+        return res;
+    }
+
+    public void ChangeSpriteColor(Color color)
+    {
+        _spriteClrRender.color = color;
+        ItemColor = color;
+    }
     private void SpriteAppearance()
     {
         if (_orientation == 90 || _orientation == 270)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-        if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+
+
+        if (_orientation == 0 || _orientation == 90)
         {
-            if (_orientation == 0 || _orientation == 90)
-            {
-                _spriteRender.sprite = OwnItem.spriteOneFixed;
-            }
-            else
-            {
-                _spriteRender.sprite = OwnItem.spriteTwoFixed;
-            }
+            _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
+            _spriteClrRender.sprite = OwnItem.spriteOneColored;
+        }
+        else if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+        {
+            _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
+            _spriteClrRender.sprite = OwnItem.spriteTwoColored;
         }
 
         ColliderReset();
     }
     private void ColliderReset()
     {
-        if (_spriteGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteUnCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        _spriteGmObj.AddComponent<PolygonCollider2D>();
+        _spriteUnCllrGmObj.AddComponent<PolygonCollider2D>();
     }
     private void CheckWhenPlaced()
     {
@@ -215,12 +276,12 @@ public class ItemBehaviour : MonoBehaviour
             if (!ConstraintValid || !DoorValid)
             {
                 LineColor(new Color(255, 69, 0));
-                _spriteRender.color = Color.yellow;
+                _spriteUnClrRender.color = Color.yellow;
             }
             else
             {
                 LineColor(Color.green);
-                _spriteRender.color = Color.white;
+                _spriteUnClrRender.color = Color.white;
             }
         }
     }
