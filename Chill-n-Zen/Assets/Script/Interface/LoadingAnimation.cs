@@ -59,7 +59,7 @@ public class LoadingAnimation : MonoBehaviour
             else
                 _parent.anchoredPosition += new Vector2(((target - _parent.anchoredPosition.x) / _smoothSpeed) * Time.fixedDeltaTime, 0f);
 
-            Debug.Log("distance: " + Mathf.Abs(target - _parent.anchoredPosition.x) + " | target: " + Mathf.Abs((target - start) * (_tolerance / 100)));
+            //Debug.Log("distance: " + Mathf.Abs(target - _parent.anchoredPosition.x) + " | target: " + Mathf.Abs((target - start) * (_tolerance / 100)));
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("end transition");
