@@ -44,7 +44,10 @@ public class ObjectivesUI : MonoBehaviour
 
     [Header("Obj completed effect")]
     [SerializeField] GameObject _completedEffectPrefab;
-
+    [SerializeField] float _timeBTWEffects;
+    List<ObjectivesCheckbox> _objectiveEffectQueueList = new List<ObjectivesCheckbox>();
+    bool _isEffectQueueBusy;
+    Coroutine _effectQueueCoroutine;
 
     [Header("Finish Level")]
     [SerializeField] Button _completeLevelButton;
@@ -182,7 +185,7 @@ public class ObjectivesUI : MonoBehaviour
         objectiveList.Img.color = isValid ? _completedColor : _notCompletedColor;
 
         if(!skipEffect && oldSprite != objectiveList.Img.sprite)
-            ObjectiveCompletedEffect(objectiveList);
+            AddToEffectList(objectiveList);
     }
 
     void CheckCompleteObjectives(bool primary, List<bool> objectivesList)
@@ -256,6 +259,16 @@ public class ObjectivesUI : MonoBehaviour
     #region Objective effect
     [Button]
     public void TestObjectivesEffect() => ObjectiveCompletedEffect(_primaryObjectives[0]);
+    [Button]
+    public void TestObjectivesQueueEffect() => AddToEffectList(_primaryObjectives[0]);
+    public void AddToEffectList(ObjectivesCheckbox newObjective)
+    {
+        _objectiveEffectQueueList.Add(newObjective);
+
+        if (!_isEffectQueueBusy)
+            _effectQueueCoroutine = StartCoroutine(ObjectiveEffectQueue());
+    }
+
     public void ObjectiveCompletedEffect(ObjectivesCheckbox objectiveToDisplay)
     {
         GameObject newEffect = Instantiate(_completedEffectPrefab, Vector3.zero, Quaternion.identity);
@@ -264,6 +277,19 @@ public class ObjectivesUI : MonoBehaviour
         effectScript.TextToImplement.text = objectiveToDisplay.Text.text;
         effectScript.ImgToImplement = objectiveToDisplay.Img.sprite;
         effectScript.LaunchEffect();
+    }
+
+
+    IEnumerator ObjectiveEffectQueue()
+    {
+        _isEffectQueueBusy = true;
+        while (_objectiveEffectQueueList.Count > 0)
+        {
+            ObjectiveCompletedEffect(_objectiveEffectQueueList[0]);
+            _objectiveEffectQueueList.RemoveAt(0);
+            yield return new WaitForSeconds(_timeBTWEffects);
+        }
+        _isEffectQueueBusy = false;
     }
     #endregion
 }

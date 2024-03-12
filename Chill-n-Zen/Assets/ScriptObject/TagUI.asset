@@ -22,11 +22,10 @@ MonoBehaviour:
   - Object
   - Mural
   - Ceiling
-  - Vintage
-  - Disco
-  - Kitch
-  - Modern
-  - Futuristic
+  - Carpet
+  - Wood
+  - Plywood
+  - Fabric
   associatedSprite:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

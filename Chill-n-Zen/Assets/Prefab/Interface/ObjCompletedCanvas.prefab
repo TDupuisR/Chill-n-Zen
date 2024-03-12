@@ -118,7 +118,7 @@ MonoBehaviour:
   _img: {fileID: 7494638505016835924}
   _text: {fileID: 6864863413072102715}
   _window: {fileID: 3165515552767019633}
-  _animationDuration: 3
+  _animationDuration: 2
 --- !u!1 &3935595176394154738
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _buttonToDisable: {fileID: 0}
-  _animationDuration: 1
+  _animationDuration: 0.5
   _boundaryActionZone: 0
   _isVerticalScroll: 1
   _displayed: 0

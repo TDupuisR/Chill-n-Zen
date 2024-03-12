@@ -448,7 +448,7 @@ MonoBehaviour:
   _objectSecondaryParent: {fileID: 4090008973046841880}
   _scroll: {fileID: 7233736683120072473}
   _fillRect: {fileID: 2996761471519337954}
-  _spaceFillFactor: 80
+  _spaceFillFactor: 77
   _spaceBTWObj: 40
   _notCompletedColor: {r: 1, g: 0, b: 0, a: 1}
   _completedColor: {r: 0.058918595, g: 1, b: 0, a: 1}
@@ -481,6 +481,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _glowSpeed: 0.5
   _completedEffectPrefab: {fileID: 2300282758369718066, guid: 121b387238888b643952c369a72c1bc7, type: 3}
+  _timeBTWEffects: 1
   _completeLevelButton: {fileID: 5702649316152069893}
   OnFinishSetup:
     m_PersistentCalls:
@@ -6536,10 +6537,10 @@ RectTransform:
   - {fileID: 6073774087118187935}
   m_Father: {fileID: 7329374293082188841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -410}
-  m_SizeDelta: {x: 300, y: 470}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 300, y: -240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382462184916339028
 MonoBehaviour:
