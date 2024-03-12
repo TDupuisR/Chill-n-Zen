@@ -111,8 +111,8 @@ public class ObjectivesUI : MonoBehaviour
         }
         else
         {
-            _scroll.UpdateSize(1);
-            _fillRect.offsetMin = new Vector2(_fillRect.offsetMin.x, -400);
+            _scroll.UpdateSize(2);
+            _fillRect.offsetMin = new Vector2(_fillRect.offsetMin.x, -450);
         }
         
         UpdateAllObjectives();
@@ -218,6 +218,20 @@ public class ObjectivesUI : MonoBehaviour
             _starUI.UnlockStar(2, unlocked);
             HasScoreStar = unlocked;
         }
+    }
+
+    public List<string> GetMissingSecondaryObjectives()
+    {
+        List<bool> secondaryObjectives = GameManager.requestManager.ReturnStatus(false);
+        List<string> secondarySolutions = GameManager.requestManager.ReturnSolution(false);
+        List<string> solutionList = new List<string>();
+        for (int i = 0; i < secondaryObjectives.Count; i++)
+        {
+            if (!secondaryObjectives[i])
+                solutionList.Add(secondarySolutions[i]);
+        }
+
+        return solutionList;
     }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
 

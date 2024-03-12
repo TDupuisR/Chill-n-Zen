@@ -49,6 +49,35 @@ public class RequestManager : MonoBehaviour
 
         return ret;
     }
+    public List<string> ReturnSolution(bool primary)
+    {
+        List<string> ret = new List<string>();
+
+        GMStatic.Request list;
+        if (primary) list = _primaryList;
+        else list = _secondaryList;
+
+        if (list.obj != null)
+            foreach (GMStatic.requestObj current in list.obj)
+                ret.Add(current.solution);
+        if (list.usage != null)
+            foreach (GMStatic.requestUsage current in list.usage)
+                ret.Add(current.solution);
+        if (list.color != null)
+            foreach (GMStatic.requestColor current in list.color)
+                ret.Add(current.solution);
+        if (list.material != null)
+            foreach (GMStatic.requestMaterial current in list.material)
+                ret.Add(current.solution);
+        if (list.proximity != null)
+            foreach (GMStatic.requestProximity current in list.proximity)
+                ret.Add(current.solution);
+        if (list.freeSpace != null)
+            foreach (GMStatic.requestFreeSpace current in list.freeSpace)
+                ret.Add(current.solution);
+
+        return ret;
+    }
     public List<bool> ReturnStatus(bool primary)
     {
         List<bool> ret = new List<bool>();

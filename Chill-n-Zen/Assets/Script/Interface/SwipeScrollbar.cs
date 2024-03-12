@@ -7,6 +7,7 @@ public class SwipeScrollbar : MonoBehaviour
 {
     [SerializeField] Scrollbar _scrollbar;
     [SerializeField] Transform _parentObject;
+    [SerializeField] RectTransform _parentVerticalRectTransform;
     [SerializeField] Transform _EdgeOfScroll;
     [SerializeField] int _numberItemBeforeScroll;
     [SerializeField] float _spacePerItem;
@@ -22,7 +23,7 @@ public class SwipeScrollbar : MonoBehaviour
     {
         _parentStartingPosition = _parentObject.position;
         if (!_isHorizontal)
-            _parentStartingPosition = _parentObject.localPosition;
+            _parentStartingPosition = _parentVerticalRectTransform.anchoredPosition;
     }
 
     private void OnEnable()
@@ -77,10 +78,10 @@ public class SwipeScrollbar : MonoBehaviour
             }
             else
             {
-                newParentPosition = new Vector2(_parentObject.localPosition.x,
+                newParentPosition = new Vector2(_parentVerticalRectTransform.anchoredPosition.x,
                 _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
                 print(newParentPosition);
-                _parentObject.localPosition = newParentPosition;
+                _parentVerticalRectTransform.anchoredPosition = newParentPosition;
 
             }
         }

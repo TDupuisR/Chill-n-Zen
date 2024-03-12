@@ -53,7 +53,7 @@ public class FurnitureColorSelection : MonoBehaviour
     {
         linkedItem = newItem;
         int itemColor = FindColor(linkedItem.ItemColor);
-        print(itemColor);
+
         if(itemColor != -1)
         {
             ActualizeBorders(itemColor);
