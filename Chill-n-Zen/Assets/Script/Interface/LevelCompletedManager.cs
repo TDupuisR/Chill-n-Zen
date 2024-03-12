@@ -19,7 +19,7 @@ public class LevelCompletedManager : MonoBehaviour
     [SerializeField] Sprite _unlockedStar;
     [Space(3)]
     [SerializeField] GameObject _solutionObject;
-    [SerializeField] TMP_Text _solutionText;
+    [SerializeField] List<TMP_Text> _solutionText;
 
     bool _initialize = true;
 
@@ -47,12 +47,11 @@ public class LevelCompletedManager : MonoBehaviour
         //DisplaySolution
         List<string> solutionList = ObjectivesUI.Instance.GetMissingSecondaryObjectives();
         _solutionObject.SetActive(solutionList.Count > 0);
-        _solutionText.text = "";
         if (solutionList.Count > 0)
         {
-            foreach (string solution in solutionList)
+            for (int i = 0; i < solutionList.Count; i++)
             {
-                _solutionText.text += "- " + solution + "\n";
+                _solutionText[i].text = "- " + solutionList[i];
             }
         }
 
