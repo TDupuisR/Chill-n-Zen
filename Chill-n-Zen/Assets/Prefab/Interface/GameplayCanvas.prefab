@@ -9576,7 +9576,14 @@ MonoBehaviour:
   _lockedStar: {fileID: 21300000, guid: 0756f243cb48e4242ad793d91ad434aa, type: 3}
   _unlockedStar: {fileID: 21300000, guid: ad47fb3d967509749a07e2716adc13cd, type: 3}
   _solutionObject: {fileID: 8376714160511162852}
-  _solutionText: []
+  _solutionText:
+  - {fileID: 229685943462064599}
+  - {fileID: 3663769158784244998}
+  - {fileID: 2296658938934917530}
+  - {fileID: 1739253969051635952}
+  - {fileID: 5880807113292513988}
+  - {fileID: 1909038001017910414}
+  - {fileID: 3092104695610037685}
 --- !u!1 &5842227786757789891
 GameObject:
   m_ObjectHideFlags: 0
