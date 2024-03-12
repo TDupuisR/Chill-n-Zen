@@ -47,6 +47,7 @@ public class LevelCompletedManager : MonoBehaviour
         //DisplaySolution
         List<string> solutionList = ObjectivesUI.Instance.GetMissingSecondaryObjectives();
         _solutionObject.SetActive(solutionList.Count > 0);
+        _solutionText.text = "";
         if (solutionList.Count > 0)
         {
             foreach (string solution in solutionList)
