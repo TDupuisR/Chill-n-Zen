@@ -14,12 +14,12 @@ public class BudgetManager : MonoBehaviour
         {
             _currentBudget = value;
 
-            _onBudgetChanged?.Invoke(_currentBudget);
+            OnBudgetChanged?.Invoke(_currentBudget);
         }
     }
 
-    public Action OnSetDefaultBudget;
-    public Action<int> _onBudgetChanged;
+    public static Action OnSetDefaultBudget;
+    public static Action<int> OnBudgetChanged;
 
     private void OnEnable()
     {

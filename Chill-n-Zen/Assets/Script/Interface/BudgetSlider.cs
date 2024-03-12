@@ -11,15 +11,16 @@ public class BudgetSlider : MonoBehaviour
     [SerializeField] TMP_Text _text;
     int _defaultBudget;
 
-    private void Start() //need to be in the Start because of timing issues
+    private void OnEnable()
     {
-        GameManager.budgetManager.OnSetDefaultBudget += InitializeBudget;
-        GameManager.budgetManager._onBudgetChanged += UpdateInterface;
+        BudgetManager.OnSetDefaultBudget += InitializeBudget;
+        BudgetManager.OnBudgetChanged += UpdateInterface;
     }
 
     private void OnDisable()
     {
-        GameManager.budgetManager._onBudgetChanged -= UpdateInterface;
+        BudgetManager.OnSetDefaultBudget -= InitializeBudget;
+        BudgetManager.OnBudgetChanged -= UpdateInterface;
     }
 
     private void InitializeBudget()
