@@ -406,11 +406,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc22203b978fd4ab98fe5be3a9307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color1: {r: 1, g: 0, b: 0, a: 0}
-  color2: {r: 0, g: 1, b: 0.10245538, a: 0}
-  color3: {r: 1, g: 0.9622632, b: 0, a: 0}
-  color4: {r: 0, g: 0.6578684, b: 1, a: 0}
-  color5: {r: 1, g: 0, b: 0.733407, a: 0}
+  color1: {r: 0.53333336, g: 0.68235296, b: 0.627451, a: 0}
+  color2: {r: 0.85490197, g: 0.68235296, b: 0.3882353, a: 0}
+  color3: {r: 0.5411765, g: 0.69411767, b: 0.49019608, a: 0}
+  color4: {r: 0.15686275, g: 0.44705883, b: 0.44313726, a: 0}
+  color5: {r: 0.46666667, g: 0.2, b: 0.19215687, a: 0}
+  color6: {r: 0.8980392, g: 0.5568628, b: 0.3254902, a: 0}
 --- !u!1001 &4628184574296037541
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -122,10 +122,9 @@ public class RequestManager : MonoBehaviour
                     resL[i]++;
             }
 
-            count = resL[0];
+            if (resL.Count <= 1) count = resL[0];
             for (int c = 1; c < resL.Count; c++)
                 if (resL[c] < count) count = resL[c];
-
 
             if (count >= request.nbRequested) res = true;
             if (res) break;
@@ -146,7 +145,10 @@ public class RequestManager : MonoBehaviour
                 for (int i = 0; i < request.usageRequested.Count; i++)
                 {
                     if (usage == request.usageRequested[i])
-                        resL[i]++;
+                    {
+                        if (GMStatic.tagUsage.Bed == usage) resL[i] += item.OwnItem.size.y;
+                        else resL[i]++;
+                    }
                 }
             }
 
@@ -244,9 +246,16 @@ public class RequestManager : MonoBehaviour
             }
 
             if (currentRes) count++;
-            if (count >= request.nbRequested) res = true;
+            if (!request.isNotProxi)
+            {
+                if (count >= request.nbRequested) res = true;
+            }
+            else if (request.isNotProxi)
+            {
+                if (count < request.nbRequested) res = true;
+            }
 
-            if (res) break;
+            if ((res && !request.isNotProxi) || (!res && request.isNotProxi)) break;
         }
 
         return res;
