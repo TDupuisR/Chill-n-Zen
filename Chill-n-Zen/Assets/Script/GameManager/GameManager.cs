@@ -113,7 +113,7 @@ namespace GameManagerSpace
         public enum tagMaterial { Null, Wood, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Workdesk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Window, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Library, Table, Top, Desk, Workdesk, Seat, Chair, TV, Oven, Fridge, Mirror, Decoration, Window, Light }
         public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects

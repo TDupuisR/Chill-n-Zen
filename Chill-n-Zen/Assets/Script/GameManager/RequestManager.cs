@@ -122,7 +122,7 @@ public class RequestManager : MonoBehaviour
                     resL[i]++;
             }
 
-            if (resL.Count <= 1) count = resL[0];
+            if (resL.Count >= 1) count = resL[0];
             for (int c = 1; c < resL.Count; c++)
                 if (resL[c] < count) count = resL[c];
 
@@ -146,13 +146,13 @@ public class RequestManager : MonoBehaviour
                 {
                     if (usage == request.usageRequested[i])
                     {
-                        if (GMStatic.tagUsage.Bed == usage) resL[i] += item.OwnItem.size.y;
+                        if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage) resL[i] += item.OwnItem.size.y;
                         else resL[i]++;
                     }
                 }
             }
 
-            count = resL[0];
+            if (resL.Count >= 1) count = resL[0];
             for (int c = 1; c < resL.Count; c++)
                 if (resL[c] < count) count = resL[c];
 
