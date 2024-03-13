@@ -244,9 +244,16 @@ public class RequestManager : MonoBehaviour
             }
 
             if (currentRes) count++;
-            if (count >= request.nbRequested) res = true;
+            if (!request.isNotProxi)
+            {
+                if (count >= request.nbRequested) res = true;
+            }
+            else if (request.isNotProxi)
+            {
+                if (count < request.nbRequested) res = true;
+            }
 
-            if (res) break;
+            if ((res && !request.isNotProxi) || (!res && request.isNotProxi)) break;
         }
 
         return res;

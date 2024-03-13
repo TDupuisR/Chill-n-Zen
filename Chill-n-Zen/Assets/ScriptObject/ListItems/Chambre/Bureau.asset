@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
+  m_Name: Bureau
+  m_EditorClassIdentifier: 
+  spriteOneFixed: {fileID: 0}
+  spriteOneColored: {fileID: 0}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
+  room: 0
+  type: 0
+  material: 0
+  listUsage: 
+  constraint: 0
+  doorAccess: 0
+  frontBonus: 0
+  frontUsageBonus: 
+  frontItemBonus: []
+  proxiBonus: 0
+  proxiUsageBonus: 
+  proxiItemBonus: []
+  onBonus: 0
+  onUsageBonus: 
+  onItemBonus: []
+  score: 0
+  description: 
+  price: 0
+  size: {x: 0, y: 0, z: 0}
+  fullRotation: 0
