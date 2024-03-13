@@ -173,6 +173,7 @@ namespace GameManagerSpace
             public string phraseClient;
             public string solution;
         }
+        [System.Serializable]
         public struct requestFreeSpace
         {
             public int nbRequested;
