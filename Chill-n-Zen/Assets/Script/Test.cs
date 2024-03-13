@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+using TMPro;
 public class Test : MonoBehaviour
 {
-    [SerializeField] private GameObject _connected;
-    // Start is called before the first frame update
+    [SerializeField] TextMeshProUGUI text;
 
-    void Awake()
+    public void Start()
     {
         PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-        _connected.SetActive(false);
     }
- 
+
     internal void ProcessAuthentication(SignInStatus status)
     {
         if (status == SignInStatus.Success)
         {
+            text.text = "SuccessConnexion";
             Social.ReportProgress("CgkI5ZWvkocPEAIQBg", 100.0f, (bool success) => { });
+        }
+        else
+        {
+            text.text = "FailConnexion";
+            PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
         }
     }
 }
