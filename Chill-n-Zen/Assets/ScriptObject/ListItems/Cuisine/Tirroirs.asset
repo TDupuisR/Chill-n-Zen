@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
-  m_Name: Test
+  m_Name: Tirroirs
   m_EditorClassIdentifier: 
   spriteOneFixed: {fileID: 0}
   spriteOneColored: {fileID: 0}

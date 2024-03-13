@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,6 @@ public class SelectLevel : MonoBehaviour
 
     public void ChooseLevel()
     {
-        SceneManager.LoadScene(_numberLevel + 2);
+        GameManager.Instance.ChangeScene(_numberLevel + 3);
     }
 }
