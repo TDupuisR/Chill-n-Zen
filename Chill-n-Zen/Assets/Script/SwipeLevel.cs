@@ -19,7 +19,7 @@ public class SwipeLevel : MonoBehaviour
     private List<RectTransform> _listPicture = new List<RectTransform>();
     private RectTransform _tempRectTransform = null;
     private float _distance = Mathf.Infinity;
-    private float _newXPosition = 2560;
+    private float _newXPosition = 5760;
     private bool _isDragging;
     private bool _isLoading;
 
@@ -66,7 +66,7 @@ public class SwipeLevel : MonoBehaviour
     {
         if (!_isLoading)
         {
-            GameManager.Instance.ChangeScene(0);
+            GameManager.Instance.ChangeScene(1);
             _isLoading = true;
         }
     }
@@ -77,7 +77,8 @@ public class SwipeLevel : MonoBehaviour
         while(_isDragging)
         {
             _newXPosition += velocity.x*_speedSlider;
-            _newXPosition = Mathf.Clamp(_newXPosition, _listPicture[0].localPosition.x, _listPicture[4].localPosition.x);
+            //_newXPosition = Mathf.Clamp(_newXPosition, _listPicture[0].localPosition.x, _listPicture[4].localPosition.x);
+            _newXPosition = Mathf.Clamp(_newXPosition, -5760, 5760);
             _rectTransform.localPosition = new Vector3(_newXPosition, 0, 0);
             yield return new WaitForFixedUpdate();
         }
