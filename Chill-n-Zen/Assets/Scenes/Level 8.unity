@@ -189,7 +189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.size
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: gridInstructions.Array.data[0].GridSize.x
@@ -201,28 +205,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].solution
-      value: I wanted two table with a dozen of sits
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].nbRequested
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].phraseClient
-      value: Wants to organize dinners with a dozen guests
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].nbRequested
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.size
-      value: 14
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[2].itemRequested.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeFromRequested
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: fef9a70ee4ea1814da5ff6dbb9642aa8, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[1]
       value: 
@@ -275,6 +287,14 @@ PrefabInstance:
       propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[13]
       value: 
       objectReference: {fileID: 11400000, guid: 237957a92737f754cad7e111d291fa47, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeToRequested.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeToRequested.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7868691773578750813, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: m_Name
       value: LevelCreator
