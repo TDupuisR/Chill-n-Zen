@@ -135,6 +135,7 @@ namespace GameManagerSpace
         public struct requestObj
         {
             public List<Item> itemRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
             public string solution;
@@ -143,6 +144,7 @@ namespace GameManagerSpace
         public struct requestUsage
         {
             public List<tagUsage> usageRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
             public string solution;

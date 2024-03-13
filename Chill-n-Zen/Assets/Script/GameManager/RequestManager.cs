@@ -116,15 +116,28 @@ public class RequestManager : MonoBehaviour
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            for (int i = 0; i < request.itemRequested.Count; i++)
+            if (request.needAll)
             {
-                if (item == request.itemRequested[i])
-                    resL[i]++;
-            }
+                for (int i = 0; i < request.itemRequested.Count; i++)
+                {
+                    if (item == request.itemRequested[i])
+                        resL[i]++;
+                }
 
-            if (resL.Count >= 1) count = resL[0];
-            for (int c = 1; c < resL.Count; c++)
-                if (resL[c] < count) count = resL[c];
+                if (resL.Count >= 1) count = resL[0];
+                for (int c = 1; c < resL.Count; c++)
+                    if (resL[c] < count) count = resL[c];
+            }
+            else
+            {
+                foreach (Item current in request.itemRequested)
+                {
+                    if (item == current)
+                    {
+                        count++; break;
+                    }
+                }
+            }
 
             if (count >= request.nbRequested) res = true;
             if (res) break;
@@ -140,21 +153,40 @@ public class RequestManager : MonoBehaviour
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
+            if (request.needAll)
             {
-                for (int i = 0; i < request.usageRequested.Count; i++)
+                foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
                 {
-                    if (usage == request.usageRequested[i])
+                    for (int i = 0; i < request.usageRequested.Count; i++)
                     {
-                        if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage) resL[i] += item.OwnItem.size.y;
-                        else resL[i]++;
+                        if (usage == request.usageRequested[i])
+                        {
+                            if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage) resL[i] += item.OwnItem.size.y;
+                            else resL[i]++;
+                        }
                     }
                 }
-            }
 
-            if (resL.Count >= 1) count = resL[0];
-            for (int c = 1; c < resL.Count; c++)
-                if (resL[c] < count) count = resL[c];
+                if (resL.Count >= 1) count = resL[0];
+                for (int c = 1; c < resL.Count; c++)
+                    if (resL[c] < count) count = resL[c];
+            }
+            else
+            {
+                foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
+                {
+                    int buffer = count;
+                    foreach (GMStatic.tagUsage current in request.usageRequested)
+                    {
+                        if (current == usage)
+                        {
+                            count++; break;
+                        }
+                    }
+
+                    if (buffer != count) break;
+                }
+            }
 
             if (count >= request.nbRequested) res = true;
             if (res) break;
