@@ -96,6 +96,9 @@ MonoBehaviour:
   _tagUIList: {fileID: 11400000, guid: 368f51fdc69694749a203908e9c41b5d, type: 2}
   _img: {fileID: 4767221282595360945}
   _priceText: {fileID: 5883796240683092337}
+  _nameText: {fileID: 0}
+  _pointsText: {fileID: 0}
+  _descriptionText: {fileID: 0}
   _roomImg: {fileID: 3285240533713671206}
   _styleImg: {fileID: 1352710305891630678}
   _typeImg: {fileID: 817353961952397706}
@@ -333,8 +336,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10000 Cr
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -358,7 +361,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.2
+  m_fontSize: 22.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

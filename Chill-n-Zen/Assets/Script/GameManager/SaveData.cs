@@ -125,10 +125,10 @@ public class SaveData : MonoBehaviour
             return null;
         }
 
-        List<bool> starList = new List<bool>();
+        List<bool> starList = new List<bool>() {false , false , false};
         string starSave = PlayerPrefs.GetString("star" + level.ToString());
-
-        for (int i = 0; i < starSave.Length; i++)
+        print(starList.Count);
+        for (int i = 0; i < 3; i++)
         {
             starList[i] = starSave[i] == 49;
         }
