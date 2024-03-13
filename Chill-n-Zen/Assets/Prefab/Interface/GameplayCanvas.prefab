@@ -9564,6 +9564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreTxt: {fileID: 4512761426383664266}
+  _rect: {fileID: 8197136665030517406}
   _starImg:
   - {fileID: 7662972445091114777}
   - {fileID: 1456283713500376588}

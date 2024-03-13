@@ -9,6 +9,7 @@ public class LevelCompletedManager : MonoBehaviour
     [SerializeField] ScoreText _scoreTxt;
 
     [Header("References")]
+    [SerializeField] RectTransform _rect;
     [SerializeField] List<Image> _starImg;
     [SerializeField] TMP_Text _finalScoreText;
     [Space(3)]
@@ -49,12 +50,22 @@ public class LevelCompletedManager : MonoBehaviour
         _solutionObject.SetActive(solutionList.Count > 0);
         if (solutionList.Count > 0)
         {
+            _rect.anchoredPosition = new Vector2(-150, _rect.anchoredPosition.y);
             for (int i = 0; i < solutionList.Count; i++)
             {
+                if(i > 6)
+                {
+                    Debug.LogWarning("More solutions than text to display them !");
+                    break;
+                }
                 _solutionText[i].text = "- " + solutionList[i];
             }
         }
-
+        else
+        {
+            _rect.anchoredPosition = new Vector2(0, _rect.anchoredPosition.y);
+            _windowScroll.ResetStartPosition();
+        }
 
         _windowScroll.StartScroll();
     }

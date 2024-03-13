@@ -21,7 +21,7 @@ public class WindowScroll : MonoBehaviour
 
     private void Awake()
     {
-        _backgroundStartPosition = _backgroundTransform.anchoredPosition;
+        ResetStartPosition();
         _backgroundStartRectTransformPosition = _backgroundTransform.GetComponent<RectTransform>().position;
 
         _isBusy = false;
@@ -35,6 +35,8 @@ public class WindowScroll : MonoBehaviour
             _animationDuration = 1;
         }
     }
+
+    public void ResetStartPosition() => _backgroundStartPosition = _backgroundTransform.anchoredPosition;
 
     public void StartScroll()
     {
