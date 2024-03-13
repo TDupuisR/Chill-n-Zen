@@ -180,7 +180,12 @@ public class RequestManager : MonoBehaviour
                     {
                         if (current == usage)
                         {
-                            count++; break;
+                            if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage)
+                                count += item.OwnItem.size.y;
+                            else
+                            {
+                                count++; break;
+                            }
                         }
                     }
 
