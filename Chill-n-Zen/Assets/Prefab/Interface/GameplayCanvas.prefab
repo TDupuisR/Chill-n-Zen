@@ -8276,7 +8276,7 @@ MonoBehaviour:
   _buttonToHide:
   - {fileID: 7881871372078859752}
   - {fileID: 3465889378344669742}
-  _pauseInput: {fileID: -6105141236451296761, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
+  _pauseInput: {fileID: -6303539476164214380, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
 --- !u!1 &4923912764225101747
 GameObject:
   m_ObjectHideFlags: 0
