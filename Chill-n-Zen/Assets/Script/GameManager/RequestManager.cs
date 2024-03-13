@@ -183,9 +183,9 @@ public class RequestManager : MonoBehaviour
                             if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage)
                                 count += item.OwnItem.size.y;
                             else
-                            {
-                                count++; break;
-                            }
+                                count++;
+
+                            if (buffer != count) break;
                         }
                     }
 
