@@ -427,7 +427,7 @@ public class TileSystem : MonoBehaviour
         }
         GameManager.requestManager.FreeTiles = freeTiles;
 
-        if (GameManager.budgetManager.CurrentBudget < 0)
+        if (GameManager.budgetManager.CurrentBudget > 0)
         {
             int score = 0;
             foreach (ItemBehaviour furnit in _itemBehaveList)
