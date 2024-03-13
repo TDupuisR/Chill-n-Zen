@@ -168,7 +168,6 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void CheckNewPos()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 100 + transform.position.y);
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
