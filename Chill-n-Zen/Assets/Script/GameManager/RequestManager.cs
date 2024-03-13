@@ -112,11 +112,20 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
+        List<int> resL = new List<int>(request.itemRequested.Count);
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            if (item.OwnItem == request.itemRequested)
-                count++;
+            for (int i = 0; i < request.itemRequested.Count; i++)
+            {
+                if (item == request.itemRequested[i])
+                    resL[i]++;
+            }
+
+            count = resL[0];
+            for (int c = 1; c < resL.Count; c++)
+                if (resL[c] < count) count = resL[c];
+
 
             if (count >= request.nbRequested) res = true;
             if (res) break;
@@ -128,17 +137,22 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
+        List<int> resL = new List<int>(request.usageRequested.Count);
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
             foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
             {
-                if (usage == request.usageRequested)
+                for (int i = 0; i < request.usageRequested.Count; i++)
                 {
-                    count++;
-                    break;
+                    if (usage == request.usageRequested[i])
+                        resL[i]++;
                 }
             }
+
+            count = resL[0];
+            for (int c = 1; c < resL.Count; c++)
+                if (resL[c] < count) count = resL[c];
 
             if (count >= request.nbRequested) res = true;
             if (res) break;

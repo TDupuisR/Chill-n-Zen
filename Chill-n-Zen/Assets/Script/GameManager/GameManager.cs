@@ -134,7 +134,7 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestObj
         {
-            public Item itemRequested;
+            public List<Item> itemRequested;
             public int nbRequested;
             public string phraseClient;
             public string solution;
@@ -142,7 +142,7 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestUsage
         {
-            public tagUsage usageRequested;
+            public List<tagUsage> usageRequested;
             public int nbRequested;
             public string phraseClient;
             public string solution;
