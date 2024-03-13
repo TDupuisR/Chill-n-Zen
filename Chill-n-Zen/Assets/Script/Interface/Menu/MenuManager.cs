@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
         
     public void GotoSelectionLevels()
     {
-        GameManager.Instance.ChangeScene(1);
+        GameManager.Instance.ChangeScene(2);
     }
 
     public void GotoCredits()
