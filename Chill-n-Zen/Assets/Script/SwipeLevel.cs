@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class SwipeLevel : MonoBehaviour
     #region Variable 
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
+    [Foldout("Inputs")][SerializeField] InputActionReference _inputBackButton;
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private float _speedSlider = 1;
     [SerializeField] private float _endSlideSpeed = 1;
@@ -19,7 +21,7 @@ public class SwipeLevel : MonoBehaviour
     private float _distance = Mathf.Infinity;
     private float _newXPosition = 2560;
     private bool _isDragging;
-    
+    private bool _isLoading;
 
     #endregion
 
@@ -35,12 +37,16 @@ public class SwipeLevel : MonoBehaviour
     {
         GameplayScript.onSwipe += StartSwipe;
         GameplayScript.onEndPrimaryTouch += EndSwipe;
+        _inputBackButton.action.started += ReturnMainMenu;
     }
+
 
     private void OnDisable()
     {
         GameplayScript.onSwipe -= StartSwipe;
         GameplayScript.onEndPrimaryTouch -= EndSwipe;
+        _inputBackButton.action.started -= ReturnMainMenu;
+
     }
 
     private void StartSwipe(Vector2 velocity)
@@ -54,6 +60,15 @@ public class SwipeLevel : MonoBehaviour
         _isDragging = false;
         StopCoroutine(CoroutineRectTransform(endPosition));
         FindClosestImage();
+    }
+
+    private void ReturnMainMenu(InputAction.CallbackContext obj)
+    {
+        if (!_isLoading)
+        {
+            GameManager.Instance.ChangeScene(0);
+            _isLoading = true;
+        }
     }
 
 

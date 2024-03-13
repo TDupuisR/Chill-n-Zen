@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using System;
 
 public class PauseManager : MonoBehaviour
 {
@@ -10,6 +12,18 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject _pauseObject;
     [SerializeField] GameObject _restartWindow;
     [SerializeField] List<GameObject> _buttonToHide;
+    [SerializeField] InputActionReference _pauseInput;
+
+    private void OnEnable()
+    {
+        _pauseInput.action.started += DisplayPauseInput;
+    }
+    private void OnDisable()
+    {
+        _pauseInput.action.started -= DisplayPauseInput;
+    }
+
+    private void DisplayPauseInput(InputAction.CallbackContext context) => DisplayPause(!_pauseObject.activeSelf);
 
     public void DisplayPause(bool activate)
     {
