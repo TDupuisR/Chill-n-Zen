@@ -35,6 +35,7 @@ public class FurnitureColorSelection : MonoBehaviour
         _imageList[2].color = GameManagerSpace.GameManager.colorData.Color3;
         _imageList[3].color = GameManagerSpace.GameManager.colorData.Color4;
         _imageList[4].color = GameManagerSpace.GameManager.colorData.Color5;
+        _imageList[5].color = GameManagerSpace.GameManager.colorData.Color6;
     }
 
 

@@ -113,7 +113,7 @@ namespace GameManagerSpace
         public enum tagMaterial { Null, Wood, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Window, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Library, Table, CoffeeTable, Top, Desk, Workdesk, Seat, Chair, TV, Oven, Fridge, Mirror, Decoration, Window, Light }
         public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects
@@ -134,7 +134,8 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestObj
         {
-            public Item itemRequested;
+            public List<Item> itemRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
             public string solution;
@@ -142,7 +143,8 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestUsage
         {
-            public tagUsage usageRequested;
+            public List<tagUsage> usageRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
             public string solution;
@@ -169,10 +171,12 @@ namespace GameManagerSpace
         {
             public tagUsage closeFromRequested;
             public List<tagUsage> closeToRequested;
+            public bool isNotProxi;
             public int nbRequested;
             public string phraseClient;
             public string solution;
         }
+        [System.Serializable]
         public struct requestFreeSpace
         {
             public int nbRequested;
