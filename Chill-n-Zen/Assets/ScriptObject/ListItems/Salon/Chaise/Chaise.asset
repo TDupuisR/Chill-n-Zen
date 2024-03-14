@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
-  m_Name: Armoire
+  m_Name: Chaise
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: 9d6f8d0144ad47445ac790b7f287e01d, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: 34f838d26cc823d44a79f9ac1f4e444a, type: 3}
-  spriteTwoFixed: {fileID: 0}
-  spriteTwoColored: {fileID: 0}
-  room: 2
+  spriteOneFixed: {fileID: 21300000, guid: b50d0571855a41646bff7d945e47b998, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: ac9511ced2dc20544a862d1d8ced8acc, type: 3}
+  spriteTwoFixed: {fileID: 21300000, guid: 6bd87f25712d6e34895c8deef1fe2a4f, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: 22f22b2c37485714987e6d12a5d9e1c3, type: 3}
+  room: 3
   type: 1
   material: 2
-  listUsage: 03000000
-  constraint: 1
+  listUsage: 0b000000
+  constraint: 3
   doorAccess: 1
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []
-  proxiBonus: 0
-  proxiUsageBonus: 
+  proxiBonus: 10
+  proxiUsageBonus: 05000000
   proxiItemBonus: []
   onBonus: 0
   onUsageBonus: 
   onItemBonus: []
-  score: 50
+  score: 30
   description: 
-  price: 110
-  size: {x: 1, y: 2, z: 3}
-  fullRotation: 0
+  price: 50
+  size: {x: 1, y: 1, z: 1}
+  fullRotation: 1

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
-  m_Name: Chaise
+  m_Name: Chaise 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: b50d0571855a41646bff7d945e47b998, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: ac9511ced2dc20544a862d1d8ced8acc, type: 3}
-  spriteTwoFixed: {fileID: 21300000, guid: 6bd87f25712d6e34895c8deef1fe2a4f, type: 3}
-  spriteTwoColored: {fileID: 21300000, guid: 22f22b2c37485714987e6d12a5d9e1c3, type: 3}
+  spriteOneFixed: {fileID: 21300000, guid: 7dabb397a2d021141a295fce20effeb3, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 0d27d6af2240a9341bcdb6d3e16c6392, type: 3}
+  spriteTwoFixed: {fileID: 21300000, guid: f58c879f1d79f4f46a348e73e97f03d2, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: fc6ab54718c5be3449fca8a755c2d7bf, type: 3}
   room: 3
   type: 1
-  material: 3
+  material: 1
   listUsage: 0b000000
   constraint: 3
-  doorAccess: 0
+  doorAccess: 1
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []

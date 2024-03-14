@@ -21,7 +21,7 @@ MonoBehaviour:
   material: 2
   listUsage: 09000000
   constraint: 1
-  doorAccess: 1
+  doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []
@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 50
   description: 
   price: 110
-  size: {x: 1, y: 1, z: 1}
+  size: {x: 1, y: 1, z: 2}
   fullRotation: 0
