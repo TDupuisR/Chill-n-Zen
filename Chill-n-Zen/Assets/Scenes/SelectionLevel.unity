@@ -5257,7 +5257,7 @@ MonoBehaviour:
   _inputPrimaryPosition: {fileID: -6238960553966541609, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
   _inputBackButton: {fileID: -6303539476164214380, guid: 7a633bc84f942ac4b8d1ccc64eb0cd1c, type: 3}
   _rectTransform: {fileID: 1801344631}
-  _speedSlider: 3
+  _speedSlider: -5
   _endSlideSpeed: 3
 --- !u!1 &1831846065
 GameObject:
