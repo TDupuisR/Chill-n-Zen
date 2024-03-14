@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,12 +34,14 @@ public class WallBehavior : MonoBehaviour
             {
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
                 GameObject wall = Instantiate(_rightWall, _posWall, Quaternion.identity);
+                SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+                spriteRenderer.color = GameManager.colorData.WallColor;
                 wall.transform.parent = _wallParent;
                 wall.transform.GetChild(0);
                 if (_wallBehind)
                 {
-                    SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                    spriteRenderer.color = new Color(1f, 1f, 1f, _opacityWall);
+                    spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
                 }
                 _wallList.Add(wall);
                 
@@ -47,11 +50,13 @@ public class WallBehavior : MonoBehaviour
             {
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorLeft;
                 GameObject wall = Instantiate(_leftWall, _posWall, Quaternion.identity);
+                SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+                spriteRenderer.color = GameManager.colorData.WallColor;
                 wall.transform.parent = _wallParent;
                 if (_wallBehind)
                 {
-                    SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                    spriteRenderer.color = new Color(1f, 1f, 1f, _opacityWall);
+                    spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
                 }
                 _wallList.Add(wall);
             }

@@ -42,9 +42,9 @@ public class TileSystem : MonoBehaviour
     public static event OnItemAddedDelegate OnItemAdded;
     public delegate void OnItemRemovedDelegate(Item item);
     public static event OnItemRemovedDelegate OnItemRemoved;
+
     public delegate void OnSceneChangedDelegate();
     public static event OnSceneChangedDelegate OnSceneChanged;
-
     public delegate void OnScoreChangedDelegate(int score);
     public static event OnScoreChangedDelegate OnScoreChanged;
 
@@ -218,6 +218,10 @@ public class TileSystem : MonoBehaviour
     public void RotateDoor(int rotation)
     {
         _doorBehave.Rotation(rotation);
+    }
+    public void ColorDoor(Color color)
+    {
+        _doorBehave.ChangeSpriteColor(color);
     }
 
     public void ShowGrid()
@@ -465,14 +469,12 @@ public class TileSystem : MonoBehaviour
                     Vector2 middleT = posT[0] + ((posT[1] - posT[0]) / 2f);
 
                     if (middleT.x >= middle.x)
-                        priority = posT[0];
-                    else
                         priority = posT[1];
+                    else
+                        priority = posT[0];
 
                     float dot = Vector2.Dot(normal, priority - pos[0]);
-
                     if (dot > 0) compare.SpriteLayer -= 1;
-                    else if (dot < 0) compare.SpriteLayer += 1;
                 }
             }
         }

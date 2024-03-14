@@ -17,7 +17,7 @@ MonoBehaviour:
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 1
-  type: 1
+  type: 3
   material: 0
   listUsage: 0f000000
   constraint: 0

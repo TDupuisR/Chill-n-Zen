@@ -13,9 +13,13 @@ public class LevelCreator : MonoBehaviour
     [Space(10)]
     [SerializeField] GMStatic.Request _primaryRequests;
     [SerializeField] GMStatic.Request _secondaryRequests;
+    [Space(10)]
+    [SerializeField] SceneColor _wallColor;
+    [SerializeField] SceneColor _groundColor;
 
     public enum GridGen { Create, Delete }
     public enum Rotation { SW, SE, NE, NW }
+    public enum SceneColor { color1, color2, color3 };
 
     // Grid //
     [System.Serializable]
@@ -34,6 +38,7 @@ public class LevelCreator : MonoBehaviour
 
     private void Start()
     {
+        SceneColorInit();
         GridMethod();
         DoorMethod();
 
@@ -47,6 +52,26 @@ public class LevelCreator : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void SceneColorInit()
+    {
+        if (_wallColor == SceneColor.color1)
+            GameManager.colorData.WallIndex = 0;
+        else if (_wallColor == SceneColor.color2)
+            GameManager.colorData.WallIndex = 1;
+        else if (_wallColor == SceneColor.color2)
+            GameManager.colorData.WallIndex = 2;
+        else
+            GameManager.colorData.WallIndex = 0;
+
+        if (_groundColor == SceneColor.color1)
+            GameManager.colorData.GroundIndex = 0;
+        else if (_groundColor == SceneColor.color2)
+            GameManager.colorData.GroundIndex = 1;
+        else if (_groundColor == SceneColor.color2)
+            GameManager.colorData.GroundIndex = 2;
+        else
+            GameManager.colorData.GroundIndex = 0;
+    }
     private void GridMethod()
     {
         foreach (GridSetup gridSetup in gridInstructions)
@@ -74,5 +99,6 @@ public class LevelCreator : MonoBehaviour
 
         TileSystem.Instance.PlaceDoor(doorInstruction.Position);
         TileSystem.Instance.RotateDoor(rotation);
+        TileSystem.Instance.ColorDoor(GameManager.colorData.GroundColor);
     }
 }

@@ -260,7 +260,34 @@ public class ItemBehaviour : MonoBehaviour
             _spriteClrRender.sprite = OwnItem.spriteTwoColored;
         }
 
+        SpriteHeight();
+
         ColliderReset();
+    }
+    public void SpriteHeight(int additionalHeight = 0)
+    {
+        int size = OwnItem.size.z + additionalHeight;
+
+        if (size == 1)
+        {
+            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0.5f, 0f);
+            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0.5f, 0f);
+        }
+        else if (size == 2)
+        {
+            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 1f, 0f);
+            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 1f, 0f);
+        }
+        else if (size == 3)
+        {
+            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 2f, 0f);
+            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 2f, 0f);
+        }
+        else if (size == 4)
+        {
+            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 2.25f, 0f);
+            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 2.25f, 0f);
+        }
     }
     private void ColliderReset()
     {

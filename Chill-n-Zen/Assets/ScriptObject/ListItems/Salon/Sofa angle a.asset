@@ -20,8 +20,8 @@ MonoBehaviour:
   type: 1
   material: 3
   listUsage: 
-  constraint: 0
-  doorAccess: 0
+  constraint: 2
+  doorAccess: 1
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []
@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 0
   description: 
   price: 0
-  size: {x: 0, y: 0, z: 0}
+  size: {x: 1, y: 2, z: 1}
   fullRotation: 0
