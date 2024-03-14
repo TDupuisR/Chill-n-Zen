@@ -115,7 +115,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
-        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, 0.1f);
+        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, -0.1f);
 
         SpriteAppearance();
         CheckNewPos();
@@ -246,8 +246,6 @@ public class ItemBehaviour : MonoBehaviour
         if (_orientation == 90 || _orientation == 270)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
-        Debug.Log(OwnItem);
 
         if (_orientation == 0 || _orientation == 90)
         {
