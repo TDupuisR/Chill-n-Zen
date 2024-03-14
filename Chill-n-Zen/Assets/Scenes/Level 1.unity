@@ -196,8 +196,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.usage.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.size
@@ -232,8 +236,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].needAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].solution
       value: Looks a bit to empty, don't you think ?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].solution
+      value: I needed a bedside table
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.usage.Array.data[0].needAll
@@ -252,12 +264,20 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.usage.Array.data[0].needAll
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].phraseClient
       value: Wants at least three piece of furniture
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].phraseClient
+      value: Wants something to put his bottle and phone near his bed
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.usage.Array.data[0].solution
@@ -313,7 +333,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.size
-      value: 12
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.material.Array.data[0].materialRequested
@@ -334,7 +358,7 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 88ab858015b22994c946b2231feea0da, type: 2}
+      objectReference: {fileID: 11400000, guid: 6aa2f563c01c3354298bbfa43065bc47, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[2]
       value: 
@@ -342,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: c2c7da55f0a4dbd4ba25855433f7f921, type: 2}
+      objectReference: {fileID: 11400000, guid: ceec9bbb408cab44db3a43a86e419371, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[4]
       value: 
@@ -350,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: 0eb0edbd527825c4b916c73bc2f86ee7, type: 2}
+      objectReference: {fileID: 11400000, guid: a3a0d7f9447e5aa4f838213692b4ddc2, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[6]
       value: 
@@ -358,7 +382,7 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: a01b2521c82c8514db6cbc2c7b89c78a, type: 2}
+      objectReference: {fileID: 11400000, guid: cf4113ddc79c5a5438aa71cae5c6644f, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[8]
       value: 
@@ -366,7 +390,15 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[9]
       value: 
-      objectReference: {fileID: 11400000, guid: 34a02e9c6b6110a4d9d136d47397cf6f, type: 2}
+      objectReference: {fileID: 11400000, guid: f626a903db054a2459f7c62c1d585017, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a01b2521c82c8514db6cbc2c7b89c78a, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: cf4113ddc79c5a5438aa71cae5c6644f, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.size
       value: 1
@@ -374,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[10]
       value: 
-      objectReference: {fileID: 11400000, guid: f626a903db054a2459f7c62c1d585017, type: 2}
+      objectReference: {fileID: 11400000, guid: 451d435666276884aafea98145c4e843, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[11]
       value: 
