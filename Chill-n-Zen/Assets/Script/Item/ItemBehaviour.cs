@@ -324,6 +324,7 @@ public class ItemBehaviour : MonoBehaviour
 
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
+            SpawnScoreEffect(OwnItem.score, false);
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
