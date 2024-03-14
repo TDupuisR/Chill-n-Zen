@@ -26,11 +26,9 @@ public class TileBehaviour : MonoBehaviour
 
     private void ChangeAesthetic()
     {
-        // GET FLOOR TEXTURE AND COLOR FROM GAMEMANAGER //
-
-        Debug.LogWarning(" (error : 3x0) Missing Floor texture or color ", gameObject);
+        Debug.LogWarning(" (error : 3x0) Missing Floor texture ", gameObject);
         // _renderer.sprite = // GameManager get Floor Texture //
-        _spriteRender.color = new Color(255, 0, 132); // GameManager get Floor Color, else new Color(255, 0, 132) //
+        _spriteRender.color = GameManager.colorData.GroundColor;
     }
 
     private void GridReset()

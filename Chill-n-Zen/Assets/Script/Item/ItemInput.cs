@@ -86,7 +86,6 @@ public class ItemInput : MonoBehaviour
     private void Update()
     {
         _isOnUI = IsPointerOverUIElement(GetEventSystemRaycastResults());
-        Debug.Log("On UI: " + _isOnUI);
 
         // Etape 2 -> 3
         if (_itemBehave.CurrentState == GMStatic.State.Moving && !_gameplay.IsHold)
