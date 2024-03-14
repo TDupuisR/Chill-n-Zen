@@ -121,8 +121,8 @@ public class ObjectivesUI : MonoBehaviour
     void InitializeObjectives(int count, List<ObjectivesCheckbox> objectiveList, Transform objectParent, List<string> textToAdd, List<bool> valueToSet)
     {
         objectiveList.Clear();
-        Vector2 currentPosition = Vector2.zero;
-        for(int i=0; i< count; i++)
+        Vector2 currentPosition = new Vector2(-57, 0);
+        for (int i=0; i< count; i++)
         {
             GameObject newObj = Instantiate(_checkboxPrefab, objectParent);   
             newObj.transform.localPosition = currentPosition;

@@ -583,7 +583,7 @@ MonoBehaviour:
   _scroll: {fileID: 7233736683120072473}
   _fillRect: {fileID: 2996761471519337954}
   _spaceFillFactor: 100
-  _spaceBTWObj: 40
+  _spaceBTWObj: 50
   _notCompletedColor: {r: 1, g: 0, b: 0, a: 1}
   _completedColor: {r: 0.058918595, g: 1, b: 0, a: 1}
   _uncheckedSprite: {fileID: 21300000, guid: d7d501d994438fe4fb7de8992c66f626, type: 3}
