@@ -172,6 +172,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _levelScore
+      value: 1110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _levelBudget
+      value: 2220
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _levelNumber
       value: 7
       objectReference: {fileID: 0}
@@ -190,6 +198,30 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: gridInstructions.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.material.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: gridInstructions.Array.data[0].GridSize.x
@@ -224,12 +256,212 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: gridInstructions.Array.data[1].instruction
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: gridInstructions.Array.data[2].instruction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].solution
+      value: I'm missing an oven or hotplates
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].solution
+      value: My husband can't warm up his food in the microwave at night
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].solution
+      value: It's missing plants
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].solution
+      value: We couldn't eat all together in the kitchen, what a pity
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].solution
+      value: I'm missing a freezer, all my food went wrong
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].nbRequested
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].phraseClient
+      value: Likes to cook in the oven or in a frying pan
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].phraseClient
+      value: Her husband often gets warmed up when he comes home late
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].phraseClient
+      value: Loves having some plants
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].solution
+      value: I d'ont have enought furnitures in blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].phraseClient
+      value: Wants a place to eat with husband and 2 daughters
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].phraseClient
+      value: Like to run errands and freeze them
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].nbRequested
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.material.Array.data[0].solution
+      value: I don't enough wood furniture, too bad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].phraseClient
+      value: Likes to have plenty of blue furnitures
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].solution
+      value: I don't enought windows, what a shame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.material.Array.data[0].nbRequested
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].isNotProxi
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.material.Array.data[0].phraseClient
+      value: Wants a lot of wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].phraseClient
+      value: Likes to have natural light when cooking and eating
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].itemRequested.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.material.Array.data[0].materialRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].itemRequested.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].closeFromRequested
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f905a37894d15a84f9c86f359ecf35f3, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e754d265d8ba6b24a9b349bd5109c982, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ac1c3e1e177fdf40aacd29952e775e4, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.obj.Array.data[2].itemRequested.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 033c9b9cdeac9ad44b7995b1121bc517, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].itemRequested.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ffc870011f7924eac3652851a51be2, type: 2}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[1]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[2]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[3]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[4]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.data[0]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.data[1]
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7868691773578750813, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: m_Name

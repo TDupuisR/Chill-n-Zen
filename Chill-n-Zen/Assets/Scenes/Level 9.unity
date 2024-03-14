@@ -172,6 +172,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _levelScore
+      value: 1120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _levelBudget
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _levelNumber
       value: 9
       objectReference: {fileID: 0}
@@ -189,7 +197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.size
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.size
@@ -198,6 +210,10 @@ PrefabInstance:
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.usage.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.size
@@ -225,15 +241,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].solution
-      value: I can't eat with my wife and four children
+      value: I couldn't freeze my meals for the week, such a waste
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].solution
-      value: I don't have in off space to cook, what a shame
+      value: I couldn't freeze my meals for the week, such a waste
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[2].solution
       value: I couldn't freeze my meals for the week, such a waste
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[1].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].solution
+      value: I don't have in off space to cook, what a shame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].solution
+      value: I can't eat with my wife and four children
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.data[0].solution
@@ -249,19 +289,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].nbRequested
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[2].nbRequested
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.usage.Array.data[0].needAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].phraseClient
-      value: Wants plenty of room to eat with his family
+      value: 'Likes to make meals for the week and freeze them '
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].phraseClient
-      value: Wants a dozen kitchen units
+      value: 'Likes to make meals for the week and freeze them '
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[2].phraseClient
@@ -272,8 +316,32 @@ PrefabInstance:
       value: I couldn't fit all my utilities
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].nbRequested
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.data[0].nbRequested
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.obj.Array.data[1].nbRequested
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].solution
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].phraseClient
+      value: Wants a dozen kitchen units
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].phraseClient
+      value: Wants plenty of room to eat with his family
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.data[0].phraseClient
@@ -296,6 +364,14 @@ PrefabInstance:
       value: Needs some storage space
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].nbRequested
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].phraseClient
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].nbRequested
       value: 1
       objectReference: {fileID: 0}
@@ -305,11 +381,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[1].itemRequested.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeFromRequested
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.data[0].itemRequested.Array.size
@@ -321,12 +401,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].closeFromRequested
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: fef9a70ee4ea1814da5ff6dbb9642aa8, type: 2}
+      objectReference: {fileID: 11400000, guid: d6ffc870011f7924eac3652851a51be2, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.data[1]
       value: 
@@ -380,6 +460,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 237957a92737f754cad7e111d291fa47, type: 2}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.obj.Array.data[0].itemRequested.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 6a92d33fbc0037447bd0eb6c67c4df06, type: 2}
@@ -392,20 +480,60 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[0].usageRequested.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[4]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[5]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.usage.Array.data[1].usageRequested.Array.data[6]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.usage.Array.data[0].usageRequested.Array.data[0]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeToRequested.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _primaryRequests.proximity.Array.data[0].closeToRequested.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.data[0]
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].closeToRequested.Array.data[1]
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7868691773578750813, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: m_Name
