@@ -12975,7 +12975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreEffectPrefab: {fileID: 6670058343156338400, guid: 6a2ebdbae21ecf44e9321e7fc3dd3c5b, type: 3}
-  _endingPositionTransform: {fileID: 7034658259385073517}
+  _endingPositionTransform: {fileID: 6237719579750016085}
   _scoreColor: {r: 1, g: 1, b: 0, a: 0}
   _comboColor: {r: 1, g: 0.5019608, b: 0, a: 0}
 --- !u!1 &7205857834078262895
