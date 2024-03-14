@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 08861b32a0253ab4ca7c7ec78b889603
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _mainCamera: {instanceID: 0}
+  - _inputPrimaryTouch: {instanceID: 0}
+  - _inputPrimaryPosition: {instanceID: 0}
+  - _inputPrimaryDelta: {instanceID: 0}
+  - _inputSecondaryTouch: {instanceID: 0}
+  - _inputSecondaryPosition: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
