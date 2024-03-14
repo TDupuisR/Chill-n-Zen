@@ -19,7 +19,7 @@ public class LoginPlayer : MonoBehaviour
         {
             PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
         }
-        Social.ReportProgress("CgkI5ZWvkocPEAIQBg", 100.0f, (bool success) => { });
+        PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
         SceneManager.LoadScene(1);
     }
 }
