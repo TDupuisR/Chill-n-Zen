@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Meuble rangement
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: d3fa0953bd8fcbc43afd9eb7efe3bfc1, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: 51dd5123da43ccf4390ae23bdc5d99c0, type: 3}
-  spriteTwoFixed: {fileID: 21300000, guid: 4be4f666db057d54e9d5e03666558148, type: 3}
-  spriteTwoColored: {fileID: 21300000, guid: 540bdc2edbf5c3e4e9db745ee279ff46, type: 3}
+  spriteOneFixed: {fileID: 21300000, guid: fbcbd44d60b1eb2449ebe483f9b0426e, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: e2a4810af81333941a3e386f55a0e869, type: 3}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
   room: 4
-  type: 1
+  type: 3
   material: 2
   listUsage: 03000000
   constraint: 1
