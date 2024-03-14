@@ -15,14 +15,11 @@ public class LoginPlayer : MonoBehaviour
 
     internal void ProcessAuthentication(SignInStatus status)
     {
-        if (status == SignInStatus.Success)
-        {
-            Social.ReportProgress("CgkI5ZWvkocPEAIQBg", 100.0f, (bool success) => { });
-            SceneManager.LoadScene(1);
-        }
-        else
+        if (status != SignInStatus.Success)
         {
             PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
         }
+        Social.ReportProgress("CgkI5ZWvkocPEAIQBg", 100.0f, (bool success) => { });
+        SceneManager.LoadScene(1);
     }
 }
