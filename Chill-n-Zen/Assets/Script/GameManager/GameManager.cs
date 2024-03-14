@@ -9,6 +9,7 @@ namespace GameManagerSpace
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public static AchievementManager achievementManager;
         public static LibraryItem libraryItems;
         public static AudioManager audioManager;
         public static SaveData saveData;
@@ -17,6 +18,7 @@ namespace GameManagerSpace
         public static ColorData colorData;
         public static LevelManager levelManager;
 
+        [SerializeField] AchievementManager _achievementManager;
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
