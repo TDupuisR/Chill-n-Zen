@@ -357,7 +357,8 @@ public class ItemBehaviour : MonoBehaviour
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
-        ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
+        if(ScoreEffectManager.Instance != null)
+            ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
     }
 
     [Button]
