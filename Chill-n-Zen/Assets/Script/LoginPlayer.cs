@@ -4,13 +4,12 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using TMPro;
-public class Test : MonoBehaviour
-{
-    [SerializeField] TextMeshProUGUI text;
+using UnityEngine.SceneManagement;
 
+public class LoginPlayer : MonoBehaviour
+{
     public void Start()
     {
-        PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
 
@@ -18,12 +17,11 @@ public class Test : MonoBehaviour
     {
         if (status == SignInStatus.Success)
         {
-            text.text = "SuccessConnexion";
             Social.ReportProgress("CgkI5ZWvkocPEAIQBg", 100.0f, (bool success) => { });
+            SceneManager.LoadScene(1);
         }
         else
         {
-            text.text = "FailConnexion";
             PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
         }
     }
