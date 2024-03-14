@@ -97,7 +97,7 @@ public class ItemBehaviour : MonoBehaviour
 
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
-        _spriteCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, 0.1f);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
@@ -115,7 +115,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
-        _spriteCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, 0.1f);
 
         SpriteAppearance();
         CheckNewPos();
