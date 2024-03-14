@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteOneFixed: {fileID: 21300000, guid: 7b7b2a75d7fbb7348af6e5b1db4865b6, type: 3}
   spriteOneColored: {fileID: 21300000, guid: 619ce80c1bb58f1418c89449659cd96d, type: 3}
-  spriteTwoFixed: {fileID: 0}
-  spriteTwoColored: {fileID: 0}
+  spriteTwoFixed: {fileID: 21300000, guid: 84c1942ab12038e419ada74e4b7e1ab2, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: 2185b97d64461eb4187ae10545192530, type: 3}
   room: 3
   type: 1
   material: 3
