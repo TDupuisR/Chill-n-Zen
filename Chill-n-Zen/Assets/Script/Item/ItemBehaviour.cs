@@ -343,6 +343,7 @@ public class ItemBehaviour : MonoBehaviour
 
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
+            SpawnScoreEffect(OwnItem.score, false);
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
@@ -376,7 +377,8 @@ public class ItemBehaviour : MonoBehaviour
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
-        ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
+        if(ScoreEffectManager.Instance != null)
+            ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
     }
 
     [Button]

@@ -16,11 +16,11 @@ MonoBehaviour:
   spriteOneColored: {fileID: 0}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
-  room: 0
-  type: 0
+  room: 3
+  type: 2
   material: 0
-  listUsage: 
-  constraint: 0
+  listUsage: 0c000000
+  constraint: 1
   doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 
@@ -28,11 +28,13 @@ MonoBehaviour:
   proxiBonus: 0
   proxiUsageBonus: 
   proxiItemBonus: []
-  onBonus: 0
+  onBonus: 20
   onUsageBonus: 
-  onItemBonus: []
-  score: 0
+  onItemBonus:
+  - {fileID: 11400000, guid: 176ed49dbf368fb45b80dfea5bf8bfd2, type: 2}
+  - {fileID: 11400000, guid: 1372b13c359a41842a28ca1c95af02ce, type: 2}
+  score: 100
   description: 
-  price: 0
-  size: {x: 0, y: 0, z: 0}
+  price: 220
+  size: {x: 2, y: 1, z: 1}
   fullRotation: 0

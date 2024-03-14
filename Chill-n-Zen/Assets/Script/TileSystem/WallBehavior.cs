@@ -38,7 +38,7 @@ public class WallBehavior : MonoBehaviour
                 if (_wallBehind)
                 {
                     SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+                    spriteRenderer.color = new Color(1f, 1f, 1f, _opacityWall);
                 }
                 _wallList.Add(wall);
                 
@@ -51,7 +51,7 @@ public class WallBehavior : MonoBehaviour
                 if (_wallBehind)
                 {
                     SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-                    spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+                    spriteRenderer.color = new Color(1f, 1f, 1f, _opacityWall);
                 }
                 _wallList.Add(wall);
             }
