@@ -103,14 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listItems:
-  - {fileID: 11400000, guid: d43ea41f450b6e048a2b23423f090452, type: 2}
+  - {fileID: 11400000, guid: ad36b92a79d32244faec86858a9a4790, type: 2}
   - {fileID: 11400000, guid: c986444a0398a814390532649b8944aa, type: 2}
-  - {fileID: 11400000, guid: 256971596057e6a4ca0f4f717a7cb720, type: 2}
-  - {fileID: 11400000, guid: e57a3173438bfe44ead5490884160248, type: 2}
-  - {fileID: 11400000, guid: 122f9a869df156044be83d1e3d987e68, type: 2}
-  - {fileID: 11400000, guid: 19900c2164b469846bac1639d812ee2c, type: 2}
-  - {fileID: 11400000, guid: 0d55d820dff119a4d9f07084f13fb43d, type: 2}
-  - {fileID: 11400000, guid: c58934d608bd85f44b4312df5205e02d, type: 2}
+  - {fileID: 11400000, guid: 88ab858015b22994c946b2231feea0da, type: 2}
+  - {fileID: 11400000, guid: 6aa2f563c01c3354298bbfa43065bc47, type: 2}
+  - {fileID: 11400000, guid: 34a02e9c6b6110a4d9d136d47397cf6f, type: 2}
 --- !u!114 &7027273775599815287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,12 +405,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc22203b978fd4ab98fe5be3a9307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color1: {r: 0.53333336, g: 0.68235296, b: 0.627451, a: 0}
-  color2: {r: 0.85490197, g: 0.68235296, b: 0.3882353, a: 0}
-  color3: {r: 0.5411765, g: 0.69411767, b: 0.49019608, a: 0}
-  color4: {r: 0.15686275, g: 0.44705883, b: 0.44313726, a: 0}
-  color5: {r: 0.46666667, g: 0.2, b: 0.19215687, a: 0}
-  color6: {r: 0.8980392, g: 0.5568628, b: 0.3254902, a: 0}
+  _color1: {r: 0.53333336, g: 0.68235296, b: 0.627451, a: 1}
+  _color2: {r: 0.85490197, g: 0.68235296, b: 0.3882353, a: 1}
+  _color3: {r: 0.5411765, g: 0.69411767, b: 0.49019608, a: 1}
+  _color4: {r: 0.15686275, g: 0.44705883, b: 0.44313726, a: 1}
+  _color5: {r: 0.46666667, g: 0.2, b: 0.19215687, a: 1}
+  _color6: {r: 0.8980392, g: 0.5568628, b: 0.3254902, a: 1}
+  _groundColor1: {r: 1, g: 0, b: 0, a: 1}
+  _groundColor2: {r: 0, g: 0.005294323, b: 1, a: 1}
+  _groundColor3: {r: 0, g: 1, b: 0.036418438, a: 1}
+  _wallColor1: {r: 1, g: 0, b: 0, a: 1}
+  _wallColor2: {r: 0, g: 0.04570937, b: 1, a: 1}
+  _wallColor3: {r: 0.07528067, g: 1, b: 0, a: 1}
 --- !u!114 &4803063219248275696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169ebbb3703fd2c4a9deb659d956d45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cookingPlate: {fileID: 11400000, guid: f905a37894d15a84f9c86f359ecf35f3, type: 2}
 --- !u!1001 &4628184574296037541
 PrefabInstance:
   m_ObjectHideFlags: 0
