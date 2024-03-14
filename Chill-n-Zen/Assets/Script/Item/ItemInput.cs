@@ -1,6 +1,8 @@
 using UnityEngine;
 using GameManagerSpace;
 using System;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ItemInput : MonoBehaviour
 {
@@ -11,41 +13,71 @@ public class ItemInput : MonoBehaviour
     bool _primWasPressed = false;
     bool _holdWasPressed = false;
     bool _isOnItem = false;
+    bool _isOnUI = false;
+    int _layerUI;
     
     public static Action<ItemBehaviour> OnCallDescription;
     public static Action OnCallHideDescription;
 
     private void Start()
     {
+        _layerUI = LayerMask.NameToLayer("UI");
         _gameplay = GameplayScript.Instance;
 
         OnCallDescription?.Invoke(_itemBehave);
     }
-    
+
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysast)
+    {
+        bool res = false;
+
+        for (int index = 0; index < eventSystemRaysast.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysast[index];
+            if (curRaysastResult.gameObject.layer == _layerUI)
+                res = true;
+        }
+
+        return res;
+    }
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = GameplayScript.Instance.PrimaryPosition;
+
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+
+        return raysastResults;
+    }
+
     private void OnMouseOver()
     {
-        _isOnItem = true;
+        if (!_isOnUI)
+        {
+            _isOnItem = true;
 
-        // Etape 3 -> 2
-        if (CheckIsHolding() && _itemBehave.CurrentState == GMStatic.State.Waiting)
-        {
-            _itemBehave.CurrentState = GMStatic.State.Moving;
-            _itemUI.ActivateUI(false);
-
-            CameraControls.Instance.CanMoveCamera = false;
-        }
-        // Etape 3 -> Rotation
-        if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Waiting )
-        {
-            _itemBehave.Rotation();
-        }
-        // Etape 4 -> 5
-        if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Placed)
-        {
-            if (TileSystem.Instance.IsSceneVacant)
+            // Etape 3 -> 2
+            if (CheckIsHolding() && _itemBehave.CurrentState == GMStatic.State.Waiting)
             {
-                _itemUI.ActivateUI(true);
-                OnCallDescription?.Invoke(_itemBehave);
+                _itemBehave.CurrentState = GMStatic.State.Moving;
+                _itemUI.ActivateUI(false);
+
+                CameraControls.Instance.CanMoveCamera = false;
+            }
+            // Etape 3 -> Rotation
+            if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Waiting )
+            {
+                _itemBehave.Rotation();
+            }
+            // Etape 4 -> 5
+            if (CheckIsTouching() && _itemBehave.CurrentState == GMStatic.State.Placed)
+            {
+                if (TileSystem.Instance.IsSceneVacant)
+                {
+                    _itemUI.ActivateUI(true);
+                    OnCallDescription?.Invoke(_itemBehave);
+                }
             }
         }
     }
@@ -53,6 +85,9 @@ public class ItemInput : MonoBehaviour
 
     private void Update()
     {
+        _isOnUI = IsPointerOverUIElement(GetEventSystemRaycastResults());
+        Debug.Log("On UI: " + _isOnUI);
+
         // Etape 2 -> 3
         if (_itemBehave.CurrentState == GMStatic.State.Moving && !_gameplay.IsHold)
         {

@@ -113,7 +113,7 @@ public class TileBehaviour : MonoBehaviour
                 {
                     foreach (GMStatic.tagUsage usage in item.listUsage)
                     {
-                        if (usage == GMStatic.tagUsage.Table || usage == GMStatic.tagUsage.Desk) { res = true; break; }
+                        if (usage == GMStatic.tagUsage.Table || usage == GMStatic.tagUsage.Desk || usage == GMStatic.tagUsage.CoffeeTable ) { res = true; break; }
                     }
                     if (!res) break;
                 }

@@ -31,6 +31,7 @@ public class ItemBehaviour : MonoBehaviour
     public SpriteRenderer SpriteRenderer { get { return _spriteUnClrRender; } }
     public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
+    public int SpriteLayer { get; set; }
 
     public Vector3 OffsetPos { get { return _offsetPos; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
@@ -96,6 +97,8 @@ public class ItemBehaviour : MonoBehaviour
 
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position + _offsetPos;
+
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
         LineColor(Color.red);
@@ -112,6 +115,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position + _offsetPos;
 
         SpriteAppearance();
         CheckNewPos();
@@ -260,10 +264,10 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void ColliderReset()
     {
-        if (_spriteUnCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        _spriteUnCllrGmObj.AddComponent<PolygonCollider2D>();
+        _spriteCllrGmObj.AddComponent<PolygonCollider2D>();
     }
     private void CheckWhenPlaced()
     {
@@ -283,6 +287,21 @@ public class ItemBehaviour : MonoBehaviour
                 _spriteUnClrRender.color = Color.white;
             }
         }
+    }
+
+    public Vector2[] GetLayerPoints()
+    {
+        Vector2[] list = new Vector2[2];
+
+        list[0] = _lineRender.GetPosition(1);
+        list[1] = _lineRender.GetPosition(3);
+
+        return list;
+    }
+    public void ApplyLayer()
+    {
+        Debug.Log(gameObject.name + " - Layer: " + SpriteLayer);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 100f + SpriteLayer);
     }
 
     [Button] public void Rotation(int rotation = -1)
@@ -331,6 +350,7 @@ public class ItemBehaviour : MonoBehaviour
     {
         if (CurrentState == GMStatic.State.Placed)
         {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
             Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 

@@ -12,13 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: test 2
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: b305b11f8b6ac57459cab92ac11937c9, type: 3}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  spriteOneColored: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 3
   type: 2
-  style: 2
+  material: 0
   listUsage: 
+  constraint: 0
+  doorAccess: 0
+  frontBonus: 0
+  frontUsageBonus: 
+  frontItemBonus: []
+  proxiBonus: 0
+  proxiUsageBonus: 
+  proxiItemBonus: []
+  onBonus: 0
+  onUsageBonus: 
+  onItemBonus: []
+  score: 0
+  description: 
   price: 7520
   size: {x: 1, y: 1, z: 0}
+  fullRotation: 0

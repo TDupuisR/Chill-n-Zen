@@ -378,6 +378,7 @@ public class TileSystem : MonoBehaviour
             }
         }
 
+        SpriteLayersOrdering();
     }
     public void RemoveItem(GameObject obj, int x, int y)
     {
@@ -441,6 +442,44 @@ public class TileSystem : MonoBehaviour
         }
 
         OnScoreChanged?.Invoke(TotalScore);
+    }
+    private void SpriteLayersOrdering()
+    {
+        foreach (ItemBehaviour item in _itemBehaveList)
+            item.SpriteLayer = 0;
+
+        foreach (ItemBehaviour item in _itemBehaveList)
+        {
+            Vector2[] pos = item.GetLayerPoints();
+
+            Vector2 segment = pos[1] - pos[0];
+            Vector2 normal = new Vector2(-segment.y, segment.x);
+            Vector2 middle = pos[0] + (segment / 2f);
+
+            foreach (ItemBehaviour compare in _itemBehaveList)
+            {
+                if (compare != item)
+                {
+                    Vector2 priority;
+                    Vector2[] posT = compare.GetLayerPoints();
+                    Vector2 middleT = posT[0] + ((posT[1] - posT[0]) / 2f);
+
+                    if (middleT.x >= middle.x)
+                        priority = posT[0];
+                    else
+                        priority = posT[1];
+
+                    float dot = Vector2.Dot(normal, priority - pos[0]);
+
+                    if (dot > 0) compare.SpriteLayer -= 1;
+                    else if (dot < 0) compare.SpriteLayer += 1;
+                }
+            }
+        }
+
+        foreach (ItemBehaviour item in _itemBehaveList)
+            item.ApplyLayer();
+
     }
 
     // Path Finding //
