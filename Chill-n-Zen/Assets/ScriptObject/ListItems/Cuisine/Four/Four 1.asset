@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
-  m_Name: Tirroirs
+  m_Name: Four 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: 3c871b4d05d689947b0ff06691c8d40b, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: 51d811962a685704ca7b20e795faffe7, type: 3}
+  spriteOneFixed: {fileID: 21300000, guid: 53636fecc0fe67c439af5fc7a8538d43, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: c1cf2eeee890a40449c741704ffed043, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 4
-  type: 3
-  material: 2
-  listUsage: 03000000
+  type: 1
+  material: 0
+  listUsage: 0d000000
   constraint: 1
   doorAccess: 1
   frontBonus: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
   onBonus: 0
   onUsageBonus: 
   onItemBonus: []
-  score: 30
+  score: 90
   description: 
-  price: 40
+  price: 200
   size: {x: 1, y: 1, z: 1}
   fullRotation: 0
