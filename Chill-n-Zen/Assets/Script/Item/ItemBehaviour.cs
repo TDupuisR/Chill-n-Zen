@@ -96,8 +96,10 @@ public class ItemBehaviour : MonoBehaviour
         _orientation = 0;
 
         OffsetPosCalcul();
-        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
-        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, 0.1f);
+        _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
+        _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
@@ -114,8 +116,8 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetInfos()
     {
         OffsetPosCalcul();
-        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
-        _spriteCllrGmObj.transform.position = transform.position + _offsetPos + new Vector3(0f, 0f, -0.1f);
+        _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
 
         SpriteAppearance();
         CheckNewPos();
@@ -243,7 +245,7 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void SpriteAppearance()
     {
-        if (_orientation == 90 || _orientation == 270)
+        if (_orientation == 0 || _orientation == 180)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
