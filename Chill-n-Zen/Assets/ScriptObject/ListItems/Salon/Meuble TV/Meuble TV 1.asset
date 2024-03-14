@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Meuble TV 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: d2e3a8df29db94541ac5f1a0cd7b168d, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 02196d1da0e91484dbb7ecc99bf6bf41, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 3

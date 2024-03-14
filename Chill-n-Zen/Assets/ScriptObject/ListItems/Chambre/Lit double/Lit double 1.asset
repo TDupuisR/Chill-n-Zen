@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Lit double 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: d8810804dce2b0e4faae9173afd7d4d4, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 873e68543b0e96f4b81cc17526090c5f, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 2

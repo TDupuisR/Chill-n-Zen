@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Grille pain
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 422d6937e6d1a7046ae40570adfdbc84, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 1c63eaa0655794e4e8419060dc2eff7b, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 4

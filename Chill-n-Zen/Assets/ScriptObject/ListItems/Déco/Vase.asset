@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Vase
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 69b90c36a9511f847a53431be507ef21, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 0948a78165b2b6d4a93b5578fc29b422, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 1
