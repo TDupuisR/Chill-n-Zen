@@ -1,4 +1,5 @@
 using GameManagerSpace;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +7,53 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour
 {
     private bool _check = true;
+    [SerializeField] Item _cookingPlate;
+
+    private void OnEnable()
+    {
+        TileSystem.OnSceneChanged += CheckAchievementFloorIsLava;
+        TileSystem.OnSceneChanged += CheckAchievementBotanist;
+        GameManager.OnSceneLoad += CheckAchievementGoodStart;
+        GameManager.OnSceneLoad += CheckAchievementInteriorDesigner;
+        GameManager.OnSceneLoad += CheckAchievementGraduate;
+    }
+
+    private void OnDisable()
+    {
+        TileSystem.OnSceneChanged -= CheckAchievementFloorIsLava;
+        TileSystem.OnSceneChanged -= CheckAchievementBotanist;
+        GameManager.OnSceneLoad -= CheckAchievementGoodStart;
+        GameManager.OnSceneLoad -= CheckAchievementInteriorDesigner;
+        GameManager.OnSceneLoad -= CheckAchievementGraduate;
+    }
+
     public void CheckAchievementFloorIsLava()
     {
-        Social.ReportProgress("CgkI5ZWvkocPEAIQAQ", 100.0f, (bool success) => { });
+
+        GMStatic.requestObj floor = new GMStatic.requestObj();
+        floor.itemRequested.Add(_cookingPlate);
+        floor.nbRequested = TileSystem.Instance.TilesList.Count-1;
+        if (GameManager.requestManager.CheckObjRequest(floor))
+        {
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQAQ");
+        }
     }
     public void CheckAchievementBotanist()
     {
-        Social.ReportProgress("CgkI5ZWvkocPEAIQBA", 100.0f, (bool success) => { });
+        GMStatic.requestUsage plante = new GMStatic.requestUsage();
+        plante.usageRequested.Add(GMStatic.tagUsage.Plant);
+        plante.nbRequested = 10;
+        if (GameManager.requestManager.CheckTypeRequest(plante))
+        {
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBA");
+        }
+        
     }
     public void CheckAchievementGoodStart()
     {
         if (GameManager.saveData.LoadStar(1) != null)
         {
-            Social.ReportProgress("CgkI5ZWvkocPEAIQBQ", 100.0f, (bool success) => { });
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBQ");
         }
     }
     public void CheckAchievementInteriorDesigner()
@@ -33,7 +68,7 @@ public class AchievementManager : MonoBehaviour
         }
         if(_check == true)
         {
-            Social.ReportProgress("CgkI5ZWvkocPEAIQAg", 100.0f, (bool success) => { });
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQAg");
         }
         
     }
@@ -49,7 +84,7 @@ public class AchievementManager : MonoBehaviour
         }
         if (_check == true)
         {
-            Social.ReportProgress("CgkI5ZWvkocPEAIQAw", 100.0f, (bool success) => { });
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQAw");
         }
     }
 }

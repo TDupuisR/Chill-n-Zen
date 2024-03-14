@@ -30,6 +30,9 @@ namespace GameManagerSpace
 
         private LoadingAnimation _loadingScript;
 
+        public delegate void OnSceneLoadDelegate();
+        public static event OnSceneLoadDelegate OnSceneLoad;
+
         private void OnValidate()
         {
             if (_libraryItems == null)
@@ -77,7 +80,7 @@ namespace GameManagerSpace
             {
                 Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
             }
-
+            OnSceneLoad?.Invoke();
             StartCoroutine(AsyncLoadScnene(sceneIndex));
         }
         IEnumerator AsyncLoadScnene(int sceneIndex)
