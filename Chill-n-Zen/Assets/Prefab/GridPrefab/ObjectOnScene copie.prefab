@@ -1055,8 +1055,8 @@ MonoBehaviour:
   _deleteButton: {fileID: 7326790598854564378}
   _spacingFactor: 40
   _text: {fileID: 1143600497162394103}
-  _obstructionText: "Acc\xE8s osbtru\xE9!"
-  _noaccessText: Aucun passage vers la porte!
+  _obstructionText: Access is restricted!
+  _noaccessText: No way to the door!
 --- !u!1 &7124475511059957127
 GameObject:
   m_ObjectHideFlags: 0
