@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
+  m_Name: Sofa angle b
+  m_EditorClassIdentifier: 
+  spriteOneFixed: {fileID: 21300000, guid: 10788db81e29fcc4592051c0d012cdb8, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 2f973c6dbf575a14797465e7adbd3eca, type: 3}
+  spriteTwoFixed: {fileID: 21300000, guid: 2171ab1c53d907840b6bcd745e4a5322, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: e7dd5a5340854634c8939f0956c95bdb, type: 3}
+  room: 3
+  type: 1
+  material: 3
+  listUsage: 0a000000
+  constraint: 2
+  doorAccess: 0
+  frontBonus: 0
+  frontUsageBonus: 
+  frontItemBonus: []
+  proxiBonus: 10
+  proxiUsageBonus: 
+  proxiItemBonus:
+  - {fileID: 11400000, guid: a01b2521c82c8514db6cbc2c7b89c78a, type: 2}
+  - {fileID: 11400000, guid: cf4113ddc79c5a5438aa71cae5c6644f, type: 2}
+  onBonus: 0
+  onUsageBonus: 
+  onItemBonus: []
+  score: 100
+  description: 
+  price: 230
+  size: {x: 1, y: 2, z: 1}
+  fullRotation: 1

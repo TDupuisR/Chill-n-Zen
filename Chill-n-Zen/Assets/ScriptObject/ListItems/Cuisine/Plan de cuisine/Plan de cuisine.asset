@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Plan de cuisine
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
-  spriteTwoFixed: {fileID: 0}
-  spriteTwoColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: d3fa0953bd8fcbc43afd9eb7efe3bfc1, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 51dd5123da43ccf4390ae23bdc5d99c0, type: 3}
+  spriteTwoFixed: {fileID: 21300000, guid: 4be4f666db057d54e9d5e03666558148, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: 540bdc2edbf5c3e4e9db745ee279ff46, type: 3}
   room: 4
   type: 1
   material: 2
   listUsage: 09000000
   constraint: 1
-  doorAccess: 1
+  doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []
@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 50
   description: 
   price: 110
-  size: {x: 1, y: 1, z: 1}
+  size: {x: 1, y: 1, z: 2}
   fullRotation: 0

@@ -21,7 +21,7 @@ MonoBehaviour:
   material: 3
   listUsage: 0a000000
   constraint: 2
-  doorAccess: 0
+  doorAccess: 1
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []

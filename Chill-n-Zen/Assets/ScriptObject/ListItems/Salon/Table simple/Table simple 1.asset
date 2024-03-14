@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Table simple 1
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: b72b91a3d1488ef4eac4709fa831ba28, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: f6926b681ff8c5a49be356dc12febf79, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 3
   type: 1
   material: 1
   listUsage: 05000000
-  constraint: 1
+  constraint: 0
   doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 
@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 80
   description: 
   price: 170
-  size: {x: 2, y: 1, z: 1}
+  size: {x: 1, y: 2, z: 1}
   fullRotation: 0

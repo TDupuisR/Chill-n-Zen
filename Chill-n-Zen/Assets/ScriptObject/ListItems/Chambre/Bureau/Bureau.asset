@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Bureau
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 6427b022d8715894c939e545ce3035c0, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 64ac5362f7c79424484df4c98571e371, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 2
@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 70
   description: 
   price: 150
-  size: {x: 2, y: 1, z: 1}
+  size: {x: 1, y: 2, z: 1}
   fullRotation: 0
