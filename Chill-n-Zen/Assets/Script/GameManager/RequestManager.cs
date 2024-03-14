@@ -108,7 +108,7 @@ public class RequestManager : MonoBehaviour
         return ret;
     }
 
-    private bool CheckObjRequest(GMStatic.requestObj request)
+    public bool CheckObjRequest(GMStatic.requestObj request)
     {
         bool res = false;
 
@@ -145,7 +145,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckTypeRequest(GMStatic.requestUsage request)
+    public bool CheckTypeRequest(GMStatic.requestUsage request)
     {
         bool res = false;
 
@@ -199,7 +199,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckColorRequest(GMStatic.requestColor request)
+    public bool CheckColorRequest(GMStatic.requestColor request)
     {
         bool res = false;
 
@@ -215,7 +215,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckMaterialRequest(GMStatic.requestMaterial request)
+    public bool CheckMaterialRequest(GMStatic.requestMaterial request)
     {
         bool res = false;
 
@@ -231,7 +231,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckProximityRequest(GMStatic.requestProximity request)
+    public bool CheckProximityRequest(GMStatic.requestProximity request)
     {
         bool res = false;
 
@@ -297,7 +297,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckFreeSpaceRequest(GMStatic.requestFreeSpace request)
+    public bool CheckFreeSpaceRequest(GMStatic.requestFreeSpace request)
     {
         bool res = false;
 

@@ -353,7 +353,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 30
   m_Positions:
   - {x: -0.02, y: 0.5, z: 0}
   - {x: 1, y: 0, z: 0}
@@ -442,7 +442,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6364247276413480832}
   - component: {fileID: 8529216494062457899}
-  - component: {fileID: 6225274295738481828}
   m_Layer: 0
   m_Name: SpriteUncolored
   m_TagString: Untagged
@@ -505,7 +504,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 31
+  m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -517,20 +516,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6225274295738481828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083728952115379752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemBehave: {fileID: 8672771562078384227}
-  _itemUI: {fileID: 5496170060791973697}
 --- !u!1 &2437844304304797464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1254,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 21
+  m_SortingOrder: 31
   m_Positions:
   - {x: 0, y: 0.5, z: 0}
   - {x: 1, y: 0, z: 0}
@@ -1500,7 +1485,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6225274295738481828}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ItemInput, Assembly-CSharp
         m_MethodName: SendErase
         m_Mode: 1
@@ -1561,6 +1546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473128322148591631}
   - component: {fileID: 5307491695679574316}
+  - component: {fileID: 6389017756190085592}
   m_Layer: 0
   m_Name: SpriteColored
   m_TagString: Untagged
@@ -1577,7 +1563,7 @@ Transform:
   m_GameObject: {fileID: 8754646065824786930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1623,7 +1609,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 30
+  m_SortingOrder: 20
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1635,3 +1621,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6389017756190085592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754646065824786930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abe0a30f146c784cae763aa2a686a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemBehave: {fileID: 8672771562078384227}
+  _itemUI: {fileID: 5496170060791973697}
