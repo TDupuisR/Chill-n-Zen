@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f29859cec0e9604886268047a03c50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  achievementManager: {fileID: 1684431141}
 --- !u!4 &615032062
 Transform:
   m_ObjectHideFlags: 0
@@ -293,17 +292,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beacb5e08108e364ea3d8b8ee0f5d599, type: 3}
---- !u!114 &1684431141 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4803063219248275696, guid: beacb5e08108e364ea3d8b8ee0f5d599, type: 3}
-  m_PrefabInstance: {fileID: 1684431140}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169ebbb3703fd2c4a9deb659d956d45a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1816908869
 GameObject:
   m_ObjectHideFlags: 0
