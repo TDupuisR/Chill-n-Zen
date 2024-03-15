@@ -266,12 +266,12 @@ public class ItemBehaviour : MonoBehaviour
     }
     public void SpriteHeight(float additionalSpriteHeight = 0)
     {
-        float size = _spriteUnClrRender.size.y + additionalSpriteHeight;
-        size = size / 2f;
-        Debug.Log(size + " | " + _spriteUnClrRender.size.y);
+        float size = _spriteUnClrRender.bounds.size.y + additionalSpriteHeight;
+        size /= 2f;
+        Debug.Log(size + " | " + _spriteUnClrRender.bounds.size.y);
 
-        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
-        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
+        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, size - _offsetPos.y, 0f);
+        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, size - _offsetPos.y, 0f);
     }
     private void ColliderReset()
     {

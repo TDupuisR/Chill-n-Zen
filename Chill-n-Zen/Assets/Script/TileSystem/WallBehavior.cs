@@ -38,7 +38,7 @@ public class WallBehavior : MonoBehaviour
 
                 spriteRenderer.color = GameManager.colorData.WallColor;
                 wall.transform.parent = _wallParent;
-                wall.transform.GetChild(0);
+
                 if (_wallBehind)
                 {
                     spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
