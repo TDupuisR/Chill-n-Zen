@@ -14,6 +14,7 @@ public class ItemUI : MonoBehaviour
     [SerializeField] float _spacingFactor;
 
     [Header("Warning Text")]
+    [SerializeField] GameObject _textBox;
     [SerializeField] TextMeshProUGUI _text;
     [SerializeField] string _obstructionText;
     [SerializeField] string _noaccessText;
@@ -21,8 +22,7 @@ public class ItemUI : MonoBehaviour
     private void Update()
     {
         //move UI with object
-        Vector3 objectScreenPosition = Camera.main.WorldToScreenPoint(_item.transform.position);
-        _parentObject.transform.position = objectScreenPosition + _item.OffsetPos;
+        _parentObject.transform.position = Camera.main.WorldToScreenPoint(_item.transform.position + _item.OffsetPos);
         _parentObject.sizeDelta = _item.SpriteRenderer.bounds.size * _spacingFactor;
     }
 
@@ -43,15 +43,24 @@ public class ItemUI : MonoBehaviour
     public void TextIssues(bool osbtruction, bool noaccess)
     {
         if (osbtruction && noaccess)
+        {
+            _textBox.SetActive(true);
             _text.text = _obstructionText + "\n" + _noaccessText;
+        }
         else if (osbtruction)
+        {
+            _textBox.SetActive(true);
             _text.text = _obstructionText;
+        }
         else if (noaccess)
+        {
+            _textBox.SetActive(true);
             _text.text = _noaccessText;
+        }
         else
         {
             _text.text = "";
-            // Desactivé la boite de texte //
+            _textBox.SetActive(false);
         }
     }
 }

@@ -91,6 +91,8 @@ public class TileBehaviour : MonoBehaviour
             if (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object && item.listUsage.Contains(GMStatic.tagUsage.Top))
             {
                 res += item.size.z;
+                if (TileSystem.Instance.TopItemSize < item.spriteOneFixed.bounds.size.y)
+                    TileSystem.Instance.TopItemSize = item.spriteOneFixed.bounds.size.y;
             }
         }
 

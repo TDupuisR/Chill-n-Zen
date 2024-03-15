@@ -24,6 +24,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3 _offsetPos = Vector3.zero;
     Vector3 _lastPos;
     bool _canPlace = false;
+    bool _isOnTop = false;
 
     Vector3[] _patternPosition = new Vector3[4];
 
@@ -181,16 +182,31 @@ public class ItemBehaviour : MonoBehaviour
 
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
         if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
+        {
             _canPlace = CheckMuralPos(gridPos);
+            SpriteHeight();
+        }
         else if (_canPlace && OwnItem.type == GMStatic.tagType.Object)
         {
-            int height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
-            if (height < 0) _canPlace = false;
+            float height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
+            if (height < 0)
+            {
+                _canPlace = false;
+                _isOnTop = false;
+            }
+            else if (height > 0)
+            {
+                SpriteHeight(height);
+                _isOnTop = true;
+            }
             else
             {
-
+                SpriteHeight();
+                _isOnTop = false;
             }
         }
+        else
+            SpriteHeight();
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -266,12 +282,15 @@ public class ItemBehaviour : MonoBehaviour
     }
     public void SpriteHeight(float additionalSpriteHeight = 0)
     {
-        float size = _spriteUnClrRender.bounds.size.y + additionalSpriteHeight;
-        size /= 2f;
-        Debug.Log(size + " | " + _spriteUnClrRender.bounds.size.y);
+        float size = (_spriteUnClrRender.bounds.size.y - 0.75f) /2f;
 
-        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, size - _offsetPos.y, 0f);
-        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, size - _offsetPos.y, 0f);
+        if (additionalSpriteHeight > 0 && OwnItem.type == GMStatic.tagType.Object)
+            size += (additionalSpriteHeight - 1.5f) / 4f;
+        if (OwnItem.type == GMStatic.tagType.Mural || OwnItem.type == GMStatic.tagType.Ceiling)
+            size += OwnItem.size.z;
+
+        _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, size, _spriteUnCllrGmObj.transform.localPosition.z);
+        _spriteCllrGmObj.transform.localPosition = new Vector3(_spriteCllrGmObj.transform.localPosition.x, size, _spriteCllrGmObj.transform.localPosition.z);
     }
     private void ColliderReset()
     {
@@ -313,6 +332,8 @@ public class ItemBehaviour : MonoBehaviour
     {
         Debug.Log(gameObject.name + " - Layer: " + SpriteLayer);
         transform.position = new Vector3(transform.position.x, transform.position.y, 100f + SpriteLayer);
+        if (_isOnTop)
+            transform.position -= new Vector3(0f, 0f, 0.2f);
     }
 
     [Button] public void Rotation(int rotation = -1)

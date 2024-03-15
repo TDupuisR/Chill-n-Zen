@@ -124,7 +124,7 @@ public class ObjectivesUI : MonoBehaviour
         Vector2 currentPosition = new Vector2(-57, 0);
         for (int i=0; i< count; i++)
         {
-            GameObject newObj = Instantiate(_checkboxPrefab, objectParent);   
+            GameObject newObj = Instantiate(_checkboxPrefab, objectParent);
             newObj.transform.localPosition = currentPosition;
 
             ObjectivesCheckbox objScript = newObj.GetComponent<ObjectivesCheckbox>();
