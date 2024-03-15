@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class FurnitureWindowManager : MonoBehaviour
 {
+    [SerializeField] ObjectivesUI _objectivesUI;
     [SerializeField] Button _openButton;
     [SerializeField] Button _closeButton;
     [SerializeField] WindowScroll _detailWindow;
@@ -58,7 +59,9 @@ public class FurnitureWindowManager : MonoBehaviour
 
     IEnumerator waitForObjectPlacement()
     {
+        _objectivesUI.ActivateObjButton(true);
         yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
+        _objectivesUI.ActivateObjButton(false);
         wasItemPlaced?.Invoke();
         AppearWindow();
     }

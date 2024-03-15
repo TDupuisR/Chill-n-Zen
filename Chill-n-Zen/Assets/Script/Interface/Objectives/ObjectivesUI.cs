@@ -20,6 +20,7 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] Transform _objectPrimaryParent;
     [SerializeField] Transform _objectSecondaryParent;
     [SerializeField] SwipeScrollbar _scroll;
+    [SerializeField] Button _objectiveButton;
 
     [Header("Reference fill")]
     [SerializeField] RectTransform _fillRect;
@@ -234,6 +235,8 @@ public class ObjectivesUI : MonoBehaviour
         return solutionList;
     }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
+    public void ActivateObjButton(bool acitve) => _objectiveButton.interactable = acitve;
+
 
     #region Complete Level
     /*

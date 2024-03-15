@@ -112,11 +112,7 @@ public class GameplayScript : MonoBehaviour
     /*
         Swipe movement
     */
-    private void Update()
-    {
-        print(_inputPrimaryTouch.action.IsPressed());
-        print(_inputSecondaryTouch.action.IsPressed());
-    }
+
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
         onStartPrimaryTouch?.Invoke(_inputPrimaryPosition.action.ReadValue<Vector2>());

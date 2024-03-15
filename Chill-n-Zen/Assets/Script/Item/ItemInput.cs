@@ -15,6 +15,7 @@ public class ItemInput : MonoBehaviour
     bool _isOnItem = false;
     bool _isOnUI = false;
     int _layerUI;
+    bool _showedUI;
     
     public static Action<ItemBehaviour> OnCallDescription;
     public static Action OnCallHideDescription;
@@ -77,6 +78,7 @@ public class ItemInput : MonoBehaviour
                 {
                     _itemUI.ActivateUI(true);
                     OnCallDescription?.Invoke(_itemBehave);
+                    _showedUI = true;
                 }
             }
         }
@@ -99,7 +101,11 @@ public class ItemInput : MonoBehaviour
         if (_itemBehave.CurrentState == GMStatic.State.Placed && CheckIsTouching() && _isOnItem == false)
         {
             _itemUI.ActivateUI(false);
-            OnCallHideDescription?.Invoke();
+            if(_showedUI)
+            {
+                OnCallHideDescription?.Invoke();
+                _showedUI = false;
+            }
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;

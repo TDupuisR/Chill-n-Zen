@@ -581,6 +581,7 @@ MonoBehaviour:
   _objectPrimaryParent: {fileID: 1098020668247411504}
   _objectSecondaryParent: {fileID: 4090008973046841880}
   _scroll: {fileID: 7233736683120072473}
+  _objectiveButton: {fileID: 426163228630117318}
   _fillRect: {fileID: 2996761471519337954}
   _spaceFillFactor: 100
   _spaceBTWObj: 50
@@ -6343,6 +6344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78fbfb6b88dd4447916e19c955f05e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectivesUI: {fileID: 5199757140321883114}
   _openButton: {fileID: 4613115616716559360}
   _closeButton: {fileID: 6359179539174770519}
   _detailWindow: {fileID: 1437872396435624185}

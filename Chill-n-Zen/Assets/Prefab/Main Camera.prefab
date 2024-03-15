@@ -156,5 +156,5 @@ MonoBehaviour:
   _bottomCamBoundaries: -4
   _rightCamBoundaries: 4
   _leftCamBoundaries: -4
-  _minMaxZoom: {x: 5, y: 35}
-  _zoomSensitivity: 0.17
+  _minMaxZoom: {x: 3, y: 15}
+  _zoomSensitivity: 0.12

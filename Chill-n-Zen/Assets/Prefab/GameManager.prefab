@@ -222,7 +222,7 @@ MonoBehaviour:
   _swipeMaxSpeed: 1
   _swipeDeceleration: 1
   _durationToLongPress: 0.2
-  _durationToHold: 1
+  _durationToHold: 0.6
 --- !u!114 &788925584737789079
 MonoBehaviour:
   m_ObjectHideFlags: 0
