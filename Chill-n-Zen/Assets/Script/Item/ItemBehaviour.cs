@@ -12,6 +12,7 @@ public class ItemBehaviour : MonoBehaviour
     SpriteRenderer _spriteUnClrRender;
     [SerializeField] GameObject _spriteCllrGmObj;
     SpriteRenderer _spriteClrRender;
+    [SerializeField] GameObject _parentSprite;
     [SerializeField] ItemUI _itemUI;
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] private GameObject _smoke;
@@ -99,8 +100,16 @@ public class ItemBehaviour : MonoBehaviour
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
         _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
-        _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
-        _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        if (OwnItem.type == GMStatic.tagType.Null)
+        {
+            _spriteUnCllrGmObj.transform.localScale = new Vector2(0.3f, 0.3f);
+            _spriteCllrGmObj.transform.localScale = new Vector2(0.3f, 0.3f);
+        }
+        else
+        {
+            _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+            _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        }
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
@@ -291,6 +300,29 @@ public class ItemBehaviour : MonoBehaviour
 
         _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, size, _spriteUnCllrGmObj.transform.localPosition.z);
         _spriteCllrGmObj.transform.localPosition = new Vector3(_spriteCllrGmObj.transform.localPosition.x, size, _spriteCllrGmObj.transform.localPosition.z);
+
+        if (OwnItem.type == GMStatic.tagType.Null)
+        {
+            if (Orientation == 0)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 90)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 180)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 270)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+        }
+        else if (OwnItem.type == GMStatic.tagType.Mural)
+        {
+            if (Orientation == 180)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 270)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 0)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 90)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+        }
     }
     private void ColliderReset()
     {

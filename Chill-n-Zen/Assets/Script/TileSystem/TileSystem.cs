@@ -480,7 +480,10 @@ public class TileSystem : MonoBehaviour
                         priority = posT[0];
 
                     float dot = Vector2.Dot(normal, priority - pos[0]);
-                    if (dot > 0) compare.SpriteLayer -= 1;
+                    if (dot > 0)
+                        compare.SpriteLayer -= 1;
+                    if (dot == 0 && compare.OwnItem.type == GMStatic.tagType.Mural)
+                        compare.SpriteLayer -= 1;
                 }
                 else if (compare.OwnItem.type == GMStatic.tagType.Carpet)
                 {
