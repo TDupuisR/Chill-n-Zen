@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,15 +12,16 @@ public class SwipeLevel : MonoBehaviour
     #region Variable 
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
+    [Foldout("Inputs")][SerializeField] InputActionReference _inputBackButton;
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private float _speedSlider = 1;
     [SerializeField] private float _endSlideSpeed = 1;
     private List<RectTransform> _listPicture = new List<RectTransform>();
     private RectTransform _tempRectTransform = null;
     private float _distance = Mathf.Infinity;
-    private float _newXPosition = 2560;
+    private float _newXPosition = 5760;
     private bool _isDragging;
-    
+    private bool _isLoading;
 
     #endregion
 
@@ -35,12 +37,16 @@ public class SwipeLevel : MonoBehaviour
     {
         GameplayScript.onSwipe += StartSwipe;
         GameplayScript.onEndPrimaryTouch += EndSwipe;
+        _inputBackButton.action.started += ReturnMainMenu;
     }
+
 
     private void OnDisable()
     {
         GameplayScript.onSwipe -= StartSwipe;
-        GameplayScript.onSwipe -= EndSwipe;
+        GameplayScript.onEndPrimaryTouch -= EndSwipe;
+        _inputBackButton.action.started -= ReturnMainMenu;
+
     }
 
     private void StartSwipe(Vector2 velocity)
@@ -56,13 +62,23 @@ public class SwipeLevel : MonoBehaviour
         FindClosestImage();
     }
 
+    private void ReturnMainMenu(InputAction.CallbackContext obj)
+    {
+        if (!_isLoading)
+        {
+            GameManager.Instance.ChangeScene(1);
+            _isLoading = true;
+        }
+    }
+
 
     IEnumerator CoroutineRectTransform(Vector2 velocity)
     {
         while(_isDragging)
         {
             _newXPosition += velocity.x*_speedSlider;
-            _newXPosition = Mathf.Clamp(_newXPosition, _listPicture[0].localPosition.x, _listPicture[4].localPosition.x);
+            //_newXPosition = Mathf.Clamp(_newXPosition, _listPicture[0].localPosition.x, _listPicture[4].localPosition.x);
+            _newXPosition = Mathf.Clamp(_newXPosition, -5760, 5760);
             _rectTransform.localPosition = new Vector3(_newXPosition, 0, 0);
             yield return new WaitForFixedUpdate();
         }

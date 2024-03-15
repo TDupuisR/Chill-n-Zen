@@ -1,7 +1,6 @@
 using UnityEngine;
 using GameManagerSpace;
 using System.Collections.Generic;
-using System.Threading;
 
 public class ItemConstraint : MonoBehaviour
 {

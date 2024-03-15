@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace GameManagerSpace
 {
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public static AchievementManager achievementManager;
         public static LibraryItem libraryItems;
         public static AudioManager audioManager;
         public static SaveData saveData;
         public static BudgetManager budgetManager;
         public static RequestManager requestManager;
+        public static ColorData colorData;
+        public static LevelManager levelManager;
 
+        [SerializeField] AchievementManager _achievementManager;
         [SerializeField] LibraryItem _libraryItems;
         [SerializeField] AudioManager _audioManager;
         [SerializeField] SaveData _saveData;
         [SerializeField] BudgetManager _budgetManager;
         [SerializeField] GameObject _loadingScreen;
         [SerializeField] RequestManager _requestManager;
-        //test
+        [SerializeField] ColorData _colorData;
+        [SerializeField] LevelManager _levelManager;
+
+        private LoadingAnimation _loadingScript;
+
+        public delegate void OnSceneLoadDelegate();
+        public static event OnSceneLoadDelegate OnSceneLoad;
 
         private void OnValidate()
         {
@@ -34,6 +45,8 @@ namespace GameManagerSpace
                 Debug.LogError(" (error : 1x4) No budget manager assigned ", _budgetManager);
             if (_requestManager == null)
                 Debug.LogError(" (error : 1x5) No request manager assigned ", _requestManager);
+            if (_levelManager == null)
+                Debug.LogError(" (error : 1x5) No level manager assigned ", _levelManager);
         }
 
         private void OnEnable() { DontDestroyOnLoad(gameObject); }
@@ -54,21 +67,29 @@ namespace GameManagerSpace
             saveData = _saveData;
             budgetManager = _budgetManager;
             requestManager = _requestManager;
+            colorData = _colorData;
+            levelManager = _levelManager;
+
+            _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }
 
         public void ChangeScene(int sceneIndex)
         {
-            if (_loadingScreen != null) _loadingScreen.SetActive(true);
+            if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
             else
             {
                 Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
             }
-
+            OnSceneLoad?.Invoke();
             StartCoroutine(AsyncLoadScnene(sceneIndex));
         }
         IEnumerator AsyncLoadScnene(int sceneIndex)
         {
-            yield return null;
+            StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+            do
+            {
+                yield return new WaitForFixedUpdate();
+            } while (!_loadingScript.AnimationFinished);
 
             AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneIndex);
             loadSceneOperation.allowSceneActivation = false;
@@ -82,8 +103,11 @@ namespace GameManagerSpace
 
                 yield return new WaitForFixedUpdate();
             }
+
+            StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
         }
 
+        [Button] private void TestLoading() { StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false)); }
     }
 
     public static class GMStatic
@@ -91,10 +115,10 @@ namespace GameManagerSpace
         //Tag for furnitures identification//
         public enum tagRoom { Null, Other, Bedroom, Livingroom, Kitchen }
         public enum tagType { Null, Furniture, Object, Mural, Ceiling, Carpet }
-        public enum tagMaterial { Null, Wood, Metal, Plywood, Fabric }
+        public enum tagMaterial { Null, Wood, Plywood, Fabric }
 
         //Tag for furnitures technical identification//
-        public enum tagUsage { Null, Bed, Sink, Storage, Table, Top, Desk, Seat, Entertainement, Oven, Fridge, Mirror, Decoration, Window, Light }
+        public enum tagUsage { Null, Bed, Sink, Storage, Library, Table, CoffeeTable, Top, Desk, Workdesk, Seat, Chair, TV, Oven, Fridge, Mirror, Decoration, Window, Light, Plant }
         public enum constraint { None, Front, Seat, Chair, Bed }
 
         //Tag for Items GameObjects
@@ -115,16 +139,20 @@ namespace GameManagerSpace
         [System.Serializable]
         public struct requestObj
         {
-            public Item itemRequested;
+            public List<Item> itemRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestUsage
         {
-            public tagUsage usageRequested;
+            public List<tagUsage> usageRequested;
+            public bool needAll;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestColor
@@ -132,6 +160,8 @@ namespace GameManagerSpace
             public Color colorRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
+
         }
         [System.Serializable]
         public struct requestMaterial
@@ -139,19 +169,24 @@ namespace GameManagerSpace
             public tagMaterial materialRequested;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
         [System.Serializable]
         public struct requestProximity
         {
             public tagUsage closeFromRequested;
             public List<tagUsage> closeToRequested;
+            public bool isNotProxi;
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
+        [System.Serializable]
         public struct requestFreeSpace
         {
             public int nbRequested;
             public string phraseClient;
+            public string solution;
         }
     }
 }

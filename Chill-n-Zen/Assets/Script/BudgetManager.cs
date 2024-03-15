@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BudgetManager : MonoBehaviour
 {
-    [SerializeField] int _currentBudget;
+    int _currentBudget;
 
     public int CurrentBudget
     {
@@ -14,16 +14,13 @@ public class BudgetManager : MonoBehaviour
         {
             _currentBudget = value;
 
-            _onBudgetChanged?.Invoke(_currentBudget);
+            OnBudgetChanged?.Invoke(_currentBudget);
         }
     }
 
-    public Action<int> _onBudgetChanged;
+    public static Action OnSetDefaultBudget;
+    public static Action<int> OnBudgetChanged;
 
-    private void Start()
-    {
-        _onBudgetChanged?.Invoke(_currentBudget);
-    }
     private void OnEnable()
     {
         TileSystem.OnItemAdded += RemoveToBudget;

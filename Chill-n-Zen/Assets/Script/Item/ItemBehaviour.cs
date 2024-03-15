@@ -1,6 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 using GameManagerSpace;
+using System.Collections.Generic;
 
 public class ItemBehaviour : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class ItemBehaviour : MonoBehaviour
     public SpriteRenderer SpriteRenderer { get { return _spriteUnClrRender; } }
     public ItemPointsChecker PointsChecker { get { return _pointsChecker; } }
     public GMStatic.State CurrentState { get; set; }
+    public int SpriteLayer { get; set; }
 
     public Vector3 OffsetPos { get { return _offsetPos; } }
     public Vector3Int RotationSize { get { return _rotationSize; } }
@@ -93,9 +95,12 @@ public class ItemBehaviour : MonoBehaviour
         _rotationSize = OwnItem.size;
         _orientation = 0;
 
-        _spriteUnClrRender.sprite = _ownItem.spriteOneFixed;
         OffsetPosCalcul();
-        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
+        _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
         LineColor(Color.red);
@@ -111,7 +116,8 @@ public class ItemBehaviour : MonoBehaviour
     private void ResetInfos()
     {
         OffsetPosCalcul();
-        _spriteUnCllrGmObj.transform.position = transform.position + _offsetPos;
+        _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
+        _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
 
         SpriteAppearance();
         CheckNewPos();
@@ -172,7 +178,19 @@ public class ItemBehaviour : MonoBehaviour
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
+
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
+        if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
+            _canPlace = CheckMuralPos(gridPos);
+        else if (_canPlace && OwnItem.type == GMStatic.tagType.Object)
+        {
+            int height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
+            if (height < 0) _canPlace = false;
+            else
+            {
+
+            }
+        }
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -180,6 +198,44 @@ public class ItemBehaviour : MonoBehaviour
         if (!_canPlace) LineColor(Color.red);
         else if (!ConstraintValid || !DoorValid) LineColor(new Color(255, 69, 0));
         else LineColor(Color.green);
+    }
+    private bool CheckMuralPos(Vector2Int pos)
+    {
+        bool res = true;
+
+        int decal;
+        List<Vector2Int> list = new List<Vector2Int>();
+
+        if (Orientation == 0 || Orientation == 180)
+        {
+            if (Orientation == 0) decal = RotationSize.x;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + decal, pos.y + i));
+            }
+        }
+        else if (Orientation == 90 || Orientation == 270)
+        {
+            if (Orientation == 90) decal = RotationSize.y;
+            else decal = -1;
+
+            for (int i = 0; i < OwnItem.size.y; i++)
+            {
+                list.Add(new Vector2Int(pos.x + i, pos.y + decal));
+            }
+        }
+
+        foreach (Vector2Int current in list)
+        {
+            if (TileSystem.Instance.CheckTileExist(current.x, current.y) >= 0)
+            {
+                res = false; break;
+            }
+        }
+
+        return res;
     }
 
     public void ChangeSpriteColor(Color color)
@@ -189,30 +245,40 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void SpriteAppearance()
     {
-        if (_orientation == 90 || _orientation == 270)
+        if (_orientation == 0 || _orientation == 180)
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         else transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-        if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+        if (_orientation == 0 || _orientation == 90)
         {
-            if (_orientation == 0 || _orientation == 90)
-            {
-                _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
-            }
-            else
-            {
-                _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
-            }
+            _spriteUnClrRender.sprite = OwnItem.spriteOneFixed;
+            _spriteClrRender.sprite = OwnItem.spriteOneColored;
         }
+        else if (!(OwnItem.spriteTwoFixed == null || OwnItem.spriteTwoColored == null))
+        {
+            _spriteUnClrRender.sprite = OwnItem.spriteTwoFixed;
+            _spriteClrRender.sprite = OwnItem.spriteTwoColored;
+        }
+
+        SpriteHeight();
 
         ColliderReset();
     }
+    public void SpriteHeight(float additionalSpriteHeight = 0)
+    {
+        float size = _spriteUnClrRender.size.y + additionalSpriteHeight;
+        size = size / 2f;
+        Debug.Log(size + " | " + _spriteUnClrRender.size.y);
+
+        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
+        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
+    }
     private void ColliderReset()
     {
-        if (_spriteUnCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
+        if (_spriteCllrGmObj.TryGetComponent<PolygonCollider2D>(out PolygonCollider2D compon))
             Destroy(compon);
 
-        _spriteUnCllrGmObj.AddComponent<PolygonCollider2D>();
+        _spriteCllrGmObj.AddComponent<PolygonCollider2D>();
     }
     private void CheckWhenPlaced()
     {
@@ -232,6 +298,21 @@ public class ItemBehaviour : MonoBehaviour
                 _spriteUnClrRender.color = Color.white;
             }
         }
+    }
+
+    public Vector2[] GetLayerPoints()
+    {
+        Vector2[] list = new Vector2[2];
+
+        list[0] = _lineRender.GetPosition(1);
+        list[1] = _lineRender.GetPosition(3);
+
+        return list;
+    }
+    public void ApplyLayer()
+    {
+        Debug.Log(gameObject.name + " - Layer: " + SpriteLayer);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 100f + SpriteLayer);
     }
 
     [Button] public void Rotation(int rotation = -1)
@@ -273,12 +354,14 @@ public class ItemBehaviour : MonoBehaviour
 
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
+            SpawnScoreEffect(OwnItem.score, false);
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
     {
         if (CurrentState == GMStatic.State.Placed)
         {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
             Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
             TileSystem.Instance.MoveItem(gameObject, gridPos.x, gridPos.y);
 
@@ -305,7 +388,8 @@ public class ItemBehaviour : MonoBehaviour
     public void SpawnScoreEffect(int quantity, bool isCombo)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + OffsetPos);
-        ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
+        if(ScoreEffectManager.Instance != null)
+            ScoreEffectManager.Instance.SpawnEffect(screenPos, quantity, isCombo);
     }
 
     [Button]

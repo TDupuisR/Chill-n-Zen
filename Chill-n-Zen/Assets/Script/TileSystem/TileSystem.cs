@@ -42,9 +42,9 @@ public class TileSystem : MonoBehaviour
     public static event OnItemAddedDelegate OnItemAdded;
     public delegate void OnItemRemovedDelegate(Item item);
     public static event OnItemRemovedDelegate OnItemRemoved;
+
     public delegate void OnSceneChangedDelegate();
     public static event OnSceneChangedDelegate OnSceneChanged;
-
     public delegate void OnScoreChangedDelegate(int score);
     public static event OnScoreChangedDelegate OnScoreChanged;
 
@@ -156,6 +156,8 @@ public class TileSystem : MonoBehaviour
                 }
             }
             GetGridTilesList();
+
+            OnShowGridSpecified.Invoke(true);
         }
         
     }
@@ -181,6 +183,7 @@ public class TileSystem : MonoBehaviour
             }
 
             GetGridTilesList();
+            OnShowGridSpecified.Invoke(true);
         }
     }
     public void DeleteGrid()
@@ -216,10 +219,14 @@ public class TileSystem : MonoBehaviour
     {
         _doorBehave.Rotation(rotation);
     }
-
-    [Button] public void ShowGrid()
+    public void ColorDoor(Color color)
     {
-        if (_tilesList.Count != 0) OnShowGrid.Invoke();
+        _doorBehave.ChangeSpriteColor(color);
+    }
+
+    public void ShowGrid()
+    {
+        OnShowGrid?.Invoke();
     }
 
     public bool CheckForPlacing(ItemBehaviour item, int x, int y)
@@ -375,6 +382,7 @@ public class TileSystem : MonoBehaviour
             }
         }
 
+        SpriteLayersOrdering();
     }
     public void RemoveItem(GameObject obj, int x, int y)
     {
@@ -424,7 +432,7 @@ public class TileSystem : MonoBehaviour
         }
         GameManager.requestManager.FreeTiles = freeTiles;
 
-        if (GameManager.budgetManager.CurrentBudget < 0)
+        if (GameManager.budgetManager.CurrentBudget > 0)
         {
             int score = 0;
             foreach (ItemBehaviour furnit in _itemBehaveList)
@@ -438,6 +446,42 @@ public class TileSystem : MonoBehaviour
         }
 
         OnScoreChanged?.Invoke(TotalScore);
+    }
+    private void SpriteLayersOrdering()
+    {
+        foreach (ItemBehaviour item in _itemBehaveList)
+            item.SpriteLayer = 0;
+
+        foreach (ItemBehaviour item in _itemBehaveList)
+        {
+            Vector2[] pos = item.GetLayerPoints();
+
+            Vector2 segment = pos[1] - pos[0];
+            Vector2 normal = new Vector2(-segment.y, segment.x);
+            Vector2 middle = pos[0] + (segment / 2f);
+
+            foreach (ItemBehaviour compare in _itemBehaveList)
+            {
+                if (compare != item)
+                {
+                    Vector2 priority;
+                    Vector2[] posT = compare.GetLayerPoints();
+                    Vector2 middleT = posT[0] + ((posT[1] - posT[0]) / 2f);
+
+                    if (middleT.x >= middle.x)
+                        priority = posT[1];
+                    else
+                        priority = posT[0];
+
+                    float dot = Vector2.Dot(normal, priority - pos[0]);
+                    if (dot > 0) compare.SpriteLayer -= 1;
+                }
+            }
+        }
+
+        foreach (ItemBehaviour item in _itemBehaveList)
+            item.ApplyLayer();
+
     }
 
     // Path Finding //

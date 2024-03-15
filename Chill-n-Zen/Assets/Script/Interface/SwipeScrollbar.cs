@@ -7,12 +7,12 @@ public class SwipeScrollbar : MonoBehaviour
 {
     [SerializeField] Scrollbar _scrollbar;
     [SerializeField] Transform _parentObject;
+    [SerializeField] RectTransform _parentVerticalRectTransform;
     [SerializeField] Transform _EdgeOfScroll;
     [SerializeField] int _numberItemBeforeScroll;
     [SerializeField] float _spacePerItem;
     [SerializeField] float _scrollSensitivity;
     [SerializeField] bool _isHorizontal;
-    [SerializeField] bool _isInUpperSideOfScreen;
 
     float _currentNumberItems;
     Vector2 _parentStartingPosition;
@@ -22,6 +22,8 @@ public class SwipeScrollbar : MonoBehaviour
     private void Awake()
     {
         _parentStartingPosition = _parentObject.position;
+        if (!_isHorizontal)
+            _parentStartingPosition = _parentVerticalRectTransform.anchoredPosition;
     }
 
     private void OnEnable()
@@ -61,7 +63,6 @@ public class SwipeScrollbar : MonoBehaviour
         }
         _scrollbar.value = 0;
     }
-
     public void PerformScroll(float value)
     {
         if (isInScrollZone())
@@ -72,15 +73,17 @@ public class SwipeScrollbar : MonoBehaviour
             {
                 newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * _spacePerItem,
                 _parentObject.position.y);
+                _parentObject.position = newParentPosition;
+
             }
             else
             {
-                value = 1 - value;
-                newParentPosition = new Vector2(_parentObject.position.x,
+                newParentPosition = new Vector2(_parentVerticalRectTransform.anchoredPosition.x,
                 _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
-            }
+                print(newParentPosition);
+                _parentVerticalRectTransform.anchoredPosition = newParentPosition;
 
-            _parentObject.position = newParentPosition;
+            }
         }
     }
 
@@ -90,7 +93,7 @@ public class SwipeScrollbar : MonoBehaviour
         if (_isHorizontal)
             inputVector = vector.x;
 
-        if (GameplayScript.Instance.IsSafeSwipe)
+        if (GameplayScript.Instance.IsSafeSwipe && _currentNumberItems != 0)
         {
             IsScrolling = true;
             float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((inputVector * _scrollSensitivity) / _currentNumberItems));
@@ -119,13 +122,10 @@ public class SwipeScrollbar : MonoBehaviour
         }
         else
         {
-            if(!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
+            if (!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
                 return false;
-            
-            if (_isInUpperSideOfScreen)
-                return GameplayScript.Instance.PrimaryPosition.y > (Screen.height / 2.0f);
-            else
-                return GameplayScript.Instance.PrimaryPosition.y < (Screen.height / 2.0f);
+
+            return true;
         }
     }
 

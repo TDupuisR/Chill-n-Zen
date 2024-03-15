@@ -32,12 +32,15 @@ public class ContemplativeButton : MonoBehaviour
             StopCoroutine(_fadeCoroutine);
 
         _fadeCoroutine = StartCoroutine(fadeInOut(_active));
+        TileSystem.Instance.ShowGrid();
         _active = !_active;
     }
 
     IEnumerator fadeInOut(bool isActive) 
     {
-        if(isActive)
+        DisableButton();
+
+        if (isActive)
             _gameplayObjects.SetActive(true);
 
         float timeElapsed = 0.0f;
@@ -56,5 +59,7 @@ public class ContemplativeButton : MonoBehaviour
 
         if (!isActive)
             _gameplayObjects.SetActive(false);
+
+        EnableButton();
     }
 }

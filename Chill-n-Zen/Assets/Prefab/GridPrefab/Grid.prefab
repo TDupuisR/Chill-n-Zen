@@ -161,9 +161,6 @@ MonoBehaviour:
   _floorParent: {fileID: 499982600793250933}
   _objectParent: {fileID: 9188687472254510819}
   _door: {fileID: 4189753347798038144}
-  TESTStartPos: {x: 0, y: 0}
-  TESTGridSize: {x: 5, y: 5}
-  TESTDoorPos: {x: 0, y: 0}
 --- !u!114 &9076786941033639496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +176,7 @@ MonoBehaviour:
   _leftWall: {fileID: 7312572043055041785, guid: 799d5d8d0237c5146beefa1dbde2becc, type: 3}
   _rightWall: {fileID: 7312572043055041785, guid: 9a02118b063d2bf46b0713b0b098d841, type: 3}
   _wallParent: {fileID: 7250261097742264894}
+  _opacityWall: 0.5
 --- !u!1001 &5986829122039121316
 PrefabInstance:
   m_ObjectHideFlags: 0

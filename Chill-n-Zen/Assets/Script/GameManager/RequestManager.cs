@@ -49,6 +49,35 @@ public class RequestManager : MonoBehaviour
 
         return ret;
     }
+    public List<string> ReturnSolution(bool primary)
+    {
+        List<string> ret = new List<string>();
+
+        GMStatic.Request list;
+        if (primary) list = _primaryList;
+        else list = _secondaryList;
+
+        if (list.obj != null)
+            foreach (GMStatic.requestObj current in list.obj)
+                ret.Add(current.solution);
+        if (list.usage != null)
+            foreach (GMStatic.requestUsage current in list.usage)
+                ret.Add(current.solution);
+        if (list.color != null)
+            foreach (GMStatic.requestColor current in list.color)
+                ret.Add(current.solution);
+        if (list.material != null)
+            foreach (GMStatic.requestMaterial current in list.material)
+                ret.Add(current.solution);
+        if (list.proximity != null)
+            foreach (GMStatic.requestProximity current in list.proximity)
+                ret.Add(current.solution);
+        if (list.freeSpace != null)
+            foreach (GMStatic.requestFreeSpace current in list.freeSpace)
+                ret.Add(current.solution);
+
+        return ret;
+    }
     public List<bool> ReturnStatus(bool primary)
     {
         List<bool> ret = new List<bool>();
@@ -79,35 +108,34 @@ public class RequestManager : MonoBehaviour
         return ret;
     }
 
-    private bool CheckObjRequest(GMStatic.requestObj request)
+    public bool CheckObjRequest(GMStatic.requestObj request)
     {
         bool res = false;
 
+        List<int> resL = new List<int>(request.itemRequested.Count);
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            if (item.OwnItem == request.itemRequested)
-                count++;
-
-            if (count >= request.nbRequested) res = true;
-            if (res) break;
-        }
-
-        return res;
-    }
-    private bool CheckTypeRequest(GMStatic.requestUsage request)
-    {
-        bool res = false;
-
-        int count = 0;
-        foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
-        {
-            foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
+            if (request.needAll)
             {
-                if (usage == request.usageRequested)
+                for (int i = 0; i < request.itemRequested.Count; i++)
                 {
-                    count++;
-                    break;
+                    if (item == request.itemRequested[i])
+                        resL[i]++;
+                }
+
+                if (resL.Count >= 1) count = resL[0];
+                for (int c = 1; c < resL.Count; c++)
+                    if (resL[c] < count) count = resL[c];
+            }
+            else
+            {
+                foreach (Item current in request.itemRequested)
+                {
+                    if (item == current)
+                    {
+                        count++; break;
+                    }
                 }
             }
 
@@ -117,7 +145,61 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckColorRequest(GMStatic.requestColor request)
+    public bool CheckTypeRequest(GMStatic.requestUsage request)
+    {
+        bool res = false;
+
+        List<int> resL = new List<int>(request.usageRequested.Count);
+        int count = 0;
+        foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
+        {
+            if (request.needAll)
+            {
+                foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
+                {
+                    for (int i = 0; i < request.usageRequested.Count; i++)
+                    {
+                        if (usage == request.usageRequested[i])
+                        {
+                            if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage) resL[i] += item.OwnItem.size.y;
+                            else resL[i]++;
+                        }
+                    }
+                }
+
+                if (resL.Count >= 1) count = resL[0];
+                for (int c = 1; c < resL.Count; c++)
+                    if (resL[c] < count) count = resL[c];
+            }
+            else
+            {
+                foreach (GMStatic.tagUsage usage in item.OwnItem.listUsage)
+                {
+                    int buffer = count;
+                    foreach (GMStatic.tagUsage current in request.usageRequested)
+                    {
+                        if (current == usage)
+                        {
+                            if (GMStatic.tagUsage.Bed == usage || GMStatic.tagUsage.Seat == usage)
+                                count += item.OwnItem.size.y;
+                            else
+                                count++;
+
+                            if (buffer != count) break;
+                        }
+                    }
+
+                    if (buffer != count) break;
+                }
+            }
+
+            if (count >= request.nbRequested) res = true;
+            if (res) break;
+        }
+
+        return res;
+    }
+    public bool CheckColorRequest(GMStatic.requestColor request)
     {
         bool res = false;
 
@@ -133,7 +215,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckMaterialRequest(GMStatic.requestMaterial request)
+    public bool CheckMaterialRequest(GMStatic.requestMaterial request)
     {
         bool res = false;
 
@@ -149,7 +231,7 @@ public class RequestManager : MonoBehaviour
 
         return res;
     }
-    private bool CheckProximityRequest(GMStatic.requestProximity request)
+    public bool CheckProximityRequest(GMStatic.requestProximity request)
     {
         bool res = false;
 
@@ -201,14 +283,21 @@ public class RequestManager : MonoBehaviour
             }
 
             if (currentRes) count++;
-            if (count >= request.nbRequested) res = true;
+            if (!request.isNotProxi)
+            {
+                if (count >= request.nbRequested) res = true;
+            }
+            else if (request.isNotProxi)
+            {
+                if (count < request.nbRequested) res = true;
+            }
 
-            if (res) break;
+            if ((res && !request.isNotProxi) || (!res && request.isNotProxi)) break;
         }
 
         return res;
     }
-    private bool CheckFreeSpaceRequest(GMStatic.requestFreeSpace request)
+    public bool CheckFreeSpaceRequest(GMStatic.requestFreeSpace request)
     {
         bool res = false;
 

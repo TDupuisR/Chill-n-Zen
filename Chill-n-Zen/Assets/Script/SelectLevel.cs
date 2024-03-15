@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class SelectLevel : MonoBehaviour
 {
     [SerializeField] private int _numberLevel;
 
-    private void Start()
+    public void ChooseLevel()
     {
-        //SceneManager.LoadScene(_numberLevel);
+        GameManager.Instance.ChangeScene(_numberLevel + 3);
     }
 }

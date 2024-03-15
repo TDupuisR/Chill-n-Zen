@@ -9,6 +9,7 @@ public class FurnitureReadData : MonoBehaviour
     Item _furniture;
     [SerializeField] TagUIScriptable _tagUIList;
     [SerializeField] Image _img;
+    [SerializeField] Image _imgColored;
     [SerializeField] TMP_Text _priceText;
     [SerializeField] TMP_Text _nameText;
     [SerializeField] TMP_Text _pointsText;
@@ -35,13 +36,17 @@ public class FurnitureReadData : MonoBehaviour
     public void ReadFurnitureData(Item furniture)
     {
         _img.sprite = furniture.spriteOneFixed;
+        _imgColored.sprite = furniture.spriteOneColored;
+
+        _imgColored.rectTransform.sizeDelta = new Vector2 (_imgColored.sprite.rect.width * 100.0f / _imgColored.sprite.rect.height, 100.0f);
+
         _priceText.text = furniture.price.ToString() + " Cr";
-        //if(_nameText != null) bite
-        //    _nameText.text = furniture.name.ToString();
+        if(_nameText != null)
+            _nameText.text = furniture.name.ToString();
         if(_pointsText != null)
             _pointsText.text = furniture.score.ToString() + " Pts";
-        //if(_descriptionText != null)
-        //    _descriptionText.text = furniture.description.ToString();
+        if(_descriptionText != null)
+            _descriptionText.text = furniture.description;
 
         if(IsAllTagValid(furniture))
         {

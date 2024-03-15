@@ -101,7 +101,40 @@ public class SaveData : MonoBehaviour
             PlayerPrefs.Save();
 
         }
-    }         
+    }
+
+    public void SetStar(int level, bool firstStar, bool secondStar, bool scoreStar)
+    {
+        string saveString = "";
+        saveString += firstStar ? "1" : "0";
+        saveString += secondStar ? "1" : "0";
+        saveString += scoreStar ? "1" : "0";
+
+        if(saveString.Length != 3)
+            Debug.LogError("SaveString incorrect format : " + saveString);
+
+        PlayerPrefs.SetString("star" + level.ToString(), saveString);
+        PlayerPrefs.Save();
+    }
+
+    public List<bool> LoadStar(int level)
+    {
+        if (!PlayerPrefs.HasKey("star" + level.ToString()))
+        {
+            Debug.LogWarning("Doesn't have key \" star" + level.ToString() + "\"");
+            return null;
+        }
+
+        List<bool> starList = new List<bool>() {false , false , false};
+        string starSave = PlayerPrefs.GetString("star" + level.ToString());
+        print(starList.Count);
+        for (int i = 0; i < 3; i++)
+        {
+            starList[i] = starSave[i] == 49;
+        }
+
+        return starList;
+    }
 
     public void ClearAll()
     {

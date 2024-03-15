@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 1833d27a40813e04d96e26563598444b
+<<<<<<<< HEAD:Chill-n-Zen/Assets/Art/UI/Barre_Objectif_UIs_Version2.png.meta
+guid: 4e98872969e87b04e81fe53173051d33
+========
+guid: 26c3649ef778ee64380eee6dfe0581eb
+>>>>>>>> Assets:Chill-n-Zen/Assets/Art/UI/Success 1 Floar is lava.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,7 +85,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Standalone
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -94,7 +98,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
