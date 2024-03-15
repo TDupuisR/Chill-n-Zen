@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
+  m_Name: Wood TV Furniture
+  m_EditorClassIdentifier: 
+  spriteOneFixed: {fileID: 21300000, guid: d2e3a8df29db94541ac5f1a0cd7b168d, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 02196d1da0e91484dbb7ecc99bf6bf41, type: 3}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
+  room: 3
+  type: 1
+  material: 1
+  listUsage: 
+  constraint: 1
+  doorAccess: 1
+  frontBonus: 0
+  frontUsageBonus: 
+  frontItemBonus: []
+  proxiBonus: 0
+  proxiUsageBonus: 
+  proxiItemBonus: []
+  onBonus: 0
+  onUsageBonus: 
+  onItemBonus: []
+  score: 60
+  description: 
+  price: 130
+  size: {x: 1, y: 2, z: 1}
+  fullRotation: 0

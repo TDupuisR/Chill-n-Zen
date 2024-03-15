@@ -276,6 +276,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.b
+      value: 0.3254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.r
+      value: 0.8980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].phraseClient
       value: Likes natural light near the couch
       objectReference: {fileID: 0}

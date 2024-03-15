@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
+  m_Name: Plywood Bedside Table
+  m_EditorClassIdentifier: 
+  spriteOneFixed: {fileID: 21300000, guid: f7ad4741eb0b5e04a92356372e220a26, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: e217767791d1ce740b75952bae686e61, type: 3}
+  spriteTwoFixed: {fileID: 0}
+  spriteTwoColored: {fileID: 0}
+  room: 2
+  type: 1
+  material: 2
+  listUsage: 05000000
+  constraint: 1
+  doorAccess: 1
+  frontBonus: 0
+  frontUsageBonus: 
+  frontItemBonus: []
+  proxiBonus: 10
+  proxiUsageBonus: 01000000
+  proxiItemBonus: []
+  onBonus: 0
+  onUsageBonus: 
+  onItemBonus: []
+  score: 30
+  description: +10 next to a bed
+  price: 60
+  size: {x: 1, y: 1, z: 1}
+  fullRotation: 0

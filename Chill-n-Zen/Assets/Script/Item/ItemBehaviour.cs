@@ -264,30 +264,14 @@ public class ItemBehaviour : MonoBehaviour
 
         ColliderReset();
     }
-    public void SpriteHeight(int additionalHeight = 0)
+    public void SpriteHeight(float additionalSpriteHeight = 0)
     {
-        int size = OwnItem.size.z + additionalHeight;
+        float size = _spriteUnClrRender.size.y + additionalSpriteHeight;
+        size = size / 2f;
+        Debug.Log(size + " | " + _spriteUnClrRender.size.y);
 
-        if (size == 1)
-        {
-            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0.5f, 0f);
-            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0.5f, 0f);
-        }
-        else if (size == 2)
-        {
-            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 1f, 0f);
-            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 1f, 0f);
-        }
-        else if (size == 3)
-        {
-            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 2f, 0f);
-            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 2f, 0f);
-        }
-        else if (size == 4)
-        {
-            _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 2.25f, 0f);
-            _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 2.25f, 0f);
-        }
+        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
+        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
     }
     private void ColliderReset()
     {
