@@ -160,7 +160,7 @@ MonoBehaviour:
   _prefabTile: {fileID: 5770614306598799299, guid: 70bc3d265d11fee48bad908d8e4a3eb2, type: 3}
   _floorParent: {fileID: 499982600793250933}
   _objectParent: {fileID: 9188687472254510819}
-  _door: {fileID: 0}
+  _door: {fileID: 3127593330711202515}
 --- !u!114 &9076786941033639496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +234,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf71d682bd5bed24aa8e86682b0cff8c, type: 3}
+--- !u!1 &3127593330711202515 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7579983844222858020, guid: cf71d682bd5bed24aa8e86682b0cff8c, type: 3}
+  m_PrefabInstance: {fileID: 4780274913987951095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5568242080401483569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1085556757347966662, guid: cf71d682bd5bed24aa8e86682b0cff8c, type: 3}

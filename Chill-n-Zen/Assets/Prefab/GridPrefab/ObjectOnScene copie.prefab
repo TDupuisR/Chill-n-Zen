@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 39927587630843020}
   - component: {fileID: 3535595312701224647}
   - component: {fileID: 3835746339330191670}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5679559935415487410}
   - component: {fileID: 1425094513950831756}
   - component: {fileID: 3691042710416333956}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Move Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 375514334848543058}
   - component: {fileID: 5681186581256662253}
   - component: {fileID: 6612811513902592858}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 1962639435134993973}
   - component: {fileID: 8429295197754336126}
   - component: {fileID: 1143600497162394103}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 8567124181021572033}
   - component: {fileID: 6748435995387138990}
   - component: {fileID: 2622444710576542191}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1042,7 @@ GameObject:
   - component: {fileID: 5894341201166660282}
   - component: {fileID: 3407240626768030957}
   - component: {fileID: 5496170060791973697}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 879101888171364478}
   - component: {fileID: 7613414461214983404}
   - component: {fileID: 9059004244735616052}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Valid Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 2090055576975665806}
   - component: {fileID: 1096976469420709773}
   - component: {fileID: 7326790598854564378}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Delete Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1630,7 +1630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7428101681220977541}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ParentObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

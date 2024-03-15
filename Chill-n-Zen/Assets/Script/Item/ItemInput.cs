@@ -53,7 +53,7 @@ public class ItemInput : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (!_isOnUI || true)
+        if (!_isOnUI)
         {
             _isOnItem = true;
 
