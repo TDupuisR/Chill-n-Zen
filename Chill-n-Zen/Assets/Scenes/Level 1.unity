@@ -188,6 +188,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: doorInstruction.Position.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: doorInstruction.orientation
       value: 2
       objectReference: {fileID: 0}
