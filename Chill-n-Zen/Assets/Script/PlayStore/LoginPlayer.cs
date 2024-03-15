@@ -6,7 +6,6 @@ using GameManagerSpace;
 
 public class LoginPlayer : MonoBehaviour
 {
-    [SerializeField] AchievementManager achievementManager;
     public void Start()
     {
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
