@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Armchair
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
-  spriteTwoFixed: {fileID: 0}
-  spriteTwoColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 7cc1a03cf9253b14992babc8b5dfab8a, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: e8b708f90d38a0a4ab1db4e3fab53804, type: 3}
+  spriteTwoFixed: {fileID: 21300000, guid: 2465477883515cf45b69861bc2e94469, type: 3}
+  spriteTwoColored: {fileID: 21300000, guid: 59042266b8e3148409795a3b1d8d6c5a, type: 3}
   room: 3
   type: 1
   material: 3

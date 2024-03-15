@@ -99,6 +99,7 @@ public class ItemInput : MonoBehaviour
         if (_itemBehave.CurrentState == GMStatic.State.Placed && CheckIsTouching() && _isOnItem == false)
         {
             _itemUI.ActivateUI(false);
+            OnCallHideDescription?.Invoke();
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;
