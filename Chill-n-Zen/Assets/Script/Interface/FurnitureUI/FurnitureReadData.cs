@@ -41,8 +41,8 @@ public class FurnitureReadData : MonoBehaviour
         _imgColored.rectTransform.sizeDelta = new Vector2 (_imgColored.sprite.rect.width * 100.0f / _imgColored.sprite.rect.height, 100.0f);
 
         _priceText.text = furniture.price.ToString() + " Cr";
-        //if(_nameText != null) bite
-        //    _nameText.text = furniture.name.ToString();
+        if(_nameText != null)
+            _nameText.text = furniture.name.ToString();
         if(_pointsText != null)
             _pointsText.text = furniture.score.ToString() + " Pts";
         if(_descriptionText != null)

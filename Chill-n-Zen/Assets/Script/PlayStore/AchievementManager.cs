@@ -31,6 +31,7 @@ public class AchievementManager : MonoBehaviour
     {
 
         GMStatic.requestObj floor = new GMStatic.requestObj();
+        floor.itemRequested = new List<Item>();
         floor.itemRequested.Add(_cookingPlate);
         floor.nbRequested = TileSystem.Instance.TilesList.Count-1;
         if (GameManager.requestManager.CheckObjRequest(floor))
@@ -41,6 +42,7 @@ public class AchievementManager : MonoBehaviour
     public void CheckAchievementBotanist()
     {
         GMStatic.requestUsage plante = new GMStatic.requestUsage();
+        plante.usageRequested = new List<GMStatic.tagUsage>();
         plante.usageRequested.Add(GMStatic.tagUsage.Plant);
         plante.nbRequested = 10;
         if (GameManager.requestManager.CheckTypeRequest(plante))
