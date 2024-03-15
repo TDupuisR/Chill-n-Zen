@@ -20,7 +20,7 @@ MonoBehaviour:
   type: 1
   material: 3
   listUsage: 0a000000
-  constraint: 2
+  constraint: 0
   doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 

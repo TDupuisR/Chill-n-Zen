@@ -16,6 +16,8 @@ public class LevelCreator : MonoBehaviour
     [Space(10)]
     [SerializeField] SceneColor _wallColor;
     [SerializeField] SceneColor _groundColor;
+    [SerializeField] int _wallSprite;
+    [SerializeField] int _groundSprite;
 
     public enum GridGen { Create, Delete }
     public enum Rotation { SW, SE, NE, NW }
@@ -71,6 +73,16 @@ public class LevelCreator : MonoBehaviour
             GameManager.colorData.GroundIndex = 2;
         else
             GameManager.colorData.GroundIndex = 0;
+
+        if (_groundSprite >= 0 && _groundSprite <= 1)
+            GameManager.colorData.GrSpriteIndex = _groundSprite;
+        else
+            GameManager.colorData.GrSpriteIndex = 1;
+
+        if (_wallSprite >= 0 && _wallSprite <= 2)
+            GameManager.colorData.WlSpriteIndex = _wallSprite;
+        else
+            GameManager.colorData.WlSpriteIndex = 0;
     }
     private void GridMethod()
     {

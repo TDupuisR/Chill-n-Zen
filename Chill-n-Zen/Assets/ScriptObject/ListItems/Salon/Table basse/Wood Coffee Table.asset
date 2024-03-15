@@ -19,7 +19,7 @@ MonoBehaviour:
   room: 3
   type: 1
   material: 1
-  listUsage: 05000000
+  listUsage: 0700000006000000
   constraint: 0
   doorAccess: 0
   frontBonus: 0
@@ -36,5 +36,5 @@ MonoBehaviour:
   score: 70
   description: +20 next to a couch
   price: 130
-  size: {x: 1, y: 2, z: 0}
+  size: {x: 1, y: 2, z: 1}
   fullRotation: 0

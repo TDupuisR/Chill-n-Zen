@@ -35,14 +35,19 @@ public class WallBehavior : MonoBehaviour
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorRight;
                 GameObject wall = Instantiate(_rightWall, _posWall, Quaternion.identity);
                 SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                SpriteRenderer spriteRendererSecond = wall.transform.GetChild(1).GetComponent<SpriteRenderer>();
 
-                spriteRenderer.color = GameManager.colorData.WallColor;
+                spriteRenderer.sprite = GameManager.colorData.WlSprite;
+                spriteRenderer.color = GameManager.colorData.GroundColor;
+                spriteRendererSecond.color = GameManager.colorData.WallColor;
                 wall.transform.parent = _wallParent;
 
                 if (_wallBehind)
                 {
                     spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
+                    spriteRendererSecond.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
                 }
+
                 _wallList.Add(wall);
                 
             }
@@ -51,12 +56,16 @@ public class WallBehavior : MonoBehaviour
                 _posWall = TileSystem.Instance.TilesList[i].transform.position + _vectorLeft;
                 GameObject wall = Instantiate(_leftWall, _posWall, Quaternion.identity);
                 SpriteRenderer spriteRenderer = wall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                SpriteRenderer spriteRendererSecond = wall.transform.GetChild(1).GetComponent<SpriteRenderer>();
 
-                spriteRenderer.color = GameManager.colorData.WallColor;
+                spriteRenderer.sprite = GameManager.colorData.WlSprite;
+                spriteRenderer.color = GameManager.colorData.GroundColor;
+                spriteRendererSecond.color = GameManager.colorData.WallColor;
                 wall.transform.parent = _wallParent;
                 if (_wallBehind)
                 {
                     spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
+                    spriteRendererSecond.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, _opacityWall);
                 }
                 _wallList.Add(wall);
             }

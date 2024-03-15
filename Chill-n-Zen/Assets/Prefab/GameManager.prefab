@@ -467,12 +467,17 @@ MonoBehaviour:
   _color4: {r: 0.15686275, g: 0.44705883, b: 0.44313726, a: 1}
   _color5: {r: 0.46666667, g: 0.2, b: 0.19215687, a: 1}
   _color6: {r: 0.8980392, g: 0.5568628, b: 0.3254902, a: 1}
-  _groundColor1: {r: 1, g: 0, b: 0, a: 1}
-  _groundColor2: {r: 0, g: 0.005294323, b: 1, a: 1}
-  _groundColor3: {r: 0, g: 1, b: 0.036418438, a: 1}
-  _wallColor1: {r: 1, g: 0, b: 0, a: 1}
-  _wallColor2: {r: 0, g: 0.04570937, b: 1, a: 1}
-  _wallColor3: {r: 0.07528067, g: 1, b: 0, a: 1}
+  _groundColor1: {r: 0.84705883, g: 0.6862745, b: 0.43529412, a: 1}
+  _groundColor2: {r: 0.45882353, g: 0.2509804, b: 0.19607843, a: 1}
+  _groundColor3: {r: 0.44705883, g: 0.35686275, b: 0.19215687, a: 1}
+  _wallColor1: {r: 0.49019608, g: 0.6862745, b: 0.62352943, a: 1}
+  _wallColor2: {r: 0.5411765, g: 0.69411767, b: 0.49019608, a: 1}
+  _wallColor3: {r: 0.9490196, g: 0.77254903, b: 0.38039216, a: 1}
+  _groundSprite1: {fileID: 21300000, guid: 069d1d61ff183524d869b8c12ea06219, type: 3}
+  _groundSprite2: {fileID: 21300000, guid: 781176e1025147d4fb9fa794617b67bb, type: 3}
+  _wallSprite1: {fileID: 21300000, guid: e9d83b5608dda5340b2559fdf5c6b727, type: 3}
+  _wallSprite2: {fileID: 21300000, guid: cae50796699e6ae4fb56b4e06c8ee55a, type: 3}
+  _wallSprite3: {fileID: 21300000, guid: e59b5af6db836de46bd2b715496c8e92, type: 3}
 --- !u!114 &4803063219248275696
 MonoBehaviour:
   m_ObjectHideFlags: 0
