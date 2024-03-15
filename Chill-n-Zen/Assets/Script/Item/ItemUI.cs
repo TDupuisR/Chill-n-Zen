@@ -63,4 +63,6 @@ public class ItemUI : MonoBehaviour
             _textBox.SetActive(false);
         }
     }
+
+    public void PlaySound() => GameManager.audioManager.PlaySound("clic sur bouton");
 }
