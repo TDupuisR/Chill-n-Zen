@@ -34,5 +34,5 @@ MonoBehaviour:
   score: 30
   description: 
   price: 60
-  size: {x: 1, y: 1, z: 1}
+  size: {x: 1, y: 1, z: 2}
   fullRotation: 0

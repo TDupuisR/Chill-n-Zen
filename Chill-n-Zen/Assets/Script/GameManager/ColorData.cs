@@ -16,6 +16,13 @@ public class ColorData : MonoBehaviour
     [SerializeField] Color _wallColor1;
     [SerializeField] Color _wallColor2;
     [SerializeField] Color _wallColor3;
+    [Space(7)]
+    [SerializeField] Sprite _groundSprite1;
+    [SerializeField] Sprite _groundSprite2;
+    [Space(7)]
+    [SerializeField] Sprite _wallSprite1;
+    [SerializeField] Sprite _wallSprite2;
+    [SerializeField] Sprite _wallSprite3;
 
     public Color Color1 {  get { return _color1; } }
     public Color Color2 { get { return _color2; } }
@@ -40,6 +47,25 @@ public class ColorData : MonoBehaviour
         {
             Color[] wallColors = { _wallColor1, _wallColor2, _wallColor3 };
             return wallColors[WallIndex];
+        }
+    }
+
+    public int GrSpriteIndex { get; set; }
+    public Sprite GrSprite
+    {
+        get
+        {
+            Sprite[] groundSprites = { _groundSprite1, _groundSprite2 };
+            return groundSprites[GrSpriteIndex];
+        }
+    }
+    public int WlSpriteIndex { get; set; }
+    public Sprite WlSprite
+    {
+        get
+        {
+            Sprite[] wallSprites = { _wallSprite1, _wallSprite2, _wallSprite3 };
+            return wallSprites[GrSpriteIndex];
         }
     }
 }

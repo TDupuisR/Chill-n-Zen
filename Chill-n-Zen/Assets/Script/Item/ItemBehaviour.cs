@@ -298,10 +298,18 @@ public class ItemBehaviour : MonoBehaviour
         if (additionalSpriteHeight > 0 && OwnItem.type == GMStatic.tagType.Object)
             size += (additionalSpriteHeight - 1.5f) / 4f;
         if (OwnItem.type == GMStatic.tagType.Mural || OwnItem.type == GMStatic.tagType.Ceiling)
-            size += OwnItem.size.z;
+            size += (OwnItem.size.z/2f);
 
-        _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, size, _spriteUnCllrGmObj.transform.localPosition.z);
-        _spriteCllrGmObj.transform.localPosition = new Vector3(_spriteCllrGmObj.transform.localPosition.x, size, _spriteCllrGmObj.transform.localPosition.z);
+        if (OwnItem.type == GMStatic.tagType.Mural)
+        {
+            _spriteUnCllrGmObj.transform.localPosition = new Vector3(0, size, _spriteUnCllrGmObj.transform.localPosition.z);
+            _spriteCllrGmObj.transform.localPosition = new Vector3(0, size, _spriteCllrGmObj.transform.localPosition.z);
+        }
+        else
+        {
+            _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, size, _spriteUnCllrGmObj.transform.localPosition.z);
+            _spriteCllrGmObj.transform.localPosition = new Vector3(_spriteCllrGmObj.transform.localPosition.x, size, _spriteCllrGmObj.transform.localPosition.z);
+        }
 
         if (OwnItem.type == GMStatic.tagType.Null)
         {
@@ -317,13 +325,13 @@ public class ItemBehaviour : MonoBehaviour
         else if (OwnItem.type == GMStatic.tagType.Mural)
         {
             if (Orientation == 180)
-                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
-            if (Orientation == 270)
                 _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 270)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
             if (Orientation == 0)
-                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
-            if (Orientation == 90)
                 _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 90)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
         }
     }
     private void ColliderReset()
