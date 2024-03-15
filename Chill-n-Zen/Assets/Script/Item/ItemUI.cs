@@ -24,6 +24,7 @@ public class ItemUI : MonoBehaviour
         //move UI with object
         _parentObject.transform.position = Camera.main.WorldToScreenPoint(_item.transform.position + _item.OffsetPos);
         _parentObject.sizeDelta = _item.SpriteRenderer.bounds.size * _spacingFactor;
+        _validButton.interactable = _item.CanPlace;
     }
 
     public void ActivateUI(bool isActive)
@@ -35,7 +36,6 @@ public class ItemUI : MonoBehaviour
     public void SetupLeftButton()
     {
         _validButton.gameObject.SetActive(_item.CurrentState == GMStatic.State.Waiting);
-        _validButton.interactable = _item.CanPlace;
 
         _moveButton.gameObject.SetActive(_item.CurrentState != GMStatic.State.Waiting);
     }
