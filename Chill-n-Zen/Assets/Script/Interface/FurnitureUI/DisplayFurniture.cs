@@ -95,7 +95,6 @@ public class DisplayFurniture : MonoBehaviour
     {
         Vector2 currentPosition = _startingPoint.localPosition;
         int numberOfItems = 0;
-        Debug.LogWarning("start");
         foreach (Item item in collection)
         {
             GameObject newItem = Instantiate(_furniturePrefab, _parentObject.transform);
@@ -121,7 +120,6 @@ public class DisplayFurniture : MonoBehaviour
             //    currentPosition = new Vector2(currentPosition.x + _spaceBTWFurniture, currentPosition.y);
             //}
         }
-        Debug.LogWarning("end");
         TotalNumberOfItems = numberOfItems;
     }
 
