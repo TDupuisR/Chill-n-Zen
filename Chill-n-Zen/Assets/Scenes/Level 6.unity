@@ -428,6 +428,22 @@ PrefabInstance:
       value: Wants a lot of wood furniture
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.g
+      value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.r
+      value: 0.5411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _primaryRequests.obj.Array.data[0].itemRequested.Array.size
       value: 4
       objectReference: {fileID: 0}

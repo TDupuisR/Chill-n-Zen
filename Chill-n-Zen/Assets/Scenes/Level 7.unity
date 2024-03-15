@@ -380,6 +380,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.b
+      value: 0.627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.g
+      value: 0.68235296
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
+      propertyPath: _secondaryRequests.color.Array.data[0].colorRequested.r
+      value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384212362096691284, guid: 56a613844400ceb4ab051688eae2b775, type: 3}
       propertyPath: _secondaryRequests.proximity.Array.data[0].phraseClient
       value: Likes to have natural light when cooking and eating
       objectReference: {fileID: 0}

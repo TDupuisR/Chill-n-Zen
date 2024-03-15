@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
-  m_Name: TV
+  m_Name: Wood Library
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: 4296879ae2623c040aceb8a4aa266917, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: 473948dd44e04bc45976df84ae16bf7a, type: 3}
+  spriteOneFixed: {fileID: 21300000, guid: d8810804dce2b0e4faae9173afd7d4d4, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 873e68543b0e96f4b81cc17526090c5f, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 3
-  type: 2
-  material: 0
-  listUsage: 0c000000
+  type: 1
+  material: 1
+  listUsage: 04000000
   constraint: 0
   doorAccess: 0
   frontBonus: 0
   frontUsageBonus: 
   frontItemBonus: []
-  proxiBonus: 0
+  proxiBonus: 20
   proxiUsageBonus: 
-  proxiItemBonus: []
-  onBonus: 20
+  proxiItemBonus:
+  - {fileID: 11400000, guid: 183135e1ff48af245b1745a6832fc629, type: 2}
+  onBonus: 0
   onUsageBonus: 
-  onItemBonus:
-  - {fileID: 11400000, guid: 176ed49dbf368fb45b80dfea5bf8bfd2, type: 2}
-  - {fileID: 11400000, guid: 1372b13c359a41842a28ca1c95af02ce, type: 2}
-  score: 100
-  description: +20 on a TV furniture
-  price: 220
-  size: {x: 1, y: 2, z: 1}
+  onItemBonus: []
+  score: 60
+  description: +20 next to an armchair
+  price: 140
+  size: {x: 1, y: 2, z: 3}
   fullRotation: 0
