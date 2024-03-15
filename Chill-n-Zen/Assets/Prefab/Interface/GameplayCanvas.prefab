@@ -13167,7 +13167,7 @@ MonoBehaviour:
   _tagUIList: {fileID: 11400000, guid: 368f51fdc69694749a203908e9c41b5d, type: 2}
   _img: {fileID: 5775664046382991056}
   _imgColored: {fileID: 6000775352191867468}
-  _priceText: {fileID: 234677275250606799}
+  _priceText: {fileID: 1587092298297102925}
   _nameText: {fileID: 234677275250606799}
   _pointsText: {fileID: 446084360045715794}
   _descriptionText: {fileID: 7544351227282697430}
