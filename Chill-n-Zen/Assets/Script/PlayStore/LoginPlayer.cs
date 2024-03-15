@@ -2,9 +2,11 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SceneManagement;
+using GameManagerSpace;
 
 public class LoginPlayer : MonoBehaviour
 {
+    [SerializeField] AchievementManager achievementManager;
     public void Start()
     {
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
@@ -12,11 +14,15 @@ public class LoginPlayer : MonoBehaviour
 
     internal void ProcessAuthentication(SignInStatus status)
     {
-        if (status != SignInStatus.Success)
+        if (status == SignInStatus.Success)
         {
-            PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
         }
-        PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
+        else
+        {
+            achievementManager = GameManager.achievementManager.GetComponent<AchievementManager>();
+            achievementManager.SetActive(false);
+        }
         SceneManager.LoadScene(1);
     }
 }

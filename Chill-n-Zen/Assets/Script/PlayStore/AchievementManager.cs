@@ -1,6 +1,5 @@
 using GameManagerSpace;
 using GooglePlayGames;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,11 @@ public class AchievementManager : MonoBehaviour
 {
     private bool _check = true;
     [SerializeField] Item _cookingPlate;
+
+    public void SetActive(bool active)
+    {
+        this.enabled = active;
+    }
 
     private void OnEnable()
     {
