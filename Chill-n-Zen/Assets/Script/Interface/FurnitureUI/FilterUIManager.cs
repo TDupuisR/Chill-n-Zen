@@ -80,7 +80,7 @@ public class FilterUIManager : MonoBehaviour
 
     public void ApplyFilter()
     {
-        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)TypeFilter, (GMStatic.tagMaterial)StyleFilter);
+        List<Item> newItems = GameManager.libraryItems.Sort((GMStatic.tagRoom)RoomFilter, (GMStatic.tagType)StyleFilter, (GMStatic.tagMaterial)TypeFilter);
         _displayFurniture.ResetAndDisplay(newItems);
     }
 
