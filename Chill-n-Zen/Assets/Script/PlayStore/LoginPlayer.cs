@@ -10,6 +10,7 @@ public class LoginPlayer : MonoBehaviour
     public void Start()
     {
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        SceneManager.LoadScene(1);
     }
 
     internal void ProcessAuthentication(SignInStatus status)
@@ -18,11 +19,5 @@ public class LoginPlayer : MonoBehaviour
         {
             PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
         }
-        else
-        {
-            achievementManager = GameManager.achievementManager.GetComponent<AchievementManager>();
-            achievementManager.SetActive(false);
-        }
-        SceneManager.LoadScene(1);
     }
 }
