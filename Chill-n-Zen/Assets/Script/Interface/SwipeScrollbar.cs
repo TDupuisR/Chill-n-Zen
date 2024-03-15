@@ -50,7 +50,6 @@ public class SwipeScrollbar : MonoBehaviour
     public void UpdateSize(int totalItems)
     {
         int numberOfExtraItem = totalItems - _numberItemBeforeScroll;
-
         if (numberOfExtraItem > 0)
         {
             _scrollbar.size = 1f / numberOfExtraItem;
@@ -80,7 +79,6 @@ public class SwipeScrollbar : MonoBehaviour
             {
                 newParentPosition = new Vector2(_parentVerticalRectTransform.anchoredPosition.x,
                 _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
-                print(newParentPosition);
                 _parentVerticalRectTransform.anchoredPosition = newParentPosition;
 
             }
@@ -92,9 +90,8 @@ public class SwipeScrollbar : MonoBehaviour
         float inputVector = vector.y;
         if (_isHorizontal)
             inputVector = vector.x;
-
         if (GameplayScript.Instance.IsSafeSwipe && _currentNumberItems != 0)
-        {
+        {    
             IsScrolling = true;
             float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((inputVector * _scrollSensitivity) / _currentNumberItems));
             _scrollbar.value = newScrollBarValue;

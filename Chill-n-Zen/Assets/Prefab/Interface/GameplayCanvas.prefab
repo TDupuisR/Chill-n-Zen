@@ -10253,7 +10253,7 @@ MonoBehaviour:
   _parentVerticalRectTransform: {fileID: 0}
   _EdgeOfScroll: {fileID: 1226515681172131434}
   _numberItemBeforeScroll: 4
-  _spacePerItem: 250
+  _spacePerItem: 276
   _scrollSensitivity: 1
   _isHorizontal: 1
 --- !u!1 &6017294505020778044
