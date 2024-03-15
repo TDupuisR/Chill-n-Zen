@@ -45,7 +45,8 @@ public class AudioManager : MonoBehaviour
         AudioClip clip;
         if (_soundDictionary.TryGetValue(musicName, out clip))
         {
-            _musicSource.PlayOneShot(clip);
+            _musicSource.clip = clip;
+            _musicSource.Play();
         }
         else
         {
