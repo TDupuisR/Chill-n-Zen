@@ -4096,6 +4096,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2498428564735990449
 GameObject:
   m_ObjectHideFlags: 0
@@ -5746,6 +5758,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Son Objectif
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &7651162359459199846
@@ -8160,6 +8184,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4740306603032344492
 GameObject:
   m_ObjectHideFlags: 0
@@ -9545,6 +9581,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5666773660902979505
 GameObject:
   m_ObjectHideFlags: 0
@@ -10153,6 +10201,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6006444803686123933
 GameObject:
   m_ObjectHideFlags: 0
@@ -10485,6 +10545,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6232941995875500270
 GameObject:
   m_ObjectHideFlags: 0
@@ -10617,6 +10689,18 @@ MonoBehaviour:
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6254062655222171206
@@ -11133,6 +11217,18 @@ MonoBehaviour:
           m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6408959006956807734
@@ -12733,6 +12829,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7142253835810900470
 GameObject:
   m_ObjectHideFlags: 0
@@ -12944,6 +13052,7 @@ GameObject:
   - component: {fileID: 7092656254497294092}
   - component: {fileID: 6817194865486821823}
   - component: {fileID: 983528181354923742}
+  - component: {fileID: 3398944587714022438}
   m_Layer: 5
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -13066,6 +13175,18 @@ MonoBehaviour:
   _endingPositionTransform: {fileID: 6237719579750016085}
   _scoreColor: {r: 1, g: 1, b: 0, a: 0}
   _comboColor: {r: 1, g: 0.5019608, b: 0, a: 0}
+--- !u!114 &3398944587714022438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183874349084297082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964d49c3d65280f469f3c9d3582e5ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7205857834078262895
 GameObject:
   m_ObjectHideFlags: 0
@@ -13580,6 +13701,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &7477404448618927311
 GameObject:
   m_ObjectHideFlags: 0
@@ -14027,6 +14160,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2962710638755904160
@@ -14594,7 +14739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4208707393713993202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5832299913571802776}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8106598567875597894
 GameObject:
   m_ObjectHideFlags: 0
@@ -15149,6 +15306,18 @@ MonoBehaviour:
           m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8382447800510946335
@@ -16026,6 +16195,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8854359406666650471
 GameObject:
   m_ObjectHideFlags: 0
@@ -16358,6 +16539,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &8935216124760009500

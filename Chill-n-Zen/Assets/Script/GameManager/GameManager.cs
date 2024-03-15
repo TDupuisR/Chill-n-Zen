@@ -69,6 +69,7 @@ namespace GameManagerSpace
             requestManager = _requestManager;
             colorData = _colorData;
             levelManager = _levelManager;
+            audioManager = _audioManager;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }

@@ -180,6 +180,13 @@ MonoBehaviour:
   _musicSource: {fileID: 7144708466580255975}
   _listSounds:
   - {fileID: 8300000, guid: 250b3b3433de81b45abf2db39a966653, type: 3}
+  - {fileID: 8300000, guid: 74439ac2ab81bc0428d02e0b56ad4706, type: 3}
+  - {fileID: 8300000, guid: bd55c231a1742924382043bc1b47edfb, type: 3}
+  - {fileID: 8300000, guid: 5438cda26261784498f81d5df88d0b63, type: 3}
+  - {fileID: 8300000, guid: 08cd772067000524e83677a550096699, type: 3}
+  - {fileID: 8300000, guid: 8d920c330340358469b6f9e5913af9b8, type: 3}
+  - {fileID: 8300000, guid: bde1bfc536f5b6f4295b487c3bf59b67, type: 3}
+  - {fileID: 8300000, guid: ab2456d7a4f35ab4eb2df3637c04d2fd, type: 3}
 --- !u!114 &1691653008747985223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +374,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

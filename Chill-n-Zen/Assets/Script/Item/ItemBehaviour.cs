@@ -184,6 +184,8 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void CheckNewPos()
     {
+        GameManager.audioManager.PlaySound("Move obj");
+
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
@@ -408,6 +410,8 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
             SpawnScoreEffect(OwnItem.score, false);
+            GameManager.audioManager.PlaySound("Poser obj");
+
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()
