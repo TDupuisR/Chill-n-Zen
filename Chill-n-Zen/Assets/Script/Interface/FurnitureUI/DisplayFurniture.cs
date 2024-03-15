@@ -138,6 +138,7 @@ public class DisplayFurniture : MonoBehaviour
     {
         _selectedUnderlay.SetActive(true);
         _selectedUnderlay.transform.position = pos;
+        GameManager.audioManager.PlaySound("clic sur bouton");
     }
     public void DisableUnderlay() => _selectedUnderlay.SetActive(false);
     #endregion

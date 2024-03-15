@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    void PlaySound(string soundName)
+    public void PlaySound(string soundName)
     {
         AudioClip clip;
         if (_soundDictionary.TryGetValue(soundName, out clip))
@@ -37,6 +37,20 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogError("Sound not found: " + soundName);
+        }
+    }
+
+    public void PlayMusic(string musicName)
+    {
+        AudioClip clip;
+        if (_soundDictionary.TryGetValue(musicName, out clip))
+        {
+            _musicSource.clip = clip;
+            _musicSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Sound not found: " + musicName);
         }
     }
 }

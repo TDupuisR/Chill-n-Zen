@@ -62,13 +62,14 @@ namespace GameManagerSpace
             {
                 Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
             }
-
+            achievementManager = _achievementManager;
             libraryItems = _libraryItems;
             saveData = _saveData;
             budgetManager = _budgetManager;
             requestManager = _requestManager;
             colorData = _colorData;
             levelManager = _levelManager;
+            audioManager = _audioManager;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }

@@ -27,6 +27,7 @@ public class SwipeLevel : MonoBehaviour
 
     void Start()
     {
+        GameManager.audioManager.PlayMusic("Menu");
         for (int i = 0; i < _rectTransform.childCount; i++)
         {
             _listPicture.Add(_rectTransform.GetChild(i).GetComponent<RectTransform>());
