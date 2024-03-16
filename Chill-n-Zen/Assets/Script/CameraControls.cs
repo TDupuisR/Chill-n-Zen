@@ -75,11 +75,6 @@ public class CameraControls : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //print("cam : " + CanMoveCamera);
-    }
-
     /*
        Camera movement
      */
