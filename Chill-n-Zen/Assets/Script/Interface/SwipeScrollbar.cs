@@ -71,7 +71,7 @@ public class SwipeScrollbar : MonoBehaviour
             Vector2 newParentPosition = _parentObject.position;
             if (_isHorizontal)
             {
-                newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * _spacePerItem,
+                newParentPosition = new Vector2(_parentStartingPosition.x - value * _currentNumberItems * (_spacePerItem * (Screen.width / 1280.0f)),
                 _parentObject.position.y);
                 _parentObject.position = newParentPosition;
 

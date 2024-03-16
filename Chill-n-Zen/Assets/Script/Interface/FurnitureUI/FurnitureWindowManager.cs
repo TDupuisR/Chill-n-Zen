@@ -59,9 +59,9 @@ public class FurnitureWindowManager : MonoBehaviour
 
     IEnumerator waitForObjectPlacement()
     {
-        _objectivesUI.ActivateObjButton(true);
-        yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
         _objectivesUI.ActivateObjButton(false);
+        yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
+        _objectivesUI.ActivateObjButton(true);
         wasItemPlaced?.Invoke();
         AppearWindow();
     }
