@@ -157,8 +157,8 @@ MonoBehaviour:
   _bottomCamBoundaries: -4
   _rightCamBoundaries: 4
   _leftCamBoundaries: -4
-  _minMaxZoom: {x: 3, y: 15}
-  _zoomSensitivity: 0.12
+  _minMaxZoom: {x: 3, y: 10}
+  _zoomSensitivity: 0.05
 --- !u!114 &3802381315075706303
 MonoBehaviour:
   m_ObjectHideFlags: 0
