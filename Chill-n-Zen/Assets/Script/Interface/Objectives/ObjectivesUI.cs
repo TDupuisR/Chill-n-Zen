@@ -156,7 +156,7 @@ public class ObjectivesUI : MonoBehaviour
     {
         //Primary objectives
         List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
-        if(valueToSet.Count > 0 )
+        if(valueToSet.Count > 0 && _primaryObjectives.Count > 0)
         {
             for (int i = 0; i < valueToSet.Count; i++)
             {
@@ -167,7 +167,7 @@ public class ObjectivesUI : MonoBehaviour
 
         //Secondary objectives
         valueToSet = GameManager.requestManager.ReturnStatus(false);
-        if(valueToSet.Count > 0)
+        if(valueToSet.Count > 0 && _secondaryObjectives.Count > 0)
         {
             for (int i = 0; i < valueToSet.Count; i++)
             {
