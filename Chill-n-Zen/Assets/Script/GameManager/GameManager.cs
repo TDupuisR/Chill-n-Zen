@@ -31,6 +31,7 @@ namespace GameManagerSpace
         [SerializeField] GameplayScript _gameplayScript;
 
         private LoadingAnimation _loadingScript;
+        private bool _isLoading;
 
         public delegate void OnSceneLoadDelegate();
         public static event OnSceneLoadDelegate OnSceneLoad;
@@ -81,16 +82,22 @@ namespace GameManagerSpace
 
         public void ChangeScene(int sceneIndex)
         {
-            if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
-            else
+            if(!_isLoading)
             {
-                Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
+                if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
+                else
+                {
+                    Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
+                }
+                OnSceneLoad?.Invoke();
+                StartCoroutine(AsyncLoadScnene(sceneIndex));
             }
-            OnSceneLoad?.Invoke();
-            StartCoroutine(AsyncLoadScnene(sceneIndex));
         }
+
         IEnumerator AsyncLoadScnene(int sceneIndex)
         {
+            _isLoading = true;
+
             StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
             do
             {
@@ -105,6 +112,7 @@ namespace GameManagerSpace
                 if (loadSceneOperation.progress >= 0.9f)
                 {
                     loadSceneOperation.allowSceneActivation = true;
+                    _isLoading = false;
                 }
 
                 yield return new WaitForFixedUpdate();
