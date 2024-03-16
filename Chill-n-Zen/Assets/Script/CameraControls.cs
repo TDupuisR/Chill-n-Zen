@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using System;
+using GameManagerSpace;
 
 public class CameraControls : MonoBehaviour
 {
@@ -81,12 +82,12 @@ public class CameraControls : MonoBehaviour
 
     private void ChkValidMovement(Vector2 vector)
     {
-        _isInActionZone = IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition);
+        _isInActionZone = IsTouchInCameraActionZone(GameManager.gameplayScript.PrimaryPosition);
     }
 
     void CameraMovement(Vector2 velocity)
     {
-        if (_isInActionZone && CanMoveCamera && GameplayScript.Instance.IsLongPress && IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition))
+        if (_isInActionZone && CanMoveCamera && GameManager.gameplayScript.IsLongPress && IsTouchInCameraActionZone(GameManager.gameplayScript.PrimaryPosition))
         {
             Vector3 velocityV3 = new Vector3(velocity.x, velocity.y, 0.0f);
             _mainCamera.transform.position += velocityV3;
@@ -103,7 +104,7 @@ public class CameraControls : MonoBehaviour
         if (_isMovingCamera)
         {
             _isMovingCamera = false;
-            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(_lastVelocity, GameplayScript.Instance.SwipeDeceleration));
+            _CameraDecelerationCoroutine = StartCoroutine(DecelerationCameraRoutine(_lastVelocity, GameManager.gameplayScript.SwipeDeceleration));
         }
     }
 
@@ -141,7 +142,7 @@ public class CameraControls : MonoBehaviour
 
     private void StartZoom(Vector2 lastPosition)
     {
-        if (IsTouchInCameraActionZone(GameplayScript.Instance.PrimaryPosition) && IsTouchInCameraActionZone(GameplayScript.Instance.SecondaryPosition))
+        if (IsTouchInCameraActionZone(GameManager.gameplayScript.PrimaryPosition) && IsTouchInCameraActionZone(GameManager.gameplayScript.SecondaryPosition))
         {
             _zoomCoroutine = StartCoroutine(ZoomRoutine());
         }
@@ -157,16 +158,16 @@ public class CameraControls : MonoBehaviour
 
     IEnumerator ZoomRoutine()
     {
-        Vector2 primaryPosition = GameplayScript.Instance.PrimaryPosition;
-        Vector2 secondaryPosition = GameplayScript.Instance.SecondaryPosition;
+        Vector2 primaryPosition = GameManager.gameplayScript.PrimaryPosition;
+        Vector2 secondaryPosition = GameManager.gameplayScript.SecondaryPosition;
 
         float currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
         float oldDistance = currentDistance;
 
         while (true)
         {
-            primaryPosition = GameplayScript.Instance.PrimaryPosition;
-            secondaryPosition = GameplayScript.Instance.SecondaryPosition;
+            primaryPosition = GameManager.gameplayScript.PrimaryPosition;
+            secondaryPosition = GameManager.gameplayScript.SecondaryPosition;
 
             currentDistance = Vector2.Distance(primaryPosition, secondaryPosition);
             if (currentDistance != oldDistance)

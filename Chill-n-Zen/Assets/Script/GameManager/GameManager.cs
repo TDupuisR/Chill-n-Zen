@@ -17,6 +17,7 @@ namespace GameManagerSpace
         public static RequestManager requestManager;
         public static ColorData colorData;
         public static LevelManager levelManager;
+        public static GameplayScript gameplayScript;
 
         [SerializeField] AchievementManager _achievementManager;
         [SerializeField] LibraryItem _libraryItems;
@@ -27,6 +28,7 @@ namespace GameManagerSpace
         [SerializeField] RequestManager _requestManager;
         [SerializeField] ColorData _colorData;
         [SerializeField] LevelManager _levelManager;
+        [SerializeField] GameplayScript _gameplayScript;
 
         private LoadingAnimation _loadingScript;
 
@@ -58,10 +60,10 @@ namespace GameManagerSpace
                 if (Instance != null) Destroy(gameObject);
                 Instance = this;
             }
-            else
+            else if(Instance != this)
             {
-                if(Instance != this)
-                    Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+                Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+                Destroy(gameObject);
                 return;
             }
             achievementManager = _achievementManager;
@@ -72,6 +74,7 @@ namespace GameManagerSpace
             colorData = _colorData;
             levelManager = _levelManager;
             audioManager = _audioManager;
+            gameplayScript = _gameplayScript;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }

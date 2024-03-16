@@ -67,6 +67,7 @@ MonoBehaviour:
   _requestManager: {fileID: 1691653008747985223}
   _colorData: {fileID: 1230102083759745206}
   _levelManager: {fileID: 487173382229425870}
+  _gameplayScript: {fileID: 18947013022421041}
 --- !u!114 &487173382229425870
 MonoBehaviour:
   m_ObjectHideFlags: 0

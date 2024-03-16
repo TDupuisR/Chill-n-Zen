@@ -23,7 +23,7 @@ public class ItemInput : MonoBehaviour
     private void Start()
     {
         _layerUI = LayerMask.NameToLayer("UI");
-        _gameplay = GameplayScript.Instance;
+        _gameplay = GameManager.gameplayScript;
 
         OnCallDescription?.Invoke(_itemBehave);
     }
@@ -44,7 +44,7 @@ public class ItemInput : MonoBehaviour
     static List<RaycastResult> GetEventSystemRaycastResults()
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
-        eventData.position = GameplayScript.Instance.PrimaryPosition;
+        eventData.position = GameManager.gameplayScript.PrimaryPosition;
 
         List<RaycastResult> raysastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raysastResults);

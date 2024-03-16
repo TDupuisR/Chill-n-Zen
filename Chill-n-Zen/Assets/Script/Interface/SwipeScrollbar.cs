@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameManagerSpace;
 
 public class SwipeScrollbar : MonoBehaviour
 {
@@ -90,7 +91,7 @@ public class SwipeScrollbar : MonoBehaviour
         float inputVector = vector.y;
         if (_isHorizontal)
             inputVector = vector.x;
-        if (GameplayScript.Instance.IsSafeSwipe && _currentNumberItems != 0)
+        if (GameManager.gameplayScript.IsSafeSwipe && _currentNumberItems != 0)
         {    
             IsScrolling = true;
             float newScrollBarValue = Mathf.Clamp01(_scrollbar.value + ((inputVector * _scrollSensitivity) / _currentNumberItems));
@@ -115,11 +116,11 @@ public class SwipeScrollbar : MonoBehaviour
     {
         if (_isHorizontal)
         {
-            return GameplayScript.Instance.PrimaryPosition.y < _EdgeOfScroll.position.y;
+            return GameManager.gameplayScript.PrimaryPosition.y < _EdgeOfScroll.position.y;
         }
         else
         {
-            if (!(GameplayScript.Instance.PrimaryPosition.x < _EdgeOfScroll.position.x))
+            if (!(GameManager.gameplayScript.PrimaryPosition.x < _EdgeOfScroll.position.x))
                 return false;
 
             return true;

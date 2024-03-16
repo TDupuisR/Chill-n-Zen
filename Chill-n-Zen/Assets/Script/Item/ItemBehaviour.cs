@@ -177,7 +177,7 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void SetPosFromPointer()
     {
-        Vector2 pointer = GameplayScript.Instance.MouseWorldPosition;
+        Vector2 pointer = GameManager.gameplayScript.MouseWorldPosition;
 
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(pointer - new Vector2(_offsetPos.x, _offsetPos.y));
         transform.position = TileSystem.Instance.GridToWorld(gridPos.x, gridPos.y);
