@@ -79,7 +79,7 @@ public class SwipeScrollbar : MonoBehaviour
             else
             {
                 newParentPosition = new Vector2(_parentVerticalRectTransform.anchoredPosition.x,
-                _parentStartingPosition.y + value * _currentNumberItems * _spacePerItem);
+                _parentStartingPosition.y + value * _currentNumberItems * (_spacePerItem * (Screen.height / 720.0f)));
                 _parentVerticalRectTransform.anchoredPosition = newParentPosition;
 
             }

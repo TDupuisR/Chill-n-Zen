@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<AudioClip> _listSounds;
 
     private Dictionary<string, AudioClip> _soundDictionary;
+    private bool _isSet;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class AudioManager : MonoBehaviour
         }
         _musicSource.volume = GameManager.saveData.MusicVolume;
         _soundSource.volume = GameManager.saveData.SfxVolume;
+        _isSet = true;
     }
 
     void ChangeVolume(AudioSource audioSource)
@@ -29,6 +31,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string soundName)
     {
+        if (!_isSet)
+            return;
+
         AudioClip clip;
         if (_soundDictionary.TryGetValue(soundName, out clip))
         {
@@ -42,6 +47,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string musicName)
     {
+        if (!_isSet)
+            return;
+
         AudioClip clip;
         if (_soundDictionary.TryGetValue(musicName, out clip))
         {
