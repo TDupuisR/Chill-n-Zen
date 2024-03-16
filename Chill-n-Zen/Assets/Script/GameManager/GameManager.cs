@@ -60,7 +60,9 @@ namespace GameManagerSpace
             }
             else
             {
-                Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+                if(Instance != this)
+                    Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+                return;
             }
             achievementManager = _achievementManager;
             libraryItems = _libraryItems;

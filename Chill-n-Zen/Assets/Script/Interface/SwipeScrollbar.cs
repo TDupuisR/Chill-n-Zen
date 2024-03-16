@@ -64,7 +64,6 @@ public class SwipeScrollbar : MonoBehaviour
     }
     public void PerformScroll(float value)
     {
-        print("performScroll");
         if (isInScrollZone())
         {
             //print(_parentXStartingPosition + "+" + value + "*" + _currentNumberItems + "*" + _spacePerItem);
