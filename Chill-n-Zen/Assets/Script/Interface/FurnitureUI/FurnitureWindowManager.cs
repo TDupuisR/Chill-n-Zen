@@ -67,6 +67,7 @@ public class FurnitureWindowManager : MonoBehaviour
     {
         CameraControls.Instance.CanMoveCamera = false;
         _objectivesUI.ActivateObjButton(false);
+        yield return new WaitForSeconds(1);
         yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
         CameraControls.Instance.CanMoveCamera = true;
         _objectivesUI.ActivateObjButton(true);
