@@ -6348,6 +6348,7 @@ MonoBehaviour:
   _openButton: {fileID: 4613115616716559360}
   _closeButton: {fileID: 6359179539174770519}
   _detailWindow: {fileID: 1437872396435624185}
+  _detailData: {fileID: 2823380998407397996}
 --- !u!1 &3650502844452344915
 GameObject:
   m_ObjectHideFlags: 0
@@ -15099,7 +15100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 185, y: -60}
+  m_AnchoredPosition: {x: 185, y: -100}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6842348768651500144

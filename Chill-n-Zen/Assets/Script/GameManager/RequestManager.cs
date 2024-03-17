@@ -120,7 +120,7 @@ public class RequestManager : MonoBehaviour
             {
                 for (int i = 0; i < request.itemRequested.Count; i++)
                 {
-                    if (item == request.itemRequested[i])
+                    if (item.OwnItem == request.itemRequested[i])
                         resL[i]++;
                 }
 
@@ -132,7 +132,7 @@ public class RequestManager : MonoBehaviour
             {
                 foreach (Item current in request.itemRequested)
                 {
-                    if (item == current)
+                    if (item.OwnItem == current)
                     {
                         count++; break;
                     }
