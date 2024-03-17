@@ -112,7 +112,7 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
-        List<int> resL = new List<int>(request.itemRequested.Count);
+        List<int> resL = new List<int>(new int[request.itemRequested.Count]);
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
@@ -149,7 +149,8 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
-        List<int> resL = new List<int>(request.usageRequested.Count);
+        List<int> resL = new List<int>(new int[request.usageRequested.Count]);
+
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
