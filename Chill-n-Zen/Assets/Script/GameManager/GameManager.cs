@@ -31,6 +31,7 @@ namespace GameManagerSpace
         [SerializeField] GameplayScript _gameplayScript;
 
         private LoadingAnimation _loadingScript;
+        private Coroutine _loadingAnimation;
         private bool _isLoading;
 
         public delegate void OnSceneLoadDelegate();
@@ -98,7 +99,10 @@ namespace GameManagerSpace
         {
             _isLoading = true;
 
-            StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+            if (_loadingAnimation != null)
+                StopCoroutine(_loadingAnimation);
+            _loadingAnimation = StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+
             do
             {
                 yield return new WaitForFixedUpdate();
@@ -118,7 +122,7 @@ namespace GameManagerSpace
                 yield return new WaitForFixedUpdate();
             }
 
-            StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
+            _loadingAnimation = StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
         }
 
         [Button] private void TestLoading() { StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false)); }
