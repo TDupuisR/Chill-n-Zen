@@ -561,6 +561,7 @@ MonoBehaviour:
   _boundaryActionZone: 350
   _isVerticalScroll: 0
   _displayed: 1
+  _canBeInterrupted: 0
 --- !u!114 &5199757140321883114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,6 +1670,7 @@ MonoBehaviour:
   _boundaryActionZone: 0
   _isVerticalScroll: 0
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!1 &851295763948981766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2228,6 +2230,7 @@ MonoBehaviour:
   _boundaryActionZone: 0
   _isVerticalScroll: 1
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!1 &1381084086764953296
 GameObject:
   m_ObjectHideFlags: 0
@@ -6315,6 +6318,7 @@ MonoBehaviour:
   _boundaryActionZone: 230
   _isVerticalScroll: 1
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!114 &7747319372973352098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13360,10 +13364,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _buttonToDisable: {fileID: 0}
-  _animationDuration: 1
+  _animationDuration: 0.5
   _boundaryActionZone: 0
   _isVerticalScroll: 0
   _displayed: 0
+  _canBeInterrupted: 1
 --- !u!114 &2823380998407397996
 MonoBehaviour:
   m_ObjectHideFlags: 0

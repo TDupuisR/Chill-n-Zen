@@ -12,6 +12,7 @@ public class WindowScroll : MonoBehaviour
     [SerializeField] float _boundaryActionZone; //For 1280x720 screen
     [SerializeField] bool _isVerticalScroll; 
     [SerializeField] bool _displayed;
+    [SerializeField] bool _canBeInterrupted;
     Vector3 _backgroundStartPosition;
     Vector3 _backgroundStartRectTransformPosition;
     Coroutine _animationRoutine;
@@ -42,6 +43,12 @@ public class WindowScroll : MonoBehaviour
     {
         if(!_isBusy)
             _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
+        else if (_canBeInterrupted)
+        {
+            StopCoroutine(_animationRoutine);
+            _animationRoutine = StartCoroutine(SelectionWindowAnimationRoutine(_isVerticalScroll));
+        }
+            
     }
 
     public void HideIfDisplayed()
