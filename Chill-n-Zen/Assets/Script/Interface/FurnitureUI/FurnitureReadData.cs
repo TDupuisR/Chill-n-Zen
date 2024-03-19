@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,7 +38,7 @@ public class FurnitureReadData : MonoBehaviour
     {
         _img.sprite = furniture.spriteOneFixed;
         _imgColored.sprite = furniture.spriteOneColored;
-
+        _imgColored.color = GameManager.colorData.Color1;
         _imgColored.rectTransform.sizeDelta = new Vector2 (_imgColored.sprite.rect.width * 100.0f / _imgColored.sprite.rect.height, 100.0f);
 
         _priceText.text = furniture.price.ToString() + " Cr";
