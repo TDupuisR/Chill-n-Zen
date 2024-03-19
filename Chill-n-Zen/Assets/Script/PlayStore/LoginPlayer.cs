@@ -16,6 +16,7 @@ public class LoginPlayer : MonoBehaviour
     {
         if (status == SignInStatus.Success)
         {
+            GameManager.achievementManager.connected = true;
             PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
         }
     }
