@@ -11989,6 +11989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _starUI: {fileID: 6167888860324656904}
   _text: {fileID: 1399525563362496263}
+  _image: {fileID: 1348109039695615339}
 --- !u!1 &6670660256723533471
 GameObject:
   m_ObjectHideFlags: 0

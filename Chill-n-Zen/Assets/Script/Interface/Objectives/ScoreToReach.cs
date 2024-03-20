@@ -10,8 +10,10 @@ public class ScoreToReach : MonoBehaviour
 {
     [SerializeField] StarUIDisplay _starUI;
     [SerializeField] TMP_Text _text;
+    [SerializeField] Image _image;
     int _score = 0;
 
+    public Image CheckBoxImage { get => _image; }
     public bool IsScoreReached { get; private set; }
 
     public static Action<bool> OnCheckScore;
