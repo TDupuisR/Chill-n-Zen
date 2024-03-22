@@ -207,7 +207,7 @@ public class RequestManager : MonoBehaviour
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            print(item.ItemColor + "==" + request.colorRequested);
+            //print(item.ItemColor + "==" + request.colorRequested);
             Color colorToCheck = request.colorRequested;
             colorToCheck.a = 1;
             if (item.ItemColor == colorToCheck)
