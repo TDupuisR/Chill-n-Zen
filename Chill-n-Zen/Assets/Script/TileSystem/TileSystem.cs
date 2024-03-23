@@ -484,14 +484,17 @@ public class TileSystem : MonoBehaviour
                         compare.SpriteLayer -= 1;
                     if (dot == 0 && compare.OwnItem.type == GMStatic.tagType.Mural)
                         compare.SpriteLayer -= 1;
+                    if (dot == 0 && compare.OwnItem.listUsage.Contains(GMStatic.tagUsage.Top) &&
+                        item.OwnItem.type == GMStatic.tagType.Object)
+                        compare.SpriteLayer -= 1;
                 }
                 else if (compare.OwnItem.type == GMStatic.tagType.Carpet)
                 {
-                    compare.SpriteLayer += 1;
+                    compare.SpriteLayer -= 1;
                 }
                 else if (compare.OwnItem.type == GMStatic.tagType.Ceiling)
                 {
-                    compare.SpriteLayer -= 1;
+                    compare.SpriteLayer += 1;
                 }
             }
         }

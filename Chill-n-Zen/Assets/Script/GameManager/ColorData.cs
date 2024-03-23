@@ -65,7 +65,7 @@ public class ColorData : MonoBehaviour
         get
         {
             Sprite[] wallSprites = { _wallSprite1, _wallSprite2, _wallSprite3 };
-            return wallSprites[GrSpriteIndex];
+            return wallSprites[WlSpriteIndex];
         }
     }
 }
