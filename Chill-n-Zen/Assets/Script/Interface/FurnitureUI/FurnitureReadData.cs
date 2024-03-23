@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,7 +38,7 @@ public class FurnitureReadData : MonoBehaviour
     {
         _img.sprite = furniture.spriteOneFixed;
         _imgColored.sprite = furniture.spriteOneColored;
-
+        _imgColored.color = GameManager.colorData.Color1;
         _imgColored.rectTransform.sizeDelta = new Vector2 (_imgColored.sprite.rect.width * 100.0f / _imgColored.sprite.rect.height, 100.0f);
 
         _priceText.text = furniture.price.ToString() + " Cr";
@@ -50,19 +51,19 @@ public class FurnitureReadData : MonoBehaviour
 
         if(IsAllTagValid(furniture))
         {
-            _roomImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.room.ToString())];
+            _roomImg.sprite = _tagUIList.roomSprite[_tagUIList.roomName.IndexOf(furniture.room.ToString())];
             if(_roomText != null)
             {
                 _roomText.text = furniture.room.ToString();
             }
 
-            _styleImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.material.ToString())];
+            _styleImg.sprite = _tagUIList.materialSprite[_tagUIList.materialName.IndexOf(furniture.material.ToString())];
             if (_styleText != null)
             {
                 _styleText.text = furniture.material.ToString();
             }
 
-            _typeImg.color = _tagUIList.associatedSprite[_tagUIList.tagNames.IndexOf(furniture.type.ToString())];
+            _typeImg.sprite = _tagUIList.TypeSprite[_tagUIList.TypeName.IndexOf(furniture.type.ToString())];
             if (_typeText != null)
             {
                 _typeText.text = furniture.type.ToString();
@@ -72,17 +73,17 @@ public class FurnitureReadData : MonoBehaviour
 
     bool IsAllTagValid(Item furniture)
     {
-        if (!_tagUIList.tagNames.Contains(furniture.room.ToString()))
+        if (!_tagUIList.roomName.Contains(furniture.room.ToString()))
         {
             Debug.LogError("room tag " + furniture.room.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
             return false;
         }
-        if (!_tagUIList.tagNames.Contains(furniture.material.ToString()))
+        if (!_tagUIList.materialName.Contains(furniture.material.ToString()))
         {
             Debug.LogError("style tag " + furniture.material.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
             return false;
         }
-        if (!_tagUIList.tagNames.Contains(furniture.type.ToString()))
+        if (!_tagUIList.TypeName.Contains(furniture.type.ToString()))
         {
             Debug.LogError("room tag " + furniture.type.ToString() + " n'est pas dans la liste des tags ! (TagUI)");
             return false;

@@ -304,7 +304,7 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
-            _tileBehaveList[index].CheckConditionExist(item);
+            res = _tileBehaveList[index].CheckConditionExist(item);
         }
 
         return res;
@@ -316,7 +316,7 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
-            _tileBehaveList[index].CheckConditionExist(usage);
+            res = _tileBehaveList[index].CheckConditionExist(usage);
         }
 
         return res;

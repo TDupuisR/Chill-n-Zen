@@ -217,6 +217,7 @@ public class ObjectivesUI : MonoBehaviour
         if (_hasCompletedPrimaryObjectives)
         {
             _starUI.UnlockStar(2, unlocked);
+            _scoreToReach.CheckBoxImage.sprite = unlocked ? _checkedSprite : _uncheckedSprite;
             HasScoreStar = unlocked;
         }
     }
