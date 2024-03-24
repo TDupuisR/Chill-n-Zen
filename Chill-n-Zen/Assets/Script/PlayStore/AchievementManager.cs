@@ -70,9 +70,13 @@ public class AchievementManager : MonoBehaviour
             _check = true;
             for (int i = 1; i <= 10; i++)
             {
-                if (GameManager.saveData.LoadStar(i)[2] == false)
+                List<bool> currentStars = GameManager.saveData.LoadStar(i);
+                if (currentStars != null)
                 {
-                    _check = false;
+                    if (currentStars[2] == false)
+                    {
+                        _check = false;
+                    }
                 }
             }
             if (_check == true)
