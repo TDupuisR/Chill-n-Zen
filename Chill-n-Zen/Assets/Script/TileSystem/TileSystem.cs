@@ -218,7 +218,7 @@ public class TileSystem : MonoBehaviour
     }
     public void RotateDoor(int rotation)
     {
-        _doorBehave.Rotation(rotation);
+        _doorBehave.RotationDoor(rotation);
     }
     public void ColorDoor(Color color)
     {

@@ -378,6 +378,32 @@ public class ItemBehaviour : MonoBehaviour
             transform.position -= new Vector3(0f, 0f, 0.2f);
     }
 
+    [Button] public void RotationDoor(int rotation = -1)
+    {
+        switch(rotation)
+        {
+            case 90:
+                _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, _spriteUnCllrGmObj.transform.localPosition.y, _spriteUnCllrGmObj.transform.localPosition.z - 1);
+                _parentSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
+                _parentSprite.transform.localPosition = new Vector3(-.5f, -.25f, _parentSprite.transform.localPosition.z - 1);
+                break;
+
+            case 180:
+                _parentSprite.transform.localPosition = new Vector2(-.5f, .25f);
+                break;
+
+            case 270:
+                _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, _spriteUnCllrGmObj.transform.localPosition.y, _spriteUnCllrGmObj.transform.localPosition.z - 1);
+                _parentSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
+                _parentSprite.transform.localPosition = new Vector3(.5f, .25f, _parentSprite.transform.localPosition.z - 1);
+                break;
+
+            case 0:
+            default:
+                break;
+        }
+    }  //OUI C'EST PAS OPTI MAIS MERDE !
+
     [Button] public void Rotation(int rotation = -1)
     {
         if (CurrentState == GMStatic.State.Waiting || CurrentState == GMStatic.State.Moving)
