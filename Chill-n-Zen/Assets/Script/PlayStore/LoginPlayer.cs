@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using TMPro;
 using UnityEngine.SceneManagement;
+using GameManagerSpace;
 
 public class LoginPlayer : MonoBehaviour
 {
     public void Start()
     {
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        SceneManager.LoadScene(1);
     }
 
     internal void ProcessAuthentication(SignInStatus status)
     {
-        if (status != SignInStatus.Success)
+        if (status == SignInStatus.Success)
         {
-            PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
+            GameManager.achievementManager.connected = true;
+            PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
         }
-        PlayGamesPlatform.Instance.UnlockAchievement("CgkI5ZWvkocPEAIQBg");
-        SceneManager.LoadScene(1);
     }
 }

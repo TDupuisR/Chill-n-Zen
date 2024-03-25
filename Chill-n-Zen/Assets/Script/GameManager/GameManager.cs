@@ -17,6 +17,7 @@ namespace GameManagerSpace
         public static RequestManager requestManager;
         public static ColorData colorData;
         public static LevelManager levelManager;
+        public static GameplayScript gameplayScript;
 
         [SerializeField] AchievementManager _achievementManager;
         [SerializeField] LibraryItem _libraryItems;
@@ -27,8 +28,11 @@ namespace GameManagerSpace
         [SerializeField] RequestManager _requestManager;
         [SerializeField] ColorData _colorData;
         [SerializeField] LevelManager _levelManager;
+        [SerializeField] GameplayScript _gameplayScript;
 
         private LoadingAnimation _loadingScript;
+        private Coroutine _loadingAnimation;
+        private bool _isLoading;
 
         public delegate void OnSceneLoadDelegate();
         public static event OnSceneLoadDelegate OnSceneLoad;
@@ -58,34 +62,47 @@ namespace GameManagerSpace
                 if (Instance != null) Destroy(gameObject);
                 Instance = this;
             }
-            else
+            else if(Instance != this)
             {
                 Debug.LogError(" (error : 1x0) Too many GameManager instance ", gameObject);
+                Destroy(gameObject);
+                return;
             }
-
+            achievementManager = _achievementManager;
             libraryItems = _libraryItems;
             saveData = _saveData;
             budgetManager = _budgetManager;
             requestManager = _requestManager;
             colorData = _colorData;
             levelManager = _levelManager;
+            audioManager = _audioManager;
+            gameplayScript = _gameplayScript;
 
             _loadingScript = _loadingScreen.GetComponent<LoadingAnimation>();
         }
 
         public void ChangeScene(int sceneIndex)
         {
-            if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
-            else
+            if(!_isLoading)
             {
-                Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
+                if (_loadingScreen != null && _loadingScript != null) _loadingScreen.SetActive(true);
+                else
+                {
+                    Debug.LogError(" (error : 1x6) No loading screen assigned ", _loadingScreen);
+                }
+                OnSceneLoad?.Invoke();
+                StartCoroutine(AsyncLoadScnene(sceneIndex));
             }
-            OnSceneLoad?.Invoke();
-            StartCoroutine(AsyncLoadScnene(sceneIndex));
         }
+
         IEnumerator AsyncLoadScnene(int sceneIndex)
         {
-            StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+            _isLoading = true;
+
+            if (_loadingAnimation != null)
+                StopCoroutine(_loadingAnimation);
+            _loadingAnimation = StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false));
+
             do
             {
                 yield return new WaitForFixedUpdate();
@@ -99,12 +116,13 @@ namespace GameManagerSpace
                 if (loadSceneOperation.progress >= 0.9f)
                 {
                     loadSceneOperation.allowSceneActivation = true;
+                    _isLoading = false;
                 }
 
                 yield return new WaitForFixedUpdate();
             }
 
-            StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
+            _loadingAnimation = StartCoroutine(_loadingScript.TransitionLoading(0f, -2000f, true));
         }
 
         [Button] private void TestLoading() { StartCoroutine(_loadingScript.TransitionLoading(2000f, 0f, false)); }

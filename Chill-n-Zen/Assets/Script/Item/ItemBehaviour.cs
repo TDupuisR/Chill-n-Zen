@@ -12,6 +12,7 @@ public class ItemBehaviour : MonoBehaviour
     SpriteRenderer _spriteUnClrRender;
     [SerializeField] GameObject _spriteCllrGmObj;
     SpriteRenderer _spriteClrRender;
+    [SerializeField] GameObject _parentSprite;
     [SerializeField] ItemUI _itemUI;
     [SerializeField] LineRenderer _lineRender;
     [SerializeField] private GameObject _smoke;
@@ -24,6 +25,7 @@ public class ItemBehaviour : MonoBehaviour
     Vector3 _offsetPos = Vector3.zero;
     Vector3 _lastPos;
     bool _canPlace = false;
+    bool _isOnTop = false;
 
     Vector3[] _patternPosition = new Vector3[4];
 
@@ -98,8 +100,16 @@ public class ItemBehaviour : MonoBehaviour
         OffsetPosCalcul();
         _spriteUnCllrGmObj.transform.position = transform.position - _offsetPos;
         _spriteCllrGmObj.transform.position = transform.position - _offsetPos + new Vector3(0f, 0f, -0.1f);
-        _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
-        _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        if (OwnItem.type == GMStatic.tagType.Null)
+        {
+            _spriteUnCllrGmObj.transform.localScale = new Vector2(0.3f, 0.3f);
+            _spriteCllrGmObj.transform.localScale = new Vector2(0.3f, 0.3f);
+        }
+        else
+        {
+            _spriteUnCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+            _spriteCllrGmObj.transform.localScale = new Vector2(0.4f, 0.4f);
+        }
 
         ResetLineRenderer(RotationSize.x, RotationSize.y);
         _lineRender.enabled = true;
@@ -167,13 +177,15 @@ public class ItemBehaviour : MonoBehaviour
     }
     private void SetPosFromPointer()
     {
-        Vector2 pointer = GameplayScript.Instance.MouseWorldPosition;
+        Vector2 pointer = GameManager.gameplayScript.MouseWorldPosition;
 
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(pointer - new Vector2(_offsetPos.x, _offsetPos.y));
         transform.position = TileSystem.Instance.GridToWorld(gridPos.x, gridPos.y);
     }
     private void CheckNewPos()
     {
+        GameManager.audioManager.PlaySound("Move obj");
+
         _lastPos = transform.position;
         Vector2Int gridPos = TileSystem.Instance.WorldToGrid(transform.position);
 
@@ -181,16 +193,31 @@ public class ItemBehaviour : MonoBehaviour
 
         _canPlace = TileSystem.Instance.CheckForPlacing(this, gridPos.x, gridPos.y);
         if (_canPlace && OwnItem.type == GMStatic.tagType.Mural)
+        {
             _canPlace = CheckMuralPos(gridPos);
+            SpriteHeight();
+        }
         else if (_canPlace && OwnItem.type == GMStatic.tagType.Object)
         {
-            int height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
-            if (height < 0) _canPlace = false;
+            float height = TileSystem.Instance.CheckItemTop(this, gridPos.x, gridPos.y);
+            if (height < 0)
+            {
+                _canPlace = false;
+                _isOnTop = false;
+            }
+            else if (height > 0)
+            {
+                SpriteHeight(height);
+                _isOnTop = true;
+            }
             else
             {
-
+                SpriteHeight();
+                _isOnTop = false;
             }
         }
+        else
+            SpriteHeight();
 
         _constraint.ResetConstraint(transform.position);
         _itemUI.TextIssues(!ConstraintValid, !DoorValid);
@@ -266,12 +293,46 @@ public class ItemBehaviour : MonoBehaviour
     }
     public void SpriteHeight(float additionalSpriteHeight = 0)
     {
-        float size = _spriteUnClrRender.size.y + additionalSpriteHeight;
-        size = size / 2f;
-        Debug.Log(size + " | " + _spriteUnClrRender.size.y);
+        float size = (_spriteUnClrRender.bounds.size.y - 0.75f) /2f;
 
-        _spriteUnCllrGmObj.transform.position = _spriteUnCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
-        _spriteCllrGmObj.transform.position = _spriteCllrGmObj.transform.position + new Vector3(0f, 0, 0f);
+        if (additionalSpriteHeight > 0 && OwnItem.type == GMStatic.tagType.Object)
+            size += (additionalSpriteHeight - 1.5f) / 4f;
+        if (OwnItem.type == GMStatic.tagType.Mural || OwnItem.type == GMStatic.tagType.Ceiling)
+            size += (OwnItem.size.z/2f);
+
+        if (OwnItem.type == GMStatic.tagType.Mural)
+        {
+            _spriteUnCllrGmObj.transform.localPosition = new Vector3(0, size, _spriteUnCllrGmObj.transform.localPosition.z);
+            _spriteCllrGmObj.transform.localPosition = new Vector3(0, size, _spriteCllrGmObj.transform.localPosition.z);
+        }
+        else
+        {
+            _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, size, _spriteUnCllrGmObj.transform.localPosition.z);
+            _spriteCllrGmObj.transform.localPosition = new Vector3(_spriteCllrGmObj.transform.localPosition.x, size, _spriteCllrGmObj.transform.localPosition.z);
+        }
+
+        if (OwnItem.type == GMStatic.tagType.Null)
+        {
+            if (Orientation == 0)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 90)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 180)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 270)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+        }
+        else if (OwnItem.type == GMStatic.tagType.Mural)
+        {
+            if (Orientation == 180)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 270)
+                _parentSprite.transform.localPosition = new Vector3(TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 0)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, TileSystem.Instance.CellSize.y * 0.25f, 0);
+            if (Orientation == 90)
+                _parentSprite.transform.localPosition = new Vector3(-TileSystem.Instance.CellSize.x * 0.25f, -TileSystem.Instance.CellSize.y * 0.25f, 0);
+        }
     }
     private void ColliderReset()
     {
@@ -313,7 +374,35 @@ public class ItemBehaviour : MonoBehaviour
     {
         Debug.Log(gameObject.name + " - Layer: " + SpriteLayer);
         transform.position = new Vector3(transform.position.x, transform.position.y, 100f + SpriteLayer);
+        if (_isOnTop)
+            transform.position -= new Vector3(0f, 0f, 0.2f);
     }
+
+    [Button] public void RotationDoor(int rotation = -1)
+    {
+        switch(rotation)
+        {
+            case 90:
+                _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, _spriteUnCllrGmObj.transform.localPosition.y, _spriteUnCllrGmObj.transform.localPosition.z - 1);
+                _parentSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
+                _parentSprite.transform.localPosition = new Vector3(-.5f, -.25f, _parentSprite.transform.localPosition.z - 1);
+                break;
+
+            case 180:
+                _parentSprite.transform.localPosition = new Vector2(-.5f, .25f);
+                break;
+
+            case 270:
+                _spriteUnCllrGmObj.transform.localPosition = new Vector3(_spriteUnCllrGmObj.transform.localPosition.x, _spriteUnCllrGmObj.transform.localPosition.y, _spriteUnCllrGmObj.transform.localPosition.z - 1);
+                _parentSprite.transform.localEulerAngles = new Vector3(0, 180, 0);
+                _parentSprite.transform.localPosition = new Vector3(.5f, .25f, _parentSprite.transform.localPosition.z - 1);
+                break;
+
+            case 0:
+            default:
+                break;
+        }
+    }  //OUI C'EST PAS OPTI MAIS MERDE !
 
     [Button] public void Rotation(int rotation = -1)
     {
@@ -355,6 +444,8 @@ public class ItemBehaviour : MonoBehaviour
             TileSystem.Instance.ObjectOnScene(true);
             CheckWhenPlaced();
             SpawnScoreEffect(OwnItem.score, false);
+            GameManager.audioManager.PlaySound("Poser obj");
+
         }
     } // Place the Item on the grid and Change state for "placed" when a button is pushed
     public void Move()

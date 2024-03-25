@@ -27,6 +27,7 @@ public class SwipeLevel : MonoBehaviour
 
     void Start()
     {
+        GameManager.audioManager.PlayMusic("Menu");
         for (int i = 0; i < _rectTransform.childCount; i++)
         {
             _listPicture.Add(_rectTransform.GetChild(i).GetComponent<RectTransform>());
@@ -37,7 +38,6 @@ public class SwipeLevel : MonoBehaviour
     {
         GameplayScript.onSwipe += StartSwipe;
         GameplayScript.onEndPrimaryTouch += EndSwipe;
-        _inputBackButton.action.started += ReturnMainMenu;
     }
 
 
@@ -45,8 +45,6 @@ public class SwipeLevel : MonoBehaviour
     {
         GameplayScript.onSwipe -= StartSwipe;
         GameplayScript.onEndPrimaryTouch -= EndSwipe;
-        _inputBackButton.action.started -= ReturnMainMenu;
-
     }
 
     private void StartSwipe(Vector2 velocity)
@@ -62,7 +60,7 @@ public class SwipeLevel : MonoBehaviour
         FindClosestImage();
     }
 
-    private void ReturnMainMenu(InputAction.CallbackContext obj)
+    public void ReturnMainMenu()
     {
         if (!_isLoading)
         {

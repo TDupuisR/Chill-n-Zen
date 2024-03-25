@@ -5,10 +5,16 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject _menuObject;
     [SerializeField] GameObject _creditsObject;
-        
+
+    private void Start()
+    {
+        GameManager.audioManager.PlayMusic("Menu");
+    }
+
     public void GotoSelectionLevels()
     {
         GameManager.Instance.ChangeScene(2);
+        GameManager.audioManager.PlaySound("Bouton entrer");
     }
 
     public void GotoCredits()

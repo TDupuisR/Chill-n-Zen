@@ -32,6 +32,7 @@ public class TileSystem : MonoBehaviour
     public List<TileBehaviour> TilesList { get { return _tileBehaveList; } }
     public List<ItemBehaviour> ItemList { get { return _itemBehaveList; } }
     public int TotalScore { get; private set; }
+    public float TopItemSize { get; set; }
 
     public delegate void OnShowGridDelegate();
     public static event OnShowGridDelegate OnShowGrid;
@@ -217,7 +218,7 @@ public class TileSystem : MonoBehaviour
     }
     public void RotateDoor(int rotation)
     {
-        _doorBehave.Rotation(rotation);
+        _doorBehave.RotationDoor(rotation);
     }
     public void ColorDoor(Color color)
     {
@@ -253,9 +254,10 @@ public class TileSystem : MonoBehaviour
 
         return res;
     }
-    public int CheckItemTop(ItemBehaviour item, int x, int y) //if return is -1 consider false
+    public float CheckItemTop(ItemBehaviour item, int x, int y) //if return is -1 consider false
     {
-        int res = -1;
+        float res = -1;
+        TopItemSize = 0;
 
         for (int i = 0; i < item.RotationSize.x; i++)
         {
@@ -273,11 +275,13 @@ public class TileSystem : MonoBehaviour
                     res = -1;
                     break;
                 }
-                else res = tempoRes;
+                else
+                    res = tempoRes;
             }
             if (res < 0) break;
         }
 
+        if (res > 0) res = TopItemSize;
         return res;
     }
     public bool CheckForAccessing(int x, int y, GMStatic.constraint constr = GMStatic.constraint.None)
@@ -300,7 +304,7 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
-            _tileBehaveList[index].CheckConditionExist(item);
+            res = _tileBehaveList[index].CheckConditionExist(item);
         }
 
         return res;
@@ -312,7 +316,7 @@ public class TileSystem : MonoBehaviour
         int index = CheckTileExist(x, y);
         if (index > -1)
         {
-            _tileBehaveList[index].CheckConditionExist(usage);
+            res = _tileBehaveList[index].CheckConditionExist(usage);
         }
 
         return res;
@@ -462,7 +466,9 @@ public class TileSystem : MonoBehaviour
 
             foreach (ItemBehaviour compare in _itemBehaveList)
             {
-                if (compare != item)
+                if (compare != item && 
+                    !(compare.OwnItem.type == GMStatic.tagType.Carpet) &&
+                    !(compare.OwnItem.type == GMStatic.tagType.Ceiling))
                 {
                     Vector2 priority;
                     Vector2[] posT = compare.GetLayerPoints();
@@ -474,7 +480,21 @@ public class TileSystem : MonoBehaviour
                         priority = posT[0];
 
                     float dot = Vector2.Dot(normal, priority - pos[0]);
-                    if (dot > 0) compare.SpriteLayer -= 1;
+                    if (dot > 0)
+                        compare.SpriteLayer -= 1;
+                    if (dot == 0 && compare.OwnItem.type == GMStatic.tagType.Mural)
+                        compare.SpriteLayer -= 1;
+                    if (dot == 0 && compare.OwnItem.listUsage.Contains(GMStatic.tagUsage.Top) &&
+                        item.OwnItem.type == GMStatic.tagType.Object)
+                        compare.SpriteLayer -= 1;
+                }
+                else if (compare.OwnItem.type == GMStatic.tagType.Carpet)
+                {
+                    compare.SpriteLayer -= 1;
+                }
+                else if (compare.OwnItem.type == GMStatic.tagType.Ceiling)
+                {
+                    compare.SpriteLayer += 1;
                 }
             }
         }

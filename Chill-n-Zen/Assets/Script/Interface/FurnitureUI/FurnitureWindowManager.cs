@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class FurnitureWindowManager : MonoBehaviour
 {
+    [SerializeField] ObjectivesUI _objectivesUI;
     [SerializeField] Button _openButton;
     [SerializeField] Button _closeButton;
     [SerializeField] WindowScroll _detailWindow;
+    [SerializeField] FurnitureReadData _detailData;
+
     Coroutine _waitPlacementCoroutine;
 
     public static Action wasItemPlaced;
@@ -47,7 +50,11 @@ public class FurnitureWindowManager : MonoBehaviour
         _waitPlacementCoroutine = StartCoroutine(waitForObjectPlacement());
     }
 
-    private void AppearDetailWindowFromItem(ItemBehaviour behaviour)  => AppearDetailWindow(Vector2.zero); 
+    private void AppearDetailWindowFromItem(ItemBehaviour behaviour)
+    {
+        _detailData.Furniture = behaviour.OwnItem;
+        AppearDetailWindow(Vector2.zero);
+    }
     public void AppearDetailWindow(Vector2 pos) => DisplayDetailWindow(true);
     public void HideDetailWindow() => DisplayDetailWindow(false);
     public void DisplayDetailWindow(bool display)
@@ -58,7 +65,12 @@ public class FurnitureWindowManager : MonoBehaviour
 
     IEnumerator waitForObjectPlacement()
     {
+        CameraControls.Instance.CanMoveCamera = false;
+        _objectivesUI.ActivateObjButton(false);
+        yield return new WaitForSeconds(1);
         yield return new WaitUntil(() => TileSystem.Instance.IsSceneVacant);
+        CameraControls.Instance.CanMoveCamera = true;
+        _objectivesUI.ActivateObjButton(true);
         wasItemPlaced?.Invoke();
         AppearWindow();
     }

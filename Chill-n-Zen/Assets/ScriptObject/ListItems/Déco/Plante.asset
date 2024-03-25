@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Plante
   m_EditorClassIdentifier: 
   spriteOneFixed: {fileID: 21300000, guid: 65a564bff34a8a9418177c0347fb128c, type: 3}
-  spriteOneColored: {fileID: 0}
+  spriteOneColored: {fileID: 21300000, guid: 65a564bff34a8a9418177c0347fb128c, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 1
   type: 1
   material: 0
-  listUsage: 10000000
+  listUsage: 1300000010000000
   constraint: 0
   doorAccess: 1
   frontBonus: 10

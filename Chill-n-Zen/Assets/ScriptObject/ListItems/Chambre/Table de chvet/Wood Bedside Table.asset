@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Wood Bedside Table
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 0}
-  spriteOneColored: {fileID: 0}
+  spriteOneFixed: {fileID: 21300000, guid: 842a9c9fb0b25c548a5a24c421026cbc, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: d12b5db2fac68c545a88e0aed13b91fd, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 2

@@ -403,8 +403,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -561,6 +561,7 @@ MonoBehaviour:
   _boundaryActionZone: 350
   _isVerticalScroll: 0
   _displayed: 1
+  _canBeInterrupted: 0
 --- !u!114 &5199757140321883114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +582,7 @@ MonoBehaviour:
   _objectPrimaryParent: {fileID: 1098020668247411504}
   _objectSecondaryParent: {fileID: 4090008973046841880}
   _scroll: {fileID: 7233736683120072473}
+  _objectiveButton: {fileID: 426163228630117318}
   _fillRect: {fileID: 2996761471519337954}
   _spaceFillFactor: 100
   _spaceBTWObj: 50
@@ -1521,7 +1523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1953163998451238191}
-  - component: {fileID: 6882041949418116917}
+  - component: {fileID: 2911405356189873738}
   m_Layer: 5
   m_Name: GameplayObjects
   m_TagString: Untagged
@@ -1541,15 +1543,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4875311353114889907}
   - {fileID: 3205434531860915357}
-  - {fileID: 2603041933200299426}
   - {fileID: 5230076945303398770}
   - {fileID: 4094160014514517495}
-  - {fileID: 3610751836745956247}
   - {fileID: 3036157132662572008}
   - {fileID: 933892043572289539}
-  - {fileID: 1617420646035565793}
+  - {fileID: 488513539235224508}
+  - {fileID: 4875311353114889907}
+  - {fileID: 3610751836745956247}
   m_Father: {fileID: 7857705445582022126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1557,7 +1558,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &6882041949418116917
+--- !u!225 &2911405356189873738
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1669,6 +1670,7 @@ MonoBehaviour:
   _boundaryActionZone: 0
   _isVerticalScroll: 0
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!1 &851295763948981766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,7 +1739,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1800,7 +1802,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &857898857104669560
@@ -2062,7 +2064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &96508432870268008
@@ -2228,6 +2230,7 @@ MonoBehaviour:
   _boundaryActionZone: 0
   _isVerticalScroll: 1
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!1 &1381084086764953296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,8 +3755,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4085,6 +4088,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2713989953486175979}
+        m_TargetAssemblyTypeName: FurnitureWindowManager, Assembly-CSharp
+        m_MethodName: HideDetailWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2498428564735990449
 GameObject:
   m_ObjectHideFlags: 0
@@ -4361,8 +4388,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1808660869144432536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -15, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5060,8 +5087,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 093588db2e0b5314386d8bbebd31a0a6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5737,6 +5764,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Son Objectif
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7651162359459199846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5996,7 +6035,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6059,7 +6098,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3572076570352801862
@@ -6279,6 +6318,7 @@ MonoBehaviour:
   _boundaryActionZone: 230
   _isVerticalScroll: 1
   _displayed: 0
+  _canBeInterrupted: 0
 --- !u!114 &7747319372973352098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6308,9 +6348,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78fbfb6b88dd4447916e19c955f05e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectivesUI: {fileID: 5199757140321883114}
   _openButton: {fileID: 4613115616716559360}
   _closeButton: {fileID: 6359179539174770519}
   _detailWindow: {fileID: 1437872396435624185}
+  _detailData: {fileID: 2823380998407397996}
 --- !u!1 &3650502844452344915
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,8 +7016,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8149,6 +8191,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4740306603032344492
 GameObject:
   m_ObjectHideFlags: 0
@@ -8608,8 +8662,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9158,8 +9212,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 347653b5acaebd746a5002c0715baf24, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9534,6 +9588,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5666773660902979505
 GameObject:
   m_ObjectHideFlags: 0
@@ -9601,8 +9667,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9735,8 +9801,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10142,6 +10208,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6006444803686123933
 GameObject:
   m_ObjectHideFlags: 0
@@ -10266,7 +10344,7 @@ MonoBehaviour:
   _parentVerticalRectTransform: {fileID: 0}
   _EdgeOfScroll: {fileID: 1226515681172131434}
   _numberItemBeforeScroll: 4
-  _spacePerItem: 250
+  _spacePerItem: 240
   _scrollSensitivity: 1
   _isHorizontal: 1
 --- !u!1 &6017294505020778044
@@ -10474,6 +10552,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6232941995875500270
 GameObject:
   m_ObjectHideFlags: 0
@@ -10606,6 +10696,18 @@ MonoBehaviour:
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6254062655222171206
@@ -11124,6 +11226,95 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &6408959006956807734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 488513539235224508}
+  - component: {fileID: 5011581930311793537}
+  - component: {fileID: 2365977255162554754}
+  m_Layer: 5
+  m_Name: Notebook
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &488513539235224508
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408959006956807734}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2603041933200299426}
+  - {fileID: 1617420646035565793}
+  m_Father: {fileID: 1953163998451238191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -148, y: -59}
+  m_SizeDelta: {x: 486.3839, y: 282.59863}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5011581930311793537
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408959006956807734}
+  m_CullTransparentMesh: 1
+--- !u!114 &2365977255162554754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408959006956807734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a0f9c17986cb4ec4d85b8ce9fd03b20e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6452306897033071657
 GameObject:
   m_ObjectHideFlags: 0
@@ -11309,11 +11500,11 @@ RectTransform:
   - {fileID: 890866870483401759}
   - {fileID: 695745649898478236}
   - {fileID: 6273573528642226857}
-  m_Father: {fileID: 1953163998451238191}
+  m_Father: {fileID: 488513539235224508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: -34}
+  m_AnchoredPosition: {x: -220.19196, y: -116.29935}
   m_SizeDelta: {x: 250, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6556959596411312780
@@ -11580,8 +11771,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11798,6 +11989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _starUI: {fileID: 6167888860324656904}
   _text: {fileID: 1399525563362496263}
+  _image: {fileID: 1348109039695615339}
 --- !u!1 &6670660256723533471
 GameObject:
   m_ObjectHideFlags: 0
@@ -12065,11 +12257,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6237719579750016085}
-  m_Father: {fileID: 1953163998451238191}
+  m_Father: {fileID: 488513539235224508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: -85}
+  m_AnchoredPosition: {x: -220.19196, y: -167.29929}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &402827958125040139
@@ -12093,15 +12285,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
+  m_Color: {r: 1, g: 0.79152286, b: 0.20943397, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8281aa4e99dd97449a13e116c8e4f99e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -12645,6 +12837,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7142253835810900470
 GameObject:
   m_ObjectHideFlags: 0
@@ -12856,6 +13060,7 @@ GameObject:
   - component: {fileID: 7092656254497294092}
   - component: {fileID: 6817194865486821823}
   - component: {fileID: 983528181354923742}
+  - component: {fileID: 3398944587714022438}
   m_Layer: 5
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -12978,6 +13183,18 @@ MonoBehaviour:
   _endingPositionTransform: {fileID: 6237719579750016085}
   _scoreColor: {r: 1, g: 1, b: 0, a: 0}
   _comboColor: {r: 1, g: 0.5019608, b: 0, a: 0}
+--- !u!114 &3398944587714022438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183874349084297082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964d49c3d65280f469f3c9d3582e5ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7205857834078262895
 GameObject:
   m_ObjectHideFlags: 0
@@ -13148,10 +13365,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _buttonToDisable: {fileID: 0}
-  _animationDuration: 1
+  _animationDuration: 0.5
   _boundaryActionZone: 0
   _isVerticalScroll: 0
   _displayed: 0
+  _canBeInterrupted: 1
 --- !u!114 &2823380998407397996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13395,7 +13613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: -170}
+  m_AnchoredPosition: {x: -200, y: -240}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5000001, y: 0.50000024}
 --- !u!222 &8228580192735542813
@@ -13490,6 +13708,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &7477404448618927311
@@ -13760,7 +13990,7 @@ MonoBehaviour:
   m_fontSizeMin: 20
   m_fontSizeMax: 25
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -13844,7 +14074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -170}
+  m_AnchoredPosition: {x: -50, y: -240}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3400405122504713148
@@ -13941,6 +14171,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2962710638755904160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13954,7 +14196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameplayObjects: {fileID: 796100704984581548}
-  _canvasGroup: {fileID: 6882041949418116917}
+  _canvasGroup: {fileID: 2911405356189873738}
   _button: {fileID: 6388719874429882442}
   _fadeDuration: 0.5
 --- !u!1 &7869085212887826422
@@ -14269,7 +14511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2808549258608581294
@@ -14506,7 +14748,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4208707393713993202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5832299913571802776}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8106598567875597894
 GameObject:
   m_ObjectHideFlags: 0
@@ -14852,7 +15106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 185, y: -60}
+  m_AnchoredPosition: {x: 185, y: -100}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6842348768651500144
@@ -15063,6 +15317,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3398944587714022438}
+        m_TargetAssemblyTypeName: UIGetSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clic sur bouton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8382447800510946335
 GameObject:
   m_ObjectHideFlags: 0
@@ -15131,7 +15397,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 7411899385844811940, guid: ed78ceed5913e7e4aa178de73f489355, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15194,7 +15460,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8442891716936373052

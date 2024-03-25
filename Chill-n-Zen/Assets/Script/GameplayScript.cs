@@ -7,8 +7,6 @@ using NaughtyAttributes;
 
 public class GameplayScript : MonoBehaviour
 {
-    public static GameplayScript Instance;
-
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryTouch;
     [Foldout("Inputs")][SerializeField] InputActionReference _inputPrimaryPosition;
     [Space(4)]
@@ -54,16 +52,6 @@ public class GameplayScript : MonoBehaviour
     public static Action<Vector2> onStartSecondaryTouch;
     public static Action<Vector2> onEndPrimaryTouch;
     public static Action<Vector2> onSwipe;
-
-    private void Awake()
-    {
-        if(Instance != null)
-        {
-            Destroy(gameObject);
-        }
-
-        Instance = this;
-    }
 
     private void OnValidate()
     {

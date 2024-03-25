@@ -112,7 +112,7 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
-        List<int> resL = new List<int>(request.itemRequested.Count);
+        List<int> resL = new List<int>(new int[request.itemRequested.Count]);
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
@@ -120,7 +120,7 @@ public class RequestManager : MonoBehaviour
             {
                 for (int i = 0; i < request.itemRequested.Count; i++)
                 {
-                    if (item == request.itemRequested[i])
+                    if (item.OwnItem == request.itemRequested[i])
                         resL[i]++;
                 }
 
@@ -132,7 +132,7 @@ public class RequestManager : MonoBehaviour
             {
                 foreach (Item current in request.itemRequested)
                 {
-                    if (item == current)
+                    if (item.OwnItem == current)
                     {
                         count++; break;
                     }
@@ -149,7 +149,8 @@ public class RequestManager : MonoBehaviour
     {
         bool res = false;
 
-        List<int> resL = new List<int>(request.usageRequested.Count);
+        List<int> resL = new List<int>(new int[request.usageRequested.Count]);
+
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
@@ -206,7 +207,10 @@ public class RequestManager : MonoBehaviour
         int count = 0;
         foreach (ItemBehaviour item in TileSystem.Instance.ItemList)
         {
-            if (item.ItemColor == request.colorRequested)
+            //print(item.ItemColor + "==" + request.colorRequested);
+            Color colorToCheck = request.colorRequested;
+            colorToCheck.a = 1;
+            if (item.ItemColor == colorToCheck)
                 count++;
 
             if (count >= request.nbRequested) res = true;

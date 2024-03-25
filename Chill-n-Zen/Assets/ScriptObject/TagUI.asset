@@ -12,31 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42e39413fa904f4dbde436022f52330, type: 3}
   m_Name: TagUI
   m_EditorClassIdentifier: 
-  tagNames:
+  materialName:
+  - Null
+  - Wood
+  - Plywood
+  - Fabric
+  materialSprite:
+  - {fileID: 21300000, guid: 00d022b1b486fdf47a3c02b4f0e50016, type: 3}
+  - {fileID: 21300000, guid: ec293dbf6de16584e87758de68b7ba3d, type: 3}
+  - {fileID: 21300000, guid: 0b234a653b181cb4e862a8c9b24979d2, type: 3}
+  - {fileID: 21300000, guid: a13808e41c700a04b87521a1ac36716b, type: 3}
+  roomName:
   - Null
   - Other
   - Bedroom
   - Livingroom
   - Kitchen
+  roomSprite:
+  - {fileID: 21300000, guid: 2a9c997624e0c93458ad6961668d2bc0, type: 3}
+  - {fileID: 21300000, guid: 1c91fe0cccc8f3846b0d811ea63ae086, type: 3}
+  - {fileID: 21300000, guid: b13e9b20260f07f4299190a868bbc32f, type: 3}
+  - {fileID: 21300000, guid: 804934ab87195d74ca216033ff41bac5, type: 3}
+  - {fileID: 21300000, guid: 9a24c29be00487540b35c645f741637a, type: 3}
+  TypeName:
+  - Null
   - Furniture
   - Object
   - Mural
   - Ceiling
   - Carpet
-  - Wood
-  - Plywood
-  - Fabric
-  associatedSprite:
-  - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.216981, g: 0.44041684, b: 1, a: 1}
-  - {r: 0.91823894, g: 0.19346526, b: 0.19346526, a: 1}
-  - {r: 1, g: 0.9695425, b: 0, a: 1}
-  - {r: 0.324338, g: 0.9496855, b: 0.28968382, a: 1}
-  - {r: 0.18238991, g: 0.18238991, b: 0.18238991, a: 1}
-  - {r: 0.899371, g: 0.5820412, b: 0.2234285, a: 1}
-  - {r: 0.4390055, g: 0.91710883, b: 0.9496855, a: 1}
-  - {r: 0.9607843, g: 0.9607843, b: 0.78431374, a: 1}
-  - {r: 0.45911938, g: 0.2486076, b: 0.06496966, a: 1}
-  - {r: 0.899371, g: 0.26867995, b: 0.82677734, a: 1}
-  - {r: 0.70154303, g: 0.30473474, b: 0.9056604, a: 1}
+  TypeSprite:
+  - {fileID: 21300000, guid: 8347ee4630c1cf94b84f0c68da1e54b9, type: 3}
+  - {fileID: 21300000, guid: ade39e59fcaca554a8a44a5baacf8701, type: 3}
+  - {fileID: 21300000, guid: 566d121046c098a45826cf50931c2d26, type: 3}
+  - {fileID: 21300000, guid: 61ae3e82bb14eb44285985819f653d4e, type: 3}
+  - {fileID: 21300000, guid: 179320c1cd050a546b036966b996e3cd, type: 3}
+  - {fileID: 21300000, guid: 53c484db6d18f7b4db20b3347513720d, type: 3}

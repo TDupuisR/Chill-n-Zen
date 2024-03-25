@@ -19,7 +19,7 @@ MonoBehaviour:
   room: 3
   type: 1
   material: 2
-  listUsage: 
+  listUsage: 0600000007000000
   constraint: 1
   doorAccess: 1
   frontBonus: 0

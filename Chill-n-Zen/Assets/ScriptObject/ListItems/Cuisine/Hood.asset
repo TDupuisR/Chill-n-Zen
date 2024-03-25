@@ -35,5 +35,5 @@ MonoBehaviour:
   score: 80
   description: +20 on top of a hotplate
   price: 180
-  size: {x: 1, y: 1, z: 1}
-  fullRotation: 0
+  size: {x: 1, y: 1, z: 4}
+  fullRotation: 1

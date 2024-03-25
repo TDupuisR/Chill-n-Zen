@@ -20,6 +20,7 @@ public class ObjectivesUI : MonoBehaviour
     [SerializeField] Transform _objectPrimaryParent;
     [SerializeField] Transform _objectSecondaryParent;
     [SerializeField] SwipeScrollbar _scroll;
+    [SerializeField] Button _objectiveButton;
 
     [Header("Reference fill")]
     [SerializeField] RectTransform _fillRect;
@@ -124,7 +125,7 @@ public class ObjectivesUI : MonoBehaviour
         Vector2 currentPosition = new Vector2(-57, 0);
         for (int i=0; i< count; i++)
         {
-            GameObject newObj = Instantiate(_checkboxPrefab, objectParent);   
+            GameObject newObj = Instantiate(_checkboxPrefab, objectParent);
             newObj.transform.localPosition = currentPosition;
 
             ObjectivesCheckbox objScript = newObj.GetComponent<ObjectivesCheckbox>();
@@ -155,7 +156,7 @@ public class ObjectivesUI : MonoBehaviour
     {
         //Primary objectives
         List<bool> valueToSet = GameManager.requestManager.ReturnStatus(true);
-        if(valueToSet.Count > 0 )
+        if(valueToSet.Count > 0 && _primaryObjectives.Count > 0)
         {
             for (int i = 0; i < valueToSet.Count; i++)
             {
@@ -166,7 +167,7 @@ public class ObjectivesUI : MonoBehaviour
 
         //Secondary objectives
         valueToSet = GameManager.requestManager.ReturnStatus(false);
-        if(valueToSet.Count > 0)
+        if(valueToSet.Count > 0 && _secondaryObjectives.Count > 0)
         {
             for (int i = 0; i < valueToSet.Count; i++)
             {
@@ -216,6 +217,7 @@ public class ObjectivesUI : MonoBehaviour
         if (_hasCompletedPrimaryObjectives)
         {
             _starUI.UnlockStar(2, unlocked);
+            _scoreToReach.CheckBoxImage.sprite = unlocked ? _checkedSprite : _uncheckedSprite;
             HasScoreStar = unlocked;
         }
     }
@@ -234,6 +236,8 @@ public class ObjectivesUI : MonoBehaviour
         return solutionList;
     }
     public void InvertButtonSprite() => _buttonObjectivesRect.localScale = new Vector3(-_buttonObjectivesRect.localScale.x, 1,1);
+    public void ActivateObjButton(bool acitve) => _objectiveButton.interactable = acitve;
+
 
     #region Complete Level
     /*

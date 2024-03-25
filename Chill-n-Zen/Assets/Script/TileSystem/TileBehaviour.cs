@@ -5,6 +5,7 @@ using GameManagerSpace;
 public class TileBehaviour : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _spriteRender;
+    [SerializeField] SpriteRenderer _spriteRenderSecond;
     [SerializeField] LineRenderer _lineRender;
 
     List<Item> _presentItems = new List<Item>();
@@ -26,9 +27,9 @@ public class TileBehaviour : MonoBehaviour
 
     private void ChangeAesthetic()
     {
-        Debug.LogWarning(" (error : 3x0) Missing Floor texture ", gameObject);
-        // _renderer.sprite = // GameManager get Floor Texture //
-        _spriteRender.color = GameManager.colorData.GroundColor;
+        _spriteRender.color = Color.white;
+        _spriteRenderSecond.color = GameManager.colorData.GroundColor;
+        _spriteRender.sprite = GameManager.colorData.GrSprite;
     }
 
     private void GridReset()
@@ -91,6 +92,8 @@ public class TileBehaviour : MonoBehaviour
             if (item.type == GMStatic.tagType.Furniture && placing.type == GMStatic.tagType.Object && item.listUsage.Contains(GMStatic.tagUsage.Top))
             {
                 res += item.size.z;
+                if (TileSystem.Instance.TopItemSize < item.spriteOneFixed.bounds.size.y)
+                    TileSystem.Instance.TopItemSize = item.spriteOneFixed.bounds.size.y;
             }
         }
 

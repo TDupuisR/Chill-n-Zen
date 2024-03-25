@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hotplate
   m_EditorClassIdentifier: 
   spriteOneFixed: {fileID: 21300000, guid: edfd4835b1bf2d842836f3c803b97694, type: 3}
-  spriteOneColored: {fileID: 0}
+  spriteOneColored: {fileID: 21300000, guid: edfd4835b1bf2d842836f3c803b97694, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 4
@@ -35,4 +35,4 @@ MonoBehaviour:
   description: 
   price: 160
   size: {x: 1, y: 1, z: 1}
-  fullRotation: 0
+  fullRotation: 1

@@ -1,3 +1,4 @@
+using GameManagerSpace;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -68,5 +69,10 @@ public class LevelCompletedManager : MonoBehaviour
         }
 
         _windowScroll.StartScroll();
+    }
+
+    public void GotoSelectionLevel()
+    {
+        GameManager.Instance.ChangeScene(2);
     }
 }

@@ -15,6 +15,7 @@ public class ItemInput : MonoBehaviour
     bool _isOnItem = false;
     bool _isOnUI = false;
     int _layerUI;
+    bool _showedUI;
     
     public static Action<ItemBehaviour> OnCallDescription;
     public static Action OnCallHideDescription;
@@ -22,7 +23,7 @@ public class ItemInput : MonoBehaviour
     private void Start()
     {
         _layerUI = LayerMask.NameToLayer("UI");
-        _gameplay = GameplayScript.Instance;
+        _gameplay = GameManager.gameplayScript;
 
         OnCallDescription?.Invoke(_itemBehave);
     }
@@ -43,7 +44,7 @@ public class ItemInput : MonoBehaviour
     static List<RaycastResult> GetEventSystemRaycastResults()
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);
-        eventData.position = GameplayScript.Instance.PrimaryPosition;
+        eventData.position = GameManager.gameplayScript.PrimaryPosition;
 
         List<RaycastResult> raysastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raysastResults);
@@ -77,6 +78,7 @@ public class ItemInput : MonoBehaviour
                 {
                     _itemUI.ActivateUI(true);
                     OnCallDescription?.Invoke(_itemBehave);
+                    _showedUI = true;
                 }
             }
         }
@@ -99,6 +101,11 @@ public class ItemInput : MonoBehaviour
         if (_itemBehave.CurrentState == GMStatic.State.Placed && CheckIsTouching() && _isOnItem == false)
         {
             _itemUI.ActivateUI(false);
+            if(_showedUI)
+            {
+                OnCallHideDescription?.Invoke();
+                _showedUI = false;
+            }
         }
 
         _primWasPressed = _gameplay.IsPrimaryPressed;

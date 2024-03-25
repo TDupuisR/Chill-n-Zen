@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c25ee0b7e9f1a04cb8f061ce20b5428, type: 3}
   m_Name: Plywood Library
   m_EditorClassIdentifier: 
-  spriteOneFixed: {fileID: 21300000, guid: 17bdf1405265f6f4eb5694be6f8a6416, type: 3}
-  spriteOneColored: {fileID: 21300000, guid: aab8021378feda9469e30a889621d3ee, type: 3}
+  spriteOneFixed: {fileID: 21300000, guid: 4f04d824df5c8a246b47eff7f1ac0e2b, type: 3}
+  spriteOneColored: {fileID: 21300000, guid: 45eeef19867bb1c4fb66fe52ff5669ba, type: 3}
   spriteTwoFixed: {fileID: 0}
   spriteTwoColored: {fileID: 0}
   room: 3
