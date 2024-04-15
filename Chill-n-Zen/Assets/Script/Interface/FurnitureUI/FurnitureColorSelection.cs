@@ -39,13 +39,13 @@ public class FurnitureColorSelection : MonoBehaviour
     }
 
 
-    void SelectNewItem(Vector2 vector)
+    void SelectNewItem(Vector2 borderVector, Vector2 colorVector)
     {
-        if(currentButtonPosition != vector)
+        if(currentButtonPosition != colorVector)
         {
             linkedItem = null;
             ChangeColor(0);
-            currentButtonPosition = vector;
+            currentButtonPosition = colorVector;
         }
 
     }

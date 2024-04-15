@@ -53,9 +53,9 @@ public class FurnitureWindowManager : MonoBehaviour
     private void AppearDetailWindowFromItem(ItemBehaviour behaviour)
     {
         _detailData.Furniture = behaviour.OwnItem;
-        AppearDetailWindow(Vector2.zero);
+        AppearDetailWindow(Vector2.zero, Vector2.zero);
     }
-    public void AppearDetailWindow(Vector2 pos) => DisplayDetailWindow(true);
+    public void AppearDetailWindow(Vector2 borderVector, Vector2 colorVector) => DisplayDetailWindow(true);
     public void HideDetailWindow() => DisplayDetailWindow(false);
     public void DisplayDetailWindow(bool display)
     {

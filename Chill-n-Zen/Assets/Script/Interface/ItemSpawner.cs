@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public FurnitureReadData DetailWindow { get; set; }
     public SwipeScrollbar Scrollbar { get; set; }
 
-    public static Action<Vector2> onItemTouched;
+    public static Action<Vector2, Vector2> onItemTouched;
     public static Action onItemSelected;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -22,7 +22,7 @@ public class ItemSpawner : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileSystem.Instance.IsSceneVacant)
         {
             _waitHoldRoutine = StartCoroutine(WaitForHold());
-            onItemTouched?.Invoke(transform.position);
+            onItemTouched?.Invoke(transform.position, transform.localPosition);
             DetailWindow.Furniture = _data.Furniture;
         }
     }

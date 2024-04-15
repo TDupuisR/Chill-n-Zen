@@ -134,10 +134,10 @@ public class DisplayFurniture : MonoBehaviour
     }
 
     #region UnderLay function
-    public void ActivateUnderlay(Vector2 pos)
+    public void ActivateUnderlay(Vector2 borderVector, Vector2 colorVector)
     {
         _selectedUnderlay.SetActive(true);
-        _selectedUnderlay.transform.position = pos;
+        _selectedUnderlay.transform.position = borderVector;
         GameManager.audioManager.PlaySound("clic sur bouton");
     }
     public void DisableUnderlay() => _selectedUnderlay.SetActive(false);
